@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E183E4A6-78B9-4D15-ABC3-E5E01E575128</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MyRssReader</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>06C3B3F8-8D2B-48C0-A309-9E527F6B7F22</key>
+		<string>https://54.248.254.200/svn/terras/fixedbid/Kuilima</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MyRssReader/MyRssReader.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>06C3B3F8-8D2B-48C0-A309-9E527F6B7F22</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>06C3B3F8-8D2B-48C0-A309-9E527F6B7F22</key>
+		<string>https://54.248.254.200/svn/terras</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://54.248.254.200/svn/terras/fixedbid/Kuilima/MyRssReader/MyRssReader.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>06C3B3F8-8D2B-48C0-A309-9E527F6B7F22</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>06C3B3F8-8D2B-48C0-A309-9E527F6B7F22</string>
+			<key>IDESourceControlWCCName</key>
+			<string>workspace</string>
+		</dict>
+	</array>
+</dict>
+</plist>
