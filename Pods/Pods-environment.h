@@ -108,3 +108,9 @@
 #define COCOAPODS_VERSION_MINOR_SVProgressHUD 0
 #define COCOAPODS_VERSION_PATCH_SVProgressHUD 0
 
+// XCDYouTubeVideoPlayerViewController
+#define COCOAPODS_POD_AVAILABLE_XCDYouTubeVideoPlayerViewController
+#define COCOAPODS_VERSION_MAJOR_XCDYouTubeVideoPlayerViewController 1
+#define COCOAPODS_VERSION_MINOR_XCDYouTubeVideoPlayerViewController 1
+#define COCOAPODS_VERSION_PATCH_XCDYouTubeVideoPlayerViewController 2
+

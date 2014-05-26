@@ -5,9 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RssListViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WebViewViewController">
             <connections>
-                <outlet property="tableView" destination="vAL-Fv-uEp" id="Q6u-g8-k1P"/>
+                <outlet property="_webView" destination="Tb9-PZ-2Fo" id="rqC-Lz-cTr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,24 +16,23 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vAL-Fv-uEp">
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tb9-PZ-2Fo">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="xB7-C8-jj0"/>
-                        <outlet property="delegate" destination="-1" id="H3W-eb-rxw"/>
+                        <outlet property="delegate" destination="-1" id="ZuU-GG-2l8"/>
                     </connections>
-                </tableView>
+                </webView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="vAL-Fv-uEp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3AB-9b-4gg"/>
-                <constraint firstAttribute="centerX" secondItem="vAL-Fv-uEp" secondAttribute="centerX" id="3Nt-Dg-ofL"/>
-                <constraint firstAttribute="trailing" secondItem="vAL-Fv-uEp" secondAttribute="trailing" id="LKQ-Sf-rze"/>
-                <constraint firstAttribute="bottom" secondItem="vAL-Fv-uEp" secondAttribute="bottom" id="ZC8-nS-mpR"/>
-                <constraint firstAttribute="centerY" secondItem="vAL-Fv-uEp" secondAttribute="centerY" id="h17-q9-cSh"/>
-                <constraint firstItem="vAL-Fv-uEp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="x78-iI-Wtl"/>
+                <constraint firstItem="Tb9-PZ-2Fo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="60k-Vj-dID"/>
+                <constraint firstAttribute="trailing" secondItem="Tb9-PZ-2Fo" secondAttribute="trailing" id="8LA-o9-Thu"/>
+                <constraint firstAttribute="bottom" secondItem="Tb9-PZ-2Fo" secondAttribute="bottom" id="Whx-U3-8pO"/>
+                <constraint firstAttribute="centerY" secondItem="Tb9-PZ-2Fo" secondAttribute="centerY" id="ZBY-pL-sJZ"/>
+                <constraint firstAttribute="centerX" secondItem="Tb9-PZ-2Fo" secondAttribute="centerX" id="nDs-C9-iw3"/>
+                <constraint firstItem="Tb9-PZ-2Fo" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="sva-5u-0Rk"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
