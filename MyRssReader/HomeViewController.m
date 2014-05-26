@@ -48,18 +48,15 @@
 }
 
 - (IBAction)onHomeButton:(id)sender {
-    RssListViewController *vc = [[RssListViewController alloc] initWithNibName:@"RssListViewController" bundle:nil];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:[RssListViewController initWithNibName] animated:YES];
 }
 
 - (IBAction)onAddNew:(id)sender {
-    AddNewRssViewController *vc = [[AddNewRssViewController alloc] initWithNibName:@"AddNewRssViewController" bundle:nil];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:[AddNewRssViewController initWithNibName] animated:YES];
 }
 
 - (IBAction)onShowBookmar:(id)sender {
-    BookmarkViewController *vc = [[BookmarkViewController alloc] initWithNibName:@"BookmarkViewController" bundle:nil];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:[BookmarkViewController initWithNibName] animated:YES];
 }
 
 - (IBAction)onAbout:(id)sender {
