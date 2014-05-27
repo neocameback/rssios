@@ -2,7 +2,7 @@
 //  Node.m
 //  MyRssReader
 //
-//  Created by Huyns89 on 5/26/14.
+//  Created by Huyns89 on 5/27/14.
 //  Copyright (c) 2014 Huyns. All rights reserved.
 //
 
@@ -12,12 +12,13 @@
 
 @implementation Node
 
-@dynamic nodeTitle;
+@dynamic bookmarkStatus;
+@dynamic nodeImage;
 @dynamic nodeSource;
-@dynamic isBookmarkEnable;
+@dynamic nodeTitle;
 @dynamic nodeType;
 @dynamic nodeUrl;
-@dynamic nodeImage;
+@dynamic isAddedToBoomark;
 @dynamic currentRss;
 
 @end

@@ -1,24 +1,25 @@
 //
-//  AddNewRssViewController.m
+//  AboutViewController.m
 //  MyRssReader
 //
-//  Created by Huyns89 on 5/23/14.
+//  Created by Huyns89 on 5/27/14.
 //  Copyright (c) 2014 Huyns. All rights reserved.
 //
 
-#import "AddNewRssViewController.h"
+#import "AboutViewController.h"
 
-@interface AddNewRssViewController ()
+@interface AboutViewController ()
 
 @end
 
-@implementation AddNewRssViewController
+@implementation AboutViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = @"About";
     }
     return self;
 }

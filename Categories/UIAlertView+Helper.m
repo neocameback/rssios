@@ -1,19 +1,13 @@
 //
-//  Rss.m
+//  UIAlertView+Helper.m
 //  MyRssReader
 //
 //  Created by Huyns89 on 5/27/14.
 //  Copyright (c) 2014 Huyns. All rights reserved.
 //
 
-#import "Rss.h"
-#import "Node.h"
+#import "UIAlertView+Helper.h"
 
-
-@implementation Rss
-
-@dynamic rssLink;
-@dynamic rssTitle;
-@dynamic nodes;
+@implementation UIAlertView (Helper)
 
 @end

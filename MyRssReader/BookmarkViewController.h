@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface BookmarkViewController : UIViewController
-
+#import <MWFeedParser.h>
+#import "Rss.h"
+@interface BookmarkViewController : UIViewController <MWFeedParserDelegate, UITableViewDataSource, UITableViewDelegate>
+{
+    NSMutableArray *nodeList;
+    MWFeedParser *feedParser;
+    Rss *newRss;
+}
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end

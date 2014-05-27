@@ -8,8 +8,9 @@
 
 #import "HomeViewController.h"
 #import "RssListViewController.h"
-#import "AddNewRssViewController.h"
+#import "ManageRssViewController.h"
 #import "BookmarkViewController.h"
+#import "AboutViewController.h"
 
 @interface HomeViewController ()
 
@@ -39,6 +40,20 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+        
+    RssListViewController *rssVC = [RssListViewController initWithNibName];
+    UINavigationController *homeNav = [[UINavigationController alloc] initWithRootViewController:rssVC];
+    
+    ManageRssViewController *addRssVC = [ManageRssViewController initWithNibName];
+    UINavigationController *manageNav = [[UINavigationController alloc] initWithRootViewController:addRssVC];
+    
+    BookmarkViewController *bookmarkVC = [BookmarkViewController initWithNibName];
+    UINavigationController *favoriteNav = [[UINavigationController alloc] initWithRootViewController:bookmarkVC];
+    
+    AboutViewController *aboutVC = [AboutViewController initWithNibName];
+    UINavigationController *aboutNav = [[UINavigationController alloc] initWithRootViewController:aboutVC];
+    
+    self.viewControllers = @[homeNav, manageNav, favoriteNav, aboutNav];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,18 +62,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)onHomeButton:(id)sender {
-    [self.navigationController pushViewController:[RssListViewController initWithNibName] animated:YES];
-}
-
-- (IBAction)onAddNew:(id)sender {
-    [self.navigationController pushViewController:[AddNewRssViewController initWithNibName] animated:YES];
-}
-
-- (IBAction)onShowBookmar:(id)sender {
-    [self.navigationController pushViewController:[BookmarkViewController initWithNibName] animated:YES];
-}
-
-- (IBAction)onAbout:(id)sender {
-}
 @end

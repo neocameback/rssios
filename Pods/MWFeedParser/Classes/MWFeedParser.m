@@ -596,6 +596,7 @@
                         if ([currentPath isEqualToString:@"/rss/channel/item/title"]) { if (processedText.length > 0) item.title = processedText; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/link"]) { if (processedText.length > 0) item.link = processedText; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/author"]) { if (processedText.length > 0) item.author = processedText; processed = YES; }
+                        else if ([currentPath isEqualToString:@"/rss/channel/item/bookmark"]) { if (processedText.length > 0) item.bookmarkStatus = processedText; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/dc:creator"]) { if (processedText.length > 0) item.author = processedText; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/guid"]) { if (processedText.length > 0) item.identifier = processedText; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/description"]) { if (processedText.length > 0) item.summary = processedText; processed = YES; }

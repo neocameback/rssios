@@ -1,32 +1,25 @@
 //
-//  BookmarkViewController.m
+//  AddNewRssViewController.m
 //  MyRssReader
 //
 //  Created by Huyns89 on 5/23/14.
 //  Copyright (c) 2014 Huyns. All rights reserved.
 //
 
-#import "BookmarkViewController.h"
-#import "Node.h"
-#import "BookmarkCustomCell.h"
-#import "WebViewViewController.h"
-#import <MediaPlayer/MediaPlayer.h>
+#import "ManageRssViewController.h"
 
-@interface BookmarkViewController ()
-{
-    MPMoviePlayerViewController *moviePlayer;
-}
+@interface ManageRssViewController ()
+
 @end
 
-@implementation BookmarkViewController
+@implementation ManageRssViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = @"Favorites";
-        self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:2];
+        self.title = @"Channels";
     }
     return self;
 }
@@ -37,26 +30,11 @@
     // Do any additional setup after loading the view from its nib.
     
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(onEdit)];
-    self.navigationItem.leftBarButtonItem = editButton;    
+    self.navigationItem.leftBarButtonItem = editButton;
+    
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onAdd)];
+    self.navigationItem.rightBarButtonItem = addButton;
 }
--(void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    if (!nodeList) {
-        nodeList = [[NSMutableArray alloc] init];
-    }else{
-        [nodeList removeAllObjects];
-    }
-    nodeList = [[NSMutableArray alloc] initWithArray:[Node MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"isAddedToBoomark == 1"]]];
-    [_tableView reloadData];
-}
--(void) viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    // Save ManagedObjectContext using MagicalRecord
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-}
-
 -(void) onEdit
 {
     if (_tableView.editing) {
@@ -65,74 +43,64 @@
         _tableView.editing = YES;
     }
 }
-
+-(void) onAdd
+{
+    _tableView.editing = NO;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Channel" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Add", nil];
+    [alert setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
+    [[alert textFieldAtIndex:0] setPlaceholder:@"Put rss name here."];
+    [[alert textFieldAtIndex:1] setPlaceholder:@"Put rss link here."];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
+    [label setText:@"*"];
+    [label setTextColor:[UIColor redColor]];
+    [label setBackgroundColor:[UIColor clearColor]];
+    [[alert textFieldAtIndex:1] setRightViewMode:UITextFieldViewModeAlways];
+    [[alert textFieldAtIndex:1] setRightView:label];
+    
+    [[alert textFieldAtIndex:1] setSecureTextEntry:NO];
+    [alert show];
+}
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (!rssList) {
+        rssList = [[NSMutableArray alloc] init];
+    }else{
+        [rssList removeAllObjects];
+    }
+    rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES]];
+    [_tableView reloadData];
+}
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    // Save ManagedObjectContext using MagicalRecord
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
--(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 51;
-}
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return nodeList.count;
+    return rssList.count;
 }
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Node *node = nodeList[indexPath.row];
-    
-    NSString *identifier = @"BookmarkCustomCell";
-    BookmarkCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    NSString *identifier = @"Identifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
-        cell = [[NSBundle mainBundle] loadNibNamed:@"BookmarkCustomCell" owner:self options:nil][0];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    [cell configWithNode:node];
+    Rss *aRss = rssList[indexPath.row];
+    cell.textLabel.text = [aRss rssTitle];
     return cell;
-}
--(void) onAddToFav:(id) sender
-{
-    NSInteger tag = [sender tag];
-    Node *node = nodeList[tag];
-    
-    [node setIsAddedToBoomark: [node.isAddedToBoomark boolValue] ? @0 : @1];
-    
-    [sender setSelected:[node.isAddedToBoomark boolValue]];
 }
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    Node *node = nodeList[indexPath.row];
-    
-    if ([node.nodeType caseInsensitiveCompare:@"web/html"] == NSOrderedSame){
-        WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
-        [viewcontroller setWebUrl:node.nodeUrl];
-        [self.navigationController pushViewController:viewcontroller animated:YES];
-    }
-    else if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame){
-        //        if (!moviewPlayer) {
-        moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
-        //        }
-        [self presentViewController:moviePlayer animated:YES completion:nil];
-    }else{
-        NSURL *feedURL = [NSURL URLWithString:[node nodeUrl]];
-        feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
-        feedParser.delegate = self;
-        // Parse the feeds info (title, link) and all feed items
-        feedParser.feedParseType = ParseTypeFull;
-        // Connection type
-        feedParser.connectionType = ConnectionTypeAsynchronously;
-        // Begin parsing
-        if ([self isInternetConnected]) {
-            [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
-            [feedParser parse];
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Internet connection was lost!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
-    }
 }
 -(BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -144,16 +112,49 @@
 }
 -(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Node *node = nodeList[indexPath.row];
+    Rss *aRss = rssList[indexPath.row];
+    [aRss MR_deleteEntity];
     
-    [node setIsAddedToBoomark:[NSNumber numberWithBool:NO]];
-    
-    [nodeList removeObjectAtIndex:indexPath.row];
+    [rssList removeObjectAtIndex:indexPath.row];
     
     [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
-
-
+- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
+{
+    if ([[[alertView textFieldAtIndex:1] text] length] > 0) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            
+            break;
+        default:
+        {
+            newRssName = [[alertView textFieldAtIndex:0] text];
+            NSURL *feedURL = [NSURL URLWithString:[[alertView textFieldAtIndex:1] text]];
+            feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
+            feedParser.delegate = self;
+            // Parse the feeds info (title, link) and all feed items
+            feedParser.feedParseType = ParseTypeFull;
+            // Connection type
+            feedParser.connectionType = ConnectionTypeAsynchronously;
+            // Begin parsing
+            if ([self isInternetConnected]) {
+                [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
+                [feedParser parse];
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Internet connection was lost!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }
+        }
+            break;
+    }
+}
 - (void)feedParserDidStart:(MWFeedParser *)parser
 {
     
@@ -161,7 +162,11 @@
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
 {
     newRss = [Rss MR_createEntity];
-    newRss.rssTitle = info.title;
+    if (newRssName && newRssName.length > 0) {
+        newRss.rssTitle = newRssName;
+    }else{
+        newRss.rssTitle = info.title;
+    }
     newRss.rssLink = info.link;
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
@@ -196,10 +201,10 @@
     [SVProgressHUD dismiss];
     NSLog(@"Finished Parsing%@", (parser.stopped ? @" (Stopped)" : @""));
     
-    if (!nodeList) {
-        nodeList = [[NSMutableArray alloc] init];
+    if (!rssList) {
+        rssList = [[NSMutableArray alloc] init];
     }
-    [nodeList addObject:newRss];
+    [rssList addObject:newRss];
     [_tableView reloadData];
 }
 - (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error
@@ -211,5 +216,11 @@
                                           cancelButtonTitle:@"Dismiss"
                                           otherButtonTitles:nil];
     [alert show];
+}
+- (IBAction)onAdd:(id)sender {
+}
+
+- (IBAction)onCancel:(id)sender {
+    [self.view endEditing:YES];
 }
 @end

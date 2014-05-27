@@ -14,63 +14,7 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8g-XB-wbF">
-                    <rect key="frame" x="60" y="212" width="200" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Home">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onHomeButton:" destination="-1" eventType="touchUpInside" id="XZo-71-9rX"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dIy-dh-quC">
-                    <rect key="frame" x="60" y="250" width="200" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Add RSS">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onAddNew:" destination="-1" eventType="touchUpInside" id="xa5-UW-NrZ"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eU8-cy-7EK">
-                    <rect key="frame" x="60" y="288" width="200" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Bookmark">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onShowBookmar:" destination="-1" eventType="touchUpInside" id="I7x-PP-t16"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FI9-IS-PAa">
-                    <rect key="frame" x="60" y="326" width="200" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="About">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onAbout:" destination="-1" eventType="touchUpInside" id="vSM-Em-zUp"/>
-                    </connections>
-                </button>
-            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="a8g-XB-wbF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="82B-Ct-6qP"/>
-                <constraint firstItem="eU8-cy-7EK" firstAttribute="top" secondItem="dIy-dh-quC" secondAttribute="bottom" constant="8" symbolic="YES" id="9TG-m6-3gb"/>
-                <constraint firstItem="a8g-XB-wbF" firstAttribute="trailing" secondItem="eU8-cy-7EK" secondAttribute="trailing" id="BGJ-zJ-x4U"/>
-                <constraint firstItem="a8g-XB-wbF" firstAttribute="leading" secondItem="dIy-dh-quC" secondAttribute="leading" id="FbE-G2-gK7"/>
-                <constraint firstAttribute="centerY" secondItem="a8g-XB-wbF" secondAttribute="centerY" constant="57" id="LaY-49-ZsW"/>
-                <constraint firstItem="a8g-XB-wbF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="M1M-2m-mWe"/>
-                <constraint firstItem="a8g-XB-wbF" firstAttribute="trailing" secondItem="dIy-dh-quC" secondAttribute="trailing" id="WHF-3j-0zf"/>
-                <constraint firstItem="dIy-dh-quC" firstAttribute="top" secondItem="a8g-XB-wbF" secondAttribute="bottom" constant="8" symbolic="YES" id="eDb-nE-uuW"/>
-                <constraint firstItem="a8g-XB-wbF" firstAttribute="leading" secondItem="FI9-IS-PAa" secondAttribute="leading" id="g6N-fa-NT6"/>
-                <constraint firstItem="a8g-XB-wbF" firstAttribute="trailing" secondItem="FI9-IS-PAa" secondAttribute="trailing" id="huf-0q-VhK"/>
-                <constraint firstItem="a8g-XB-wbF" firstAttribute="leading" secondItem="eU8-cy-7EK" secondAttribute="leading" id="qZB-U8-Urx"/>
-                <constraint firstItem="FI9-IS-PAa" firstAttribute="top" secondItem="eU8-cy-7EK" secondAttribute="bottom" constant="8" symbolic="YES" id="xP1-fQ-dwm"/>
-            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

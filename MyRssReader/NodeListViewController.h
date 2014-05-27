@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Rss.h"
-
-@interface NodeListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-
+#import <MWFeedParser.h>
+@interface NodeListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource , MWFeedParserDelegate>
+{
+    MWFeedParser *feedParser;
+    Rss *newRss;
+}
 @property (nonatomic, strong) Rss *currentRss;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end

@@ -7,11 +7,16 @@
 //
 
 #import "UIViewController+Helper.h"
-
+#import "Reachability.h"
 @implementation UIViewController (Helper)
 +(id) initWithNibName
 {
     return [[[self class] alloc] initWithNibName:[NSString stringWithFormat:@"%@",[[self class] description]] bundle:nil];
 }
-
+-(BOOL) isInternetConnected
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    return networkStatus != NotReachable;
+}
 @end

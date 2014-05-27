@@ -10,4 +10,5 @@
 
 @interface UIViewController (Helper)
 +(id) initWithNibName;
+-(BOOL) isInternetConnected;
 @end

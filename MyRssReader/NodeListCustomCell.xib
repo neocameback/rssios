@@ -30,16 +30,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZ7-15-6Fe">
-                        <rect key="frame" x="257" y="10" width="30" height="30"/>
+                        <rect key="frame" x="227" y="5" width="60" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="Udb-8w-LbK"/>
-                            <constraint firstAttribute="height" constant="30" id="efr-JB-cgT"/>
+                            <constraint firstAttribute="width" constant="60" id="Udb-8w-LbK"/>
+                            <constraint firstAttribute="height" constant="40" id="efr-JB-cgT"/>
                         </constraints>
-                        <state key="normal" backgroundImage="rate_star_0.png">
+                        <state key="normal" image="rate_star_0.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
-                        <state key="selected" backgroundImage="rate_star_1.png"/>
+                        <state key="selected" image="rate_star_1.png"/>
                     </button>
                 </subviews>
                 <constraints>
@@ -51,11 +52,11 @@
                     <constraint firstAttribute="bottom" secondItem="UkU-GL-Df3" secondAttribute="bottom" id="ajP-bm-Nhf"/>
                     <constraint firstAttribute="bottom" secondItem="9QI-57-tHd" secondAttribute="bottom" constant="8" id="oBy-Ic-wKk"/>
                     <constraint firstItem="UkU-GL-Df3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="oQg-Mt-efb"/>
-                    <constraint firstItem="pZ7-15-6Fe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="yNv-27-cbT"/>
                     <constraint firstItem="UkU-GL-Df3" firstAttribute="centerY" secondItem="pZ7-15-6Fe" secondAttribute="centerY" id="yuq-zT-dVA"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="btn_addToFav" destination="pZ7-15-6Fe" id="0gK-Sz-gNf"/>
                 <outlet property="iv_image" destination="UkU-GL-Df3" id="KeC-N1-EGS"/>
                 <outlet property="lb_title" destination="9QI-57-tHd" id="STt-V4-XhH"/>
             </connections>
@@ -63,7 +64,7 @@
     </objects>
     <resources>
         <image name="default_rss_img.png" width="128" height="128"/>
-        <image name="rate_star_0.png" width="47" height="45"/>
-        <image name="rate_star_1.png" width="47" height="45"/>
+        <image name="rate_star_0.png" width="31" height="30"/>
+        <image name="rate_star_1.png" width="31" height="30"/>
     </resources>
 </document>
