@@ -35,6 +35,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    [self preLoadInterstitial];
+    
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(onEdit)];
     self.navigationItem.leftBarButtonItem = editButton;    
 }
@@ -106,16 +108,14 @@
     Node *node = nodeList[indexPath.row];
     
     if ([node.nodeType caseInsensitiveCompare:@"web/html"] == NSOrderedSame){
-        WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
-        [viewcontroller setWebUrl:node.nodeUrl];
-        [self.navigationController pushViewController:viewcontroller animated:YES];
+        currentPath = indexPath;
+        [interstitial_ presentFromRootViewController:self];
     }
     else if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame){
-        //        if (!moviewPlayer) {
-        moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
-        //        }
-        [self presentViewController:moviePlayer animated:YES completion:nil];
-    }else{
+        currentPath = indexPath;
+        [interstitial_ presentFromRootViewController:self];
+    }
+    else if ([node.nodeType caseInsensitiveCompare:@"rss/xml"] == NSOrderedSame) {
         NSURL *feedURL = [NSURL URLWithString:[node nodeUrl]];
         feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
         feedParser.delegate = self;
@@ -131,6 +131,9 @@
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Internet connection was lost!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }
+    }else{
+        currentPath = indexPath;
+        [interstitial_ presentFromRootViewController:self];
     }
 }
 -(BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -152,7 +155,86 @@
     [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
+-(void) continueActionAtIndexPath:(NSIndexPath *) indexPath
+{
+    Node *node = nodeList[indexPath.row];
+    if ([node.nodeType caseInsensitiveCompare:@"web/html"] == NSOrderedSame){
+        WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
+        [viewcontroller setTitle:node.nodeTitle];
+        [viewcontroller setWebUrl:node.nodeUrl];
+        [self.navigationController pushViewController:viewcontroller animated:YES];
+    }
+    else if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame){
+        moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
+        [self presentViewController:moviePlayer animated:YES completion:nil];
+    }else if ([node.nodeType caseInsensitiveCompare:@"rss/xml"] == NSOrderedSame) {
+        NSURL *feedURL = [NSURL URLWithString:[node nodeUrl]];
+        feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
+        feedParser.delegate = self;
+        // Parse the feeds info (title, link) and all feed items
+        feedParser.feedParseType = ParseTypeFull;
+        // Connection type
+        feedParser.connectionType = ConnectionTypeAsynchronously;
+        // Begin parsing
+        if ([self isInternetConnected]) {
+            [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
+            [feedParser parse];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Internet connection was lost!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        currentPath = indexPath;
+        [interstitial_ presentFromRootViewController:self];
+    }
+}
 
+#pragma mark Admob
+#pragma mark Interstitial delegate
+- (void)preLoadInterstitial {
+    //Call this method as soon as you can - loadRequest will run in the background and your interstitial will be ready when you need to show it
+    GADRequest *request = [GADRequest request];
+    interstitial_ = [[GADInterstitial alloc] init];
+    interstitial_.delegate = self;
+    interstitial_.adUnitID = kLargeAdUnitId;
+    [interstitial_ loadRequest:request];
+}
+
+- (void) showInterstitial
+{
+    //Call this method when you want to show the interstitial - the method should double check that the interstitial has not been used before trying to present it
+    if (!interstitial_.hasBeenUsed) [interstitial_ presentFromRootViewController:self];
+}
+- (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial
+{
+    
+}
+- (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    NSLog(@"didFailToReceiveAdWithError: %@",[error localizedDescription]);
+    //If an error occurs and the interstitial is not received you might want to retry automatically after a certain interval
+    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(preLoadInterstitial) userInfo:nil repeats:NO];
+}
+- (void)interstitialWillPresentScreen:(GADInterstitial *)interstitial
+{
+    
+}
+- (void)interstitialWillDismissScreen:(GADInterstitial *)interstitial
+{
+    
+}
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
+{
+    NSLog(@"interstitialDidDismissScreen");
+    
+    [self continueActionAtIndexPath:currentPath];
+}
+- (void)interstitialWillLeaveApplication:(GADInterstitial *)interstitial
+{
+    
+}
+
+#pragma mark MWFeedParser delegate
 - (void)feedParserDidStart:(MWFeedParser *)parser
 {
     
@@ -188,7 +270,6 @@
     
     aNode.currentRss = newRss;
     
-    [newRss addNodesObject:aNode];
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser
 {

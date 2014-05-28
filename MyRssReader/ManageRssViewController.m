@@ -50,6 +50,7 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Channel" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Add", nil];
     [alert setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
     [[alert textFieldAtIndex:0] setPlaceholder:@"Put rss name here."];
+    [[alert textFieldAtIndex:0] setClearButtonMode:UITextFieldViewModeWhileEditing];
     [[alert textFieldAtIndex:1] setPlaceholder:@"Put rss link here."];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
     [label setText:@"*"];
@@ -57,7 +58,8 @@
     [label setBackgroundColor:[UIColor clearColor]];
     [[alert textFieldAtIndex:1] setRightViewMode:UITextFieldViewModeAlways];
     [[alert textFieldAtIndex:1] setRightView:label];
-    
+    [[alert textFieldAtIndex:1] setKeyboardType:UIKeyboardTypeURL];
+    [[alert textFieldAtIndex:1] setClearButtonMode:UITextFieldViewModeWhileEditing];
     [[alert textFieldAtIndex:1] setSecureTextEntry:NO];
     [alert show];
 }
@@ -136,8 +138,20 @@
         default:
         {
             newRssName = [[alertView textFieldAtIndex:0] text];
-            NSURL *feedURL = [NSURL URLWithString:[[alertView textFieldAtIndex:1] text]];
-            feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
+            NSString *urlString = [[alertView textFieldAtIndex:1] text];
+            
+            BOOL result = [[urlString lowercaseString] hasPrefix:@"http://"];
+            NSURL *urlAddress = nil;
+            
+            if (result) {
+                urlAddress = [NSURL URLWithString: urlString];
+            }
+            else {
+                NSString *good = [NSString stringWithFormat:@"http://%@", urlString];
+                urlAddress = [NSURL URLWithString: good];
+            }
+            
+            feedParser = [[MWFeedParser alloc] initWithFeedURL:urlAddress];
             feedParser.delegate = self;
             // Parse the feeds info (title, link) and all feed items
             feedParser.feedParseType = ParseTypeFull;
@@ -194,7 +208,6 @@
     
     aNode.currentRss = newRss;
     
-    [newRss addNodesObject:aNode];
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser
 {

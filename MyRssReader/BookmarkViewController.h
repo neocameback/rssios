@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <MWFeedParser.h>
 #import "Rss.h"
-@interface BookmarkViewController : BaseViewController <MWFeedParserDelegate, UITableViewDataSource, UITableViewDelegate>
+#import <GADInterstitial.h>
+@interface BookmarkViewController : BaseViewController <MWFeedParserDelegate, UITableViewDataSource, UITableViewDelegate,GADInterstitialDelegate>
 {
     NSMutableArray *nodeList;
     MWFeedParser *feedParser;
     Rss *newRss;
+    GADInterstitial *interstitial_;
+    NSIndexPath *currentPath;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end

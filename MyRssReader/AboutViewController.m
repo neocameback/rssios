@@ -36,9 +36,10 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)onAboutus:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAboutUrl]];
 }
 - (IBAction)onShare:(id)sender {
-    UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[@"My Rss Reader",@"My Rss Reader 2"] applicationActivities:nil];
+    UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[kDefaultShareTitle] applicationActivities:nil];
     
     NSArray *excludedActivities = nil;
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
