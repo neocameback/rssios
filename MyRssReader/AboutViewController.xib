@@ -16,26 +16,32 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DjZ-yN-N5e">
-                    <rect key="frame" x="30" y="58" width="260" height="30"/>
+                    <rect key="frame" x="30" y="250" width="260" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="About us"/>
+                    <connections>
+                        <action selector="onAboutus:" destination="-1" eventType="touchUpInside" id="sR0-D1-wI0"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VbR-38-KfK">
-                    <rect key="frame" x="30" y="96" width="260" height="30"/>
+                    <rect key="frame" x="30" y="288" width="260" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Tell friends">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="onShare:" destination="-1" eventType="touchUpInside" id="PDY-jK-xFs"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="DjZ-yN-N5e" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="58" id="F03-c8-9DN"/>
                 <constraint firstItem="DjZ-yN-N5e" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="GEK-Ag-GnX"/>
                 <constraint firstItem="VbR-38-KfK" firstAttribute="trailing" secondItem="DjZ-yN-N5e" secondAttribute="trailing" id="Jh2-Ot-NFz"/>
                 <constraint firstItem="DjZ-yN-N5e" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="OvH-dT-hJK"/>
                 <constraint firstItem="VbR-38-KfK" firstAttribute="top" secondItem="DjZ-yN-N5e" secondAttribute="bottom" constant="8" symbolic="YES" id="eEd-54-gP6"/>
                 <constraint firstItem="DjZ-yN-N5e" firstAttribute="leading" secondItem="VbR-38-KfK" secondAttribute="leading" id="kwA-KO-peu"/>
+                <constraint firstAttribute="centerY" secondItem="DjZ-yN-N5e" secondAttribute="centerY" constant="19" id="uyJ-uP-LX7"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
