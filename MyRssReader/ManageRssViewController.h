@@ -11,7 +11,7 @@
 #import "Rss.h"
 #import "Node.h"
 
-@interface ManageRssViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, MWFeedParserDelegate>
+@interface ManageRssViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, MWFeedParserDelegate>
 {
     NSMutableArray *rssList;
     MWFeedParser *feedParser;

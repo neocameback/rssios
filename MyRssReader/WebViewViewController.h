@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WebViewViewController : UIViewController
+@interface WebViewViewController : BaseViewController
 {
     __weak IBOutlet UIWebView *_webView;
 }

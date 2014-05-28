@@ -9,10 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "Rss.h"
 #import <MWFeedParser.h>
-@interface NodeListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource , MWFeedParserDelegate>
+
+typedef enum : NSUInteger {
+    CELL_TYPE_NORMAL,
+    CELL_TYPE_AD,
+} CELL_TYPE;
+
+@interface NodeListViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource , MWFeedParserDelegate>
 {
     MWFeedParser *feedParser;
     Rss *newRss;
+    NSMutableArray *nodeList;
 }
 @property (nonatomic, strong) Rss *currentRss;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

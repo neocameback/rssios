@@ -7,34 +7,35 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManageRssViewController">
             <connections>
-                <outlet property="tableView" destination="AiH-mR-XvV" id="WCI-xM-U9X"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="tableView" destination="znT-Jp-03t" id="M5p-WV-WRa"/>
+                <outlet property="view" destination="P54-Fa-0Jn" id="wrZ-vA-9uS"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="P54-Fa-0Jn">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="AiH-mR-XvV">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="znT-Jp-03t">
+                    <rect key="frame" x="0.0" y="50" width="320" height="518"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="D2e-a2-t7M"/>
-                        <outlet property="delegate" destination="-1" id="V3D-1A-jpp"/>
+                        <outlet property="dataSource" destination="-1" id="FZN-2W-Q51"/>
+                        <outlet property="delegate" destination="-1" id="FUQ-yU-ehP"/>
                     </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="AiH-mR-XvV" secondAttribute="trailing" id="9mT-1H-uyh"/>
-                <constraint firstItem="AiH-mR-XvV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="B0I-dW-bpd"/>
-                <constraint firstItem="AiH-mR-XvV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ev8-53-eBj"/>
-                <constraint firstAttribute="bottom" secondItem="AiH-mR-XvV" secondAttribute="bottom" id="Gdx-gd-M8Q"/>
+                <constraint firstAttribute="trailing" secondItem="znT-Jp-03t" secondAttribute="trailing" id="1ey-xQ-Xh9"/>
+                <constraint firstItem="znT-Jp-03t" firstAttribute="leading" secondItem="P54-Fa-0Jn" secondAttribute="leading" id="84m-Uj-8cV"/>
+                <constraint firstItem="znT-Jp-03t" firstAttribute="top" secondItem="P54-Fa-0Jn" secondAttribute="top" constant="50" id="NLS-N0-9Vb"/>
+                <constraint firstAttribute="centerX" secondItem="znT-Jp-03t" secondAttribute="centerX" id="boq-Yp-Zbw"/>
+                <constraint firstAttribute="bottom" secondItem="znT-Jp-03t" secondAttribute="bottom" id="hvR-Vx-f6X"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
 </document>

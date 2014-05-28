@@ -66,6 +66,8 @@
 		DEC5DD38193580DE0088A62F /* icon_80.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC5DD32193580DE0088A62F /* icon_80.png */; };
 		DEC5DD39193580DE0088A62F /* icon_114.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC5DD33193580DE0088A62F /* icon_114.png */; };
 		DEC5DD3A193580DE0088A62F /* icon_120.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC5DD34193580DE0088A62F /* icon_120.png */; };
+		DEC5DD3E19359A560088A62F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC5DD3C19359A560088A62F /* BaseViewController.m */; };
+		DEC5DD3F19359A560088A62F /* BaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEC5DD3D19359A560088A62F /* BaseViewController.xib */; };
 		DEF49610193431A800DD482D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF4960E193431A800DD482D /* AboutViewController.m */; };
 		DEF49611193431A800DD482D /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEF4960F193431A800DD482D /* AboutViewController.xib */; };
 		DEF496161934349F00DD482D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF496151934349F00DD482D /* Reachability.m */; };
@@ -162,6 +164,9 @@
 		DEC5DD32193580DE0088A62F /* icon_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_80.png; sourceTree = "<group>"; };
 		DEC5DD33193580DE0088A62F /* icon_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_114.png; sourceTree = "<group>"; };
 		DEC5DD34193580DE0088A62F /* icon_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_120.png; sourceTree = "<group>"; };
+		DEC5DD3B19359A560088A62F /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		DEC5DD3C19359A560088A62F /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		DEC5DD3D19359A560088A62F /* BaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseViewController.xib; sourceTree = "<group>"; };
 		DEF4960D193431A800DD482D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		DEF4960E193431A800DD482D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		DEF4960F193431A800DD482D /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
@@ -261,6 +266,9 @@
 				DE22E7E9192F5C410005E685 /* HomeViewController.xib */,
 				DEF4961D1934385200DD482D /* Constant.h */,
 				DEF4961E1934385200DD482D /* Constant.m */,
+				DEC5DD3B19359A560088A62F /* BaseViewController.h */,
+				DEC5DD3C19359A560088A62F /* BaseViewController.m */,
+				DEC5DD3D19359A560088A62F /* BaseViewController.xib */,
 			);
 			path = MyRssReader;
 			sourceTree = "<group>";
@@ -504,6 +512,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEC5DD2619357EDC0088A62F /* ic_favorites_normal.png in Resources */,
+				DEC5DD3F19359A560088A62F /* BaseViewController.xib in Resources */,
 				DEC5DD2D19357EDC0088A62F /* ic_about_normal@2x.png in Resources */,
 				DEC5DD2919357EDC0088A62F /* ic_channel_normal@2x.png in Resources */,
 				DEC5DD36193580DE0088A62F /* icon_57.png in Resources */,
@@ -612,6 +621,7 @@
 				DEB5F0E11932FB11008922E5 /* Model.xcdatamodeld in Sources */,
 				DEB5F0DD1932D854008922E5 /* Categories.m in Sources */,
 				DE22E7EA192F5C410005E685 /* HomeViewController.m in Sources */,
+				DEC5DD3E19359A560088A62F /* BaseViewController.m in Sources */,
 				DEB5F0DA1932D7DA008922E5 /* UIViewController+Helper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

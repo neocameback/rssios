@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MWFeedParser.h>
 #import "Rss.h"
-@interface BookmarkViewController : UIViewController <MWFeedParserDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface BookmarkViewController : BaseViewController <MWFeedParserDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     NSMutableArray *nodeList;
     MWFeedParser *feedParser;

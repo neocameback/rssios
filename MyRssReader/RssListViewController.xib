@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vAL-Fv-uEp">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="50" width="320" height="518"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -28,11 +28,10 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="vAL-Fv-uEp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3AB-9b-4gg"/>
                 <constraint firstAttribute="centerX" secondItem="vAL-Fv-uEp" secondAttribute="centerX" id="3Nt-Dg-ofL"/>
                 <constraint firstAttribute="trailing" secondItem="vAL-Fv-uEp" secondAttribute="trailing" id="LKQ-Sf-rze"/>
                 <constraint firstAttribute="bottom" secondItem="vAL-Fv-uEp" secondAttribute="bottom" id="ZC8-nS-mpR"/>
-                <constraint firstAttribute="centerY" secondItem="vAL-Fv-uEp" secondAttribute="centerY" id="h17-q9-cSh"/>
+                <constraint firstItem="vAL-Fv-uEp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="b6M-qc-1X6"/>
                 <constraint firstItem="vAL-Fv-uEp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="x78-iI-Wtl"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

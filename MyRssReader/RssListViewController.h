@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RssListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface RssListViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
