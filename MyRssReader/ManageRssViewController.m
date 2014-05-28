@@ -141,17 +141,15 @@
             NSString *urlString = [[alertView textFieldAtIndex:1] text];
             
             BOOL result = [[urlString lowercaseString] hasPrefix:@"http://"];
-            NSURL *urlAddress = nil;
-            
+
             if (result) {
-                urlAddress = [NSURL URLWithString: urlString];
             }
             else {
-                NSString *good = [NSString stringWithFormat:@"http://%@", urlString];
-                urlAddress = [NSURL URLWithString: good];
+                urlString = [NSString stringWithFormat:@"http://%@", urlString];
             }
             
-            feedParser = [[MWFeedParser alloc] initWithFeedURL:urlAddress];
+            feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Constant initWithMethod:@"GET" andUrl:urlString]];
+            
             feedParser.delegate = self;
             // Parse the feeds info (title, link) and all feed items
             feedParser.feedParseType = ParseTypeFull;

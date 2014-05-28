@@ -12,6 +12,9 @@
 
 #define ad_range   3
 
+#define kDefaultRssUrl  @"http://rssvideoplayer.com/sample.xml"
+#define kDefaultMd5Prefix   @"RssVideoPlayer-Hanoi052014-"
+
 #define kDefaultShareTitle  @"Rss video player\nhttp://rssvideoplayer.com"
 #define kAboutUrl   @"http://rssvideoplayer.com/about.html"
 
@@ -19,4 +22,6 @@
 #define kLargeAdUnitId  @"ca-app-pub-8422191650855912/4957456186"
 @interface Constant : NSObject
 
++(NSString *) getIpAddress;
++(NSMutableURLRequest*) initWithMethod:(NSString *) method andUrl:(NSString *) url;
 @end

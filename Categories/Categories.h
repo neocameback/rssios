@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "UIViewController+Helper.h"
+#import "NSString+MD5.h"
+#import "NSMutableURLRequest+Helper.h"
 
 @interface Categories : NSObject
 

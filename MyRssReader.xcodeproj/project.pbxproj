@@ -28,6 +28,8 @@
 		DE22E7F5192F5D360005E685 /* ManageRssViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE22E7F3192F5D360005E685 /* ManageRssViewController.xib */; };
 		DE22E7F9192F5E4D0005E685 /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE22E7F7192F5E4D0005E685 /* BookmarkViewController.m */; };
 		DE22E7FA192F5E4D0005E685 /* BookmarkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE22E7F8192F5E4D0005E685 /* BookmarkViewController.xib */; };
+		DE7F39A81935DCC900C7C143 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7F39A71935DCC900C7C143 /* NSString+MD5.m */; };
+		DE7F39AB1935E27700C7C143 /* NSMutableURLRequest+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7F39AA1935E27700C7C143 /* NSMutableURLRequest+Helper.m */; };
 		DEB54D6C19331FA800EC589E /* NodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB54D6A19331FA800EC589E /* NodeListViewController.m */; };
 		DEB54D6D19331FA800EC589E /* NodeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEB54D6B19331FA800EC589E /* NodeListViewController.xib */; };
 		DEB54D711933333A00EC589E /* NodeListCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB54D6F1933333A00EC589E /* NodeListCustomCell.m */; };
@@ -121,6 +123,10 @@
 		DE22E7F6192F5E4D0005E685 /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
 		DE22E7F7192F5E4D0005E685 /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
 		DE22E7F8192F5E4D0005E685 /* BookmarkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookmarkViewController.xib; sourceTree = "<group>"; };
+		DE7F39A61935DCC900C7C143 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		DE7F39A71935DCC900C7C143 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		DE7F39A91935E27700C7C143 /* NSMutableURLRequest+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Helper.h"; sourceTree = "<group>"; };
+		DE7F39AA1935E27700C7C143 /* NSMutableURLRequest+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Helper.m"; sourceTree = "<group>"; };
 		DEB54D6919331FA800EC589E /* NodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeListViewController.h; sourceTree = "<group>"; };
 		DEB54D6A19331FA800EC589E /* NodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeListViewController.m; sourceTree = "<group>"; };
 		DEB54D6B19331FA800EC589E /* NodeListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeListViewController.xib; sourceTree = "<group>"; };
@@ -349,6 +355,10 @@
 				DEF49618193435FD00DD482D /* NSUserDefaults+Helper.m */,
 				DEF4961A1934376700DD482D /* UIAlertView+Helper.h */,
 				DEF4961B1934376700DD482D /* UIAlertView+Helper.m */,
+				DE7F39A61935DCC900C7C143 /* NSString+MD5.h */,
+				DE7F39A71935DCC900C7C143 /* NSString+MD5.m */,
+				DE7F39A91935E27700C7C143 /* NSMutableURLRequest+Helper.h */,
+				DE7F39AA1935E27700C7C143 /* NSMutableURLRequest+Helper.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -606,12 +616,14 @@
 				DEB54D711933333A00EC589E /* NodeListCustomCell.m in Sources */,
 				DE22E7F4192F5D360005E685 /* ManageRssViewController.m in Sources */,
 				DE22E7C9192F54180005E685 /* AppDelegate.m in Sources */,
+				DE7F39A81935DCC900C7C143 /* NSString+MD5.m in Sources */,
 				DE22E7F9192F5E4D0005E685 /* BookmarkViewController.m in Sources */,
 				DEF496521934A1C700DD482D /* Node.m in Sources */,
 				DEF496551934A1C700DD482D /* Rss.m in Sources */,
 				DEF49610193431A800DD482D /* AboutViewController.m in Sources */,
 				DE22E7EF192F5D230005E685 /* RssListViewController.m in Sources */,
 				DEF4961F1934385200DD482D /* Constant.m in Sources */,
+				DE7F39AB1935E27700C7C143 /* NSMutableURLRequest+Helper.m in Sources */,
 				DEF49619193435FD00DD482D /* NSUserDefaults+Helper.m in Sources */,
 				DEB54D83193337B200EC589E /* WebViewViewController.m in Sources */,
 				DEF496591934A24C00DD482D /* BookmarkCustomCell.m in Sources */,

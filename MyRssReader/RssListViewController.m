@@ -51,8 +51,7 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        NSURL *feedURL = [NSURL URLWithString:@"http://rssvideoplayer.com/sample.xml"];
-        feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
+        feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Constant initWithMethod:@"GET" andUrl:kDefaultRssUrl]];
         feedParser.delegate = self;
         // Parse the feeds info (title, link) and all feed items
         feedParser.feedParseType = ParseTypeFull;

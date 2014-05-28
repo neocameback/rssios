@@ -116,8 +116,7 @@
         [interstitial_ presentFromRootViewController:self];
     }
     else if ([node.nodeType caseInsensitiveCompare:@"rss/xml"] == NSOrderedSame) {
-        NSURL *feedURL = [NSURL URLWithString:[node nodeUrl]];
-        feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
+        feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Constant initWithMethod:@"GET" andUrl:node.nodeUrl]];
         feedParser.delegate = self;
         // Parse the feeds info (title, link) and all feed items
         feedParser.feedParseType = ParseTypeFull;
@@ -167,25 +166,11 @@
     else if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame){
         moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
         [self presentViewController:moviePlayer animated:YES completion:nil];
-    }else if ([node.nodeType caseInsensitiveCompare:@"rss/xml"] == NSOrderedSame) {
-        NSURL *feedURL = [NSURL URLWithString:[node nodeUrl]];
-        feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
-        feedParser.delegate = self;
-        // Parse the feeds info (title, link) and all feed items
-        feedParser.feedParseType = ParseTypeFull;
-        // Connection type
-        feedParser.connectionType = ConnectionTypeAsynchronously;
-        // Begin parsing
-        if ([self isInternetConnected]) {
-            [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
-            [feedParser parse];
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Internet connection was lost!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
     }else{
-        currentPath = indexPath;
-        [interstitial_ presentFromRootViewController:self];
+        WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
+        [viewcontroller setTitle:node.nodeTitle];
+        [viewcontroller setWebUrl:node.nodeUrl];
+        [self.navigationController pushViewController:viewcontroller animated:YES];
     }
 }
 
