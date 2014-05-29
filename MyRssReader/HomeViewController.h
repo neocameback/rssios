@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : UITabBarController
 
-- (IBAction)onHomeButton:(id)sender;
-- (IBAction)onAddNew:(id)sender;
-- (IBAction)onShowBookmar:(id)sender;
-- (IBAction)onAbout:(id)sender;
 @end

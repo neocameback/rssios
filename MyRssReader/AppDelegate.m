@@ -8,19 +8,35 @@
 
 #import "AppDelegate.h"
 #import "HomeViewController.h"
+#import "Rss.h"
+#import "Node.h"
+#import <MWFeedParser.h>
+#import <NSString+HTML.h>
+#import <SVProgressHUD.h>
+#import "Reachability.h"
+
+@interface AppDelegate() 
+{    
+}
+@end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // init core data
+    [MagicalRecord setupAutoMigratingCoreDataStack];
+    
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    HomeViewController *viewcontroller = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+    HomeViewController *viewcontroller = [HomeViewController initWithNibName];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewcontroller];
     
     self.window.rootViewController = nav;    
     [self.window makeKeyAndVisible];
+        
     return YES;
 }
 
@@ -50,5 +66,4 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
 @end

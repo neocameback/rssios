@@ -1,3 +1,6 @@
 pod 'SVProgressHUD', '~> 1.0'
-pod 'MWFeedParser', '~> 1.0'
 pod 'MagicalRecord', '~> 2.2'
+pod 'Facebook-iOS-SDK', '~> 3.14'
+pod 'Google-AdMob-Ads-SDK', '~> 6.8'
+pod 'AFNetworking', '~> 2.2'
+pod 'XCDYouTubeVideoPlayerViewController', '~> 1.1'
