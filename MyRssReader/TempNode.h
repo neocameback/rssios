@@ -1,5 +1,5 @@
 //
-//  Node.h
+//  TempNode.h
 //  MyRssReader
 //
 //  Created by Huyns89 on 5/30/14.
@@ -7,21 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-#import "TempNode.h"
-@class Rss;
 
-@interface Node : NSManagedObject
-
+@interface TempNode : NSObject
 @property (nonatomic, retain) NSString * bookmarkStatus;
-@property (nonatomic, retain) NSNumber * isAddedToBoomark;
 @property (nonatomic, retain) NSString * nodeImage;
 @property (nonatomic, retain) NSString * nodeSource;
 @property (nonatomic, retain) NSString * nodeTitle;
 @property (nonatomic, retain) NSString * nodeType;
 @property (nonatomic, retain) NSString * nodeUrl;
+@property (nonatomic, retain) NSNumber * isAddedToBoomark;
 @property (nonatomic, retain) NSNumber * isDeletedFlag;
-@property (nonatomic, retain) Rss *currentRss;
-
--(void) initFromTempNode:(TempNode*) temp;
 @end

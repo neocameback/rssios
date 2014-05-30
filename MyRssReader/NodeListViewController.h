@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Rss.h"
+#import "TempRss.h"
+#import "TempNode.h"
+
 #import <MWFeedParser.h>
 #import <GADInterstitial.h>
 
@@ -19,7 +22,7 @@ typedef enum : NSUInteger {
 @interface NodeListViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource , MWFeedParserDelegate, GADInterstitialDelegate>
 {
     MWFeedParser *feedParser;
-    Rss *newRss;
+    TempRss *tempRss;
     NSMutableArray *nodeList;
     
     GADInterstitial *interstitial_;
@@ -27,5 +30,6 @@ typedef enum : NSUInteger {
     NSIndexPath *currentPath;
 }
 @property (nonatomic, strong) Rss *currentRss;
+@property (nonatomic, strong) TempRss *tempRss;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end

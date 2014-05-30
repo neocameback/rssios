@@ -37,10 +37,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
-
+-(void) showBanner
+{
+    
+}
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+        
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
     {
         rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES]];

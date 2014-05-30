@@ -2,7 +2,7 @@
 //  Node.m
 //  MyRssReader
 //
-//  Created by Huyns89 on 5/27/14.
+//  Created by Huyns89 on 5/30/14.
 //  Copyright (c) 2014 Huyns. All rights reserved.
 //
 
@@ -13,12 +13,23 @@
 @implementation Node
 
 @dynamic bookmarkStatus;
+@dynamic isAddedToBoomark;
 @dynamic nodeImage;
 @dynamic nodeSource;
 @dynamic nodeTitle;
 @dynamic nodeType;
 @dynamic nodeUrl;
-@dynamic isAddedToBoomark;
+@dynamic isDeletedFlag;
 @dynamic currentRss;
-
+-(void) initFromTempNode:(TempNode*) temp
+{    
+    self.bookmarkStatus = temp.bookmarkStatus;
+    self.isAddedToBoomark = temp.isAddedToBoomark;
+    self.nodeImage = temp.nodeImage;
+    self.nodeSource = temp.nodeSource;
+    self.nodeTitle = temp.nodeTitle;
+    self.nodeUrl = temp.nodeUrl;
+    self.nodeType = temp.nodeType;
+    self.isDeletedFlag = temp.isDeletedFlag;
+}
 @end

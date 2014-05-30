@@ -13,5 +13,4 @@
 {
     GADBannerView *bannerView_;
 }
-@property (nonatomic, strong) GADBannerView *bannerView_;
 @end

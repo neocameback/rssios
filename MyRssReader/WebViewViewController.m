@@ -29,7 +29,11 @@
     // Do any additional setup after loading the view from its nib.
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_webUrl]]];
 }
-
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [bannerView_ loadRequest:[GADRequest request]];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

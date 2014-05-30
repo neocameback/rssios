@@ -21,7 +21,7 @@
 @end
 
 @implementation NodeListViewController
-
+@synthesize tempRss;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -35,9 +35,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = _currentRss.rssTitle;
+    if (_currentRss) {
+        self.title = _currentRss.rssTitle;
+        nodeList = [[NSMutableArray alloc] initWithArray:[_currentRss.nodes array]];
+    }else{
+        self.title = self.tempRss.rssTitle;
+        nodeList = [[NSMutableArray alloc] initWithArray:self.tempRss.nodes];
+    }
     
-    nodeList = [[NSMutableArray alloc] initWithArray:[_currentRss.nodes array]];
     for (int i = ad_range - 1; i < nodeList.count; i = i + ad_range) {
         [nodeList insertObject:@"Ads" atIndex:i];
     }
@@ -46,6 +51,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [bannerView_ loadRequest:[GADRequest request]];
 }
 -(void) viewWillDisappear:(BOOL)animated
 {
@@ -73,7 +79,7 @@
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self tableview:tableView cellTypeForRowAtIndexPath:indexPath] == CELL_TYPE_NORMAL) {
-        return 51;
+        return 80;
     }else{
         return 50;
     }
@@ -118,14 +124,21 @@
         return cell;
     }
 }
+
 -(void) onAddToFav:(id) sender
 {
     NSInteger tag = [sender tag];
-    Node *node = nodeList[tag];
-    
-    [node setIsAddedToBoomark: [node.isAddedToBoomark boolValue] ? @0 : @1];
-    
-    [sender setSelected:[node.isAddedToBoomark boolValue]];
+    if (self.currentRss) {
+        Node *node = nodeList[tag];
+        [node setIsAddedToBoomark: [node.isAddedToBoomark boolValue] ? @0 : @1];
+        
+        [sender setSelected:[node.isAddedToBoomark boolValue]];
+    }else{
+        Node *node = [Node MR_createEntity];
+        TempNode *temp = nodeList[tag];
+        [temp setIsAddedToBoomark: [temp.isAddedToBoomark boolValue] ? @0 : @1];
+        [node initFromTempNode:nodeList[tag]];
+    }
 }
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -240,14 +253,14 @@
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
 {
-    newRss = [Rss MR_createEntity];
+    tempRss = [[TempRss alloc] init];
     
-    newRss.rssTitle = info.title;
-    newRss.rssLink = info.link;
+    tempRss.rssTitle = info.title;
+    tempRss.rssLink = info.link;
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
-    Node *aNode = [Node MR_createEntity];
+    TempNode *aNode = [[TempNode alloc] init];
     aNode.bookmarkStatus = item.bookmarkStatus;
     aNode.nodeTitle = item.title;
     if (item.enclosures.count > 0) {
@@ -268,7 +281,10 @@
                              aNode.nodeImage = [aNode.nodeImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                          }];
     
-    aNode.currentRss = newRss;
+    if (!tempRss.nodes) {
+        tempRss.nodes = [NSMutableArray array];
+    }
+    [tempRss.nodes addObject:aNode];
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser
 {
@@ -276,7 +292,7 @@
     NSLog(@"Finished Parsing%@", (parser.stopped ? @" (Stopped)" : @""));
     
     NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
-    [viewcontroller setCurrentRss:newRss];
+    [viewcontroller setTempRss:tempRss];
     [self.navigationController pushViewController:viewcontroller animated:YES];
     
 }

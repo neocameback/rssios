@@ -1,19 +1,14 @@
 //
-//  Rss.m
+//  TempRss.m
 //  MyRssReader
 //
 //  Created by Huyns89 on 5/30/14.
 //  Copyright (c) 2014 Huyns. All rights reserved.
 //
 
-#import "Rss.h"
-#import "Node.h"
+#import "TempRss.h"
 
-
-@implementation Rss
-
-@dynamic rssLink;
-@dynamic rssTitle;
-@dynamic nodes;
+@implementation TempRss
+@synthesize rssTitle, rssLink, nodes;
 
 @end
