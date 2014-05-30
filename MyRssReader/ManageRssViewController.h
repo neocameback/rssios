@@ -17,6 +17,8 @@
     MWFeedParser *feedParser;
     Rss *newRss;
     NSString *newRssName;
+    
+    NSInteger editingIndex;
 }
 - (IBAction)onAdd:(id)sender;
 - (IBAction)onCancel:(id)sender;

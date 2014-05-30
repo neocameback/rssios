@@ -34,6 +34,8 @@
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onAdd)];
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    editingIndex = -1;
 }
 -(void) onEdit
 {
@@ -103,6 +105,28 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    Rss *rss = rssList[indexPath.row];
+    
+    editingIndex = indexPath.row;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Edit Channel" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
+    [alert setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
+    [[alert textFieldAtIndex:0] setPlaceholder:@"Put rss name here."];
+    [[alert textFieldAtIndex:0] setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [[alert textFieldAtIndex:0] setText:rss.rssTitle];
+    [[alert textFieldAtIndex:1] setPlaceholder:@"Put rss link here."];
+    [[alert textFieldAtIndex:1] setText:rss.rssLink];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
+    [label setText:@"*"];
+    [label setTextColor:[UIColor redColor]];
+    [label setBackgroundColor:[UIColor clearColor]];
+    [[alert textFieldAtIndex:1] setRightViewMode:UITextFieldViewModeAlways];
+    [[alert textFieldAtIndex:1] setRightView:label];
+    [[alert textFieldAtIndex:1] setKeyboardType:UIKeyboardTypeURL];
+    [[alert textFieldAtIndex:1] setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [[alert textFieldAtIndex:1] setSecureTextEntry:NO];
+    [alert show];
+    
 }
 -(BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -115,8 +139,15 @@
 -(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Rss *aRss = rssList[indexPath.row];
+    for (Node *node in aRss.nodes) {
+        if ([node.isAddedToBoomark boolValue]) {
+            // if node is added to bookmark so set node flag to deleted
+            node.isDeletedFlag = @1;
+        }else{
+            [node MR_deleteEntity];
+        }
+    }
     [aRss MR_deleteEntity];
-    
     [rssList removeObjectAtIndex:indexPath.row];
     
     [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -137,17 +168,31 @@
             break;
         default:
         {
-            newRssName = [[alertView textFieldAtIndex:0] text];
-            NSString *urlString = [[alertView textFieldAtIndex:1] text];
+            /**
+             *   check if user are on editing mode
+             */
+            if (editingIndex >= 0) {
+                Rss *rss = rssList[editingIndex];
+                for (Node *node in rss.nodes) {
+                    if ([node.isAddedToBoomark boolValue] == NO) {
+                        [node MR_deleteEntity];
+                    }else{
+                        node.isDeletedFlag = @1;
+                    }
+                }
+                [rss MR_deleteEntity];
+                [rssList removeObjectAtIndex:editingIndex];
+                editingIndex = -1;
+            }
             
+            newRssName = [[alertView textFieldAtIndex:0] text];
+            NSString *urlString = [[alertView textFieldAtIndex:1] text];            
             BOOL result = [[urlString lowercaseString] hasPrefix:@"http://"];
-
             if (result) {
             }
             else {
                 urlString = [NSString stringWithFormat:@"http://%@", urlString];
             }
-            
             feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Constant initWithMethod:@"GET" andUrl:urlString]];
             
             feedParser.delegate = self;

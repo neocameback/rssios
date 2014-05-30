@@ -28,6 +28,10 @@
 		DE22E7F5192F5D360005E685 /* ManageRssViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE22E7F3192F5D360005E685 /* ManageRssViewController.xib */; };
 		DE22E7F9192F5E4D0005E685 /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE22E7F7192F5E4D0005E685 /* BookmarkViewController.m */; };
 		DE22E7FA192F5E4D0005E685 /* BookmarkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE22E7F8192F5E4D0005E685 /* BookmarkViewController.xib */; };
+		DE4303E0193878F4008A42A4 /* TempRss.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4303DF193878F4008A42A4 /* TempRss.m */; };
+		DE4303E319387924008A42A4 /* TempNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4303E219387924008A42A4 /* TempNode.m */; };
+		DE4303E619388BDA008A42A4 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4303E519388BDA008A42A4 /* Node.m */; };
+		DE4303E919388BDA008A42A4 /* Rss.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4303E819388BDA008A42A4 /* Rss.m */; };
 		DE7F39A81935DCC900C7C143 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7F39A71935DCC900C7C143 /* NSString+MD5.m */; };
 		DE7F39AB1935E27700C7C143 /* NSMutableURLRequest+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7F39AA1935E27700C7C143 /* NSMutableURLRequest+Helper.m */; };
 		DEB54D6C19331FA800EC589E /* NodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB54D6A19331FA800EC589E /* NodeListViewController.m */; };
@@ -76,8 +80,6 @@
 		DEF49619193435FD00DD482D /* NSUserDefaults+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF49618193435FD00DD482D /* NSUserDefaults+Helper.m */; };
 		DEF4961C1934376700DD482D /* UIAlertView+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF4961B1934376700DD482D /* UIAlertView+Helper.m */; };
 		DEF4961F1934385200DD482D /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF4961E1934385200DD482D /* Constant.m */; };
-		DEF496521934A1C700DD482D /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF496511934A1C700DD482D /* Node.m */; };
-		DEF496551934A1C700DD482D /* Rss.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF496541934A1C700DD482D /* Rss.m */; };
 		DEF496591934A24C00DD482D /* BookmarkCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF496571934A24C00DD482D /* BookmarkCustomCell.m */; };
 		DEF4965A1934A24C00DD482D /* BookmarkCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEF496581934A24C00DD482D /* BookmarkCustomCell.xib */; };
 /* End PBXBuildFile section */
@@ -95,7 +97,7 @@
 /* Begin PBXFileReference section */
 		5573354A75464195829BDB84 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		69548C345766444AA82624A5 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		DE22E7B5192F54180005E685 /* MyRssReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyRssReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE22E7B5192F54180005E685 /* myrssreader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myrssreader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE22E7B8192F54180005E685 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DE22E7BA192F54180005E685 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DE22E7BC192F54180005E685 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -123,10 +125,19 @@
 		DE22E7F6192F5E4D0005E685 /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
 		DE22E7F7192F5E4D0005E685 /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
 		DE22E7F8192F5E4D0005E685 /* BookmarkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookmarkViewController.xib; sourceTree = "<group>"; };
+		DE4303DE193878F4008A42A4 /* TempRss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempRss.h; sourceTree = "<group>"; };
+		DE4303DF193878F4008A42A4 /* TempRss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempRss.m; sourceTree = "<group>"; };
+		DE4303E119387924008A42A4 /* TempNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempNode.h; sourceTree = "<group>"; };
+		DE4303E219387924008A42A4 /* TempNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempNode.m; sourceTree = "<group>"; };
+		DE4303E419388BDA008A42A4 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
+		DE4303E519388BDA008A42A4 /* Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Node.m; sourceTree = "<group>"; };
+		DE4303E719388BDA008A42A4 /* Rss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rss.h; sourceTree = "<group>"; };
+		DE4303E819388BDA008A42A4 /* Rss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rss.m; sourceTree = "<group>"; };
 		DE7F39A61935DCC900C7C143 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		DE7F39A71935DCC900C7C143 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		DE7F39A91935E27700C7C143 /* NSMutableURLRequest+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Helper.h"; sourceTree = "<group>"; };
 		DE7F39AA1935E27700C7C143 /* NSMutableURLRequest+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Helper.m"; sourceTree = "<group>"; };
+		DEA15433193825FD00F34BF0 /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
 		DEB54D6919331FA800EC589E /* NodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeListViewController.h; sourceTree = "<group>"; };
 		DEB54D6A19331FA800EC589E /* NodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeListViewController.m; sourceTree = "<group>"; };
 		DEB54D6B19331FA800EC589E /* NodeListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeListViewController.xib; sourceTree = "<group>"; };
@@ -184,10 +195,6 @@
 		DEF4961B1934376700DD482D /* UIAlertView+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Helper.m"; sourceTree = "<group>"; };
 		DEF4961D1934385200DD482D /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		DEF4961E1934385200DD482D /* Constant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constant.m; sourceTree = "<group>"; };
-		DEF496501934A1C700DD482D /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
-		DEF496511934A1C700DD482D /* Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Node.m; sourceTree = "<group>"; };
-		DEF496531934A1C700DD482D /* Rss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rss.h; sourceTree = "<group>"; };
-		DEF496541934A1C700DD482D /* Rss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rss.m; sourceTree = "<group>"; };
 		DEF496561934A24C00DD482D /* BookmarkCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkCustomCell.h; sourceTree = "<group>"; };
 		DEF496571934A24C00DD482D /* BookmarkCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkCustomCell.m; sourceTree = "<group>"; };
 		DEF496581934A24C00DD482D /* BookmarkCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookmarkCustomCell.xib; sourceTree = "<group>"; };
@@ -238,7 +245,7 @@
 		DE22E7B6192F54180005E685 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DE22E7B5192F54180005E685 /* MyRssReader.app */,
+				DE22E7B5192F54180005E685 /* myrssreader.app */,
 				DE22E7D0192F54180005E685 /* MyRssReaderTests.xctest */,
 			);
 			name = Products;
@@ -247,6 +254,7 @@
 		DE22E7B7192F54180005E685 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DEA15433193825FD00F34BF0 /* libcommonCrypto.dylib */,
 				DEB54D8619333CB200EC589E /* MediaPlayer.framework */,
 				DE22E7B8192F54180005E685 /* Foundation.framework */,
 				DE22E7BA192F54180005E685 /* CoreGraphics.framework */,
@@ -309,6 +317,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		DE4303DD193878D8008A42A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DE4303DE193878F4008A42A4 /* TempRss.h */,
+				DE4303DF193878F4008A42A4 /* TempRss.m */,
+				DE4303E119387924008A42A4 /* TempNode.h */,
+				DE4303E219387924008A42A4 /* TempNode.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		DEB54D731933344800EC589E /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,10 +386,10 @@
 			isa = PBXGroup;
 			children = (
 				DEB5F0DF1932FB11008922E5 /* Model.xcdatamodeld */,
-				DEF496531934A1C700DD482D /* Rss.h */,
-				DEF496541934A1C700DD482D /* Rss.m */,
-				DEF496501934A1C700DD482D /* Node.h */,
-				DEF496511934A1C700DD482D /* Node.m */,
+				DE4303E719388BDA008A42A4 /* Rss.h */,
+				DE4303E819388BDA008A42A4 /* Rss.m */,
+				DE4303E419388BDA008A42A4 /* Node.h */,
+				DE4303E519388BDA008A42A4 /* Node.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -395,6 +414,7 @@
 		DEF496211934496B00DD482D /* Tab Home */ = {
 			isa = PBXGroup;
 			children = (
+				DE4303DD193878D8008A42A4 /* Model */,
 				DE22E7EC192F5D230005E685 /* RssListViewController.h */,
 				DE22E7ED192F5D230005E685 /* RssListViewController.m */,
 				DE22E7EE192F5D230005E685 /* RssListViewController.xib */,
@@ -463,7 +483,7 @@
 			);
 			name = MyRssReader;
 			productName = MyRssReader;
-			productReference = DE22E7B5192F54180005E685 /* MyRssReader.app */;
+			productReference = DE22E7B5192F54180005E685 /* myrssreader.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DE22E7CF192F54180005E685 /* MyRssReaderTests */ = {
@@ -618,8 +638,6 @@
 				DE22E7C9192F54180005E685 /* AppDelegate.m in Sources */,
 				DE7F39A81935DCC900C7C143 /* NSString+MD5.m in Sources */,
 				DE22E7F9192F5E4D0005E685 /* BookmarkViewController.m in Sources */,
-				DEF496521934A1C700DD482D /* Node.m in Sources */,
-				DEF496551934A1C700DD482D /* Rss.m in Sources */,
 				DEF49610193431A800DD482D /* AboutViewController.m in Sources */,
 				DE22E7EF192F5D230005E685 /* RssListViewController.m in Sources */,
 				DEF4961F1934385200DD482D /* Constant.m in Sources */,
@@ -630,11 +648,15 @@
 				DEF4961C1934376700DD482D /* UIAlertView+Helper.m in Sources */,
 				DEF496161934349F00DD482D /* Reachability.m in Sources */,
 				DE22E7C5192F54180005E685 /* main.m in Sources */,
+				DE4303E0193878F4008A42A4 /* TempRss.m in Sources */,
 				DEB5F0E11932FB11008922E5 /* Model.xcdatamodeld in Sources */,
 				DEB5F0DD1932D854008922E5 /* Categories.m in Sources */,
+				DE4303E919388BDA008A42A4 /* Rss.m in Sources */,
 				DE22E7EA192F5C410005E685 /* HomeViewController.m in Sources */,
+				DE4303E319387924008A42A4 /* TempNode.m in Sources */,
 				DEC5DD3E19359A560088A62F /* BaseViewController.m in Sources */,
 				DEB5F0DA1932D7DA008922E5 /* UIViewController+Helper.m in Sources */,
+				DE4303E619388BDA008A42A4 /* Node.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,7 +778,49 @@
 				GCC_PREFIX_HEADER = "MyRssReader/MyRssReader-Prefix.pch";
 				INFOPLIST_FILE = "MyRssReader/MyRssReader-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lGoogleAdMobAds",
+					"-framework",
+					AVFoundation,
+					"-framework",
+					AdSupport,
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					CoreData,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-framework",
+					MediaPlayer,
+					"-framework",
+					MessageUI,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					StoreKit,
+					"-framework",
+					SystemConfiguration,
+					"-weak_framework",
+					Accounts,
+					"-weak_framework",
+					Security,
+					"-weak_framework",
+					Social,
+				);
+				PRODUCT_NAME = myrssreader;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -767,11 +831,56 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Phi Long (Q6P4VX76SF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Phi Long (Q6P4VX76SF)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyRssReader/MyRssReader-Prefix.pch";
 				INFOPLIST_FILE = "MyRssReader/MyRssReader-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lGoogleAdMobAds",
+					"-framework",
+					AVFoundation,
+					"-framework",
+					AdSupport,
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					CoreData,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-framework",
+					MediaPlayer,
+					"-framework",
+					MessageUI,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					StoreKit,
+					"-framework",
+					SystemConfiguration,
+					"-weak_framework",
+					Accounts,
+					"-weak_framework",
+					Security,
+					"-weak_framework",
+					Social,
+				);
+				PRODUCT_NAME = myrssreader;
+				PROVISIONING_PROFILE = "D52BC469-D38C-403C-B773-2AF56F78A353";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

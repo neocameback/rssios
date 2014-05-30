@@ -7,6 +7,7 @@
 //
 
 #import "AboutViewController.h"
+#import "WebViewViewController.h"
 
 @interface AboutViewController ()
 
@@ -29,14 +30,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
-
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [bannerView_ loadRequest:[GADRequest request]];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)onAboutus:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAboutUrl]];
+    WebViewViewController *vc = [WebViewViewController initWithNibName];
+    [vc setTitle:@"About us"];
+    [vc setWebUrl:kAboutUrl];
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)onShare:(id)sender {
     UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[kDefaultShareTitle] applicationActivities:nil];

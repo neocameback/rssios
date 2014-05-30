@@ -43,6 +43,9 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [bannerView_ loadRequest:[GADRequest request]];
+    
     if (!nodeList) {
         nodeList = [[NSMutableArray alloc] init];
     }else{
@@ -75,7 +78,7 @@
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 51;
+    return 80;
 }
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -148,7 +151,9 @@
     Node *node = nodeList[indexPath.row];
     
     [node setIsAddedToBoomark:[NSNumber numberWithBool:NO]];
-    
+    if ([node.isDeletedFlag boolValue] == YES) {
+        [node MR_deleteEntity];
+    }
     [nodeList removeObjectAtIndex:indexPath.row];
     
     [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
