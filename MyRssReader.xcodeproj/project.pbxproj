@@ -95,7 +95,7 @@
 /* Begin PBXFileReference section */
 		5573354A75464195829BDB84 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		69548C345766444AA82624A5 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		DE22E7B5192F54180005E685 /* MyRssReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyRssReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE22E7B5192F54180005E685 /* myrssreader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myrssreader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE22E7B8192F54180005E685 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DE22E7BA192F54180005E685 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DE22E7BC192F54180005E685 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -127,6 +127,7 @@
 		DE7F39A71935DCC900C7C143 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		DE7F39A91935E27700C7C143 /* NSMutableURLRequest+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Helper.h"; sourceTree = "<group>"; };
 		DE7F39AA1935E27700C7C143 /* NSMutableURLRequest+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Helper.m"; sourceTree = "<group>"; };
+		DEA15433193825FD00F34BF0 /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
 		DEB54D6919331FA800EC589E /* NodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeListViewController.h; sourceTree = "<group>"; };
 		DEB54D6A19331FA800EC589E /* NodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeListViewController.m; sourceTree = "<group>"; };
 		DEB54D6B19331FA800EC589E /* NodeListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeListViewController.xib; sourceTree = "<group>"; };
@@ -238,7 +239,7 @@
 		DE22E7B6192F54180005E685 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DE22E7B5192F54180005E685 /* MyRssReader.app */,
+				DE22E7B5192F54180005E685 /* myrssreader.app */,
 				DE22E7D0192F54180005E685 /* MyRssReaderTests.xctest */,
 			);
 			name = Products;
@@ -247,6 +248,7 @@
 		DE22E7B7192F54180005E685 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DEA15433193825FD00F34BF0 /* libcommonCrypto.dylib */,
 				DEB54D8619333CB200EC589E /* MediaPlayer.framework */,
 				DE22E7B8192F54180005E685 /* Foundation.framework */,
 				DE22E7BA192F54180005E685 /* CoreGraphics.framework */,
@@ -463,7 +465,7 @@
 			);
 			name = MyRssReader;
 			productName = MyRssReader;
-			productReference = DE22E7B5192F54180005E685 /* MyRssReader.app */;
+			productReference = DE22E7B5192F54180005E685 /* myrssreader.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DE22E7CF192F54180005E685 /* MyRssReaderTests */ = {
@@ -756,7 +758,49 @@
 				GCC_PREFIX_HEADER = "MyRssReader/MyRssReader-Prefix.pch";
 				INFOPLIST_FILE = "MyRssReader/MyRssReader-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lGoogleAdMobAds",
+					"-framework",
+					AVFoundation,
+					"-framework",
+					AdSupport,
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					CoreData,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-framework",
+					MediaPlayer,
+					"-framework",
+					MessageUI,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					StoreKit,
+					"-framework",
+					SystemConfiguration,
+					"-weak_framework",
+					Accounts,
+					"-weak_framework",
+					Security,
+					"-weak_framework",
+					Social,
+				);
+				PRODUCT_NAME = myrssreader;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -767,11 +811,56 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Phi Long (Q6P4VX76SF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Phi Long (Q6P4VX76SF)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyRssReader/MyRssReader-Prefix.pch";
 				INFOPLIST_FILE = "MyRssReader/MyRssReader-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lGoogleAdMobAds",
+					"-framework",
+					AVFoundation,
+					"-framework",
+					AdSupport,
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					CoreData,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-framework",
+					MediaPlayer,
+					"-framework",
+					MessageUI,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					StoreKit,
+					"-framework",
+					SystemConfiguration,
+					"-weak_framework",
+					Accounts,
+					"-weak_framework",
+					Security,
+					"-weak_framework",
+					Social,
+				);
+				PRODUCT_NAME = myrssreader;
+				PROVISIONING_PROFILE = "D52BC469-D38C-403C-B773-2AF56F78A353";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
