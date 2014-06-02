@@ -100,7 +100,7 @@
 /* Begin PBXFileReference section */
 		5573354A75464195829BDB84 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		69548C345766444AA82624A5 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		DE22E7B5192F54180005E685 /* myrssreader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myrssreader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE22E7B5192F54180005E685 /* Rss Video Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rss Video Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE22E7B8192F54180005E685 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DE22E7BA192F54180005E685 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DE22E7BC192F54180005E685 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -251,7 +251,7 @@
 		DE22E7B6192F54180005E685 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DE22E7B5192F54180005E685 /* myrssreader.app */,
+				DE22E7B5192F54180005E685 /* Rss Video Player.app */,
 				DE22E7D0192F54180005E685 /* MyRssReaderTests.xctest */,
 			);
 			name = Products;
@@ -492,7 +492,7 @@
 			);
 			name = MyRssReader;
 			productName = MyRssReader;
-			productReference = DE22E7B5192F54180005E685 /* myrssreader.app */;
+			productReference = DE22E7B5192F54180005E685 /* Rss Video Player.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DE22E7CF192F54180005E685 /* MyRssReaderTests */ = {
@@ -832,7 +832,7 @@
 					"-weak_framework",
 					Social,
 				);
-				PRODUCT_NAME = myrssreader;
+				PRODUCT_NAME = "Rss Video Player";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -891,8 +891,8 @@
 					"-weak_framework",
 					Social,
 				);
-				PRODUCT_NAME = myrssreader;
-				PROVISIONING_PROFILE = "D52BC469-D38C-403C-B773-2AF56F78A353";
+				PRODUCT_NAME = "Rss Video Player";
+				PROVISIONING_PROFILE = "EC772E5F-E488-43F0-80D4-9B196CCA935A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
