@@ -95,7 +95,8 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
-    [viewcontroller setCurrentRss:rssList[indexPath.row]];
+    [viewcontroller setTitle:[rssList[indexPath.row] rssTitle]];
+    [viewcontroller setRssLink:[rssList[indexPath.row] rssLink]];
     [self.navigationController pushViewController:viewcontroller animated:YES];
 }
 - (void)feedParserDidStart:(MWFeedParser *)parser
@@ -110,28 +111,28 @@
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
-    Node *aNode = [Node MR_createEntity];
-    aNode.nodeTitle = item.title;
-    aNode.bookmarkStatus = item.bookmarkStatus;
-    if (item.enclosures.count > 0) {
-        aNode.nodeType = item.enclosures[0][@"type"];
-        aNode.nodeUrl = item.enclosures[0][@"url"];
-    }
-    NSError *error = NULL;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<img\\s[\\s\\S]*?src\\s*?=\\s*?['\"](.*?)['\"][\\s\\S]*?>)+?"
-                                                                           options:NSRegularExpressionCaseInsensitive
-                                                                             error:&error];
-    
-    [regex enumerateMatchesInString:item.summary
-                            options:0
-                              range:NSMakeRange(0, [item.summary length])
-                         usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-                             
-                             aNode.nodeImage = [item.summary substringWithRange:[result rangeAtIndex:2]];
-                             aNode.nodeImage = [aNode.nodeImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                         }];
-    
-    aNode.currentRss = defaultRss;
+//    Node *aNode = [Node MR_createEntity];
+//    aNode.nodeTitle = item.title;
+//    aNode.bookmarkStatus = item.bookmarkStatus;
+//    if (item.enclosures.count > 0) {
+//        aNode.nodeType = item.enclosures[0][@"type"];
+//        aNode.nodeUrl = item.enclosures[0][@"url"];
+//    }
+//    NSError *error = NULL;
+//    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<img\\s[\\s\\S]*?src\\s*?=\\s*?['\"](.*?)['\"][\\s\\S]*?>)+?"
+//                                                                           options:NSRegularExpressionCaseInsensitive
+//                                                                             error:&error];
+//    
+//    [regex enumerateMatchesInString:item.summary
+//                            options:0
+//                              range:NSMakeRange(0, [item.summary length])
+//                         usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+//                             
+//                             aNode.nodeImage = [item.summary substringWithRange:[result rangeAtIndex:2]];
+//                             aNode.nodeImage = [aNode.nodeImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//                         }];
+//    
+//    aNode.currentRss = defaultRss;
     
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser

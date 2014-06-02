@@ -10,7 +10,6 @@
 #import "Node.h"
 
 @interface BookmarkCustomCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *iv_image;
 @property (weak, nonatomic) IBOutlet UILabel *lb_title;
 -(void) configWithNode:(Node*) node;
 

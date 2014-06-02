@@ -24,7 +24,6 @@
 }
 -(void) configWithNode:(Node*) node
 {
-    [self.iv_image setImageWithURL:[NSURL URLWithString:[node nodeImage]] placeholderImage:[UIImage imageNamed:@"default_rss_img"]];
     self.lb_title.text = [node nodeTitle];
 }
 

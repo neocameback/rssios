@@ -11,6 +11,7 @@
 #import "BookmarkCustomCell.h"
 #import "WebViewViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "NodeListViewController.h"
 
 @interface BookmarkViewController ()
 {
@@ -38,7 +39,7 @@
     [self preLoadInterstitial];
     
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(onEdit)];
-    self.navigationItem.leftBarButtonItem = editButton;    
+    self.navigationItem.leftBarButtonItem = editButton;
 }
 -(void) viewWillAppear:(BOOL)animated
 {
@@ -78,7 +79,7 @@
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 61;
 }
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -119,20 +120,11 @@
         [interstitial_ presentFromRootViewController:self];
     }
     else if ([node.nodeType caseInsensitiveCompare:@"rss/xml"] == NSOrderedSame) {
-        feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Constant initWithMethod:@"GET" andUrl:node.nodeUrl]];
-        feedParser.delegate = self;
-        // Parse the feeds info (title, link) and all feed items
-        feedParser.feedParseType = ParseTypeFull;
-        // Connection type
-        feedParser.connectionType = ConnectionTypeAsynchronously;
-        // Begin parsing
-        if ([self isInternetConnected]) {
-            [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
-            [feedParser parse];
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Internet connection was lost!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
+        
+        NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
+        [viewcontroller setTitle:node.nodeTitle];
+        [viewcontroller setRssLink:node.nodeUrl];
+        [self.navigationController pushViewController:viewcontroller animated:YES];        
     }else{
         currentPath = indexPath;
         [interstitial_ presentFromRootViewController:self];
@@ -149,11 +141,7 @@
 -(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Node *node = nodeList[indexPath.row];
-    
-    [node setIsAddedToBoomark:[NSNumber numberWithBool:NO]];
-    if ([node.isDeletedFlag boolValue] == YES) {
-        [node MR_deleteEntity];
-    }
+    [node MR_deleteEntity];
     [nodeList removeObjectAtIndex:indexPath.row];
     
     [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -237,28 +225,28 @@
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
-    Node *aNode = [Node MR_createEntity];
-    aNode.nodeTitle = item.title;
-    //    aNode.nodeSource = item.s
-    if (item.enclosures.count > 0) {
-        aNode.nodeType = item.enclosures[0][@"type"];
-        aNode.nodeUrl = item.enclosures[0][@"url"];
-    }
-    NSError *error = NULL;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<img\\s[\\s\\S]*?src\\s*?=\\s*?['\"](.*?)['\"][\\s\\S]*?>)+?"
-                                                                           options:NSRegularExpressionCaseInsensitive
-                                                                             error:&error];
-    
-    [regex enumerateMatchesInString:item.summary
-                            options:0
-                              range:NSMakeRange(0, [item.summary length])
-                         usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-                             
-                             aNode.nodeImage = [item.summary substringWithRange:[result rangeAtIndex:2]];
-                             aNode.nodeImage = [aNode.nodeImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                         }];
-    
-    aNode.currentRss = newRss;
+//    Node *aNode = [Node MR_createEntity];
+//    aNode.nodeTitle = item.title;
+//    //    aNode.nodeSource = item.s
+//    if (item.enclosures.count > 0) {
+//        aNode.nodeType = item.enclosures[0][@"type"];
+//        aNode.nodeUrl = item.enclosures[0][@"url"];
+//    }
+//    NSError *error = NULL;
+//    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<img\\s[\\s\\S]*?src\\s*?=\\s*?['\"](.*?)['\"][\\s\\S]*?>)+?"
+//                                                                           options:NSRegularExpressionCaseInsensitive
+//                                                                             error:&error];
+//    
+//    [regex enumerateMatchesInString:item.summary
+//                            options:0
+//                              range:NSMakeRange(0, [item.summary length])
+//                         usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+//                             
+//                             aNode.nodeImage = [item.summary substringWithRange:[result rangeAtIndex:2]];
+//                             aNode.nodeImage = [aNode.nodeImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//                         }];
+//    
+//    aNode.currentRss = newRss;
     
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser

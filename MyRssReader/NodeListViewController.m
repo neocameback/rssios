@@ -21,7 +21,7 @@
 @end
 
 @implementation NodeListViewController
-@synthesize tempRss;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -35,23 +35,17 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    if (_currentRss) {
-        self.title = _currentRss.rssTitle;
-        nodeList = [[NSMutableArray alloc] initWithArray:[_currentRss.nodes array]];
-    }else{
-        self.title = self.tempRss.rssTitle;
-        nodeList = [[NSMutableArray alloc] initWithArray:self.tempRss.nodes];
-    }
     
-    for (int i = ad_range - 1; i < nodeList.count; i = i + ad_range) {
-        [nodeList insertObject:@"Ads" atIndex:i];
-    }
+    [self parseRssFromURL:self.rssLink];
+    
     [self preLoadInterstitial];
 }
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [bannerView_ loadRequest:[GADRequest request]];
+    
+    [self.tableView reloadData];
 }
 -(void) viewWillDisappear:(BOOL)animated
 {
@@ -60,6 +54,30 @@
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 
+-(void) parseRssFromURL:(NSString *) url
+{
+    feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Constant initWithMethod:@"GET" andUrl:url]];
+    feedParser.delegate = self;
+    // Parse the feeds info (title, link) and all feed items
+    feedParser.feedParseType = ParseTypeFull;
+    // Connection type
+    feedParser.connectionType = ConnectionTypeAsynchronously;
+    // Begin parsing
+    if ([self isInternetConnected]) {
+        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
+        [feedParser parse];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Internet connection was lost!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+-(void) appendAdsNode
+{
+    for (int i = ad_range - 1; i < nodeList.count; i = i + ad_range) {
+        [nodeList insertObject:@"Ads" atIndex:i];
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -79,7 +97,7 @@
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self tableview:tableView cellTypeForRowAtIndexPath:indexPath] == CELL_TYPE_NORMAL) {
-        return 80;
+        return 61;
     }else{
         return 50;
     }
@@ -92,7 +110,7 @@
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self tableview:tableView cellTypeForRowAtIndexPath:indexPath] == CELL_TYPE_NORMAL) {
-        Node *node = nodeList[indexPath.row];
+        TempNode *node = nodeList[indexPath.row];
         
         NSString *identifier = @"NodeListCustomCell";
         NodeListCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -128,24 +146,29 @@
 -(void) onAddToFav:(id) sender
 {
     NSInteger tag = [sender tag];
-    if (self.currentRss) {
-        Node *node = nodeList[tag];
-        [node setIsAddedToBoomark: [node.isAddedToBoomark boolValue] ? @0 : @1];
-        
-        [sender setSelected:[node.isAddedToBoomark boolValue]];
+    
+    TempNode *temp = nodeList[tag];
+    NSString *nodeUrl = [nodeList[tag] nodeUrl];
+    if ([[temp isAddedToBoomark] boolValue]) {
+        Node *node = [Node MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"nodeUrl == %@",nodeUrl] inContext:[NSManagedObjectContext MR_defaultContext]];
+        [node MR_deleteEntity];
+        [temp setIsAddedToBoomark: [temp.isAddedToBoomark boolValue] ? @0 : @1];
     }else{
-        Node *node = [Node MR_createEntity];
-        TempNode *temp = nodeList[tag];
+        Node *node = [Node MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"nodeUrl == %@",nodeUrl] inContext:[NSManagedObjectContext MR_defaultContext]];
+        if (!node) {
+            node = [Node MR_createEntity];
+        }
         [temp setIsAddedToBoomark: [temp.isAddedToBoomark boolValue] ? @0 : @1];
         [node initFromTempNode:nodeList[tag]];
     }
+    [self.tableView reloadData];
 }
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     if ([self tableview:tableView cellTypeForRowAtIndexPath:indexPath] == CELL_TYPE_NORMAL) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        Node *node = nodeList[indexPath.row];
+        TempNode *node = nodeList[indexPath.row];
         
         if ([node.nodeType caseInsensitiveCompare:@"web/html"] == NSOrderedSame){
             currentPath = indexPath;
@@ -156,20 +179,13 @@
             [interstitial_ presentFromRootViewController:self];
             
         }else if ([node.nodeType caseInsensitiveCompare:@"rss/xml"] == NSOrderedSame){
-            feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Constant initWithMethod:@"GET" andUrl:node.nodeUrl]];
-            feedParser.delegate = self;
-            // Parse the feeds info (title, link) and all feed items
-            feedParser.feedParseType = ParseTypeFull;
-            // Connection type
-            feedParser.connectionType = ConnectionTypeAsynchronously;
-            // Begin parsing
-            if ([self isInternetConnected]) {
-                [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
-                [feedParser parse];
-            }else{
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Internet connection was lost!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
-            }
+            /**
+             *  parse rss/xml
+             */
+            NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
+            [viewcontroller setRssLink:node.nodeUrl];
+            [viewcontroller setTitle:node.nodeTitle];
+            [self.navigationController pushViewController:viewcontroller animated:YES];
         }else{
             currentPath = indexPath;
             [interstitial_ presentFromRootViewController:self];
@@ -180,9 +196,10 @@
     }
 }
 
+
 -(void) continueActionAtIndexPath:(NSIndexPath *) indexPath
 {
-    Node *node = nodeList[indexPath.row];
+    TempNode *node = nodeList[indexPath.row];
     if ([node.nodeType caseInsensitiveCompare:@"web/html"] == NSOrderedSame){
         WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
         [viewcontroller setTitle:node.nodeTitle];
@@ -281,20 +298,19 @@
                              aNode.nodeImage = [aNode.nodeImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                          }];
     
-    if (!tempRss.nodes) {
-        tempRss.nodes = [NSMutableArray array];
+    if (!nodeList) {
+        nodeList = [NSMutableArray array];
     }
-    [tempRss.nodes addObject:aNode];
+    [nodeList addObject:aNode];
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser
 {
     [SVProgressHUD dismiss];
     NSLog(@"Finished Parsing%@", (parser.stopped ? @" (Stopped)" : @""));
     
-    NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
-    [viewcontroller setTempRss:tempRss];
-    [self.navigationController pushViewController:viewcontroller animated:YES];
+    [self appendAdsNode];
     
+    [self.tableView reloadData];
 }
 - (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error
 {

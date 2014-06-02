@@ -10,7 +10,7 @@
 
 #define kNotificationShouldReloadRssList    @"should_reload_rss"
 
-#define ad_range   3
+#define ad_range   16
 
 #define kDefaultRssUrl  @"http://rssvideoplayer.com/sample.xml"
 #define kDefaultMd5Prefix   @"RssVideoPlayer-Hanoi052014-"

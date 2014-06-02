@@ -139,14 +139,6 @@
 -(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Rss *aRss = rssList[indexPath.row];
-    for (Node *node in aRss.nodes) {
-        if ([node.isAddedToBoomark boolValue]) {
-            // if node is added to bookmark so set node flag to deleted
-            node.isDeletedFlag = @1;
-        }else{
-            [node MR_deleteEntity];
-        }
-    }
     [aRss MR_deleteEntity];
     [rssList removeObjectAtIndex:indexPath.row];
     
@@ -164,7 +156,9 @@
 {
     switch (buttonIndex) {
         case 0:
-            
+        {
+            editingIndex = -1;
+        }
             break;
         default:
         {
@@ -173,13 +167,6 @@
              */
             if (editingIndex >= 0) {
                 Rss *rss = rssList[editingIndex];
-                for (Node *node in rss.nodes) {
-                    if ([node.isAddedToBoomark boolValue] == NO) {
-                        [node MR_deleteEntity];
-                    }else{
-                        node.isDeletedFlag = @1;
-                    }
-                }
                 [rss MR_deleteEntity];
                 [rssList removeObjectAtIndex:editingIndex];
                 editingIndex = -1;
@@ -228,29 +215,28 @@
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
-    Node *aNode = [Node MR_createEntity];
-    aNode.nodeTitle = item.title;
-    //    aNode.nodeSource = item.s
-    if (item.enclosures.count > 0) {
-        aNode.nodeType = item.enclosures[0][@"type"];
-        aNode.nodeUrl = item.enclosures[0][@"url"];
-    }
-    NSError *error = NULL;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<img\\s[\\s\\S]*?src\\s*?=\\s*?['\"](.*?)['\"][\\s\\S]*?>)+?"
-                                                                           options:NSRegularExpressionCaseInsensitive
-                                                                             error:&error];
-    
-    [regex enumerateMatchesInString:item.summary
-                            options:0
-                              range:NSMakeRange(0, [item.summary length])
-                         usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-                             
-                             aNode.nodeImage = [item.summary substringWithRange:[result rangeAtIndex:2]];
-                             aNode.nodeImage = [aNode.nodeImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                         }];
-    
-    aNode.currentRss = newRss;
-    
+//    Node *aNode = [Node MR_createEntity];
+//    aNode.nodeTitle = item.title;
+//    //    aNode.nodeSource = item.s
+//    if (item.enclosures.count > 0) {
+//        aNode.nodeType = item.enclosures[0][@"type"];
+//        aNode.nodeUrl = item.enclosures[0][@"url"];
+//    }
+//    NSError *error = NULL;
+//    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<img\\s[\\s\\S]*?src\\s*?=\\s*?['\"](.*?)['\"][\\s\\S]*?>)+?"
+//                                                                           options:NSRegularExpressionCaseInsensitive
+//                                                                             error:&error];
+//    
+//    [regex enumerateMatchesInString:item.summary
+//                            options:0
+//                              range:NSMakeRange(0, [item.summary length])
+//                         usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+//                             
+//                             aNode.nodeImage = [item.summary substringWithRange:[result rangeAtIndex:2]];
+//                             aNode.nodeImage = [aNode.nodeImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//                         }];
+//    
+//    aNode.currentRss = newRss;    
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser
 {

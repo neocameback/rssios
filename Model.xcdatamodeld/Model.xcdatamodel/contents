@@ -9,15 +9,13 @@
         <attribute name="nodeTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nodeType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nodeUrl" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="currentRss" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Rss" inverseName="nodes" inverseEntity="Rss" syncable="YES"/>
     </entity>
     <entity name="Rss" representedClassName="Rss" syncable="YES">
         <attribute name="rssLink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rssTitle" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="nodes" optional="YES" toMany="YES" deletionRule="No Action" ordered="YES" destinationEntity="Node" inverseName="currentRss" inverseEntity="Node" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Node" positionX="-1757" positionY="-748" width="128" height="178"/>
-        <element name="Rss" positionX="-2007" positionY="-673" width="128" height="88"/>
+        <element name="Node" positionX="-1757" positionY="-748" width="128" height="163"/>
+        <element name="Rss" positionX="-2007" positionY="-673" width="128" height="73"/>
     </elements>
 </model>

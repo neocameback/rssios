@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Node.h"
+#import "TempNode.h"
 
 @interface NodeListCustomCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *iv_image;
 @property (weak, nonatomic) IBOutlet UILabel *lb_title;
 @property (weak, nonatomic) IBOutlet UIButton *btn_addToFav;
--(void) configWithNode:(Node*) node;
+-(void) configWithNode:(TempNode*) node;
 @end

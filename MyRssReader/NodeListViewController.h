@@ -22,14 +22,14 @@ typedef enum : NSUInteger {
 @interface NodeListViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource , MWFeedParserDelegate, GADInterstitialDelegate>
 {
     MWFeedParser *feedParser;
-    TempRss *tempRss;
-    NSMutableArray *nodeList;
     
     GADInterstitial *interstitial_;
     
     NSIndexPath *currentPath;
+    NSMutableArray *nodeList;
+    
+    TempRss *tempRss;
 }
-@property (nonatomic, strong) Rss *currentRss;
-@property (nonatomic, strong) TempRss *tempRss;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSString *rssLink;
 @end
