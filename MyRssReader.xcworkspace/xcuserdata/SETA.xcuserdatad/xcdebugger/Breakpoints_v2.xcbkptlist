@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/MWFeedParser/Classes/MWFeedParser.m"
-            timestampString = "422873404.836393"
+            timestampString = "423459134.543848"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "930"
-            endingLineNumber = "930"
+            startingLineNumber = "931"
+            endingLineNumber = "931"
             landmarkName = "-processAtomLink:andAddToMWObject:"
             landmarkType = "5">
          </BreakpointContent>

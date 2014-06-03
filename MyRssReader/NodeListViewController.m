@@ -10,7 +10,6 @@
 #import "Node.h"
 #import <UIImageView+AFNetworking.h>
 #import "NodeListCustomCell.h"
-#import <XCDYouTubeVideoPlayerViewController.h>
 #import "WebViewViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 

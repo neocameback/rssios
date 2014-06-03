@@ -18,9 +18,6 @@ PODS:
   - AFNetworking/UIKit (2.2.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Bolts (1.1.0)
-  - Facebook-iOS-SDK (3.14.1):
-    - Bolts
   - Google-AdMob-Ads-SDK (6.8.0)
   - MagicalRecord (2.2):
     - MagicalRecord/Core
@@ -35,25 +32,19 @@ PODS:
   - MWFeedParser/NSDate+InternetDateTime (1.0.1)
   - MWFeedParser/NSString+HTML (1.0.1)
   - SVProgressHUD (1.0)
-  - XCDYouTubeVideoPlayerViewController (1.1.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.2)
-  - Facebook-iOS-SDK (~> 3.14)
   - Google-AdMob-Ads-SDK (~> 6.8)
   - MagicalRecord (~> 2.2)
   - MWFeedParser (~> 1.0)
   - SVProgressHUD (~> 1.0)
-  - XCDYouTubeVideoPlayerViewController (~> 1.1)
 
 SPEC CHECKSUMS:
   AFNetworking: ab63e259fe91eef4519b371ef0a4955af0e73e64
-  Bolts: 91c2af8eae1d44e1dd75946a5b0ae04a43ea43e4
-  Facebook-iOS-SDK: e9b3d5ac54ee3e5e693f4eef470b97911b3d076d
   Google-AdMob-Ads-SDK: ec4a2941cc0aabaf06bf4a709216d3e94ad7b46b
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
   MWFeedParser: 003cbf5398e99a7f2057fbe9583054fd1b84be72
   SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
-  XCDYouTubeVideoPlayerViewController: 228e161f9b3f73f3f8d3eb5cca5c5a8cfd041d7a
 
 COCOAPODS: 0.33.1

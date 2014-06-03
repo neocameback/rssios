@@ -48,18 +48,6 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 2
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 4
 
-// Bolts
-#define COCOAPODS_POD_AVAILABLE_Bolts
-#define COCOAPODS_VERSION_MAJOR_Bolts 1
-#define COCOAPODS_VERSION_MINOR_Bolts 1
-#define COCOAPODS_VERSION_PATCH_Bolts 0
-
-// Facebook-iOS-SDK
-#define COCOAPODS_POD_AVAILABLE_Facebook_iOS_SDK
-#define COCOAPODS_VERSION_MAJOR_Facebook_iOS_SDK 3
-#define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 14
-#define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 1
-
 // Google-AdMob-Ads-SDK
 #define COCOAPODS_POD_AVAILABLE_Google_AdMob_Ads_SDK
 #define COCOAPODS_VERSION_MAJOR_Google_AdMob_Ads_SDK 6
@@ -107,10 +95,4 @@
 #define COCOAPODS_VERSION_MAJOR_SVProgressHUD 1
 #define COCOAPODS_VERSION_MINOR_SVProgressHUD 0
 #define COCOAPODS_VERSION_PATCH_SVProgressHUD 0
-
-// XCDYouTubeVideoPlayerViewController
-#define COCOAPODS_POD_AVAILABLE_XCDYouTubeVideoPlayerViewController
-#define COCOAPODS_VERSION_MAJOR_XCDYouTubeVideoPlayerViewController 1
-#define COCOAPODS_VERSION_MINOR_XCDYouTubeVideoPlayerViewController 1
-#define COCOAPODS_VERSION_PATCH_XCDYouTubeVideoPlayerViewController 2
 
