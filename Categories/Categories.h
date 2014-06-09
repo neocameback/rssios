@@ -10,6 +10,7 @@
 #import "UIViewController+Helper.h"
 #import "NSString+MD5.h"
 #import "NSMutableURLRequest+Helper.h"
+#import "NSString+Helper.h"
 
 @interface Categories : NSObject
 

@@ -68,6 +68,7 @@
 		DEB5F0DA1932D7DA008922E5 /* UIViewController+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB5F0D91932D7DA008922E5 /* UIViewController+Helper.m */; };
 		DEB5F0DD1932D854008922E5 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB5F0DC1932D854008922E5 /* Categories.m */; };
 		DEB5F0E11932FB11008922E5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DEB5F0DF1932FB11008922E5 /* Model.xcdatamodeld */; };
+		DEB7BF2C19458DE700BF350D /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB7BF2B19458DE700BF350D /* NSString+Helper.m */; };
 		DEC5DD1F19357EDC0088A62F /* ic_home_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC5DD0F19357EDC0088A62F /* ic_home_press@2x.png */; };
 		DEC5DD2019357EDC0088A62F /* ic_home_press.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC5DD1019357EDC0088A62F /* ic_home_press.png */; };
 		DEC5DD2119357EDC0088A62F /* ic_home_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC5DD1119357EDC0088A62F /* ic_home_normal@2x.png */; };
@@ -189,6 +190,8 @@
 		DEB5F0DB1932D854008922E5 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
 		DEB5F0DC1932D854008922E5 /* Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Categories.m; sourceTree = "<group>"; };
 		DEB5F0E01932FB11008922E5 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		DEB7BF2A19458DE700BF350D /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
+		DEB7BF2B19458DE700BF350D /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
 		DEC5DD0F19357EDC0088A62F /* ic_home_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_home_press@2x.png"; sourceTree = "<group>"; };
 		DEC5DD1019357EDC0088A62F /* ic_home_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_home_press.png; sourceTree = "<group>"; };
 		DEC5DD1119357EDC0088A62F /* ic_home_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_home_normal@2x.png"; sourceTree = "<group>"; };
@@ -414,6 +417,8 @@
 				DE7F39A71935DCC900C7C143 /* NSString+MD5.m */,
 				DE7F39A91935E27700C7C143 /* NSMutableURLRequest+Helper.h */,
 				DE7F39AA1935E27700C7C143 /* NSMutableURLRequest+Helper.m */,
+				DEB7BF2A19458DE700BF350D /* NSString+Helper.h */,
+				DEB7BF2B19458DE700BF350D /* NSString+Helper.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -691,6 +696,7 @@
 				DE22E7EF192F5D230005E685 /* RssListViewController.m in Sources */,
 				DEF4961F1934385200DD482D /* Constant.m in Sources */,
 				DE7F39AB1935E27700C7C143 /* NSMutableURLRequest+Helper.m in Sources */,
+				DEB7BF2C19458DE700BF350D /* NSString+Helper.m in Sources */,
 				DEF49619193435FD00DD482D /* NSUserDefaults+Helper.m in Sources */,
 				DEB54D83193337B200EC589E /* WebViewViewController.m in Sources */,
 				DEF496591934A24C00DD482D /* BookmarkCustomCell.m in Sources */,

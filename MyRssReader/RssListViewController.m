@@ -36,6 +36,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSLog(@"YoutubeId; %@",[@"www.youtube.com/v/VIDEOID" extractYoutubeId]);
+    NSLog(@"YoutubeId; %@",[@"www.youtube.com?v=VIDEOID" extractYoutubeId]);
+    NSLog(@"YoutubeId; %@",[@"http://www.youtube.com/watch?v=KFPtWedl7wg&feature=youtu.be" extractYoutubeId]);
+    NSLog(@"YoutubeId; %@",[@"http://www.youtube.com/watch?v=MkTD2Y4LXcM" extractYoutubeId]);
+    NSLog(@"YoutubeId; %@",[@"youtu.be/KFPtWedl7wg_U923" extractYoutubeId]);
+    NSLog(@"YoutubeId; %@",[@"http://www.youtube.com/watch?feature=player_detailpage&v=biVLGTAMC_U#t=31s" extractYoutubeId]);
 }
 -(void) showBanner
 {
