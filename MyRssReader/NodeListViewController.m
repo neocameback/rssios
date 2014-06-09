@@ -37,7 +37,7 @@
     
     [self parseRssFromURL:self.rssLink];
     
-    [self preLoadInterstitial];
+//    [self preLoadInterstitial];
 }
 -(void) viewWillAppear:(BOOL)animated
 {
@@ -164,19 +164,20 @@
 }
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    currentPath = indexPath;
     if ([self tableview:tableView cellTypeForRowAtIndexPath:indexPath] == CELL_TYPE_NORMAL) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         TempNode *node = nodeList[indexPath.row];
-        
         if ([node.nodeType caseInsensitiveCompare:@"web/html"] == NSOrderedSame){
-            currentPath = indexPath;
-            [interstitial_ presentFromRootViewController:self];
+            [self preLoadInterstitial];
+            WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
+            [viewcontroller setTitle:node.nodeTitle];
+            [viewcontroller setWebUrl:node.nodeUrl];
+            [self.navigationController pushViewController:viewcontroller animated:YES];
         }
         else if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame){
-            currentPath = indexPath;
-            [interstitial_ presentFromRootViewController:self];
-            
+            [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeGradient];
+            [self preLoadInterstitial];
         }else if ([node.nodeType caseInsensitiveCompare:@"rss/xml"] == NSOrderedSame){
             /**
              *  parse rss/xml
@@ -186,33 +187,15 @@
             [viewcontroller setTitle:node.nodeTitle];
             [self.navigationController pushViewController:viewcontroller animated:YES];
         }else{
-            currentPath = indexPath;
-            [interstitial_ presentFromRootViewController:self];
+            [self preLoadInterstitial];
+            WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
+            [viewcontroller setTitle:node.nodeTitle];
+            [viewcontroller setWebUrl:node.nodeUrl];
+            [self.navigationController pushViewController:viewcontroller animated:YES];
         }
         
     }else{
         return;
-    }
-}
-
-
--(void) continueActionAtIndexPath:(NSIndexPath *) indexPath
-{
-    TempNode *node = nodeList[indexPath.row];
-    if ([node.nodeType caseInsensitiveCompare:@"web/html"] == NSOrderedSame){
-        WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
-        [viewcontroller setTitle:node.nodeTitle];
-        [viewcontroller setWebUrl:node.nodeUrl];
-        [self.navigationController pushViewController:viewcontroller animated:YES];
-    }
-    else if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame){
-        moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
-        [self presentViewController:moviePlayer animated:YES completion:nil];
-    }else{
-        WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
-        [viewcontroller setTitle:node.nodeTitle];
-        [viewcontroller setWebUrl:node.nodeUrl];
-        [self.navigationController pushViewController:viewcontroller animated:YES];
     }
 }
 
@@ -221,30 +204,28 @@
 - (void)preLoadInterstitial {
     //Call this method as soon as you can - loadRequest will run in the background and your interstitial will be ready when you need to show it
     GADRequest *request = [GADRequest request];
+    interstitial_ = nil;
     interstitial_ = [[GADInterstitial alloc] init];
     interstitial_.delegate = self;
     interstitial_.adUnitID = kLargeAdUnitId;
     [interstitial_ loadRequest:request];
 }
 
-- (void) showInterstitial
-{
-    //Call this method when you want to show the interstitial - the method should double check that the interstitial has not been used before trying to present it
-    if (!interstitial_.hasBeenUsed) [interstitial_ presentFromRootViewController:self];
-}
 - (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial
 {
-
+    [SVProgressHUD dismiss];
+    NSLog(@"interstitialDidReceiveAd");
+    [interstitial_ presentFromRootViewController:self];
 }
 - (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
 {
+    [SVProgressHUD dismiss];
     NSLog(@"didFailToReceiveAdWithError: %@",[error localizedDescription]);
     //If an error occurs and the interstitial is not received you might want to retry automatically after a certain interval
-    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(preLoadInterstitial) userInfo:nil repeats:NO];
 }
 - (void)interstitialWillPresentScreen:(GADInterstitial *)interstitial
 {
-
+    [SVProgressHUD dismiss];
 }
 - (void)interstitialWillDismissScreen:(GADInterstitial *)interstitial
 {
@@ -253,8 +234,11 @@
 - (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
 {
     NSLog(@"interstitialDidDismissScreen");
-    
-    [self continueActionAtIndexPath:currentPath];
+    TempNode *node = nodeList[currentPath.row];
+    if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame){
+        moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
+        [self presentViewController:moviePlayer animated:YES completion:nil];
+    }
 }
 - (void)interstitialWillLeaveApplication:(GADInterstitial *)interstitial
 {

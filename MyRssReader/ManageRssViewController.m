@@ -211,7 +211,7 @@
     }else{
         newRss.rssTitle = info.title;
     }
-    newRss.rssLink = info.link;
+    newRss.rssLink = [info.url absoluteString];
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
