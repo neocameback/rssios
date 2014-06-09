@@ -211,7 +211,11 @@
     }else{
         newRss.rssTitle = info.title;
     }
-    newRss.rssLink = [info.url absoluteString];
+    NSString *strippedString = [info.url absoluteString];
+    NSUInteger queryLength = [[info.url query] length];
+    strippedString = (queryLength ? [strippedString substringToIndex:[strippedString length] - (queryLength + 1)] : strippedString);
+    newRss.rssLink = strippedString;
+    
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
