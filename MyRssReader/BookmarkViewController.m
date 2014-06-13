@@ -75,17 +75,44 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark search display delegate
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"nodeTitle contains[c] %@", searchText];
+    searchResults = [NSMutableArray arrayWithArray:[nodeList filteredArrayUsingPredicate:resultPredicate]];
+}
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
+#pragma mark tableview datasource, delegate
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 61;
 }
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return nodeList.count;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [searchResults count];
+        
+    } else {
+        return [nodeList count];
+    }
 }
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Node *node = nodeList[indexPath.row];
+    Node *node = nil;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        node = [searchResults objectAtIndex:indexPath.row];
+    } else {
+        node = [nodeList objectAtIndex:indexPath.row];
+    }
     
     NSString *identifier = @"BookmarkCustomCell";
     BookmarkCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -108,7 +135,12 @@
 {
     currentPath = indexPath;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    Node *node = nodeList[indexPath.row];
+    Node *node = nil;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        node = [searchResults objectAtIndex:indexPath.row];
+    } else {
+        node = [nodeList objectAtIndex:indexPath.row];
+    }
     
     if ([node.nodeType caseInsensitiveCompare:@"web/html"] == NSOrderedSame){
         [self preLoadInterstitial];
@@ -118,7 +150,6 @@
         [self.navigationController pushViewController:viewcontroller animated:YES];
     }
     else if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame){
-        [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeGradient];
         [self preLoadInterstitial];
     }
     else if ([node.nodeType caseInsensitiveCompare:@"rss/xml"] == NSOrderedSame) {
@@ -156,6 +187,18 @@
 #pragma mark Interstitial delegate
 - (void)preLoadInterstitial {
     //Call this method as soon as you can - loadRequest will run in the background and your interstitial will be ready when you need to show it
+    
+    NSDate *lastOpenDate = [[NSUserDefaults standardUserDefaults] objectForKey:kLastOpenFullScreen];
+    NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:lastOpenDate];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastOpenFullScreen];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if (interval <= 120) {
+        [self continueAtCurrentPath];
+        return;
+    }
+    [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeGradient];
     GADRequest *request = [GADRequest request];
     interstitial_ = [[GADInterstitial alloc] init];
     interstitial_.delegate = self;
@@ -186,18 +229,21 @@
 - (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
 {
     NSLog(@"interstitialDidDismissScreen");
-    
-    Node *node = nodeList[currentPath.row];
-    if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame){
-        moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
-        [self presentViewController:moviePlayer animated:YES completion:nil];
-    }
+    [self continueAtCurrentPath];
 }
 - (void)interstitialWillLeaveApplication:(GADInterstitial *)interstitial
 {
     
 }
 
+-(void) continueAtCurrentPath
+{
+    Node *node = nodeList[currentPath.row];
+    if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame){
+        moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
+        [self presentViewController:moviePlayer animated:YES completion:nil];
+    }
+}
 #pragma mark MWFeedParser delegate
 - (void)feedParserDidStart:(MWFeedParser *)parser
 {

@@ -12,6 +12,8 @@
 
 #define ad_range   16
 
+#define kLastOpenFullScreen @"last_open_full_screen"
+
 #define kDefaultRssUrl  @"http://rssvideoplayer.com/sample.xml"
 #define kDefaultMd5Prefix   @"RssVideoPlayer-Hanoi052014-"
 

@@ -27,6 +27,8 @@
 		DE1B5B3B194AED9800A4B5D9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE04E6A8194AE52000BD30BC /* AdSupport.framework */; };
 		DE1B5B3C194AEDA400A4B5D9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE04E6A6194AE50300BD30BC /* libz.dylib */; };
 		DE1B5B3E194AEE2900A4B5D9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1B5B3D194AEE2900A4B5D9 /* libsqlite3.dylib */; };
+		DE1B5B41194B0EA000A4B5D9 /* icon_default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1B5B3F194B0EA000A4B5D9 /* icon_default.png */; };
+		DE1B5B42194B0EA000A4B5D9 /* icon_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1B5B40194B0EA000A4B5D9 /* icon_default@2x.png */; };
 		DE22E7B9192F54180005E685 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE22E7B8192F54180005E685 /* Foundation.framework */; };
 		DE22E7BB192F54180005E685 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE22E7BA192F54180005E685 /* CoreGraphics.framework */; };
 		DE22E7BD192F54180005E685 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE22E7BC192F54180005E685 /* UIKit.framework */; };
@@ -139,6 +141,8 @@
 		DE1B5B38194AED3400A4B5D9 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
 		DE1B5B39194AED3400A4B5D9 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		DE1B5B3D194AEE2900A4B5D9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		DE1B5B3F194B0EA000A4B5D9 /* icon_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_default.png; sourceTree = "<group>"; };
+		DE1B5B40194B0EA000A4B5D9 /* icon_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_default@2x.png"; sourceTree = "<group>"; };
 		DE22E7B5192F54180005E685 /* Rss Video Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rss Video Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE22E7B8192F54180005E685 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DE22E7BA192F54180005E685 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -393,6 +397,8 @@
 		DEB54D731933344800EC589E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DE1B5B3F194B0EA000A4B5D9 /* icon_default.png */,
+				DE1B5B40194B0EA000A4B5D9 /* icon_default@2x.png */,
 				42C70BFF193CBE3500736BCF /* icon -114.png */,
 				42C70C00193CBE3500736BCF /* icon-29.png */,
 				42C70C01193CBE3500736BCF /* icon-40.png */,
@@ -620,6 +626,7 @@
 			files = (
 				DEC5DD2619357EDC0088A62F /* ic_favorites_normal.png in Resources */,
 				DEC5DD3F19359A560088A62F /* BaseViewController.xib in Resources */,
+				DE1B5B41194B0EA000A4B5D9 /* icon_default.png in Resources */,
 				42C70C0F193CBE3500736BCF /* icon-29.png in Resources */,
 				DEC5DD2D19357EDC0088A62F /* ic_about_normal@2x.png in Resources */,
 				DEC5DD2919357EDC0088A62F /* ic_channel_normal@2x.png in Resources */,
@@ -654,6 +661,7 @@
 				42C70C0E193CBE3500736BCF /* icon -114.png in Resources */,
 				DEC5DD2719357EDC0088A62F /* ic_channel_press@2x.png in Resources */,
 				DEC5DD2119357EDC0088A62F /* ic_home_normal@2x.png in Resources */,
+				DE1B5B42194B0EA000A4B5D9 /* icon_default@2x.png in Resources */,
 				DE9D4554193C57000006047E /* Default.png in Resources */,
 				DE9D4553193C57000006047E /* Default-568h@2x.png in Resources */,
 				DE22E7F0192F5D230005E685 /* RssListViewController.xib in Resources */,

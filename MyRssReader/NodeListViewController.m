@@ -16,6 +16,7 @@
 @interface NodeListViewController ()
 {
     MPMoviePlayerViewController *moviePlayer;
+    NodeListCustomCell *nodeCell;
 }
 @end
 
@@ -35,6 +36,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self parseRssFromURL:self.rssLink];
+    
+    UINib *nib = [UINib nibWithNibName:@"NodeListCustomCell" bundle:nil];
+    nodeCell = [nib instantiateWithOwner:self options:nil][0];
+    [_tableView registerNib:nib forCellReuseIdentifier:@"NodeListCustomCell"];
     
 //    [self preLoadInterstitial];
 }
@@ -94,7 +99,17 @@
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self tableview:tableView cellTypeForRowAtIndexPath:indexPath] == CELL_TYPE_NORMAL) {
-        return 61;
+//        return 61;
+        TempNode *node = nodeList[indexPath.row];
+        [nodeCell configWithNode:node];
+        [nodeCell layoutIfNeeded];
+        CGFloat height = [nodeCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+        NSLog(@"height: %f",height);
+        if (height < 71) {
+            return 71;
+        }else{
+            return height + 1;
+        }
     }else{
         return 50;
     }
@@ -109,11 +124,7 @@
     if ([self tableview:tableView cellTypeForRowAtIndexPath:indexPath] == CELL_TYPE_NORMAL) {
         TempNode *node = nodeList[indexPath.row];
         
-        NSString *identifier = @"NodeListCustomCell";
-        NodeListCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-        if (!cell) {
-            cell = [[NSBundle mainBundle] loadNibNamed:@"NodeListCustomCell" owner:self options:nil][0];
-        }
+        NodeListCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NodeListCustomCell" forIndexPath:indexPath];
         [cell configWithNode:node];
         
         [cell.btn_addToFav addTarget:self action:@selector(onAddToFav:) forControlEvents:UIControlEventTouchUpInside];
@@ -174,7 +185,6 @@
             [self.navigationController pushViewController:viewcontroller animated:YES];
         }
         else if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"rtmp/flv"] == NSOrderedSame ){
-            [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeGradient];
             [self preLoadInterstitial];
         }else if ([node.nodeType caseInsensitiveCompare:@"rss/xml"] == NSOrderedSame){
             /**
@@ -201,6 +211,19 @@
 #pragma mark Interstitial delegate
 - (void)preLoadInterstitial {
     //Call this method as soon as you can - loadRequest will run in the background and your interstitial will be ready when you need to show it
+    
+    NSDate *lastOpenDate = [[NSUserDefaults standardUserDefaults] objectForKey:kLastOpenFullScreen];
+    NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:lastOpenDate];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastOpenFullScreen];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if (interval <= 120) {
+        [self continueAtCurrentPath];
+        return;
+    }
+    [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeGradient];
+    
     GADRequest *request = [GADRequest request];
     interstitial_ = nil;
     interstitial_ = [[GADInterstitial alloc] init];
@@ -232,17 +255,22 @@
 - (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
 {
     NSLog(@"interstitialDidDismissScreen");
-    TempNode *node = nodeList[currentPath.row];
-    if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"rtmp/flv"] == NSOrderedSame ){
-        moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
-        [self presentViewController:moviePlayer animated:YES completion:nil];
-    }
+    [self continueAtCurrentPath];
 }
 - (void)interstitialWillLeaveApplication:(GADInterstitial *)interstitial
 {
     
 }
 
+-(void) continueAtCurrentPath
+{
+    TempNode *node = nodeList[currentPath.row];
+    if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"rtmp/flv"] == NSOrderedSame ){
+        moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
+        [self presentViewController:moviePlayer animated:YES completion:nil];
+    }
+
+}
 #pragma mark MWFeedParser delegate
 
 - (void)feedParserDidStart:(MWFeedParser *)parser
