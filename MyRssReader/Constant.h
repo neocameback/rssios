@@ -24,8 +24,21 @@
 
 #define kSmallAdUnitId  @"ca-app-pub-8422191650855912/1857715781"
 #define kLargeAdUnitId  @"ca-app-pub-8422191650855912/4957456186"
+
+enum NODE_TYPE {
+    NODE_TYPE_RSS = 0,
+    NODE_TYPE_VIDEO = 1,
+    NODE_TYPE_YOUTUBE = 2,
+    NODE_TYPE_DAILYMOTION = 3,
+    NODE_TYPE_RTMP = 4,
+    NODE_TYPE_WEB = 5
+};
+
+
 @interface Constant : NSObject
 
 +(NSString *) getIpAddress;
 +(NSMutableURLRequest*) requestWithMethod:(NSString *) method andUrl:(NSString *) url;
+
++(enum NODE_TYPE) typeOfNode:(NSString *) nodeType;
 @end

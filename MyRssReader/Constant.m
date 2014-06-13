@@ -68,4 +68,22 @@
     return request;
 }
 
++(enum NODE_TYPE) typeOfNode:(NSString *) nodeType
+{
+    if ([nodeType rangeOfString:@"rss"].location != NSNotFound) {
+        return NODE_TYPE_RSS;
+    }
+    else if ([nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame || [nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame){
+        return NODE_TYPE_VIDEO;
+    }
+    else if ([nodeType rangeOfString:@"youtube"].location != NSNotFound){
+        return NODE_TYPE_YOUTUBE;
+    }
+    else if ([nodeType rangeOfString:@"dailymotion"].location != NSNotFound){
+        return NODE_TYPE_DAILYMOTION;
+    }
+    else{
+        return NODE_TYPE_WEB;
+    }        
+}
 @end
