@@ -1,5 +1,6 @@
 pod 'SVProgressHUD', '~> 1.0'
 pod 'MagicalRecord', '~> 2.2'
-pod 'Google-AdMob-Ads-SDK', '~> 6.8'
 pod 'AFNetworking', '~> 2.2'
 pod 'MWFeedParser', '~> 1.0'
+pod 'Google-Mobile-Ads-SDK', '~> 6.9.2'
+#pod 'GoogleAnalytics-iOS-SDK', '~> 3.0.7'

@@ -48,11 +48,11 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 2
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 4
 
-// Google-AdMob-Ads-SDK
-#define COCOAPODS_POD_AVAILABLE_Google_AdMob_Ads_SDK
-#define COCOAPODS_VERSION_MAJOR_Google_AdMob_Ads_SDK 6
-#define COCOAPODS_VERSION_MINOR_Google_AdMob_Ads_SDK 8
-#define COCOAPODS_VERSION_PATCH_Google_AdMob_Ads_SDK 0
+// Google-Mobile-Ads-SDK
+#define COCOAPODS_POD_AVAILABLE_Google_Mobile_Ads_SDK
+#define COCOAPODS_VERSION_MAJOR_Google_Mobile_Ads_SDK 6
+#define COCOAPODS_VERSION_MINOR_Google_Mobile_Ads_SDK 9
+#define COCOAPODS_VERSION_PATCH_Google_Mobile_Ads_SDK 2
 
 // MWFeedParser
 #define COCOAPODS_POD_AVAILABLE_MWFeedParser

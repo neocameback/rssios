@@ -12,16 +12,20 @@
 
 #define ad_range   16
 
+#define kLastOpenFullScreen @"last_open_full_screen"
+
 #define kDefaultRssUrl  @"http://rssvideoplayer.com/sample.xml"
 #define kDefaultMd5Prefix   @"RssVideoPlayer-Hanoi052014-"
 
 #define kDefaultShareTitle  @"Rss video player\nhttp://rssvideoplayer.com"
 #define kAboutUrl   @"http://rssvideoplayer.com/about.html"
 
+#define kGoogleAnalyticId   @"UA-51537954-1"
+
 #define kSmallAdUnitId  @"ca-app-pub-8422191650855912/1857715781"
 #define kLargeAdUnitId  @"ca-app-pub-8422191650855912/4957456186"
 @interface Constant : NSObject
 
 +(NSString *) getIpAddress;
-+(NSMutableURLRequest*) initWithMethod:(NSString *) method andUrl:(NSString *) url;
++(NSMutableURLRequest*) requestWithMethod:(NSString *) method andUrl:(NSString *) url;
 @end

@@ -56,11 +56,12 @@
     }
     return nil;
 }
-+(NSMutableURLRequest*) initWithMethod:(NSString *) method andUrl:(NSString *) url
++(NSMutableURLRequest*) requestWithMethod:(NSString *) method andUrl:(NSString *) url
 {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    NSString *ipAddres = [Constant getIpAddress];
-    NSString *md5String = [[NSString stringWithFormat:@"%@%@",kDefaultMd5Prefix,ipAddres] MD5String];
+//    NSString *ipAddres = [Constant getIpAddress];
+    [request setValue:@"RSSVideoPlayer1.1-iOS" forHTTPHeaderField:@"User-Agent"];
+    NSString *md5String = [[NSString stringWithFormat:@"%@%@",kDefaultMd5Prefix,url] MD5String];
     [request setHTTPMethod:method];
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?Auth=%@",url,md5String]]];
     

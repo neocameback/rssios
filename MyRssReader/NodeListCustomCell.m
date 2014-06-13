@@ -25,7 +25,7 @@
 }
 -(void) configWithNode:(TempNode*) node
 {
-    [self.iv_image setImageWithURL:[NSURL URLWithString:[node nodeImage]] placeholderImage:[UIImage imageNamed:@"default_rss_img"]];
+    [self.iv_image setImageWithURL:[NSURL URLWithString:[node nodeImage]] placeholderImage:[UIImage imageNamed:@"icon_default"]];
     self.lb_title.text = [node nodeTitle];
     if ([node bookmarkStatus] != nil && ( [[node bookmarkStatus] caseInsensitiveCompare:@"true"] == NSOrderedSame || [[node bookmarkStatus] boolValue] == YES)) {
         self.btn_addToFav.hidden = NO;

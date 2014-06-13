@@ -68,6 +68,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.screenName = @"Manage Channels View";
     if (!rssList) {
         rssList = [[NSMutableArray alloc] init];
     }else{
@@ -180,7 +181,7 @@
             else {
                 urlString = [NSString stringWithFormat:@"http://%@", urlString];
             }
-            feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Constant initWithMethod:@"GET" andUrl:urlString]];
+            feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Constant requestWithMethod:@"GET" andUrl:urlString]];
             
             feedParser.delegate = self;
             // Parse the feeds info (title, link) and all feed items

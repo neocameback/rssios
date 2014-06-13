@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WebViewViewController">
             <connections>
                 <outlet property="_webView" destination="Tb9-PZ-2Fo" id="rqC-Lz-cTr"/>
+                <outlet property="bannerView_" destination="x8l-YY-oiV" id="8bR-CS-QXc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,6 +17,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x8l-YY-oiV" customClass="GADBannerView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="320" id="Fpg-Sb-Akz"/>
+                        <constraint firstAttribute="height" constant="50" id="eT3-qA-85q"/>
+                    </constraints>
+                </view>
                 <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tb9-PZ-2Fo">
                     <rect key="frame" x="0.0" y="50" width="320" height="518"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,8 +40,10 @@
                 <constraint firstItem="Tb9-PZ-2Fo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="60k-Vj-dID"/>
                 <constraint firstAttribute="trailing" secondItem="Tb9-PZ-2Fo" secondAttribute="trailing" id="8LA-o9-Thu"/>
                 <constraint firstAttribute="bottom" secondItem="Tb9-PZ-2Fo" secondAttribute="bottom" id="Whx-U3-8pO"/>
+                <constraint firstAttribute="centerX" secondItem="x8l-YY-oiV" secondAttribute="centerX" id="apA-bO-Vve"/>
                 <constraint firstAttribute="centerX" secondItem="Tb9-PZ-2Fo" secondAttribute="centerX" id="nDs-C9-iw3"/>
                 <constraint firstItem="Tb9-PZ-2Fo" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="oPr-E7-t7l"/>
+                <constraint firstItem="x8l-YY-oiV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qZy-ZS-ZN4"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

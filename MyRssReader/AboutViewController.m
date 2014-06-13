@@ -33,7 +33,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [bannerView_ loadRequest:[GADRequest request]];
+    self.screenName = @"About View";
 }
 - (void)didReceiveMemoryWarning
 {
