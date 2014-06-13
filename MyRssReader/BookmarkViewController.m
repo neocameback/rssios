@@ -43,7 +43,7 @@
 {
     [super viewWillAppear:animated];
     
-    [bannerView_ loadRequest:[GADRequest request]];
+    self.screenName = @"Favorites View";
     
     if (!nodeList) {
         nodeList = [[NSMutableArray alloc] init];

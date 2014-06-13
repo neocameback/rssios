@@ -35,13 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    NSLog(@"YoutubeId; %@",[@"www.youtube.com/v/VIDEOID" extractYoutubeId]);
-    NSLog(@"YoutubeId; %@",[@"www.youtube.com?v=VIDEOID" extractYoutubeId]);
-    NSLog(@"YoutubeId; %@",[@"http://www.youtube.com/watch?v=KFPtWedl7wg&feature=youtu.be" extractYoutubeId]);
-    NSLog(@"YoutubeId; %@",[@"http://www.youtube.com/watch?v=MkTD2Y4LXcM" extractYoutubeId]);
-    NSLog(@"YoutubeId; %@",[@"youtu.be/KFPtWedl7wg_U923" extractYoutubeId]);
-    NSLog(@"YoutubeId; %@",[@"http://www.youtube.com/watch?feature=player_detailpage&v=biVLGTAMC_U#t=31s" extractYoutubeId]);
+    // Do any additional setup after loading the view from its nib.    
 }
 -(void) showBanner
 {
@@ -50,7 +44,9 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-        
+    
+    self.screenName = @"Home View";
+    
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
     {
         rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES]];
@@ -61,7 +57,7 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Constant initWithMethod:@"GET" andUrl:kDefaultRssUrl]];
+        feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Constant requestWithMethod:@"GET" andUrl:kDefaultRssUrl]];
         feedParser.delegate = self;
         // Parse the feeds info (title, link) and all feed items
         feedParser.feedParseType = ParseTypeFull;

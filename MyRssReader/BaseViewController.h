@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <GADBannerView.h>
+#import "GAITrackedViewController.h"
 
-@interface BaseViewController : UIViewController
+@interface BaseViewController : GAITrackedViewController
 {
-    GADBannerView *bannerView_;
 }
+@property (nonatomic, strong) IBOutlet GADBannerView *bannerView_;
 @end

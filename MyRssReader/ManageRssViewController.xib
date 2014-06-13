@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManageRssViewController">
             <connections>
+                <outlet property="bannerView_" destination="hTP-hc-jDl" id="6px-ar-ovD"/>
                 <outlet property="tableView" destination="znT-Jp-03t" id="M5p-WV-WRa"/>
                 <outlet property="view" destination="P54-Fa-0Jn" id="wrZ-vA-9uS"/>
             </connections>
@@ -16,6 +17,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hTP-hc-jDl" customClass="GADBannerView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="T7p-fO-RHj"/>
+                        <constraint firstAttribute="width" constant="320" id="e6X-5p-8sY"/>
+                    </constraints>
+                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="znT-Jp-03t">
                     <rect key="frame" x="0.0" y="50" width="320" height="518"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,6 +41,8 @@
                 <constraint firstAttribute="trailing" secondItem="znT-Jp-03t" secondAttribute="trailing" id="1ey-xQ-Xh9"/>
                 <constraint firstItem="znT-Jp-03t" firstAttribute="leading" secondItem="P54-Fa-0Jn" secondAttribute="leading" id="84m-Uj-8cV"/>
                 <constraint firstItem="znT-Jp-03t" firstAttribute="top" secondItem="P54-Fa-0Jn" secondAttribute="top" constant="50" id="NLS-N0-9Vb"/>
+                <constraint firstItem="hTP-hc-jDl" firstAttribute="top" secondItem="P54-Fa-0Jn" secondAttribute="top" id="OMt-9z-cyN"/>
+                <constraint firstAttribute="centerX" secondItem="hTP-hc-jDl" secondAttribute="centerX" id="ShW-QZ-89a"/>
                 <constraint firstAttribute="centerX" secondItem="znT-Jp-03t" secondAttribute="centerX" id="boq-Yp-Zbw"/>
                 <constraint firstAttribute="bottom" secondItem="znT-Jp-03t" secondAttribute="bottom" id="hvR-Vx-f6X"/>
             </constraints>

@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutViewController">
             <connections>
+                <outlet property="bannerView_" destination="ydA-zl-z49" id="PTl-Js-89V"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,6 +16,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydA-zl-z49" customClass="GADBannerView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="320" id="WZy-nA-aHC"/>
+                        <constraint firstAttribute="height" constant="50" id="uJi-UJ-PyD"/>
+                    </constraints>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DjZ-yN-N5e">
                     <rect key="frame" x="30" y="250" width="260" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -39,8 +49,10 @@
                 <constraint firstItem="DjZ-yN-N5e" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="GEK-Ag-GnX"/>
                 <constraint firstItem="VbR-38-KfK" firstAttribute="trailing" secondItem="DjZ-yN-N5e" secondAttribute="trailing" id="Jh2-Ot-NFz"/>
                 <constraint firstItem="DjZ-yN-N5e" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="OvH-dT-hJK"/>
+                <constraint firstAttribute="centerX" secondItem="ydA-zl-z49" secondAttribute="centerX" id="RD1-va-os5"/>
                 <constraint firstItem="VbR-38-KfK" firstAttribute="top" secondItem="DjZ-yN-N5e" secondAttribute="bottom" constant="8" symbolic="YES" id="eEd-54-gP6"/>
                 <constraint firstItem="DjZ-yN-N5e" firstAttribute="leading" secondItem="VbR-38-KfK" secondAttribute="leading" id="kwA-KO-peu"/>
+                <constraint firstItem="ydA-zl-z49" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rIQ-BU-VHJ"/>
                 <constraint firstAttribute="centerY" secondItem="DjZ-yN-N5e" secondAttribute="centerY" constant="19" id="uyJ-uP-LX7"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

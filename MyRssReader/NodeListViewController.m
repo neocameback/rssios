@@ -34,7 +34,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
     [self parseRssFromURL:self.rssLink];
     
 //    [self preLoadInterstitial];
@@ -42,8 +41,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [bannerView_ loadRequest:[GADRequest request]];
-    
+    self.screenName = @"Item List View";
     [self.tableView reloadData];
 }
 -(void) viewWillDisappear:(BOOL)animated
@@ -55,7 +53,7 @@
 
 -(void) parseRssFromURL:(NSString *) url
 {
-    feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Constant initWithMethod:@"GET" andUrl:url]];
+    feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Constant requestWithMethod:@"GET" andUrl:url]];
     feedParser.delegate = self;
     // Parse the feeds info (title, link) and all feed items
     feedParser.feedParseType = ParseTypeFull;
@@ -175,7 +173,7 @@
             [viewcontroller setWebUrl:node.nodeUrl];
             [self.navigationController pushViewController:viewcontroller animated:YES];
         }
-        else if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame){
+        else if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"rtmp/flv"] == NSOrderedSame ){
             [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeGradient];
             [self preLoadInterstitial];
         }else if ([node.nodeType caseInsensitiveCompare:@"rss/xml"] == NSOrderedSame){
@@ -235,7 +233,7 @@
 {
     NSLog(@"interstitialDidDismissScreen");
     TempNode *node = nodeList[currentPath.row];
-    if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame){
+    if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"rtmp/flv"] == NSOrderedSame ){
         moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
         [self presentViewController:moviePlayer animated:YES completion:nil];
     }

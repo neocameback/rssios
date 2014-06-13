@@ -7,7 +7,6 @@
 //
 
 #import "BaseViewController.h"
-
 @interface BaseViewController ()
 
 @end
@@ -32,25 +31,25 @@
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
         self.edgesForExtendedLayout = UIRectEdgeNone;
 #endif
-
-    
     // Create a view of the standard size at the top of the screen.
     // Available AdSize constants are explained in GADAdSize.h.
-    bannerView_ = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+//    bannerView_ = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
     
     // Specify the ad unit ID.
-    bannerView_.adUnitID = kSmallAdUnitId;
+    [_bannerView_ setAdSize:kGADAdSizeBanner];
+    _bannerView_.adUnitID = kSmallAdUnitId;
     // Let the runtime know which UIViewController to restore after taking
     // the user wherever the ad goes and add it to the view hierarchy.
-    bannerView_.rootViewController = self;
-    [bannerView_ setTag:101];
-    [self.view addSubview:bannerView_];
-    
+    _bannerView_.rootViewController = self;
     // Initiate a generic request to load it with an ad.
-    [bannerView_ loadRequest:[GADRequest request]];
-    
+//    [_bannerView_ loadRequest:[GADRequest request]];
 }
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_bannerView_ loadRequest:[GADRequest request]];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

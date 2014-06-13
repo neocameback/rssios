@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookmarkViewController">
             <connections>
+                <outlet property="bannerView_" destination="aIz-kQ-7Bw" id="mjH-Lc-6v3"/>
                 <outlet property="tableView" destination="8Bb-Ax-W4g" id="ex4-5C-5DS"/>
                 <outlet property="view" destination="IaP-YO-Wnv" id="kRb-5v-bi4"/>
             </connections>
@@ -16,6 +17,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aIz-kQ-7Bw" customClass="GADBannerView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="320" id="Cpi-QJ-L2X"/>
+                        <constraint firstAttribute="height" constant="50" id="k6A-hf-fGz"/>
+                    </constraints>
+                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8Bb-Ax-W4g">
                     <rect key="frame" x="0.0" y="50" width="320" height="518"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,6 +40,8 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="8Bb-Ax-W4g" secondAttribute="bottom" id="5gR-VA-Mke"/>
                 <constraint firstAttribute="trailing" secondItem="8Bb-Ax-W4g" secondAttribute="trailing" id="7Ir-6r-bse"/>
+                <constraint firstAttribute="centerX" secondItem="aIz-kQ-7Bw" secondAttribute="centerX" id="KC8-sR-xTT"/>
+                <constraint firstItem="aIz-kQ-7Bw" firstAttribute="top" secondItem="IaP-YO-Wnv" secondAttribute="top" id="qep-Sp-KGN"/>
                 <constraint firstItem="8Bb-Ax-W4g" firstAttribute="top" secondItem="IaP-YO-Wnv" secondAttribute="top" constant="50" id="sOU-JU-xEQ"/>
                 <constraint firstAttribute="centerX" secondItem="8Bb-Ax-W4g" secondAttribute="centerX" id="uYu-gj-okD"/>
                 <constraint firstItem="8Bb-Ax-W4g" firstAttribute="leading" secondItem="IaP-YO-Wnv" secondAttribute="leading" id="umx-ZK-4v4"/>
