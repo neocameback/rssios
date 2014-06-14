@@ -12,6 +12,7 @@
 #import "NodeListCustomCell.h"
 #import "WebViewViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import <XCDYouTubeVideoPlayerViewController.h>
 
 @interface NodeListViewController ()
 {
@@ -196,12 +197,12 @@
                 break;
             case NODE_TYPE_YOUTUBE:
             {
-            
+                [self preLoadInterstitial];
             }
                 break;
             case NODE_TYPE_DAILYMOTION:
             {
-                
+                [self preLoadInterstitial];
             }
                 break;
             case NODE_TYPE_RTMP:
@@ -301,12 +302,16 @@
             break;
         case NODE_TYPE_YOUTUBE:
         {
-            
+            XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:[node.nodeUrl extractYoutubeId]];
+            [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
         }
             break;
         case NODE_TYPE_DAILYMOTION:
         {
-            
+//            DMPlayerViewController *playerViewcontroller = [[DMPlayerViewController alloc] initWithVideo:@"x1ythnm"];
+//            [self presentViewController:playerViewcontroller animated:YES completion:^{
+//                
+//            }];
         }
             break;
         case NODE_TYPE_RTMP:

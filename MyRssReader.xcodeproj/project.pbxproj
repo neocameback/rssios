@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42AE1B28194B8FB600F2CC2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AE1B27194B8FB600F2CC2A /* Security.framework */; };
 		42C70C0E193CBE3500736BCF /* icon -114.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70BFF193CBE3500736BCF /* icon -114.png */; };
 		42C70C0F193CBE3500736BCF /* icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70C00193CBE3500736BCF /* icon-29.png */; };
 		42C70C10193CBE3500736BCF /* icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70C01193CBE3500736BCF /* icon-40.png */; };
@@ -114,6 +115,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		42AE1B27194B8FB600F2CC2A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		42C70BFF193CBE3500736BCF /* icon -114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon -114.png"; sourceTree = "<group>"; };
 		42C70C00193CBE3500736BCF /* icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-29.png"; sourceTree = "<group>"; };
 		42C70C01193CBE3500736BCF /* icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40.png"; sourceTree = "<group>"; };
@@ -250,12 +252,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE22E7BD192F54180005E685 /* UIKit.framework in Frameworks */,
+				42AE1B28194B8FB600F2CC2A /* Security.framework in Frameworks */,
 				DE1B5B3E194AEE2900A4B5D9 /* libsqlite3.dylib in Frameworks */,
 				DE1B5B3C194AEDA400A4B5D9 /* libz.dylib in Frameworks */,
 				DE1B5B3B194AED9800A4B5D9 /* AdSupport.framework in Frameworks */,
 				DEB54D8719333CB200EC589E /* MediaPlayer.framework in Frameworks */,
 				DE22E7BB192F54180005E685 /* CoreGraphics.framework in Frameworks */,
-				DE22E7BD192F54180005E685 /* UIKit.framework in Frameworks */,
 				DE22E7B9192F54180005E685 /* Foundation.framework in Frameworks */,
 				5C3B4106D7DC496FBEFCBD72 /* libPods.a in Frameworks */,
 				DE1B5B3A194AED3400A4B5D9 /* libGoogleAnalyticsServices.a in Frameworks */,
@@ -317,6 +320,7 @@
 		DE22E7B7192F54180005E685 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				42AE1B27194B8FB600F2CC2A /* Security.framework */,
 				DE1B5B3D194AEE2900A4B5D9 /* libsqlite3.dylib */,
 				DE04E6A8194AE52000BD30BC /* AdSupport.framework */,
 				DE04E6A6194AE50300BD30BC /* libz.dylib */,
