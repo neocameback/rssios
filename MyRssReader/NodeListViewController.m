@@ -142,7 +142,11 @@
         GADBannerView *bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
         // Specify the ad unit ID.
         
-        bannerView.adUnitID = kSmallAdUnitId;
+        if (tempRss && tempRss.adsBannerId && tempRss.adsBannerId.length > 0) {
+            bannerView.adUnitID = tempRss.adsBannerId;
+        }else{
+            bannerView.adUnitID = kSmallAdUnitId;
+        }
         bannerView.rootViewController = self;
 
         [cell.contentView addSubview:bannerView];
@@ -252,7 +256,11 @@
     interstitial_ = nil;
     interstitial_ = [[GADInterstitial alloc] init];
     interstitial_.delegate = self;
-    interstitial_.adUnitID = kLargeAdUnitId;
+    if (tempRss && tempRss.adsFullId && tempRss.adsFullId.length > 0) {
+        interstitial_.adUnitID = tempRss.adsFullId;
+    }else{
+        interstitial_.adUnitID = kLargeAdUnitId;
+    }
     [interstitial_ loadRequest:request];
 }
 
@@ -337,6 +345,8 @@
     
     tempRss.rssTitle = info.title;
     tempRss.rssLink = info.link;
+    tempRss.adsBannerId = info.adBannerId;
+    tempRss.adsFullId = info.adFullId;
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {

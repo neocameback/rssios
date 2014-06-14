@@ -11,6 +11,8 @@
 @interface TempRss : NSObject
 @property (nonatomic, retain) NSString * rssLink;
 @property (nonatomic, retain) NSString * rssTitle;
+@property (nonatomic, retain) NSString * adsBannerId;
+@property (nonatomic, retain) NSString * adsFullId;
 @property (nonatomic, retain) NSMutableArray *nodes;
 
 @end

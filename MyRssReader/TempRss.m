@@ -10,5 +10,5 @@
 
 @implementation TempRss
 @synthesize rssTitle, rssLink, nodes;
-
+@synthesize adsBannerId, adsFullId;
 @end
