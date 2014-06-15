@@ -12,6 +12,8 @@
 	<dict>
 		<key>7EBC3D07-7E52-42C3-804D-5861027E200C</key>
 		<string>https://bitbucket.org/jetstar89/myrssreader.git</string>
+		<key>AD99EDC3-98B9-41BA-9F03-C5D8F2ABC4F6</key>
+		<string>https://github.com/dailymotion/dailymotion-sdk-objc.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>MyRssReader.xcworkspace</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>7EBC3D07-7E52-42C3-804D-5861027E200C</key>
 		<string>..</string>
+		<key>AD99EDC3-98B9-41BA-9F03-C5D8F2ABC4F6</key>
+		<string>../../dailymotion-sdk-objc</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://bitbucket.org/jetstar89/myrssreader.git</string>
@@ -28,6 +32,14 @@
 	<string>7EBC3D07-7E52-42C3-804D-5861027E200C</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AD99EDC3-98B9-41BA-9F03-C5D8F2ABC4F6</string>
+			<key>IDESourceControlWCCName</key>
+			<string>dailymotion-sdk-objc</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

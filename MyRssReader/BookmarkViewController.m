@@ -12,6 +12,7 @@
 #import "WebViewViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "NodeListViewController.h"
+#import <XCDYouTubeVideoPlayerViewController.h>
 
 @interface BookmarkViewController ()
 {
@@ -142,28 +143,49 @@
         node = [nodeList objectAtIndex:indexPath.row];
     }
     
-    if ([node.nodeType caseInsensitiveCompare:@"web/html"] == NSOrderedSame){
-        [self preLoadInterstitial];
-        WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
-        [viewcontroller setTitle:node.nodeTitle];
-        [viewcontroller setWebUrl:node.nodeUrl];
-        [self.navigationController pushViewController:viewcontroller animated:YES];
-    }
-    else if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame){
-        [self preLoadInterstitial];
-    }
-    else if ([node.nodeType caseInsensitiveCompare:@"rss/xml"] == NSOrderedSame) {
-        
-        NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
-        [viewcontroller setTitle:node.nodeTitle];
-        [viewcontroller setRssLink:node.nodeUrl];
-        [self.navigationController pushViewController:viewcontroller animated:YES];        
-    }else{
-        [self preLoadInterstitial];
-        WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
-        [viewcontroller setTitle:node.nodeTitle];
-        [viewcontroller setWebUrl:node.nodeUrl];
-        [self.navigationController pushViewController:viewcontroller animated:YES];
+    switch ([Constant typeOfNode:node.nodeType]) {
+        case NODE_TYPE_RSS:
+        {
+            NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
+            [viewcontroller setRssLink:node.nodeUrl];
+            [viewcontroller setTitle:node.nodeTitle];
+            [self.navigationController pushViewController:viewcontroller animated:YES];
+        }
+            break;
+        case NODE_TYPE_VIDEO:
+        {
+            [self preLoadInterstitial];
+        }
+            break;
+        case NODE_TYPE_YOUTUBE:
+        {
+            [self preLoadInterstitial];
+        }
+            break;
+        case NODE_TYPE_DAILYMOTION:
+        {
+            [self preLoadInterstitial];
+        }
+            break;
+        case NODE_TYPE_RTMP:
+        {
+            [self preLoadInterstitial];
+            WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
+            [viewcontroller setTitle:node.nodeTitle];
+            [viewcontroller setWebUrl:node.nodeUrl];
+            [self.navigationController pushViewController:viewcontroller animated:YES];
+        }
+            break;
+            
+        default:
+        {
+            [self preLoadInterstitial];
+            WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
+            [viewcontroller setTitle:node.nodeTitle];
+            [viewcontroller setWebUrl:node.nodeUrl];
+            [self.navigationController pushViewController:viewcontroller animated:YES];
+        }
+            break;
     }
 }
 -(BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -238,10 +260,50 @@
 
 -(void) continueAtCurrentPath
 {
-    Node *node = nodeList[currentPath.row];
-    if ([node.nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame || [node.nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame){
-        moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
-        [self presentViewController:moviePlayer animated:YES completion:nil];
+    Node *node = nil;
+    if (self.searchDisplayController.isActive) {
+        node = [searchResults objectAtIndex:currentPath.row];
+    } else {
+        node = [nodeList objectAtIndex:currentPath.row];
+    }
+    switch ([Constant typeOfNode:node.nodeType]) {
+        case NODE_TYPE_RSS:
+        {
+        }
+            break;
+        case NODE_TYPE_VIDEO:
+        {
+            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
+            [self presentViewController:moviePlayer animated:YES completion:nil];
+            [moviePlayer.moviePlayer prepareToPlay];
+            [moviePlayer.moviePlayer play];
+        }
+            break;
+        case NODE_TYPE_YOUTUBE:
+        {
+            XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:[node.nodeUrl extractYoutubeId]];
+            [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
+            [videoPlayerViewController.moviePlayer prepareToPlay];
+            [videoPlayerViewController.moviePlayer play];
+        }
+            break;
+        case NODE_TYPE_DAILYMOTION:
+        {
+            //            DMPlayerViewController *playerViewcontroller = [[DMPlayerViewController alloc] initWithVideo:@"x1ythnm"];
+            //            [self presentViewController:playerViewcontroller animated:YES completion:^{
+            //
+            //            }];
+        }
+            break;
+        case NODE_TYPE_RTMP:
+        {
+        }
+            break;
+            
+        default:
+        {
+        }
+            break;
     }
 }
 #pragma mark MWFeedParser delegate
