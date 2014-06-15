@@ -13,6 +13,7 @@
 #import "WebViewViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <XCDYouTubeVideoPlayerViewController.h>
+#import <DailymotionSDK/DailymotionSDK.h>
 
 @interface NodeListViewController ()
 {
@@ -316,10 +317,9 @@
             break;
         case NODE_TYPE_DAILYMOTION:
         {
-//            DMPlayerViewController *playerViewcontroller = [[DMPlayerViewController alloc] initWithVideo:@"x1ythnm"];
-//            [self presentViewController:playerViewcontroller animated:YES completion:^{
-//                
-//            }];
+            DMPlayerViewController *playerViewcontroller = [[DMPlayerViewController alloc] initWithVideo:@"x1ythnm"];
+            [playerViewcontroller setTitle:@"Dailymotion"];
+             [self.navigationController pushViewController:playerViewcontroller animated:YES];
         }
             break;
         case NODE_TYPE_RTMP:
