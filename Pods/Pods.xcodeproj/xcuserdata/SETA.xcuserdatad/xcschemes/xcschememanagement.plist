@@ -8,31 +8,48 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>Pods-Google-Mobile-Ads-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>Pods-MWFeedParser.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>Pods-MagicalRecord.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>Pods-SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>Pods-XCDYouTubeVideoPlayerViewController.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -62,7 +79,42 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>6A538F1CD9AD4A229CD864BA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>75F06FA5BB5D46A1B2617494</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>795E4EC5170449C5A7E9D935</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>985A9655E0564804BB60C3C9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A18529D4225F4D6A85A14A72</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE409908D9594D53BD624A6E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F28BC1CA2B91450C8FDF2048</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F48369FC6BBF45EFAF687434</key>
 		<dict>
 			<key>primary</key>
 			<true/>
