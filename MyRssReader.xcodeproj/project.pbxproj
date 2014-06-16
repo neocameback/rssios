@@ -884,8 +884,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yuta Watanabe (725395W8Z5)";
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Libraries",
 					"$(inherited)",
-					/Users/huyns/myrssreader/Libraries,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyRssReader/MyRssReader-Prefix.pch";
@@ -952,8 +952,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Phi Long (Q6P4VX76SF)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Phi Long (Q6P4VX76SF)";
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Libraries",
 					"$(inherited)",
-					/Users/huyns/myrssreader/Libraries,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyRssReader/MyRssReader-Prefix.pch";
