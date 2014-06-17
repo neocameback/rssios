@@ -82,6 +82,9 @@
     else if ([nodeType rangeOfString:@"dailymotion"].location != NSNotFound){
         return NODE_TYPE_DAILYMOTION;
     }
+    else if ([nodeType rangeOfString:@"rtmp"].location != NSNotFound){
+        return NODE_TYPE_RTMP;
+    }
     else{
         return NODE_TYPE_WEB;
     }        

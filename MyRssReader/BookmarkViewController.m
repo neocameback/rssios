@@ -14,6 +14,7 @@
 #import "NodeListViewController.h"
 #import <XCDYouTubeVideoPlayerViewController.h>
 #import <DailymotionSDK/DailymotionSDK.h>
+#import "ELPlayerViewController.h"
 
 @interface BookmarkViewController ()
 {
@@ -171,10 +172,6 @@
         case NODE_TYPE_RTMP:
         {
             [self preLoadInterstitial];
-            WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
-            [viewcontroller setTitle:node.nodeTitle];
-            [viewcontroller setWebUrl:node.nodeUrl];
-            [self.navigationController pushViewController:viewcontroller animated:YES];
         }
             break;
             
@@ -276,16 +273,12 @@
         {
             moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
             [self presentViewController:moviePlayer animated:YES completion:nil];
-            [moviePlayer.moviePlayer prepareToPlay];
-            [moviePlayer.moviePlayer play];
         }
             break;
         case NODE_TYPE_YOUTUBE:
         {
             XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:[node.nodeUrl extractYoutubeId]];
             [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
-            [videoPlayerViewController.moviePlayer prepareToPlay];
-            [videoPlayerViewController.moviePlayer play];
         }
             break;
         case NODE_TYPE_DAILYMOTION:
@@ -293,11 +286,18 @@
             DMPlayerViewController *playerViewcontroller = [[DMPlayerViewController alloc] initWithVideo:@"x1ythnm"];
             [playerViewcontroller setTitle:@"Dailymotion"];
             [self.navigationController pushViewController:playerViewcontroller animated:YES];
-
         }
             break;
         case NODE_TYPE_RTMP:
         {
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+            
+            ELPlayerViewController *viewcontroller = [sb instantiateViewControllerWithIdentifier:@"ELPlayerViewController"];
+            [viewcontroller setVideoUrl:node.nodeUrl];
+            [viewcontroller setTitleName:node.nodeTitle];
+            [self presentViewController:viewcontroller animated:YES completion:^{
+                
+            }];
         }
             break;
             
