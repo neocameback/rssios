@@ -63,13 +63,24 @@
         self.protraitBottomView.hidden = YES;
     }
 }
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation NS_AVAILABLE_IOS(6_0);
-{
-    return UIInterfaceOrientationLandscapeRight;
+
+-(NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+-(BOOL)shouldAutorotate {
+    return YES;
 }
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
 {
     NSLog(@"willRotateToInterfaceOrientation");
+    id<IELMediaPlayer> player = loadELMediaPlayer();
+//    if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+//        [player setPlayerScreenType:ELScreenType_ORIGINAL_SCR];
+//    }else{
+//        [player setPlayerScreenType:ELScreenType_ASPECT_FULL_SCR];
+//    }
+    [player refreshViewFrame];
 }
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation;
 {
@@ -222,7 +233,7 @@
     id<IELMediaPlayer> player = loadELMediaPlayer();
     
     [player stopPlay];
-    
+    player = nil;
     [UIApplication sharedApplication].idleTimerDisabled = NO;
 
 }
