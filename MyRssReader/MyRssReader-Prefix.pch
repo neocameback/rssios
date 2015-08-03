@@ -6,18 +6,11 @@
 
 #import <Availability.h>
 #import "Categories.h"
-#import <CoreData+MagicalRecord.h>
+#import <MagicalRecord.h>
 #import "Constant.h"
 #import <SVProgressHUD.h>
 #import "BaseViewController.h"
-
-#import "GAI.h"
-#import "GAITracker.h"
-#import "GAITrackedViewController.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
-#import "GAILogger.h"
-
+#import <GAI.h>
 #ifndef __IPHONE_3_0
 #warning "This project uses features only available in iOS SDK 3.0 and later."
 #endif

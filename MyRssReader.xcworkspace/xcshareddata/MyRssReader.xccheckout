@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D5F8ED5B-F6AE-4554-B696-9213E8F92F0B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MyRssReader</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9FE1C6F5058DD93FF05DCE178FB778A88AE40986</key>
+		<string>https://bitbucket.org/jetstar89/myrssreader.git</string>
+		<key>AD99EDC3-98B9-41BA-9F03-C5D8F2ABC4F6</key>
+		<string>https://github.com/dailymotion/dailymotion-sdk-objc.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MyRssReader.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9FE1C6F5058DD93FF05DCE178FB778A88AE40986</key>
+		<string>..</string>
+		<key>AD99EDC3-98B9-41BA-9F03-C5D8F2ABC4F6</key>
+		<string>../../dailymotion-sdk-objc</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/jetstar89/myrssreader.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9FE1C6F5058DD93FF05DCE178FB778A88AE40986</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AD99EDC3-98B9-41BA-9F03-C5D8F2ABC4F6</string>
+			<key>IDESourceControlWCCName</key>
+			<string>dailymotion-sdk-objc</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9FE1C6F5058DD93FF05DCE178FB778A88AE40986</string>
+			<key>IDESourceControlWCCName</key>
+			<string>myrssreader</string>
+		</dict>
+	</array>
+</dict>
+</plist>

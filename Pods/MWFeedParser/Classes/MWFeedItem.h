@@ -40,7 +40,6 @@
 	NSString *content; // More detailed content (if available)
 	NSString *author; // Item author
 	
-    NSString *bookmarkStatus;
 	// Enclosures: Holds 1 or more item enclosures (i.e. podcasts, mp3. pdf, etc)
 	//  - NSArray of NSDictionaries with the following keys:
 	//     url: where the enclosure is located (NSString)
@@ -58,7 +57,6 @@
 @property (nonatomic, copy) NSString *summary;
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic, copy) NSString *author;
-@property (nonatomic, copy) NSString *bookmarkStatus;
 @property (nonatomic, copy) NSArray *enclosures;
 
 @end

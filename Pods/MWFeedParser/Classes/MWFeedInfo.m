@@ -34,7 +34,7 @@
 @implementation MWFeedInfo
 
 @synthesize title, link, summary, url;
-@synthesize adBannerId, adFullId;
+
 #pragma mark NSObject
 
 - (NSString *)description {
