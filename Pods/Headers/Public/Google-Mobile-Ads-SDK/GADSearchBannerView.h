@@ -1,1 +1,1 @@
-../../../Google-Mobile-Ads-SDK/GoogleMobileAdsSdkiOS-6.9.2/Add-ons/Search/GADSearchBannerView.h
+../../../Google-Mobile-Ads-SDK/GoogleMobileAdsSdkiOS-6.9.3/Add-ons/Search/GADSearchBannerView.h

@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## AFNetworking
 
-Copyright (c) 2013-2014 AFNetworking (http://afnetworking.com/)
+Copyright (c) 2011–2015 Alamofire Software Foundation (http://alamofire.org/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,9 +28,13 @@ THE SOFTWARE.
 
 Copyright 2011 Google Inc. All Rights Reserved.
 
+## GoogleAnalytics
+
+Copyright 2015 Google Inc.
+
 ## MagicalRecord
 
- Copyright (c) 2010, Magical Panda Software, LLC
+ Copyright (c) 2010-2015, Magical Panda Software, LLC
 
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
@@ -40,10 +44,14 @@ Copyright 2011 Google Inc. All Rights Reserved.
  copies of the Software, and to permit persons to whom the
  Software is furnished to do so, subject to the following
  conditions:
+ 
+ * Link to the MagicalRecord Repository at http:/github.com/magicalpanda/magicalrecord in the credits section of your application
 
  The above copyright notice and this permission notice shall be
  included in all copies or substantial portions of the Software.
 
+ This software license is in accordance with the standard MIT License.
+ 
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -56,7 +64,7 @@ Copyright 2011 Google Inc. All Rights Reserved.
 
 ## SVProgressHUD
 
-Copyright (c) 2011 Sam Vermette
+Copyright (c) 2011-2014 Sam Vermette
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
@@ -79,8 +87,8 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-A different license may apply to other ressources included in this package, 
-including Joseph Wain's Glyphish Icons. Please consult their 
+A different license may apply to other resources included in this package, 
+including Freepik Icons. Please consult their 
 respective headers for the terms of their individual licenses.
 
 ## XCDYouTubeKit
