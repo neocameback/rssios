@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		DE233F7C1B70A9C600C02DD6 /* Mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = DE233F7D1B70A9C600C02DD6 /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
+			buildPhases = (
+				DE233F801B70A9CD00C02DD6 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Mogenerator;
+			productName = Mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		42AE1B28194B8FB600F2CC2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AE1B27194B8FB600F2CC2A /* Security.framework */; };
 		42C70C0E193CBE3500736BCF /* icon -114.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70BFF193CBE3500736BCF /* icon -114.png */; };
@@ -54,10 +68,13 @@
 		DE233F6F1B70A89F00C02DD6 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F661B70A89F00C02DD6 /* NSDate+InternetDateTime.m */; };
 		DE233F701B70A89F00C02DD6 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F681B70A89F00C02DD6 /* NSString+HTML.m */; };
 		DE233F711B70A89F00C02DD6 /* NSString+XMLEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F6A1B70A89F00C02DD6 /* NSString+XMLEntities.m */; };
+		DE233F791B70A9AD00C02DD6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DE233F731B70A9AD00C02DD6 /* Model.xcdatamodeld */; };
+		DE233F7A1B70A9AD00C02DD6 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F761B70A9AD00C02DD6 /* Node.m */; };
+		DE233F7B1B70A9AD00C02DD6 /* Rss.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F781B70A9AD00C02DD6 /* Rss.m */; };
+		DE233F861B70AA1B00C02DD6 /* _Node.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F831B70AA1B00C02DD6 /* _Node.m */; };
+		DE233F871B70AA1B00C02DD6 /* _Rss.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F851B70AA1B00C02DD6 /* _Rss.m */; };
 		DE4303E0193878F4008A42A4 /* TempRss.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4303DF193878F4008A42A4 /* TempRss.m */; };
 		DE4303E319387924008A42A4 /* TempNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4303E219387924008A42A4 /* TempNode.m */; };
-		DE7B3069193C377600B749D0 /* Rss.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7B3068193C377600B749D0 /* Rss.m */; };
-		DE7B306C193C377700B749D0 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7B306B193C377700B749D0 /* Node.m */; };
 		DE7F39A81935DCC900C7C143 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7F39A71935DCC900C7C143 /* NSString+MD5.m */; };
 		DE7F39AB1935E27700C7C143 /* NSMutableURLRequest+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7F39AA1935E27700C7C143 /* NSMutableURLRequest+Helper.m */; };
 		DE9D4553193C57000006047E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE9D4550193C57000006047E /* Default-568h@2x.png */; };
@@ -78,7 +95,6 @@
 		DEB54D8719333CB200EC589E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB54D8619333CB200EC589E /* MediaPlayer.framework */; };
 		DEB5F0DA1932D7DA008922E5 /* UIViewController+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB5F0D91932D7DA008922E5 /* UIViewController+Helper.m */; };
 		DEB5F0DD1932D854008922E5 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB5F0DC1932D854008922E5 /* Categories.m */; };
-		DEB5F0E11932FB11008922E5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DEB5F0DF1932FB11008922E5 /* Model.xcdatamodeld */; };
 		DEB7BF2C19458DE700BF350D /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB7BF2B19458DE700BF350D /* NSString+Helper.m */; };
 		DEC5DD1F19357EDC0088A62F /* ic_home_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC5DD0F19357EDC0088A62F /* ic_home_press@2x.png */; };
 		DEC5DD2019357EDC0088A62F /* ic_home_press.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC5DD1019357EDC0088A62F /* ic_home_press.png */; };
@@ -180,14 +196,20 @@
 		DE233F681B70A89F00C02DD6 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		DE233F691B70A89F00C02DD6 /* NSString+XMLEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XMLEntities.h"; sourceTree = "<group>"; };
 		DE233F6A1B70A89F00C02DD6 /* NSString+XMLEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XMLEntities.m"; sourceTree = "<group>"; };
+		DE233F741B70A9AD00C02DD6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		DE233F751B70A9AD00C02DD6 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
+		DE233F761B70A9AD00C02DD6 /* Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Node.m; sourceTree = "<group>"; };
+		DE233F771B70A9AD00C02DD6 /* Rss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rss.h; sourceTree = "<group>"; };
+		DE233F781B70A9AD00C02DD6 /* Rss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rss.m; sourceTree = "<group>"; };
+		DE233F811B70A9E400C02DD6 /* Model2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.0.xcdatamodel; sourceTree = "<group>"; };
+		DE233F821B70AA1B00C02DD6 /* _Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Node.h; sourceTree = "<group>"; };
+		DE233F831B70AA1B00C02DD6 /* _Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Node.m; sourceTree = "<group>"; };
+		DE233F841B70AA1B00C02DD6 /* _Rss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Rss.h; sourceTree = "<group>"; };
+		DE233F851B70AA1B00C02DD6 /* _Rss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Rss.m; sourceTree = "<group>"; };
 		DE4303DE193878F4008A42A4 /* TempRss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempRss.h; sourceTree = "<group>"; };
 		DE4303DF193878F4008A42A4 /* TempRss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempRss.m; sourceTree = "<group>"; };
 		DE4303E119387924008A42A4 /* TempNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempNode.h; sourceTree = "<group>"; };
 		DE4303E219387924008A42A4 /* TempNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempNode.m; sourceTree = "<group>"; };
-		DE7B3067193C377600B749D0 /* Rss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rss.h; sourceTree = "<group>"; };
-		DE7B3068193C377600B749D0 /* Rss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rss.m; sourceTree = "<group>"; };
-		DE7B306A193C377700B749D0 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
-		DE7B306B193C377700B749D0 /* Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Node.m; sourceTree = "<group>"; };
 		DE7F39A61935DCC900C7C143 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		DE7F39A71935DCC900C7C143 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		DE7F39A91935E27700C7C143 /* NSMutableURLRequest+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Helper.h"; sourceTree = "<group>"; };
@@ -216,7 +238,6 @@
 		DEB5F0D91932D7DA008922E5 /* UIViewController+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Helper.m"; sourceTree = "<group>"; };
 		DEB5F0DB1932D854008922E5 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
 		DEB5F0DC1932D854008922E5 /* Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Categories.m; sourceTree = "<group>"; };
-		DEB5F0E01932FB11008922E5 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DEB7BF2A19458DE700BF350D /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
 		DEB7BF2B19458DE700BF350D /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
 		DEC5DD0F19357EDC0088A62F /* ic_home_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_home_press@2x.png"; sourceTree = "<group>"; };
@@ -302,9 +323,9 @@
 		DE22E7AC192F54180005E685 = {
 			isa = PBXGroup;
 			children = (
+				DE233F721B70A9AD00C02DD6 /* CoreData */,
 				DEF496121934339F00DD482D /* Libraries */,
 				DEB54D731933344800EC589E /* Images */,
-				DEB5F0DE1932FAFC008922E5 /* CoreData */,
 				DEB5F0D71932D7B7008922E5 /* Categories */,
 				DE22E7BE192F54180005E685 /* MyRssReader */,
 				DE22E7BF192F54180005E685 /* Supporting Files */,
@@ -396,6 +417,22 @@
 			path = MWFeedParser;
 			sourceTree = "<group>";
 		};
+		DE233F721B70A9AD00C02DD6 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				DE233F821B70AA1B00C02DD6 /* _Node.h */,
+				DE233F831B70AA1B00C02DD6 /* _Node.m */,
+				DE233F841B70AA1B00C02DD6 /* _Rss.h */,
+				DE233F851B70AA1B00C02DD6 /* _Rss.m */,
+				DE233F731B70A9AD00C02DD6 /* Model.xcdatamodeld */,
+				DE233F751B70A9AD00C02DD6 /* Node.h */,
+				DE233F761B70A9AD00C02DD6 /* Node.m */,
+				DE233F771B70A9AD00C02DD6 /* Rss.h */,
+				DE233F781B70A9AD00C02DD6 /* Rss.m */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		DE4303DD193878D8008A42A4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -476,18 +513,6 @@
 				DEB7BF2B19458DE700BF350D /* NSString+Helper.m */,
 			);
 			path = Categories;
-			sourceTree = "<group>";
-		};
-		DEB5F0DE1932FAFC008922E5 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				DEB5F0DF1932FB11008922E5 /* Model.xcdatamodeld */,
-				DE7B3067193C377600B749D0 /* Rss.h */,
-				DE7B3068193C377600B749D0 /* Rss.m */,
-				DE7B306A193C377700B749D0 /* Node.h */,
-				DE7B306B193C377700B749D0 /* Node.m */,
-			);
-			name = CoreData;
 			sourceTree = "<group>";
 		};
 		DEF496121934339F00DD482D /* Libraries */ = {
@@ -593,6 +618,11 @@
 			attributes = {
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = Huyns;
+				TargetAttributes = {
+					DE233F7C1B70A9C600C02DD6 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
 			};
 			buildConfigurationList = DE22E7B0192F54180005E685 /* Build configuration list for PBXProject "MyRssReader" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -607,6 +637,7 @@
 			projectRoot = "";
 			targets = (
 				DE22E7B4192F54180005E685 /* MyRssReader */,
+				DE233F7C1B70A9C600C02DD6 /* Mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -708,6 +739,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		DE233F801B70A9CD00C02DD6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mogenerator -m \"CoreData/Model.xcdatamodeld/Model2.0.xcdatamodel\" -O CoreData --template-var arc=true\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -715,6 +759,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE233F871B70AA1B00C02DD6 /* _Rss.m in Sources */,
+				DE233F7B1B70A9AD00C02DD6 /* Rss.m in Sources */,
 				DEB54D6C19331FA800EC589E /* NodeListViewController.m in Sources */,
 				DE233F6F1B70A89F00C02DD6 /* NSDate+InternetDateTime.m in Sources */,
 				DE233F701B70A89F00C02DD6 /* NSString+HTML.m in Sources */,
@@ -722,28 +768,28 @@
 				DE233F6E1B70A89F00C02DD6 /* MWFeedParser.m in Sources */,
 				DE233F6B1B70A89F00C02DD6 /* GTMNSString+HTML.m in Sources */,
 				DE233F711B70A89F00C02DD6 /* NSString+XMLEntities.m in Sources */,
+				DE233F7A1B70A9AD00C02DD6 /* Node.m in Sources */,
 				DE22E7F4192F5D360005E685 /* ManageRssViewController.m in Sources */,
 				DE233F6D1B70A89F00C02DD6 /* MWFeedItem.m in Sources */,
 				DE22E7C9192F54180005E685 /* AppDelegate.m in Sources */,
 				DE7F39A81935DCC900C7C143 /* NSString+MD5.m in Sources */,
-				DE7B306C193C377700B749D0 /* Node.m in Sources */,
 				DE22E7F9192F5E4D0005E685 /* BookmarkViewController.m in Sources */,
 				DEF49610193431A800DD482D /* AboutViewController.m in Sources */,
 				DE22E7EF192F5D230005E685 /* RssListViewController.m in Sources */,
 				DEF4961F1934385200DD482D /* Constant.m in Sources */,
+				DE233F861B70AA1B00C02DD6 /* _Node.m in Sources */,
 				DE7F39AB1935E27700C7C143 /* NSMutableURLRequest+Helper.m in Sources */,
 				DEB7BF2C19458DE700BF350D /* NSString+Helper.m in Sources */,
 				DEF49619193435FD00DD482D /* NSUserDefaults+Helper.m in Sources */,
 				DEB54D83193337B200EC589E /* WebViewViewController.m in Sources */,
 				DEF496591934A24C00DD482D /* BookmarkCustomCell.m in Sources */,
+				DE233F791B70A9AD00C02DD6 /* Model.xcdatamodeld in Sources */,
 				DEF4961C1934376700DD482D /* UIAlertView+Helper.m in Sources */,
 				DEF496161934349F00DD482D /* Reachability.m in Sources */,
 				DE22E7C5192F54180005E685 /* main.m in Sources */,
 				DE233F6C1B70A89F00C02DD6 /* MWFeedInfo.m in Sources */,
 				DE4303E0193878F4008A42A4 /* TempRss.m in Sources */,
-				DEB5F0E11932FB11008922E5 /* Model.xcdatamodeld in Sources */,
 				DEB5F0DD1932D854008922E5 /* Categories.m in Sources */,
-				DE7B3069193C377600B749D0 /* Rss.m in Sources */,
 				DE22E7EA192F5C410005E685 /* HomeViewController.m in Sources */,
 				DE4303E319387924008A42A4 /* TempNode.m in Sources */,
 				DEC5DD3E19359A560088A62F /* BaseViewController.m in Sources */,
@@ -971,6 +1017,20 @@
 			};
 			name = Release;
 		};
+		DE233F7E1B70A9C600C02DD6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DE233F7F1B70A9C600C02DD6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -992,15 +1052,24 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		DE233F7D1B70A9C600C02DD6 /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE233F7E1B70A9C600C02DD6 /* Debug */,
+				DE233F7F1B70A9C600C02DD6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		DEB5F0DF1932FB11008922E5 /* Model.xcdatamodeld */ = {
+		DE233F731B70A9AD00C02DD6 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				DEB5F0E01932FB11008922E5 /* Model.xcdatamodel */,
+				DE233F811B70A9E400C02DD6 /* Model2.0.xcdatamodel */,
+				DE233F741B70A9AD00C02DD6 /* Model.xcdatamodel */,
 			);
-			currentVersion = DEB5F0E01932FB11008922E5 /* Model.xcdatamodel */;
+			currentVersion = DE233F811B70A9E400C02DD6 /* Model2.0.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

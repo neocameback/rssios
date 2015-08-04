@@ -11,14 +11,6 @@
 
 @implementation Node
 
-@dynamic bookmarkStatus;
-@dynamic isAddedToBoomark;
-@dynamic isDeletedFlag;
-@dynamic nodeImage;
-@dynamic nodeSource;
-@dynamic nodeTitle;
-@dynamic nodeType;
-@dynamic nodeUrl;
 -(void) initFromTempNode:(TempNode*) temp
 {
     self.bookmarkStatus = temp.bookmarkStatus;
