@@ -13,7 +13,7 @@
 #import "WebViewViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <XCDYouTubeVideoPlayerViewController.h>
-#import <DailymotionSDK/DailymotionSDK.h>
+#import <DMPlayerViewController.h>
 
 @interface NodeListViewController ()
 {

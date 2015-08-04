@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		42AE1B28194B8FB600F2CC2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AE1B27194B8FB600F2CC2A /* Security.framework */; };
-		42B84198194DFD320014B1E0 /* DailymotionSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B84197194DFD320014B1E0 /* DailymotionSDK.framework */; };
-		42B84199194DFD330014B1E0 /* DailymotionSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B84197194DFD320014B1E0 /* DailymotionSDK.framework */; };
 		42C70C0E193CBE3500736BCF /* icon -114.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70BFF193CBE3500736BCF /* icon -114.png */; };
 		42C70C0F193CBE3500736BCF /* icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70C00193CBE3500736BCF /* icon-29.png */; };
 		42C70C10193CBE3500736BCF /* icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70C01193CBE3500736BCF /* icon-40.png */; };
@@ -41,11 +39,6 @@
 		DE22E7C5192F54180005E685 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DE22E7C4192F54180005E685 /* main.m */; };
 		DE22E7C9192F54180005E685 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE22E7C8192F54180005E685 /* AppDelegate.m */; };
 		DE22E7CB192F54180005E685 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE22E7CA192F54180005E685 /* Images.xcassets */; };
-		DE22E7D2192F54180005E685 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE22E7D1192F54180005E685 /* XCTest.framework */; };
-		DE22E7D3192F54180005E685 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE22E7B8192F54180005E685 /* Foundation.framework */; };
-		DE22E7D4192F54180005E685 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE22E7BC192F54180005E685 /* UIKit.framework */; };
-		DE22E7DC192F54180005E685 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DE22E7DA192F54180005E685 /* InfoPlist.strings */; };
-		DE22E7DE192F54180005E685 /* MyRssReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DE22E7DD192F54180005E685 /* MyRssReaderTests.m */; };
 		DE22E7EA192F5C410005E685 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE22E7E8192F5C410005E685 /* HomeViewController.m */; };
 		DE22E7EB192F5C410005E685 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE22E7E9192F5C410005E685 /* HomeViewController.xib */; };
 		DE22E7EF192F5D230005E685 /* RssListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE22E7ED192F5D230005E685 /* RssListViewController.m */; };
@@ -54,6 +47,13 @@
 		DE22E7F5192F5D360005E685 /* ManageRssViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE22E7F3192F5D360005E685 /* ManageRssViewController.xib */; };
 		DE22E7F9192F5E4D0005E685 /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE22E7F7192F5E4D0005E685 /* BookmarkViewController.m */; };
 		DE22E7FA192F5E4D0005E685 /* BookmarkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE22E7F8192F5E4D0005E685 /* BookmarkViewController.xib */; };
+		DE233F6B1B70A89F00C02DD6 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F5D1B70A89F00C02DD6 /* GTMNSString+HTML.m */; };
+		DE233F6C1B70A89F00C02DD6 /* MWFeedInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F5F1B70A89F00C02DD6 /* MWFeedInfo.m */; };
+		DE233F6D1B70A89F00C02DD6 /* MWFeedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F611B70A89F00C02DD6 /* MWFeedItem.m */; };
+		DE233F6E1B70A89F00C02DD6 /* MWFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F631B70A89F00C02DD6 /* MWFeedParser.m */; };
+		DE233F6F1B70A89F00C02DD6 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F661B70A89F00C02DD6 /* NSDate+InternetDateTime.m */; };
+		DE233F701B70A89F00C02DD6 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F681B70A89F00C02DD6 /* NSString+HTML.m */; };
+		DE233F711B70A89F00C02DD6 /* NSString+XMLEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F6A1B70A89F00C02DD6 /* NSString+XMLEntities.m */; };
 		DE4303E0193878F4008A42A4 /* TempRss.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4303DF193878F4008A42A4 /* TempRss.m */; };
 		DE4303E319387924008A42A4 /* TempNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4303E219387924008A42A4 /* TempNode.m */; };
 		DE7B3069193C377600B749D0 /* Rss.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7B3068193C377600B749D0 /* Rss.m */; };
@@ -108,19 +108,8 @@
 		DEF4965A1934A24C00DD482D /* BookmarkCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEF496581934A24C00DD482D /* BookmarkCustomCell.xib */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		DE22E7D5192F54180005E685 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DE22E7AD192F54180005E685 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DE22E7B4192F54180005E685;
-			remoteInfo = MyRssReader;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		42AE1B27194B8FB600F2CC2A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		42B84197194DFD320014B1E0 /* DailymotionSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DailymotionSDK.framework; sourceTree = "<group>"; };
 		42C70BFF193CBE3500736BCF /* icon -114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon -114.png"; sourceTree = "<group>"; };
 		42C70C00193CBE3500736BCF /* icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-29.png"; sourceTree = "<group>"; };
 		42C70C01193CBE3500736BCF /* icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40.png"; sourceTree = "<group>"; };
@@ -137,7 +126,7 @@
 		42C70C0C193CBE3500736BCF /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		42C70C0D193CBE3500736BCF /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		5573354A75464195829BDB84 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		69548C345766444AA82624A5 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		69FD9001F16AE12918D9113A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DE04E6A6194AE50300BD30BC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DE04E6A8194AE52000BD30BC /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		DE1B5B33194AED3400A4B5D9 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
@@ -163,11 +152,7 @@
 		DE22E7C7192F54180005E685 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DE22E7C8192F54180005E685 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DE22E7CA192F54180005E685 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		DE22E7D0192F54180005E685 /* MyRssReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyRssReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE22E7D1192F54180005E685 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		DE22E7D9192F54180005E685 /* MyRssReaderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyRssReaderTests-Info.plist"; sourceTree = "<group>"; };
-		DE22E7DB192F54180005E685 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		DE22E7DD192F54180005E685 /* MyRssReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyRssReaderTests.m; sourceTree = "<group>"; };
 		DE22E7E7192F5C410005E685 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		DE22E7E8192F5C410005E685 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		DE22E7E9192F5C410005E685 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
@@ -180,6 +165,21 @@
 		DE22E7F6192F5E4D0005E685 /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
 		DE22E7F7192F5E4D0005E685 /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
 		DE22E7F8192F5E4D0005E685 /* BookmarkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookmarkViewController.xib; sourceTree = "<group>"; };
+		DE233F5C1B70A89F00C02DD6 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		DE233F5D1B70A89F00C02DD6 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
+		DE233F5E1B70A89F00C02DD6 /* MWFeedInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedInfo.h; sourceTree = "<group>"; };
+		DE233F5F1B70A89F00C02DD6 /* MWFeedInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWFeedInfo.m; sourceTree = "<group>"; };
+		DE233F601B70A89F00C02DD6 /* MWFeedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedItem.h; sourceTree = "<group>"; };
+		DE233F611B70A89F00C02DD6 /* MWFeedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWFeedItem.m; sourceTree = "<group>"; };
+		DE233F621B70A89F00C02DD6 /* MWFeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedParser.h; sourceTree = "<group>"; };
+		DE233F631B70A89F00C02DD6 /* MWFeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWFeedParser.m; sourceTree = "<group>"; };
+		DE233F641B70A89F00C02DD6 /* MWFeedParser_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedParser_Private.h; sourceTree = "<group>"; };
+		DE233F651B70A89F00C02DD6 /* NSDate+InternetDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+InternetDateTime.h"; sourceTree = "<group>"; };
+		DE233F661B70A89F00C02DD6 /* NSDate+InternetDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+InternetDateTime.m"; sourceTree = "<group>"; };
+		DE233F671B70A89F00C02DD6 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		DE233F681B70A89F00C02DD6 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		DE233F691B70A89F00C02DD6 /* NSString+XMLEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XMLEntities.h"; sourceTree = "<group>"; };
+		DE233F6A1B70A89F00C02DD6 /* NSString+XMLEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XMLEntities.m"; sourceTree = "<group>"; };
 		DE4303DE193878F4008A42A4 /* TempRss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempRss.h; sourceTree = "<group>"; };
 		DE4303DF193878F4008A42A4 /* TempRss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempRss.m; sourceTree = "<group>"; };
 		DE4303E119387924008A42A4 /* TempNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempNode.h; sourceTree = "<group>"; };
@@ -252,6 +252,7 @@
 		DEF496561934A24C00DD482D /* BookmarkCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkCustomCell.h; sourceTree = "<group>"; };
 		DEF496571934A24C00DD482D /* BookmarkCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkCustomCell.m; sourceTree = "<group>"; };
 		DEF496581934A24C00DD482D /* BookmarkCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookmarkCustomCell.xib; sourceTree = "<group>"; };
+		F3CAE5CC33CD02D3970373AB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,27 +267,24 @@
 				DE1B5B3B194AED9800A4B5D9 /* AdSupport.framework in Frameworks */,
 				DEB54D8719333CB200EC589E /* MediaPlayer.framework in Frameworks */,
 				DE22E7BB192F54180005E685 /* CoreGraphics.framework in Frameworks */,
-				42B84198194DFD320014B1E0 /* DailymotionSDK.framework in Frameworks */,
 				DE22E7B9192F54180005E685 /* Foundation.framework in Frameworks */,
 				5C3B4106D7DC496FBEFCBD72 /* libPods.a in Frameworks */,
 				DE1B5B3A194AED3400A4B5D9 /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DE22E7CD192F54180005E685 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DE22E7D2192F54180005E685 /* XCTest.framework in Frameworks */,
-				DE22E7D4192F54180005E685 /* UIKit.framework in Frameworks */,
-				DE22E7D3192F54180005E685 /* Foundation.framework in Frameworks */,
-				42B84199194DFD330014B1E0 /* DailymotionSDK.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C1EBEA5A3355D6C1DE82ACB2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3CAE5CC33CD02D3970373AB /* Pods.debug.xcconfig */,
+				69FD9001F16AE12918D9113A /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DE1B5B32194AED3400A4B5D9 /* GoogleAnalytic */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,10 +308,9 @@
 				DEB5F0D71932D7B7008922E5 /* Categories */,
 				DE22E7BE192F54180005E685 /* MyRssReader */,
 				DE22E7BF192F54180005E685 /* Supporting Files */,
-				DE22E7D7192F54180005E685 /* MyRssReaderTests */,
 				DE22E7B7192F54180005E685 /* Frameworks */,
 				DE22E7B6192F54180005E685 /* Products */,
-				69548C345766444AA82624A5 /* Pods.xcconfig */,
+				C1EBEA5A3355D6C1DE82ACB2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -321,7 +318,6 @@
 			isa = PBXGroup;
 			children = (
 				DE22E7B5192F54180005E685 /* Rss Video Player.app */,
-				DE22E7D0192F54180005E685 /* MyRssReaderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -378,22 +374,26 @@
 			path = MyRssReader;
 			sourceTree = "<group>";
 		};
-		DE22E7D7192F54180005E685 /* MyRssReaderTests */ = {
+		DE233F5B1B70A89F00C02DD6 /* MWFeedParser */ = {
 			isa = PBXGroup;
 			children = (
-				DE22E7DD192F54180005E685 /* MyRssReaderTests.m */,
-				DE22E7D8192F54180005E685 /* Supporting Files */,
+				DE233F5C1B70A89F00C02DD6 /* GTMNSString+HTML.h */,
+				DE233F5D1B70A89F00C02DD6 /* GTMNSString+HTML.m */,
+				DE233F5E1B70A89F00C02DD6 /* MWFeedInfo.h */,
+				DE233F5F1B70A89F00C02DD6 /* MWFeedInfo.m */,
+				DE233F601B70A89F00C02DD6 /* MWFeedItem.h */,
+				DE233F611B70A89F00C02DD6 /* MWFeedItem.m */,
+				DE233F621B70A89F00C02DD6 /* MWFeedParser.h */,
+				DE233F631B70A89F00C02DD6 /* MWFeedParser.m */,
+				DE233F641B70A89F00C02DD6 /* MWFeedParser_Private.h */,
+				DE233F651B70A89F00C02DD6 /* NSDate+InternetDateTime.h */,
+				DE233F661B70A89F00C02DD6 /* NSDate+InternetDateTime.m */,
+				DE233F671B70A89F00C02DD6 /* NSString+HTML.h */,
+				DE233F681B70A89F00C02DD6 /* NSString+HTML.m */,
+				DE233F691B70A89F00C02DD6 /* NSString+XMLEntities.h */,
+				DE233F6A1B70A89F00C02DD6 /* NSString+XMLEntities.m */,
 			);
-			path = MyRssReaderTests;
-			sourceTree = "<group>";
-		};
-		DE22E7D8192F54180005E685 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				DE22E7D9192F54180005E685 /* MyRssReaderTests-Info.plist */,
-				DE22E7DA192F54180005E685 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
+			path = MWFeedParser;
 			sourceTree = "<group>";
 		};
 		DE4303DD193878D8008A42A4 /* Model */ = {
@@ -493,7 +493,7 @@
 		DEF496121934339F00DD482D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				42B84197194DFD320014B1E0 /* DailymotionSDK.framework */,
+				DE233F5B1B70A89F00C02DD6 /* MWFeedParser */,
 				DE1B5B32194AED3400A4B5D9 /* GoogleAnalytic */,
 				DEF496131934349F00DD482D /* Reachability */,
 			);
@@ -585,24 +585,6 @@
 			productReference = DE22E7B5192F54180005E685 /* Rss Video Player.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DE22E7CF192F54180005E685 /* MyRssReaderTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DE22E7E4192F54180005E685 /* Build configuration list for PBXNativeTarget "MyRssReaderTests" */;
-			buildPhases = (
-				DE22E7CC192F54180005E685 /* Sources */,
-				DE22E7CD192F54180005E685 /* Frameworks */,
-				DE22E7CE192F54180005E685 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DE22E7D6192F54180005E685 /* PBXTargetDependency */,
-			);
-			name = MyRssReaderTests;
-			productName = MyRssReaderTests;
-			productReference = DE22E7D0192F54180005E685 /* MyRssReaderTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -611,11 +593,6 @@
 			attributes = {
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = Huyns;
-				TargetAttributes = {
-					DE22E7CF192F54180005E685 = {
-						TestTargetID = DE22E7B4192F54180005E685;
-					};
-				};
 			};
 			buildConfigurationList = DE22E7B0192F54180005E685 /* Build configuration list for PBXProject "MyRssReader" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -630,7 +607,6 @@
 			projectRoot = "";
 			targets = (
 				DE22E7B4192F54180005E685 /* MyRssReader */,
-				DE22E7CF192F54180005E685 /* MyRssReaderTests */,
 			);
 		};
 /* End PBXProject section */
@@ -699,14 +675,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DE22E7CE192F54180005E685 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DE22E7DC192F54180005E685 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -722,7 +690,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8BAA930CD2D344B2B2C5363B /* Check Pods Manifest.lock */ = {
@@ -748,8 +716,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEB54D6C19331FA800EC589E /* NodeListViewController.m in Sources */,
+				DE233F6F1B70A89F00C02DD6 /* NSDate+InternetDateTime.m in Sources */,
+				DE233F701B70A89F00C02DD6 /* NSString+HTML.m in Sources */,
 				DEB54D711933333A00EC589E /* NodeListCustomCell.m in Sources */,
+				DE233F6E1B70A89F00C02DD6 /* MWFeedParser.m in Sources */,
+				DE233F6B1B70A89F00C02DD6 /* GTMNSString+HTML.m in Sources */,
+				DE233F711B70A89F00C02DD6 /* NSString+XMLEntities.m in Sources */,
 				DE22E7F4192F5D360005E685 /* ManageRssViewController.m in Sources */,
+				DE233F6D1B70A89F00C02DD6 /* MWFeedItem.m in Sources */,
 				DE22E7C9192F54180005E685 /* AppDelegate.m in Sources */,
 				DE7F39A81935DCC900C7C143 /* NSString+MD5.m in Sources */,
 				DE7B306C193C377700B749D0 /* Node.m in Sources */,
@@ -765,6 +739,7 @@
 				DEF4961C1934376700DD482D /* UIAlertView+Helper.m in Sources */,
 				DEF496161934349F00DD482D /* Reachability.m in Sources */,
 				DE22E7C5192F54180005E685 /* main.m in Sources */,
+				DE233F6C1B70A89F00C02DD6 /* MWFeedInfo.m in Sources */,
 				DE4303E0193878F4008A42A4 /* TempRss.m in Sources */,
 				DEB5F0E11932FB11008922E5 /* Model.xcdatamodeld in Sources */,
 				DEB5F0DD1932D854008922E5 /* Categories.m in Sources */,
@@ -776,37 +751,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DE22E7CC192F54180005E685 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DE22E7DE192F54180005E685 /* MyRssReaderTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		DE22E7D6192F54180005E685 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DE22E7B4192F54180005E685 /* MyRssReader */;
-			targetProxy = DE22E7D5192F54180005E685 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DE22E7C1192F54180005E685 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				DE22E7C2192F54180005E685 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		DE22E7DA192F54180005E685 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DE22E7DB192F54180005E685 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -886,7 +837,7 @@
 		};
 		DE22E7E2192F54180005E685 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69548C345766444AA82624A5 /* Pods.xcconfig */;
+			baseConfigurationReference = F3CAE5CC33CD02D3970373AB /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -898,7 +849,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyRssReader/MyRssReader-Prefix.pch";
 				INFOPLIST_FILE = "MyRssReader/MyRssReader-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
@@ -943,6 +894,7 @@
 					Security,
 					"-weak_framework",
 					Social,
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "Rss Video Player";
 				PROVISIONING_PROFILE = "079DBE6F-E4C4-43E7-96A2-66D0E6AAFD1C";
@@ -953,7 +905,7 @@
 		};
 		DE22E7E3192F54180005E685 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69548C345766444AA82624A5 /* Pods.xcconfig */;
+			baseConfigurationReference = 69FD9001F16AE12918D9113A /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -966,7 +918,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyRssReader/MyRssReader-Prefix.pch";
 				INFOPLIST_FILE = "MyRssReader/MyRssReader-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
@@ -1010,53 +962,12 @@
 					Security,
 					"-weak_framework",
 					Social,
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "Rss Video Player";
 				PROVISIONING_PROFILE = "6EDBD209-C713-4632-9DDF-630E3A9D0FC5";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		DE22E7E5192F54180005E685 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyRssReader.app/MyRssReader";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					/Users/huyns/myrssreader/Libraries,
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MyRssReader/MyRssReader-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "MyRssReaderTests/MyRssReaderTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		DE22E7E6192F54180005E685 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyRssReader.app/MyRssReader";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					/Users/huyns/myrssreader/Libraries,
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MyRssReader/MyRssReader-Prefix.pch";
-				INFOPLIST_FILE = "MyRssReaderTests/MyRssReaderTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -1077,15 +988,6 @@
 			buildConfigurations = (
 				DE22E7E2192F54180005E685 /* Debug */,
 				DE22E7E3192F54180005E685 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DE22E7E4192F54180005E685 /* Build configuration list for PBXNativeTarget "MyRssReaderTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DE22E7E5192F54180005E685 /* Debug */,
-				DE22E7E6192F54180005E685 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

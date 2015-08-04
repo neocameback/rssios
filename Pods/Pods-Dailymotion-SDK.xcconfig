@@ -1,2 +1,0 @@
-PODS_DAILYMOTION_SDK_FRAMEWORK_SEARCH_PATHS = "${PODS_ROOT}/Dailymotion-SDK"
-PODS_DAILYMOTION_SDK_OTHER_LDFLAGS = -framework DailymotionSDK -framework Security -framework SystemConfiguration
