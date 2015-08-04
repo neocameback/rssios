@@ -622,7 +622,7 @@
 		DE22E7AD192F54180005E685 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = Huyns;
 				TargetAttributes = {
 					DE22E7CF192F54180005E685 = {
@@ -902,7 +902,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 69548C345766444AA82624A5 /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Phi Long (Y49DN37M2P)";
@@ -970,7 +969,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 69548C345766444AA82624A5 /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Phi Long (Q6P4VX76SF)";
