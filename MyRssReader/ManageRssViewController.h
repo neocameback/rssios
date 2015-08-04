@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MWFeedParser.h>
+#import "MWFeedParser.h"
 #import "Rss.h"
 #import "Node.h"
 

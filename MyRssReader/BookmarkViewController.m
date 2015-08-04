@@ -13,7 +13,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "NodeListViewController.h"
 #import <XCDYouTubeVideoPlayerViewController.h>
-#import <DailymotionSDK/DailymotionSDK.h>
+#import <DMPlayerViewController.h>
 #import "ELPlayerViewController.h"
 
 @interface BookmarkViewController ()

@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>MWFeedParser.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>MagicalRecord.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,22 +37,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>3A029D2B9417C8AA03B137E4651ACCE8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>46952B839C82652721EACAE19824EBAF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7D519FCDF79B3CF731FBB7FF11F5C643</key>
+		<key>64535CA956AFEC8EB9A6C0A63354C425</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>877DDB3724B7D703F47F3D8CB179EF5D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9ACE4CFDD565D1DC96DCC003B30C5BE8</key>
+		<key>9C11CC0B726D5631E9F6F9DFFE2A49B8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -68,11 +63,6 @@
 			<true/>
 		</dict>
 		<key>E29C8E9E5465A09F1BF61C3693EE0F99</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F439AAF4A9C37EFE487D9A88BE099AEA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

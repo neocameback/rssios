@@ -1,5 +1,5 @@
 //
-//  MWFeedInfo.m
+//  NSString+XMLEntities.m
 //  MWFeedParser
 //
 //  Copyright (c) 2010 Michael Waterfall
@@ -27,42 +27,19 @@
 //  THE SOFTWARE.
 //
 
-#import "MWFeedInfo.h"
+#import "NSString+XMLEntities.h"
 
-#define EXCERPT(str, len) (([str length] > len) ? [[str substringToIndex:len-1] stringByAppendingString:@"…"] : str)
+// THIS CLASS IS DEPRECIATED 03/08/2010
+// REPLACED BY NSString+HTML
 
-@implementation MWFeedInfo
+@implementation NSString (XMLEntities)
 
-@synthesize title, link, summary, url;
-
-#pragma mark NSObject
-
-- (NSString *)description {
-	NSMutableString *string = [[NSMutableString alloc] initWithString:@"MWFeedInfo: "];
-	if (title)   [string appendFormat:@"“%@”", EXCERPT(title, 50)];
-	//if (link)    [string appendFormat:@" (%@)", link];
-	//if (summary) [string appendFormat:@", %@", MWExcerpt(summary, 50)];
-	return string;
+- (NSString *)stringByDecodingXMLEntities {
+	return [self stringByDecodingHTMLEntities];
 }
 
-
-#pragma mark NSCoding
-
-- (id)initWithCoder:(NSCoder *)decoder {
-	if ((self = [super init])) {
-		title = [decoder decodeObjectForKey:@"title"];
-		link = [decoder decodeObjectForKey:@"link"];
-		summary = [decoder decodeObjectForKey:@"summary"];
-		url = [decoder decodeObjectForKey:@"url"];
-	}
-	return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)encoder {
-	if (title) [encoder encodeObject:title forKey:@"title"];
-	if (link) [encoder encodeObject:link forKey:@"link"];
-	if (summary) [encoder encodeObject:summary forKey:@"summary"];
-	if (url) [encoder encodeObject:url forKey:@"url"];
+- (NSString *)stringByEncodingXMLEntities {
+	return [self stringByEncodingHTMLEntities];
 }
 
 @end

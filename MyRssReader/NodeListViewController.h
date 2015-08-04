@@ -10,8 +10,7 @@
 #import "Rss.h"
 #import "TempRss.h"
 #import "TempNode.h"
-
-#import <MWFeedParser.h>
+#import "MWFeedParser.h"
 #import <GADInterstitial.h>
 
 typedef enum : NSUInteger {

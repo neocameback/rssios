@@ -9,7 +9,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 
 #import "ELPlayerViewController.h"
-#import "FFEngine/FFEngine.h"
+#import <FFEngine/FFEngine.h>
 
 @implementation ELPlayerViewController
 

@@ -44,8 +44,6 @@
 		DE1B5B41194B0EA000A4B5D9 /* icon_default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1B5B3F194B0EA000A4B5D9 /* icon_default.png */; };
 		DE1B5B42194B0EA000A4B5D9 /* icon_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1B5B40194B0EA000A4B5D9 /* icon_default@2x.png */; };
 		DE210913194FE8A10026F481 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = DE210912194FE8A10026F481 /* close.png */; };
-		DE210916194FEEF70026F481 /* FFmpeg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE210914194FEEF70026F481 /* FFmpeg.framework */; };
-		DE210917194FEEF70026F481 /* FFEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE210915194FEEF70026F481 /* FFEngine.framework */; };
 		DE21091B194FEF290026F481 /* ELPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE210919194FEF290026F481 /* ELPlayerViewController.m */; };
 		DE21091E194FF04A0026F481 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE21091D194FF04A0026F481 /* Storyboard.storyboard */; };
 		DE22E7B9192F54180005E685 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE22E7B8192F54180005E685 /* Foundation.framework */; };
@@ -63,6 +61,15 @@
 		DE22E7F5192F5D360005E685 /* ManageRssViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE22E7F3192F5D360005E685 /* ManageRssViewController.xib */; };
 		DE22E7F9192F5E4D0005E685 /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE22E7F7192F5E4D0005E685 /* BookmarkViewController.m */; };
 		DE22E7FA192F5E4D0005E685 /* BookmarkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE22E7F8192F5E4D0005E685 /* BookmarkViewController.xib */; };
+		DE386DDA1B7064DF004C904F /* MWFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DE386DD51B7064DF004C904F /* MWFeedParser.m */; };
+		DE386DDB1B7064DF004C904F /* MWFeedInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DE386DD71B7064DF004C904F /* MWFeedInfo.m */; };
+		DE386DDC1B7064DF004C904F /* MWFeedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DE386DD91B7064DF004C904F /* MWFeedItem.m */; };
+		DE386DE11B7064E9004C904F /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = DE386DDE1B7064E9004C904F /* NSString+HTML.m */; };
+		DE386DE21B7064E9004C904F /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = DE386DE01B7064E9004C904F /* NSDate+InternetDateTime.m */; };
+		DE386DE51B7064F9004C904F /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = DE386DE41B7064F9004C904F /* GTMNSString+HTML.m */; };
+		DE386DE81B7064FF004C904F /* NSString+XMLEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = DE386DE71B7064FF004C904F /* NSString+XMLEntities.m */; };
+		DE386F541B706EC0004C904F /* FFEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE386F521B706EC0004C904F /* FFEngine.framework */; };
+		DE386F551B706EC0004C904F /* FFmpeg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE386F531B706EC0004C904F /* FFmpeg.framework */; };
 		DE4303E0193878F4008A42A4 /* TempRss.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4303DF193878F4008A42A4 /* TempRss.m */; };
 		DE4303E319387924008A42A4 /* TempNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4303E219387924008A42A4 /* TempNode.m */; };
 		DE4A8C0A1B6F72420061D01B /* _Node.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4A8C001B6F72420061D01B /* _Node.m */; };
@@ -145,8 +152,6 @@
 		DE1B5B3F194B0EA000A4B5D9 /* icon_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_default.png; sourceTree = "<group>"; };
 		DE1B5B40194B0EA000A4B5D9 /* icon_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_default@2x.png"; sourceTree = "<group>"; };
 		DE210912194FE8A10026F481 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
-		DE210914194FEEF70026F481 /* FFmpeg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FFmpeg.framework; sourceTree = "<group>"; };
-		DE210915194FEEF70026F481 /* FFEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FFEngine.framework; sourceTree = "<group>"; };
 		DE210918194FEF290026F481 /* ELPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayerViewController.h; sourceTree = "<group>"; };
 		DE210919194FEF290026F481 /* ELPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayerViewController.m; sourceTree = "<group>"; };
 		DE21091D194FF04A0026F481 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
@@ -174,6 +179,23 @@
 		DE22E7F6192F5E4D0005E685 /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
 		DE22E7F7192F5E4D0005E685 /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
 		DE22E7F8192F5E4D0005E685 /* BookmarkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookmarkViewController.xib; sourceTree = "<group>"; };
+		DE386DD31B7064DF004C904F /* MWFeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedParser.h; sourceTree = "<group>"; };
+		DE386DD41B7064DF004C904F /* MWFeedParser_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedParser_Private.h; sourceTree = "<group>"; };
+		DE386DD51B7064DF004C904F /* MWFeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWFeedParser.m; sourceTree = "<group>"; };
+		DE386DD61B7064DF004C904F /* MWFeedInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedInfo.h; sourceTree = "<group>"; };
+		DE386DD71B7064DF004C904F /* MWFeedInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWFeedInfo.m; sourceTree = "<group>"; };
+		DE386DD81B7064DF004C904F /* MWFeedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedItem.h; sourceTree = "<group>"; };
+		DE386DD91B7064DF004C904F /* MWFeedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWFeedItem.m; sourceTree = "<group>"; };
+		DE386DDD1B7064E9004C904F /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		DE386DDE1B7064E9004C904F /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		DE386DDF1B7064E9004C904F /* NSDate+InternetDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+InternetDateTime.h"; sourceTree = "<group>"; };
+		DE386DE01B7064E9004C904F /* NSDate+InternetDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+InternetDateTime.m"; sourceTree = "<group>"; };
+		DE386DE31B7064F9004C904F /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		DE386DE41B7064F9004C904F /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
+		DE386DE61B7064FF004C904F /* NSString+XMLEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XMLEntities.h"; sourceTree = "<group>"; };
+		DE386DE71B7064FF004C904F /* NSString+XMLEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XMLEntities.m"; sourceTree = "<group>"; };
+		DE386F521B706EC0004C904F /* FFEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FFEngine.framework; sourceTree = "<group>"; };
+		DE386F531B706EC0004C904F /* FFmpeg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FFmpeg.framework; sourceTree = "<group>"; };
 		DE4303DE193878F4008A42A4 /* TempRss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempRss.h; sourceTree = "<group>"; };
 		DE4303DF193878F4008A42A4 /* TempRss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempRss.m; sourceTree = "<group>"; };
 		DE4303E119387924008A42A4 /* TempNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempNode.h; sourceTree = "<group>"; };
@@ -258,13 +280,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE386F541B706EC0004C904F /* FFEngine.framework in Frameworks */,
 				DE22E7BD192F54180005E685 /* UIKit.framework in Frameworks */,
 				42AE1B28194B8FB600F2CC2A /* Security.framework in Frameworks */,
 				DE1B5B3E194AEE2900A4B5D9 /* libsqlite3.dylib in Frameworks */,
-				DE210917194FEEF70026F481 /* FFEngine.framework in Frameworks */,
+				DE386F551B706EC0004C904F /* FFmpeg.framework in Frameworks */,
 				DE1B5B3C194AEDA400A4B5D9 /* libz.dylib in Frameworks */,
 				DE1B5B3B194AED9800A4B5D9 /* AdSupport.framework in Frameworks */,
-				DE210916194FEEF70026F481 /* FFmpeg.framework in Frameworks */,
 				DEB54D8719333CB200EC589E /* MediaPlayer.framework in Frameworks */,
 				DE22E7BB192F54180005E685 /* CoreGraphics.framework in Frameworks */,
 				DE22E7B9192F54180005E685 /* Foundation.framework in Frameworks */,
@@ -357,6 +379,28 @@
 			);
 			name = "Supporting Files";
 			path = MyRssReader;
+			sourceTree = "<group>";
+		};
+		DE386DD21B7064D8004C904F /* MWFeedParser */ = {
+			isa = PBXGroup;
+			children = (
+				DE386DD31B7064DF004C904F /* MWFeedParser.h */,
+				DE386DD41B7064DF004C904F /* MWFeedParser_Private.h */,
+				DE386DD51B7064DF004C904F /* MWFeedParser.m */,
+				DE386DD61B7064DF004C904F /* MWFeedInfo.h */,
+				DE386DD71B7064DF004C904F /* MWFeedInfo.m */,
+				DE386DD81B7064DF004C904F /* MWFeedItem.h */,
+				DE386DD91B7064DF004C904F /* MWFeedItem.m */,
+				DE386DDD1B7064E9004C904F /* NSString+HTML.h */,
+				DE386DDE1B7064E9004C904F /* NSString+HTML.m */,
+				DE386DDF1B7064E9004C904F /* NSDate+InternetDateTime.h */,
+				DE386DE01B7064E9004C904F /* NSDate+InternetDateTime.m */,
+				DE386DE31B7064F9004C904F /* GTMNSString+HTML.h */,
+				DE386DE41B7064F9004C904F /* GTMNSString+HTML.m */,
+				DE386DE61B7064FF004C904F /* NSString+XMLEntities.h */,
+				DE386DE71B7064FF004C904F /* NSString+XMLEntities.m */,
+			);
+			path = MWFeedParser;
 			sourceTree = "<group>";
 		};
 		DE4303DD193878D8008A42A4 /* Model */ = {
@@ -460,8 +504,9 @@
 		DEF496121934339F00DD482D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				DE210914194FEEF70026F481 /* FFmpeg.framework */,
-				DE210915194FEEF70026F481 /* FFEngine.framework */,
+				DE386F521B706EC0004C904F /* FFEngine.framework */,
+				DE386F531B706EC0004C904F /* FFmpeg.framework */,
+				DE386DD21B7064D8004C904F /* MWFeedParser */,
 				DEF496131934349F00DD482D /* Reachability */,
 			);
 			path = Libraries;
@@ -705,6 +750,7 @@
 			files = (
 				DE4A8C0B1B6F72420061D01B /* _Rss.m in Sources */,
 				DEB54D6C19331FA800EC589E /* NodeListViewController.m in Sources */,
+				DE386DDA1B7064DF004C904F /* MWFeedParser.m in Sources */,
 				DEB54D711933333A00EC589E /* NodeListCustomCell.m in Sources */,
 				DE22E7F4192F5D360005E685 /* ManageRssViewController.m in Sources */,
 				DE21091B194FEF290026F481 /* ELPlayerViewController.m in Sources */,
@@ -716,17 +762,23 @@
 				DE22E7EF192F5D230005E685 /* RssListViewController.m in Sources */,
 				DEF4961F1934385200DD482D /* Constant.m in Sources */,
 				DE7F39AB1935E27700C7C143 /* NSMutableURLRequest+Helper.m in Sources */,
+				DE386DDC1B7064DF004C904F /* MWFeedItem.m in Sources */,
 				DEB7BF2C19458DE700BF350D /* NSString+Helper.m in Sources */,
 				DEF49619193435FD00DD482D /* NSUserDefaults+Helper.m in Sources */,
 				DE4A8C0A1B6F72420061D01B /* _Node.m in Sources */,
 				DEB54D83193337B200EC589E /* WebViewViewController.m in Sources */,
 				DEF496591934A24C00DD482D /* BookmarkCustomCell.m in Sources */,
+				DE386DE21B7064E9004C904F /* NSDate+InternetDateTime.m in Sources */,
+				DE386DDB1B7064DF004C904F /* MWFeedInfo.m in Sources */,
 				DEF4961C1934376700DD482D /* UIAlertView+Helper.m in Sources */,
 				DE4A8C0E1B6F72420061D01B /* Rss.m in Sources */,
 				DEF496161934349F00DD482D /* Reachability.m in Sources */,
 				DE22E7C5192F54180005E685 /* main.m in Sources */,
+				DE386DE11B7064E9004C904F /* NSString+HTML.m in Sources */,
+				DE386DE51B7064F9004C904F /* GTMNSString+HTML.m in Sources */,
 				DE4303E0193878F4008A42A4 /* TempRss.m in Sources */,
 				DEB5F0DD1932D854008922E5 /* Categories.m in Sources */,
+				DE386DE81B7064FF004C904F /* NSString+XMLEntities.m in Sources */,
 				DE4A8C0D1B6F72420061D01B /* Node.m in Sources */,
 				DE22E7EA192F5C410005E685 /* HomeViewController.m in Sources */,
 				DE4303E319387924008A42A4 /* TempNode.m in Sources */,
@@ -825,6 +877,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Phi Long (Y49DN37M2P)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Libraries",
@@ -842,7 +895,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
-					"-lGoogleAdMobAds",
 					"-framework",
 					AVFoundation,
 					"-framework",
@@ -891,6 +943,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Phi Long (Q6P4VX76SF)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Phi Long (Q6P4VX76SF)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -908,7 +961,6 @@
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
-					"-lGoogleAdMobAds",
 					"-framework",
 					AVFoundation,
 					"-framework",

@@ -596,6 +596,7 @@
                         if ([currentPath isEqualToString:@"/rss/channel/item/title"]) { if (processedText.length > 0) item.title = processedText; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/link"]) { if (processedText.length > 0) item.link = processedText; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/author"]) { if (processedText.length > 0) item.author = processedText; processed = YES; }
+                        else if ([currentPath isEqualToString:@"/rss/channel/item/bookmark"]) { if (processedText.length > 0) item.bookmarkStatus = processedText; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/dc:creator"]) { if (processedText.length > 0) item.author = processedText; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/guid"]) { if (processedText.length > 0) item.identifier = processedText; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/description"]) { if (processedText.length > 0) item.summary = processedText; processed = YES; }
@@ -609,7 +610,9 @@
                     if (!processed && feedParseType != ParseTypeItemsOnly) {
                         if ([currentPath isEqualToString:@"/rss/channel/title"]) { if (processedText.length > 0) info.title = processedText; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/description"]) { if (processedText.length > 0) info.summary = processedText; processed = YES; }
-                        else if ([currentPath isEqualToString:@"/rss/channel/link"]) { if (processedText.length > 0) info.link = processedText; processed = YES; }
+                        else if ([currentPath isEqualToString:@"/rss/channel/link"]) { if (processedText.length > 0) info.link = processedText; processed = YES;}
+                        else if ([currentPath isEqualToString:@"/rss/channel/AdID"]) { if (processedText.length > 0) info.adBannerId = processedText; processed = YES; }
+                        else if ([currentPath isEqualToString:@"/rss/channel/AdFullScreenID"]) { if (processedText.length > 0) info.adFullId = processedText; processed = YES; }
                     }
                     
                     break;

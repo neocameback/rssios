@@ -13,7 +13,7 @@
 #import "WebViewViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <XCDYouTubeVideoPlayerViewController.h>
-#import <DailymotionSDK/DailymotionSDK.h>
+#import <DMPlayerViewController.h>
 #import "ELPlayerViewController.h"
 
 @interface NodeListViewController ()
@@ -252,13 +252,13 @@
     
     GADRequest *request = [GADRequest request];
     interstitial_ = nil;
-    interstitial_ = [[GADInterstitial alloc] init];
-    interstitial_.delegate = self;
+    
     if (tempRss && tempRss.adsFullId && tempRss.adsFullId.length > 0) {
-        interstitial_.adUnitID = tempRss.adsFullId;
+        interstitial_ = [[GADInterstitial alloc] initWithAdUnitID:tempRss.adsFullId];
     }else{
-        interstitial_.adUnitID = kLargeAdUnitId;
+        interstitial_ = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
     }
+    interstitial_.delegate = self;
     [interstitial_ loadRequest:request];
 }
 

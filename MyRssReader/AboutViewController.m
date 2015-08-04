@@ -48,23 +48,19 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)onShare:(id)sender {
-    UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[kDefaultShareTitle] applicationActivities:nil];
+    UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[kDefaultShareTitle,[NSURL URLWithString:@"http://rssvideoplayer.com"]] applicationActivities:nil];
     
     NSArray *excludedActivities = nil;
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        excludedActivities = @[UIActivityTypePostToTwitter,
-                               UIActivityTypePostToWeibo,
-                               UIActivityTypePrint, UIActivityTypeCopyToPasteboard,
-                               UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll,
-                               UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr,
-                               UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo,UIActivityTypeAirDrop];
-    }else{
-        excludedActivities = @[UIActivityTypePostToTwitter,
-                               UIActivityTypePostToWeibo,
-                               UIActivityTypePrint, UIActivityTypeCopyToPasteboard,
-                               UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
-    }
+    
     controller.excludedActivityTypes = excludedActivities;
+    if ([UIPopoverPresentationController class] != nil) {
+        UIPopoverPresentationController *popover = controller.popoverPresentationController;
+        if (popover)
+        {
+            popover.sourceView = self.view;
+            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        }
+    }
     
     [self presentViewController:controller animated:YES completion:nil];
 }
