@@ -68,8 +68,6 @@
 		DE386DE21B7064E9004C904F /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = DE386DE01B7064E9004C904F /* NSDate+InternetDateTime.m */; };
 		DE386DE51B7064F9004C904F /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = DE386DE41B7064F9004C904F /* GTMNSString+HTML.m */; };
 		DE386DE81B7064FF004C904F /* NSString+XMLEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = DE386DE71B7064FF004C904F /* NSString+XMLEntities.m */; };
-		DE386F541B706EC0004C904F /* FFEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE386F521B706EC0004C904F /* FFEngine.framework */; };
-		DE386F551B706EC0004C904F /* FFmpeg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE386F531B706EC0004C904F /* FFmpeg.framework */; };
 		DE4303E0193878F4008A42A4 /* TempRss.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4303DF193878F4008A42A4 /* TempRss.m */; };
 		DE4303E319387924008A42A4 /* TempNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4303E219387924008A42A4 /* TempNode.m */; };
 		DE4A8C0A1B6F72420061D01B /* _Node.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4A8C001B6F72420061D01B /* _Node.m */; };
@@ -194,8 +192,6 @@
 		DE386DE41B7064F9004C904F /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		DE386DE61B7064FF004C904F /* NSString+XMLEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XMLEntities.h"; sourceTree = "<group>"; };
 		DE386DE71B7064FF004C904F /* NSString+XMLEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XMLEntities.m"; sourceTree = "<group>"; };
-		DE386F521B706EC0004C904F /* FFEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FFEngine.framework; sourceTree = "<group>"; };
-		DE386F531B706EC0004C904F /* FFmpeg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FFmpeg.framework; sourceTree = "<group>"; };
 		DE4303DE193878F4008A42A4 /* TempRss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempRss.h; sourceTree = "<group>"; };
 		DE4303DF193878F4008A42A4 /* TempRss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempRss.m; sourceTree = "<group>"; };
 		DE4303E119387924008A42A4 /* TempNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempNode.h; sourceTree = "<group>"; };
@@ -280,11 +276,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE386F541B706EC0004C904F /* FFEngine.framework in Frameworks */,
 				DE22E7BD192F54180005E685 /* UIKit.framework in Frameworks */,
 				42AE1B28194B8FB600F2CC2A /* Security.framework in Frameworks */,
 				DE1B5B3E194AEE2900A4B5D9 /* libsqlite3.dylib in Frameworks */,
-				DE386F551B706EC0004C904F /* FFmpeg.framework in Frameworks */,
 				DE1B5B3C194AEDA400A4B5D9 /* libz.dylib in Frameworks */,
 				DE1B5B3B194AED9800A4B5D9 /* AdSupport.framework in Frameworks */,
 				DEB54D8719333CB200EC589E /* MediaPlayer.framework in Frameworks */,
@@ -504,8 +498,6 @@
 		DEF496121934339F00DD482D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				DE386F521B706EC0004C904F /* FFEngine.framework */,
-				DE386F531B706EC0004C904F /* FFmpeg.framework */,
 				DE386DD21B7064D8004C904F /* MWFeedParser */,
 				DEF496131934349F00DD482D /* Reachability */,
 			);

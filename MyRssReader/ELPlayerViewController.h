@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <FFEngine/FFEngine.h>
+//#import <FFEngine/FFEngine.h>
 
 
-@interface ELPlayerViewController : UIViewController <ELPlayerMessageProtocol>
+@interface ELPlayerViewController : UIViewController //<ELPlayerMessageProtocol>
 {
     size_t _videoDuration;
     int _videoPostion;

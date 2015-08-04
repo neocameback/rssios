@@ -14,7 +14,7 @@
 #import "NSString+HTML.h"
 #import <SVProgressHUD.h>
 #import "Reachability.h"
-#import <FFEngine/FFEngine.h>
+//#import <FFEngine/FFEngine.h>
 
 @interface AppDelegate() 
 {    
@@ -40,7 +40,7 @@
     
     
     // FFEngine: register engine!
-    RegisterFFEngine(@"yQ2oiBQRbXoo35veDico9ggF4ARFxRdjq3yiIvBltwIPe/SgphrthjEVCzt6mtAfejcyM1fkbDdY+wE8j7oeJLK+u1KEO7IgfEDQ+KrnsNc=");
+//    RegisterFFEngine(@"yQ2oiBQRbXoo35veDico9ggF4ARFxRdjq3yiIvBltwIPe/SgphrthjEVCzt6mtAfejcyM1fkbDdY+wE8j7oeJLK+u1KEO7IgfEDQ+KrnsNc=");
 //    registerLib("ffsdk.com");
 
     

@@ -9,7 +9,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 
 #import "ELPlayerViewController.h"
-#import <FFEngine/FFEngine.h>
+//#import <FFEngine/FFEngine.h>
 
 @implementation ELPlayerViewController
 
@@ -73,34 +73,34 @@
 }
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
 {
-    NSLog(@"willRotateToInterfaceOrientation");
-    id<IELMediaPlayer> player = loadELMediaPlayer();
-//    if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-//        [player setPlayerScreenType:ELScreenType_ORIGINAL_SCR];
-//    }else{
-//        [player setPlayerScreenType:ELScreenType_ASPECT_FULL_SCR];
-//    }
-    [player refreshViewFrame];
-}
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation;
-{
-    NSLog(@"didRotateFromInterfaceOrientation");
-}
--(void)initSDK
-{
-    id<IELMediaPlayer> player = loadELMediaPlayer();
-    
-    [player setDelegate:self];
-    [player setAutoPlayAfterOpen:YES];
-    [player setVideoContainerView:self.playerView];
-    [player setPlayerScreenType:ELScreenType_ORIGINAL_SCR];
-    
-    [self startPlayVideo:nil];
+//    NSLog(@"willRotateToInterfaceOrientation");
+//    id<IELMediaPlayer> player = loadELMediaPlayer();
+////    if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+////        [player setPlayerScreenType:ELScreenType_ORIGINAL_SCR];
+////    }else{
+////        [player setPlayerScreenType:ELScreenType_ASPECT_FULL_SCR];
+////    }
+//    [player refreshViewFrame];
+//}
+//- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation;
+//{
+//    NSLog(@"didRotateFromInterfaceOrientation");
+//}
+//-(void)initSDK
+//{
+//    id<IELMediaPlayer> player = loadELMediaPlayer();
+//    
+//    [player setDelegate:self];
+//    [player setAutoPlayAfterOpen:YES];
+//    [player setVideoContainerView:self.playerView];
+//    [player setPlayerScreenType:ELScreenType_ORIGINAL_SCR];
+//    
+//    [self startPlayVideo:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self initSDK];
+//    [self initSDK];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -144,9 +144,9 @@
 
 - (void)playToEnd
 {
-    id<IELMediaPlayer> player = loadELMediaPlayer();
-    
-    [player stopPlay];
+//    id<IELMediaPlayer> player = loadELMediaPlayer();
+//    
+//    [player stopPlay];
 }
 
 // 总长度
@@ -194,64 +194,64 @@
 //! 播放视频
 -(IBAction) startPlayVideo:(id)sender
 {
-    id<IELMediaPlayer> player = loadELMediaPlayer();
-    
-    if( [player openMedia: self.videoUrl] )
-    {
-        self.pEstablishedTimeLabel.text = @"Opening";    
-    }
-    
-    [UIApplication sharedApplication].idleTimerDisabled = YES;
+//    id<IELMediaPlayer> player = loadELMediaPlayer();
+//    
+//    if( [player openMedia: self.videoUrl] )
+//    {
+//        self.pEstablishedTimeLabel.text = @"Opening";    
+//    }
+//    
+//    [UIApplication sharedApplication].idleTimerDisabled = YES;
     
 }
 
 //! 暂停播放
 -(IBAction) pausePlayVideo:(id)sender
 {
-    static int i = 0;
-    id<IELMediaPlayer> player = loadELMediaPlayer();
-    
-    if(i)
-    {
-        // resume
-        i = 0;
-        [player resumePlay];  
-    }
-    else
-    {
-        // Pause
-        i = 1;
-        [player pausePlay];
-        
-        self.pEstablishedTimeLabel.text = @"Paused";
-    }
+//    static int i = 0;
+//    id<IELMediaPlayer> player = loadELMediaPlayer();
+//    
+//    if(i)
+//    {
+//        // resume
+//        i = 0;
+//        [player resumePlay];  
+//    }
+//    else
+//    {
+//        // Pause
+//        i = 1;
+//        [player pausePlay];
+//        
+//        self.pEstablishedTimeLabel.text = @"Paused";
+//    }
 }
 
 //! 停止播放
 -(IBAction) stopPlayVideo:(id)sender
 {   
-    id<IELMediaPlayer> player = loadELMediaPlayer();
-    
-    [player stopPlay];
-    player = nil;
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
-
+//    id<IELMediaPlayer> player = loadELMediaPlayer();
+//    
+//    [player stopPlay];
+//    player = nil;
+//    [UIApplication sharedApplication].idleTimerDisabled = NO;
+//
 }
 
 //! 到退播放
 -(IBAction) rewindPlayVideo:(id)sender
 {
-    id<IELMediaPlayer> player = loadELMediaPlayer();
-
-    [player seekTo: _videoPostion - 10 * 1000];
+//    id<IELMediaPlayer> player = loadELMediaPlayer();
+//
+//    [player seekTo: _videoPostion - 10 * 1000];
 }
 
 //! 快进播放
 -(IBAction) forwardPlayVideo:(id)sender
 {
-    id<IELMediaPlayer> player = loadELMediaPlayer();
-
-    [player seekTo: _videoPostion + 10 * 1000];
+//    id<IELMediaPlayer> player = loadELMediaPlayer();
+//
+//    [player seekTo: _videoPostion + 10 * 1000];
 }
 
 //! 快照
@@ -263,13 +263,13 @@
 // 手动拉动播放
 -(IBAction) sliderValueChanged:(id)sender
 {
-    UISlider *slider = (UISlider *) sender;
-    
-    size_t currentPosition = (slider.value * _videoDuration);
-    
-    id<IELMediaPlayer> player = loadELMediaPlayer();
-    
-    [player seekTo: currentPosition];
+//    UISlider *slider = (UISlider *) sender;
+//    
+//    size_t currentPosition = (slider.value * _videoDuration);
+//    
+//    id<IELMediaPlayer> player = loadELMediaPlayer();
+//    
+//    [player seekTo: currentPosition];
 }
 
 
@@ -282,9 +282,9 @@
 
 -(void)appResignActive
 {
-    id<IELMediaPlayer> player = loadELMediaPlayer();
-    
-    [player stopPlay];
+//    id<IELMediaPlayer> player = loadELMediaPlayer();
+//    
+//    [player stopPlay];
 }
 
 @end
