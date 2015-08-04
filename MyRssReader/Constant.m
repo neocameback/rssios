@@ -49,8 +49,8 @@
             NSLog(@"%@",externalIP);
             return externalIP;
         } else {
-            NSLog(@"Oops... g %d, %@",
-                  [error code],
+            NSLog(@"Oops... g %ld, %@",
+                  (long)[error code],
                   [error localizedDescription]);
         }
     }

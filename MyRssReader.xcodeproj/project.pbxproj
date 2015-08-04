@@ -877,7 +877,6 @@
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
 					"$(PROJECT_DIR)/Libraries",
-					"$(PROJECT_DIR)/Libraries/GoogleAnalytic",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -947,7 +946,6 @@
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
 					"$(PROJECT_DIR)/Libraries",
-					"$(PROJECT_DIR)/Libraries/GoogleAnalytic",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
