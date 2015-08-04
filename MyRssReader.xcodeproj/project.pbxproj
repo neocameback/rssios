@@ -33,9 +33,6 @@
 		DE1B5B41194B0EA000A4B5D9 /* icon_default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1B5B3F194B0EA000A4B5D9 /* icon_default.png */; };
 		DE1B5B42194B0EA000A4B5D9 /* icon_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1B5B40194B0EA000A4B5D9 /* icon_default@2x.png */; };
 		DE210913194FE8A10026F481 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = DE210912194FE8A10026F481 /* close.png */; };
-		DE210916194FEEF70026F481 /* FFmpeg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE210914194FEEF70026F481 /* FFmpeg.framework */; };
-		DE210917194FEEF70026F481 /* FFEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE210915194FEEF70026F481 /* FFEngine.framework */; };
-		DE21091B194FEF290026F481 /* ELPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE210919194FEF290026F481 /* ELPlayerViewController.m */; };
 		DE21091E194FF04A0026F481 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE21091D194FF04A0026F481 /* Storyboard.storyboard */; };
 		DE22E7B9192F54180005E685 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE22E7B8192F54180005E685 /* Foundation.framework */; };
 		DE22E7BB192F54180005E685 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE22E7BA192F54180005E685 /* CoreGraphics.framework */; };
@@ -154,10 +151,6 @@
 		DE1B5B3F194B0EA000A4B5D9 /* icon_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_default.png; sourceTree = "<group>"; };
 		DE1B5B40194B0EA000A4B5D9 /* icon_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_default@2x.png"; sourceTree = "<group>"; };
 		DE210912194FE8A10026F481 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
-		DE210914194FEEF70026F481 /* FFmpeg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FFmpeg.framework; sourceTree = "<group>"; };
-		DE210915194FEEF70026F481 /* FFEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FFEngine.framework; sourceTree = "<group>"; };
-		DE210918194FEF290026F481 /* ELPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELPlayerViewController.h; sourceTree = "<group>"; };
-		DE210919194FEF290026F481 /* ELPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELPlayerViewController.m; sourceTree = "<group>"; };
 		DE21091D194FF04A0026F481 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		DE22E7B5192F54180005E685 /* Rss Video Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rss Video Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE22E7B8192F54180005E685 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -269,10 +262,8 @@
 				DE22E7BD192F54180005E685 /* UIKit.framework in Frameworks */,
 				42AE1B28194B8FB600F2CC2A /* Security.framework in Frameworks */,
 				DE1B5B3E194AEE2900A4B5D9 /* libsqlite3.dylib in Frameworks */,
-				DE210917194FEEF70026F481 /* FFEngine.framework in Frameworks */,
 				DE1B5B3C194AEDA400A4B5D9 /* libz.dylib in Frameworks */,
 				DE1B5B3B194AED9800A4B5D9 /* AdSupport.framework in Frameworks */,
-				DE210916194FEEF70026F481 /* FFmpeg.framework in Frameworks */,
 				DEB54D8719333CB200EC589E /* MediaPlayer.framework in Frameworks */,
 				DE22E7BB192F54180005E685 /* CoreGraphics.framework in Frameworks */,
 				42B84198194DFD320014B1E0 /* DailymotionSDK.framework in Frameworks */,
@@ -502,8 +493,6 @@
 		DEF496121934339F00DD482D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				DE210914194FEEF70026F481 /* FFmpeg.framework */,
-				DE210915194FEEF70026F481 /* FFEngine.framework */,
 				42B84197194DFD320014B1E0 /* DailymotionSDK.framework */,
 				DE1B5B32194AED3400A4B5D9 /* GoogleAnalytic */,
 				DEF496131934349F00DD482D /* Reachability */,
@@ -530,8 +519,6 @@
 				DEB54D6919331FA800EC589E /* NodeListViewController.h */,
 				DEB54D6A19331FA800EC589E /* NodeListViewController.m */,
 				DEB54D6B19331FA800EC589E /* NodeListViewController.xib */,
-				DE210918194FEF290026F481 /* ELPlayerViewController.h */,
-				DE210919194FEF290026F481 /* ELPlayerViewController.m */,
 				DE21091D194FF04A0026F481 /* Storyboard.storyboard */,
 				DEB54D6E1933333A00EC589E /* NodeListCustomCell.h */,
 				DEB54D6F1933333A00EC589E /* NodeListCustomCell.m */,
@@ -763,7 +750,6 @@
 				DEB54D6C19331FA800EC589E /* NodeListViewController.m in Sources */,
 				DEB54D711933333A00EC589E /* NodeListCustomCell.m in Sources */,
 				DE22E7F4192F5D360005E685 /* ManageRssViewController.m in Sources */,
-				DE21091B194FEF290026F481 /* ELPlayerViewController.m in Sources */,
 				DE22E7C9192F54180005E685 /* AppDelegate.m in Sources */,
 				DE7F39A81935DCC900C7C143 /* NSString+MD5.m in Sources */,
 				DE7B306C193C377700B749D0 /* Node.m in Sources */,

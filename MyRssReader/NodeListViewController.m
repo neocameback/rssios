@@ -14,7 +14,6 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <XCDYouTubeVideoPlayerViewController.h>
 #import <DailymotionSDK/DailymotionSDK.h>
-#import "ELPlayerViewController.h"
 
 @interface NodeListViewController ()
 {
@@ -321,14 +320,14 @@
             break;
         case NODE_TYPE_RTMP:
         {
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
-            
-            ELPlayerViewController *viewcontroller = [sb instantiateViewControllerWithIdentifier:@"ELPlayerViewController"];
-            [viewcontroller setVideoUrl:node.nodeUrl];
-            [viewcontroller setTitleName:node.nodeTitle];
-            [self presentViewController:viewcontroller animated:YES completion:^{
-                
-            }];
+//            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+//            
+//            ELPlayerViewController *viewcontroller = [sb instantiateViewControllerWithIdentifier:@"ELPlayerViewController"];
+//            [viewcontroller setVideoUrl:node.nodeUrl];
+//            [viewcontroller setTitleName:node.nodeTitle];
+//            [self presentViewController:viewcontroller animated:YES completion:^{
+//                
+//            }];
         }
             break;
             
