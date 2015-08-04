@@ -10,7 +10,7 @@
 #import "Rss.h"
 #import "Node.h"
 #import "NodeListViewController.h"
-#import <MWFeedParser.h>
+#import "MWFeedParser.h"
 
 @interface RssListViewController () <MWFeedParserDelegate>
 {

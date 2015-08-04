@@ -24,7 +24,7 @@ PODS:
     - MagicalRecord/Core (= 2.2)
   - MagicalRecord/Core (2.2)
   - SVProgressHUD (1.0)
-  - XCDYouTubeVideoPlayerViewController (1.1.2)
+  - XCDYouTubeKit (2.2.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.2)
@@ -32,7 +32,7 @@ DEPENDENCIES:
   - Google-Mobile-Ads-SDK (~> 6.9.2)
   - MagicalRecord (~> 2.2)
   - SVProgressHUD (~> 1.0)
-  - XCDYouTubeVideoPlayerViewController (~> 1.1)
+  - XCDYouTubeKit (~> 2.2)
 
 SPEC CHECKSUMS:
   AFNetworking: caca0799b310f0c3bf1fc1af45145fc96972bcab
@@ -40,6 +40,6 @@ SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: c260aeff59be1eecdaa5e57f26e6699a3ecbc50e
   MagicalRecord: f8a56bb87ab6552f20c4bb8681a1958a197ea3cd
   SVProgressHUD: 46088807596a795cbcb4affd92cf3f13b6ab3dda
-  XCDYouTubeVideoPlayerViewController: 6109df71b5976a3c142ffb4a266448c77f60f94d
+  XCDYouTubeKit: 920ff5dfdf37f0f41b19610c5270b2ed23b05b13
 
 COCOAPODS: 0.38.2

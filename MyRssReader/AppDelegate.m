@@ -10,8 +10,8 @@
 #import "HomeViewController.h"
 #import "Rss.h"
 #import "Node.h"
-#import <MWFeedParser.h>
-#import <NSString+HTML.h>
+#import "MWFeedParser.h"
+#import "NSString+HTML.h"
 #import <SVProgressHUD.h>
 #import "Reachability.h"
 
