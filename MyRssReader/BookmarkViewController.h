@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MWFeedParser.h"
 #import "Rss.h"
-#import <GADInterstitial.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
 @interface BookmarkViewController : BaseViewController <MWFeedParserDelegate, UITableViewDataSource, UITableViewDelegate,GADInterstitialDelegate, UISearchDisplayDelegate>
 {
     NSMutableArray *nodeList;

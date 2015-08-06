@@ -21,7 +21,6 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="320" id="Fpg-Sb-Akz"/>
                         <constraint firstAttribute="height" constant="50" id="eT3-qA-85q"/>
                     </constraints>
                 </view>
@@ -37,8 +36,9 @@
             <constraints>
                 <constraint firstItem="Tb9-PZ-2Fo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="60k-Vj-dID"/>
                 <constraint firstAttribute="trailing" secondItem="Tb9-PZ-2Fo" secondAttribute="trailing" id="8LA-o9-Thu"/>
+                <constraint firstAttribute="trailing" secondItem="x8l-YY-oiV" secondAttribute="trailing" id="H6r-fC-N2D"/>
                 <constraint firstAttribute="bottom" secondItem="Tb9-PZ-2Fo" secondAttribute="bottom" id="Whx-U3-8pO"/>
-                <constraint firstAttribute="centerX" secondItem="x8l-YY-oiV" secondAttribute="centerX" id="apA-bO-Vve"/>
+                <constraint firstItem="x8l-YY-oiV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lac-hZ-nBs"/>
                 <constraint firstAttribute="centerX" secondItem="Tb9-PZ-2Fo" secondAttribute="centerX" id="nDs-C9-iw3"/>
                 <constraint firstItem="Tb9-PZ-2Fo" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="oPr-E7-t7l"/>
                 <constraint firstItem="x8l-YY-oiV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qZy-ZS-ZN4"/>

@@ -227,7 +227,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastOpenFullScreen];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    if (interval <= 120) {
+    if (interval <= kSecondsToPresentInterstitial) {
         [self continueAtCurrentPath];
         return;
     }

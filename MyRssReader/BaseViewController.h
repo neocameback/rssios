@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <GADBannerView.h>
-#import "GAITrackedViewController.h"
+#import <GAITrackedViewController.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
 @interface BaseViewController : GAITrackedViewController
 {

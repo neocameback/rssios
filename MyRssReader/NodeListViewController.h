@@ -12,7 +12,7 @@
 #import "TempNode.h"
 
 #import "MWFeedParser.h"
-#import <GADInterstitial.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
 typedef enum : NSUInteger {
     CELL_TYPE_NORMAL,

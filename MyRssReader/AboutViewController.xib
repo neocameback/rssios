@@ -20,7 +20,6 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="320" id="WZy-nA-aHC"/>
                         <constraint firstAttribute="height" constant="50" id="uJi-UJ-PyD"/>
                     </constraints>
                 </view>
@@ -43,12 +42,13 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="ydA-zl-z49" secondAttribute="trailing" id="D8v-2W-2W9"/>
                 <constraint firstItem="DjZ-yN-N5e" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="GEK-Ag-GnX"/>
                 <constraint firstItem="VbR-38-KfK" firstAttribute="trailing" secondItem="DjZ-yN-N5e" secondAttribute="trailing" id="Jh2-Ot-NFz"/>
                 <constraint firstItem="DjZ-yN-N5e" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="OvH-dT-hJK"/>
-                <constraint firstAttribute="centerX" secondItem="ydA-zl-z49" secondAttribute="centerX" id="RD1-va-os5"/>
                 <constraint firstItem="VbR-38-KfK" firstAttribute="top" secondItem="DjZ-yN-N5e" secondAttribute="bottom" constant="8" symbolic="YES" id="eEd-54-gP6"/>
                 <constraint firstItem="DjZ-yN-N5e" firstAttribute="leading" secondItem="VbR-38-KfK" secondAttribute="leading" id="kwA-KO-peu"/>
+                <constraint firstItem="ydA-zl-z49" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oOq-DH-Jmd"/>
                 <constraint firstItem="ydA-zl-z49" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rIQ-BU-VHJ"/>
                 <constraint firstAttribute="centerY" secondItem="DjZ-yN-N5e" secondAttribute="centerY" constant="19" id="uyJ-uP-LX7"/>
             </constraints>

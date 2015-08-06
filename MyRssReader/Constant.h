@@ -11,7 +11,7 @@
 #define kNotificationShouldReloadRssList    @"should_reload_rss"
 
 #define ad_range   16
-
+#define kSecondsToPresentInterstitial   120
 #define kLastOpenFullScreen @"last_open_full_screen"
 
 #define kDefaultRssUrl  @"http://rssvideoplayer.com/sample.xml"

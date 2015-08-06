@@ -901,7 +901,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
-					"-lGoogleAdMobAds",
 					"-framework",
 					AVFoundation,
 					"-framework",
@@ -969,7 +968,6 @@
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
-					"-lGoogleAdMobAds",
 					"-framework",
 					AVFoundation,
 					"-framework",
