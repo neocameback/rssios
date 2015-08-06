@@ -60,7 +60,7 @@
 {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 //    NSString *ipAddres = [Constant getIpAddress];
-    [request setValue:@"RSSVideoPlayer1.1-iOS" forHTTPHeaderField:@"User-Agent"];
+    [request setValue:@"RSSVideoPlayer2.0-iOS" forHTTPHeaderField:@"User-Agent"];
     NSString *md5String = [[NSString stringWithFormat:@"%@%@",kDefaultMd5Prefix,url] MD5String];
     [request setHTTPMethod:method];
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?Auth=%@",url,md5String]]];
@@ -84,6 +84,9 @@
     }
     else if ([nodeType rangeOfString:@"rtmp"].location != NSNotFound){
         return NODE_TYPE_RTMP;
+    }
+    else if ([nodeType rangeOfString:@"web/content"].location != NSNotFound){
+        return NODE_TYPE_WEB_CONTENT;
     }
     else{
         return NODE_TYPE_WEB;

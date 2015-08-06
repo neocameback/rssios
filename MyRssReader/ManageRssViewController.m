@@ -88,6 +88,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark uitableview datasource and delegate
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return rssList.count;
@@ -145,6 +146,7 @@
     
     [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
+#pragma mark UIAlertView delegate
 - (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
 {
     if ([[[alertView textFieldAtIndex:1] text] length] > 0) {
@@ -200,6 +202,7 @@
             break;
     }
 }
+#pragma mark MWFeedParser delegate
 - (void)feedParserDidStart:(MWFeedParser *)parser
 {
     
@@ -263,11 +266,5 @@
                                           cancelButtonTitle:@"Dismiss"
                                           otherButtonTitles:nil];
     [alert show];
-}
-- (IBAction)onAdd:(id)sender {
-}
-
-- (IBAction)onCancel:(id)sender {
-    [self.view endEditing:YES];
 }
 @end

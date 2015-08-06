@@ -43,7 +43,7 @@
     nodeCell = [nib instantiateWithOwner:self options:nil][0];
     [_tableView registerNib:nib forCellReuseIdentifier:@"NodeListCustomCell"];
     
-//    [self preLoadInterstitial];
+    interstitial_ = [self createAndLoadInterstital];
 }
 -(void) viewWillAppear:(BOOL)animated
 {
@@ -76,12 +76,6 @@
     }
 }
 
--(void) appendAdsNode
-{
-    for (int i = ad_range - 1; i < nodeList.count; i = i + ad_range) {
-        [nodeList insertObject:@"Ads" atIndex:i];
-    }
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -101,12 +95,11 @@
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self tableview:tableView cellTypeForRowAtIndexPath:indexPath] == CELL_TYPE_NORMAL) {
-//        return 61;
+        
         TempNode *node = nodeList[indexPath.row];
         [nodeCell configWithNode:node];
         [nodeCell layoutIfNeeded];
         CGFloat height = [nodeCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-        NSLog(@"height: %f",height);
         if (height < 71) {
             return 71;
         }else{
@@ -123,38 +116,14 @@
 
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self tableview:tableView cellTypeForRowAtIndexPath:indexPath] == CELL_TYPE_NORMAL) {
-        TempNode *node = nodeList[indexPath.row];
-        
-        NodeListCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NodeListCustomCell" forIndexPath:indexPath];
-        [cell configWithNode:node];
-        
-        [cell.btn_addToFav addTarget:self action:@selector(onAddToFav:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.btn_addToFav setTag:indexPath.row];
-        return cell;
-    }else{
-        NSString *identifier = @"NodeListAdCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        }
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        
-        GADBannerView *bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-        // Specify the ad unit ID.
-        
-        if (tempRss && tempRss.adsBannerId && tempRss.adsBannerId.length > 0) {
-            bannerView.adUnitID = tempRss.adsBannerId;
-        }else{
-            bannerView.adUnitID = kSmallAdUnitId;
-        }
-        bannerView.rootViewController = self;
-
-        [cell.contentView addSubview:bannerView];
-        [bannerView loadRequest:[GADRequest request]];
-        
-        return cell;
-    }
+    TempNode *node = nodeList[indexPath.row];
+    
+    NodeListCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NodeListCustomCell" forIndexPath:indexPath];
+    [cell configWithNode:node];
+    
+    [cell.btn_addToFav addTarget:self action:@selector(onAddToFav:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btn_addToFav setTag:indexPath.row];
+    return cell;
 }
 
 -(void) onAddToFav:(id) sender
@@ -234,6 +203,21 @@
 
 #pragma mark Admob
 #pragma mark Interstitial delegate
+-(GADInterstitial*) createAndLoadInterstital
+{
+    GADRequest *request = [GADRequest request];
+    GADInterstitial * interstitial = nil;
+    if (tempRss && tempRss.adsFullId && tempRss.adsFullId.length > 0) {
+        interstitial.adUnitID = tempRss.adsFullId;
+    }else{
+        interstitial.adUnitID = kLargeAdUnitId;
+    }
+    interstitial.delegate = self;
+    [interstitial loadRequest:request];
+    
+    return interstitial;
+}
+
 - (void)preLoadInterstitial {
     //Call this method as soon as you can - loadRequest will run in the background and your interstitial will be ready when you need to show it
     
@@ -247,48 +231,27 @@
         [self continueAtCurrentPath];
         return;
     }
-    [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeGradient];
-    
-    GADRequest *request = [GADRequest request];
-    interstitial_ = nil;
-    interstitial_ = [[GADInterstitial alloc] init];
-    interstitial_.delegate = self;
-    if (tempRss && tempRss.adsFullId && tempRss.adsFullId.length > 0) {
-        interstitial_.adUnitID = tempRss.adsFullId;
+    if (interstitial_.isReady) {
+        [interstitial_ presentFromRootViewController:self];
     }else{
-        interstitial_.adUnitID = kLargeAdUnitId;
+        [self continueAtCurrentPath];
     }
-    [interstitial_ loadRequest:request];
 }
 
 - (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial
 {
-    [SVProgressHUD dismiss];
     NSLog(@"interstitialDidReceiveAd");
-    [interstitial_ presentFromRootViewController:self];
 }
 - (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
 {
-    [SVProgressHUD dismiss];
     NSLog(@"didFailToReceiveAdWithError: %@",[error localizedDescription]);
     //If an error occurs and the interstitial is not received you might want to retry automatically after a certain interval
+    [self createAndLoadInterstital];
 }
-- (void)interstitialWillPresentScreen:(GADInterstitial *)interstitial
-{
-    [SVProgressHUD dismiss];
-}
-- (void)interstitialWillDismissScreen:(GADInterstitial *)interstitial
-{
 
-}
 - (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
 {
-    NSLog(@"interstitialDidDismissScreen");
-    [self continueAtCurrentPath];
-}
-- (void)interstitialWillLeaveApplication:(GADInterstitial *)interstitial
-{
-    
+    [self createAndLoadInterstital];
 }
 
 -(void) continueAtCurrentPath
@@ -385,7 +348,7 @@
     [SVProgressHUD dismiss];
     NSLog(@"Finished Parsing%@", (parser.stopped ? @" (Stopped)" : @""));
     
-    [self appendAdsNode];
+//    [self appendAdsNode];
     
     [self.tableView reloadData];
 }
@@ -398,6 +361,7 @@
                                           cancelButtonTitle:@"Dismiss"
                                           otherButtonTitles:nil];
     [alert show];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

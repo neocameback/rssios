@@ -43,6 +43,7 @@
 		DE1B5B3E194AEE2900A4B5D9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1B5B3D194AEE2900A4B5D9 /* libsqlite3.dylib */; };
 		DE1B5B41194B0EA000A4B5D9 /* icon_default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1B5B3F194B0EA000A4B5D9 /* icon_default.png */; };
 		DE1B5B42194B0EA000A4B5D9 /* icon_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1B5B40194B0EA000A4B5D9 /* icon_default@2x.png */; };
+		DE1F7E001B73064900C53E95 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1F7DFF1B73064900C53E95 /* Launch Screen.xib */; };
 		DE210913194FE8A10026F481 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = DE210912194FE8A10026F481 /* close.png */; };
 		DE21091E194FF04A0026F481 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE21091D194FF04A0026F481 /* Storyboard.storyboard */; };
 		DE22E7B9192F54180005E685 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE22E7B8192F54180005E685 /* Foundation.framework */; };
@@ -147,6 +148,7 @@
 		DE1B5B3D194AEE2900A4B5D9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		DE1B5B3F194B0EA000A4B5D9 /* icon_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_default.png; sourceTree = "<group>"; };
 		DE1B5B40194B0EA000A4B5D9 /* icon_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_default@2x.png"; sourceTree = "<group>"; };
+		DE1F7DFF1B73064900C53E95 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		DE210912194FE8A10026F481 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		DE21091D194FF04A0026F481 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		DE22E7B5192F54180005E685 /* Rss Video Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rss Video Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -297,6 +299,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		DE1F7DFD1B72FDD000C53E95 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				DEB54D6E1933333A00EC589E /* NodeListCustomCell.h */,
+				DEB54D6F1933333A00EC589E /* NodeListCustomCell.m */,
+				DEB54D701933333A00EC589E /* NodeListCustomCell.xib */,
+			);
+			name = CustomCell;
+			sourceTree = "<group>";
+		};
+		DE1F7DFE1B7305F500C53E95 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				DEF496561934A24C00DD482D /* BookmarkCustomCell.h */,
+				DEF496571934A24C00DD482D /* BookmarkCustomCell.m */,
+				DEF496581934A24C00DD482D /* BookmarkCustomCell.xib */,
+			);
+			name = CustomCell;
+			sourceTree = "<group>";
+		};
 		DE22E7AC192F54180005E685 = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +375,7 @@
 				DE22E7E9192F5C410005E685 /* HomeViewController.xib */,
 				DEF4961D1934385200DD482D /* Constant.h */,
 				DEF4961E1934385200DD482D /* Constant.m */,
+				DE1F7DFF1B73064900C53E95 /* Launch Screen.xib */,
 				DEC5DD3B19359A560088A62F /* BaseViewController.h */,
 				DEC5DD3C19359A560088A62F /* BaseViewController.m */,
 				DEC5DD3D19359A560088A62F /* BaseViewController.xib */,
@@ -513,6 +536,7 @@
 		DEF496211934496B00DD482D /* Tab Home */ = {
 			isa = PBXGroup;
 			children = (
+				DE1F7DFD1B72FDD000C53E95 /* CustomCell */,
 				DE4303DD193878D8008A42A4 /* Model */,
 				DE22E7EC192F5D230005E685 /* RssListViewController.h */,
 				DE22E7ED192F5D230005E685 /* RssListViewController.m */,
@@ -521,9 +545,6 @@
 				DEB54D6A19331FA800EC589E /* NodeListViewController.m */,
 				DEB54D6B19331FA800EC589E /* NodeListViewController.xib */,
 				DE21091D194FF04A0026F481 /* Storyboard.storyboard */,
-				DEB54D6E1933333A00EC589E /* NodeListCustomCell.h */,
-				DEB54D6F1933333A00EC589E /* NodeListCustomCell.m */,
-				DEB54D701933333A00EC589E /* NodeListCustomCell.xib */,
 				DEB54D80193337B200EC589E /* WebViewViewController.h */,
 				DEB54D81193337B200EC589E /* WebViewViewController.m */,
 				DEB54D82193337B200EC589E /* WebViewViewController.xib */,
@@ -544,12 +565,10 @@
 		DEF49623193449B600DD482D /* Tab Favorite */ = {
 			isa = PBXGroup;
 			children = (
+				DE1F7DFE1B7305F500C53E95 /* CustomCell */,
 				DE22E7F6192F5E4D0005E685 /* BookmarkViewController.h */,
 				DE22E7F7192F5E4D0005E685 /* BookmarkViewController.m */,
 				DE22E7F8192F5E4D0005E685 /* BookmarkViewController.xib */,
-				DEF496561934A24C00DD482D /* BookmarkCustomCell.h */,
-				DEF496571934A24C00DD482D /* BookmarkCustomCell.m */,
-				DEF496581934A24C00DD482D /* BookmarkCustomCell.xib */,
 			);
 			name = "Tab Favorite";
 			sourceTree = "<group>";
@@ -670,6 +689,7 @@
 				DEB54D761933345000EC589E /* default_rss_img.png in Resources */,
 				DEB54D7F193336BE00EC589E /* rate_star_1@2x.png in Resources */,
 				42C70C16193CBE3500736BCF /* icon-80.png in Resources */,
+				DE1F7E001B73064900C53E95 /* Launch Screen.xib in Resources */,
 				DEC5DD2219357EDC0088A62F /* ic_home_normal.png in Resources */,
 				DEB54D771933345000EC589E /* default_rss_img@2x.png in Resources */,
 				DEC5DD2019357EDC0088A62F /* ic_home_press.png in Resources */,
