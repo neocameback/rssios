@@ -43,36 +43,30 @@
         
     RssListViewController *rssVC = [RssListViewController initWithNibName];
     UINavigationController *homeNav = [[UINavigationController alloc] initWithRootViewController:rssVC];
+    UITabBarItem *tabBarItem1 = [[UITabBarItem alloc] initWithTitle:@"Home" image:[UIImage imageNamed:@"ic_home_normal"] selectedImage:[UIImage imageNamed:@"ic_home_press"]];
+    [homeNav setTabBarItem:tabBarItem1];
     
     ManageRssViewController *addRssVC = [ManageRssViewController initWithNibName];
     UINavigationController *manageNav = [[UINavigationController alloc] initWithRootViewController:addRssVC];
+    UITabBarItem *tabBarItem2 = [[UITabBarItem alloc] initWithTitle:@"Channels" image:[UIImage imageNamed:@"ic_channel_normal"] selectedImage:[UIImage imageNamed:@"ic_channel_press"]];
+    [manageNav setTabBarItem:tabBarItem2];
     
     BookmarkViewController *bookmarkVC = [BookmarkViewController initWithNibName];
     UINavigationController *favoriteNav = [[UINavigationController alloc] initWithRootViewController:bookmarkVC];
+    UITabBarItem *tabBarItem3 = [[UITabBarItem alloc] initWithTitle:@"Favorites" image:[UIImage imageNamed:@"ic_favorites_normal"] selectedImage:[UIImage imageNamed:@"ic_favorites_press"]];
+    [favoriteNav setTabBarItem:tabBarItem3];
     
     AboutViewController *aboutVC = [AboutViewController initWithNibName];
     UINavigationController *aboutNav = [[UINavigationController alloc] initWithRootViewController:aboutVC];
+    UITabBarItem *tabBarItem4 = [[UITabBarItem alloc] initWithTitle:@"About" image:[UIImage imageNamed:@"ic_about_normal"] selectedImage:[UIImage imageNamed:@"ic_about_press"]];
+    [aboutNav setTabBarItem:tabBarItem4];
     
     self.viewControllers = @[homeNav, manageNav, favoriteNav, aboutNav];
     
-    UITabBarItem *tabBarItem1 = [self.tabBar.items objectAtIndex:0];
-    UITabBarItem *tabBarItem2 = [self.tabBar.items objectAtIndex:1];
-    UITabBarItem *tabBarItem3 = [self.tabBar.items objectAtIndex:2];
-    UITabBarItem *tabBarItem4 = [self.tabBar.items objectAtIndex:3];
-    
-    tabBarItem1.title = @"Home";
-    tabBarItem2.title = @"Channels";
-    tabBarItem3.title = @"Favorites";
-    tabBarItem4.title = @"About";
-    
-    [tabBarItem1 setFinishedSelectedImage:[UIImage imageNamed:@"ic_home_press"] withFinishedUnselectedImage:[UIImage imageNamed:@"ic_home_normal"]];
-    [tabBarItem2 setFinishedSelectedImage:[UIImage imageNamed:@"ic_channel_press"] withFinishedUnselectedImage:[UIImage imageNamed:@"ic_channel_normal"]];
-    [tabBarItem3 setFinishedSelectedImage:[UIImage imageNamed:@"ic_favorites_press"] withFinishedUnselectedImage:[UIImage imageNamed:@"ic_favorites_normal"]];
-    [tabBarItem4 setFinishedSelectedImage:[UIImage imageNamed:@"ic_about_press"] withFinishedUnselectedImage:[UIImage imageNamed:@"ic_about_normal"]];
     
     UIColor *titleHighlightedColor = [UIColor colorWithRed:82/255.0 green:203/255.0 blue:149/255.0 alpha:1.0];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                       titleHighlightedColor, UITextAttributeTextColor,
+                                                       titleHighlightedColor, NSForegroundColorAttributeName,
                                                        nil] forState:UIControlStateHighlighted];
 }
 

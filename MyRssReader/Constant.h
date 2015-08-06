@@ -25,6 +25,8 @@
 #define kSmallAdUnitId  @"ca-app-pub-8422191650855912/1857715781"
 #define kLargeAdUnitId  @"ca-app-pub-8422191650855912/4957456186"
 
+#define kMessageInternetConnectionLost  @"Internet connection was lost!"
+
 enum NODE_TYPE {
     NODE_TYPE_RSS = 0,
     NODE_TYPE_VIDEO = 1,
