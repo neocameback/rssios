@@ -13,6 +13,7 @@
 @property (nonatomic, retain) NSString * nodeImage;
 @property (nonatomic, retain) NSString * nodeSource;
 @property (nonatomic, retain) NSString * nodeTitle;
+@property (nonatomic, retain) NSString * nodeLink;
 @property (nonatomic, retain) NSString * nodeType;
 @property (nonatomic, retain) NSString * nodeUrl;
 @property (nonatomic, retain) NSNumber * isAddedToBoomark;

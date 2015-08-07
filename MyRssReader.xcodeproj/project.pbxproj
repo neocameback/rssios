@@ -114,6 +114,8 @@
 		DEC5DD2E19357EDC0088A62F /* ic_about_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC5DD1E19357EDC0088A62F /* ic_about_normal.png */; };
 		DEC5DD3E19359A560088A62F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC5DD3C19359A560088A62F /* BaseViewController.m */; };
 		DEC5DD3F19359A560088A62F /* BaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEC5DD3D19359A560088A62F /* BaseViewController.xib */; };
+		DEF1BDF71B745754002FABC4 /* MyMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF1BDF51B745754002FABC4 /* MyMoviePlayerViewController.m */; };
+		DEF1BDF81B745754002FABC4 /* MyMoviePlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEF1BDF61B745754002FABC4 /* MyMoviePlayerViewController.xib */; };
 		DEF49610193431A800DD482D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF4960E193431A800DD482D /* AboutViewController.m */; };
 		DEF49611193431A800DD482D /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEF4960F193431A800DD482D /* AboutViewController.xib */; };
 		DEF496161934349F00DD482D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF496151934349F00DD482D /* Reachability.m */; };
@@ -253,6 +255,9 @@
 		DEC5DD3B19359A560088A62F /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		DEC5DD3C19359A560088A62F /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		DEC5DD3D19359A560088A62F /* BaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseViewController.xib; sourceTree = "<group>"; };
+		DEF1BDF41B745754002FABC4 /* MyMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMoviePlayerViewController.h; sourceTree = "<group>"; };
+		DEF1BDF51B745754002FABC4 /* MyMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMoviePlayerViewController.m; sourceTree = "<group>"; };
+		DEF1BDF61B745754002FABC4 /* MyMoviePlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyMoviePlayerViewController.xib; sourceTree = "<group>"; };
 		DEF4960D193431A800DD482D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		DEF4960E193431A800DD482D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		DEF4960F193431A800DD482D /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
@@ -548,6 +553,9 @@
 				DEB54D80193337B200EC589E /* WebViewViewController.h */,
 				DEB54D81193337B200EC589E /* WebViewViewController.m */,
 				DEB54D82193337B200EC589E /* WebViewViewController.xib */,
+				DEF1BDF41B745754002FABC4 /* MyMoviePlayerViewController.h */,
+				DEF1BDF51B745754002FABC4 /* MyMoviePlayerViewController.m */,
+				DEF1BDF61B745754002FABC4 /* MyMoviePlayerViewController.xib */,
 			);
 			name = "Tab Home";
 			sourceTree = "<group>";
@@ -646,6 +654,7 @@
 				DEC5DD3F19359A560088A62F /* BaseViewController.xib in Resources */,
 				DE1B5B41194B0EA000A4B5D9 /* icon_default.png in Resources */,
 				42C70C0F193CBE3500736BCF /* icon-29.png in Resources */,
+				DEF1BDF81B745754002FABC4 /* MyMoviePlayerViewController.xib in Resources */,
 				DEC5DD2D19357EDC0088A62F /* ic_about_normal@2x.png in Resources */,
 				DEC5DD2919357EDC0088A62F /* ic_channel_normal@2x.png in Resources */,
 				DEB54D84193337B200EC589E /* WebViewViewController.xib in Resources */,
@@ -781,6 +790,7 @@
 				DEF496591934A24C00DD482D /* BookmarkCustomCell.m in Sources */,
 				DE233F791B70A9AD00C02DD6 /* Model.xcdatamodeld in Sources */,
 				DEF4961C1934376700DD482D /* UIAlertView+Helper.m in Sources */,
+				DEF1BDF71B745754002FABC4 /* MyMoviePlayerViewController.m in Sources */,
 				DEF496161934349F00DD482D /* Reachability.m in Sources */,
 				DE22E7C5192F54180005E685 /* main.m in Sources */,
 				DE233F6C1B70A89F00C02DD6 /* MWFeedInfo.m in Sources */,

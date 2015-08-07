@@ -14,6 +14,8 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <XCDYouTubeVideoPlayerViewController.h>
 #import <DMPlayerViewController.h>
+#import "MyMoviePlayerViewController.h"
+#import <PureLayout.h>
 
 @interface NodeListViewController ()
 {
@@ -152,6 +154,9 @@
     if ([self tableview:tableView cellTypeForRowAtIndexPath:indexPath] == CELL_TYPE_NORMAL) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         TempNode *node = nodeList[indexPath.row];
+        
+        [self continueAtCurrentPath];
+        return;
         switch ([Constant typeOfNode:node.nodeType]) {
             case NODE_TYPE_RSS:
             {
@@ -208,9 +213,9 @@
     GADRequest *request = [GADRequest request];
     GADInterstitial * interstitial = nil;
     if (tempRss && tempRss.adsFullId && tempRss.adsFullId.length > 0) {
-        interstitial.adUnitID = tempRss.adsFullId;
+        interstitial = [[GADInterstitial alloc] initWithAdUnitID:tempRss.adsFullId];
     }else{
-        interstitial.adUnitID = kLargeAdUnitId;
+        interstitial = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
     }
     interstitial.delegate = self;
     [interstitial loadRequest:request];
@@ -252,6 +257,7 @@
 - (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
 {
     [self createAndLoadInterstital];
+    [self continueAtCurrentPath];
 }
 
 -(void) continueAtCurrentPath
@@ -265,7 +271,11 @@
         case NODE_TYPE_VIDEO:
         {
             moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
-            [self presentViewController:moviePlayer animated:YES completion:nil];
+            MyMoviePlayerViewController *viewcontroller = [MyMoviePlayerViewController initWithNibName];
+            [viewcontroller.view addSubview:moviePlayer.view];
+            [moviePlayer.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+            
+            [self presentViewController:viewcontroller animated:YES completion:nil];
         }
             break;
         case NODE_TYPE_YOUTUBE:
@@ -277,7 +287,8 @@
         case NODE_TYPE_DAILYMOTION:
         {
             DMPlayerViewController *playerViewcontroller = [[DMPlayerViewController alloc] initWithVideo:@"x1ythnm"];
-            [playerViewcontroller setTitle:@"Dailymotion"];
+            [playerViewcontroller setTitle:node.nodeTitle];
+            [playerViewcontroller setHidesBottomBarWhenPushed:YES];
              [self.navigationController pushViewController:playerViewcontroller animated:YES];
         }
             break;
@@ -293,7 +304,11 @@
 //            }];
         }
             break;
+        case NODE_TYPE_WEB_CONTENT:
+        {
             
+        }
+            break;
         default:
         {
         }
@@ -320,6 +335,7 @@
     TempNode *aNode = [[TempNode alloc] init];
     aNode.bookmarkStatus = item.bookmarkStatus;
     aNode.nodeTitle = item.title;
+    aNode.nodeLink = item.link;
     if (item.enclosures.count > 0) {
         aNode.nodeType = item.enclosures[0][@"type"];
         aNode.nodeUrl = item.enclosures[0][@"url"];
@@ -337,7 +353,10 @@
                              aNode.nodeImage = [item.summary substringWithRange:[result rangeAtIndex:2]];
                              aNode.nodeImage = [aNode.nodeImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                          }];
-    
+    NSLog(@"didParseFeedItem: %@",[aNode nodeTitle]);
+    NSLog(@"didParseFeedItem: %@",[aNode nodeLink]);
+    NSLog(@"didParseFeedItem: %@",[aNode nodeType]);
+    NSLog(@"didParseFeedItem: %@",[aNode nodeUrl]);
     if (!nodeList) {
         nodeList = [NSMutableArray array];
     }
@@ -347,8 +366,6 @@
 {
     [SVProgressHUD dismiss];
     NSLog(@"Finished Parsing%@", (parser.stopped ? @" (Stopped)" : @""));
-    
-//    [self appendAdsNode];
     
     [self.tableView reloadData];
 }
