@@ -271,11 +271,10 @@
         case NODE_TYPE_VIDEO:
         {
             moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
-            MyMoviePlayerViewController *viewcontroller = [MyMoviePlayerViewController initWithNibName];
-            [viewcontroller.view addSubview:moviePlayer.view];
-            [moviePlayer.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+            [self presentMoviePlayerViewControllerAnimated:moviePlayer];
             
-            [self presentViewController:viewcontroller animated:YES completion:nil];
+//            MyMoviePlayerViewController *viewcontroller = [[MyMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
+//            [self presentMoviePlayerViewControllerAnimated:viewcontroller];
         }
             break;
         case NODE_TYPE_YOUTUBE:

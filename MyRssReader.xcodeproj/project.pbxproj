@@ -115,7 +115,6 @@
 		DEC5DD3E19359A560088A62F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC5DD3C19359A560088A62F /* BaseViewController.m */; };
 		DEC5DD3F19359A560088A62F /* BaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEC5DD3D19359A560088A62F /* BaseViewController.xib */; };
 		DEF1BDF71B745754002FABC4 /* MyMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF1BDF51B745754002FABC4 /* MyMoviePlayerViewController.m */; };
-		DEF1BDF81B745754002FABC4 /* MyMoviePlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEF1BDF61B745754002FABC4 /* MyMoviePlayerViewController.xib */; };
 		DEF49610193431A800DD482D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF4960E193431A800DD482D /* AboutViewController.m */; };
 		DEF49611193431A800DD482D /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEF4960F193431A800DD482D /* AboutViewController.xib */; };
 		DEF496161934349F00DD482D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF496151934349F00DD482D /* Reachability.m */; };
@@ -257,7 +256,6 @@
 		DEC5DD3D19359A560088A62F /* BaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseViewController.xib; sourceTree = "<group>"; };
 		DEF1BDF41B745754002FABC4 /* MyMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMoviePlayerViewController.h; sourceTree = "<group>"; };
 		DEF1BDF51B745754002FABC4 /* MyMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMoviePlayerViewController.m; sourceTree = "<group>"; };
-		DEF1BDF61B745754002FABC4 /* MyMoviePlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyMoviePlayerViewController.xib; sourceTree = "<group>"; };
 		DEF4960D193431A800DD482D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		DEF4960E193431A800DD482D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		DEF4960F193431A800DD482D /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
@@ -555,7 +553,6 @@
 				DEB54D82193337B200EC589E /* WebViewViewController.xib */,
 				DEF1BDF41B745754002FABC4 /* MyMoviePlayerViewController.h */,
 				DEF1BDF51B745754002FABC4 /* MyMoviePlayerViewController.m */,
-				DEF1BDF61B745754002FABC4 /* MyMoviePlayerViewController.xib */,
 			);
 			name = "Tab Home";
 			sourceTree = "<group>";
@@ -654,7 +651,6 @@
 				DEC5DD3F19359A560088A62F /* BaseViewController.xib in Resources */,
 				DE1B5B41194B0EA000A4B5D9 /* icon_default.png in Resources */,
 				42C70C0F193CBE3500736BCF /* icon-29.png in Resources */,
-				DEF1BDF81B745754002FABC4 /* MyMoviePlayerViewController.xib in Resources */,
 				DEC5DD2D19357EDC0088A62F /* ic_about_normal@2x.png in Resources */,
 				DEC5DD2919357EDC0088A62F /* ic_channel_normal@2x.png in Resources */,
 				DEB54D84193337B200EC589E /* WebViewViewController.xib in Resources */,
@@ -894,7 +890,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Phi Long (Y49DN37M2P)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: nguyen nhat (FCDE6QCGS9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Libraries",
 					"$(inherited)",
@@ -948,7 +944,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "Rss Video Player";
-				PROVISIONING_PROFILE = "079DBE6F-E4C4-43E7-96A2-66D0E6AAFD1C";
+				PROVISIONING_PROFILE = "bafa2298-8af7-469b-bd0b-0bab6fb2d1f2";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
