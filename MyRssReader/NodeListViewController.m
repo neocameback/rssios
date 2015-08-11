@@ -163,10 +163,7 @@
                 /**
                  *  parse rss/xml
                  */
-                NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
-                [viewcontroller setRssLink:node.nodeUrl];
-                [viewcontroller setTitle:node.nodeTitle];
-                [self.navigationController pushViewController:viewcontroller animated:YES];
+                [self continueAtCurrentPath];
             }
                 break;
             case NODE_TYPE_VIDEO:
@@ -193,10 +190,6 @@
             default:
             {
                 [self preLoadInterstitial];
-                WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
-                [viewcontroller setTitle:node.nodeTitle];
-                [viewcontroller setWebUrl:node.nodeUrl];
-                [self.navigationController pushViewController:viewcontroller animated:YES];
             }
                 break;
         }
@@ -266,15 +259,19 @@
     switch ([Constant typeOfNode:node.nodeType]) {
         case NODE_TYPE_RSS:
         {
+            NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
+            [viewcontroller setRssLink:node.nodeUrl];
+            [viewcontroller setTitle:node.nodeTitle];
+            [self.navigationController pushViewController:viewcontroller animated:YES];
         }
             break;
         case NODE_TYPE_VIDEO:
         {
-            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
-            [self presentMoviePlayerViewControllerAnimated:moviePlayer];
+//            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
+//            [self presentMoviePlayerViewControllerAnimated:moviePlayer];
             
-//            MyMoviePlayerViewController *viewcontroller = [[MyMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
-//            [self presentMoviePlayerViewControllerAnimated:viewcontroller];
+            MyMoviePlayerViewController *viewcontroller = [[MyMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
+            [self presentMoviePlayerViewControllerAnimated:viewcontroller];
         }
             break;
         case NODE_TYPE_YOUTUBE:
@@ -310,6 +307,10 @@
             break;
         default:
         {
+            WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
+            [viewcontroller setTitle:node.nodeTitle];
+            [viewcontroller setWebUrl:node.nodeUrl];
+            [self.navigationController pushViewController:viewcontroller animated:YES];
         }
             break;
     }

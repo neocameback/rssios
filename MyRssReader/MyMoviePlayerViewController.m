@@ -68,6 +68,7 @@ static bool isSubtitleInit;
     isSilderTouched = NO;
     isSubtitleInit = NO;
     [self.moviePlayer setControlStyle:MPMovieControlStyleNone];
+    [self.moviePlayer setShouldAutoplay:YES];
     isinit = NO;
     [self initUI];
     isControlViewShowed = YES;
@@ -84,7 +85,7 @@ static bool isSubtitleInit;
     NSLog(@"viewDidAppear");
     [super viewDidAppear:animated];
     timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateSlider) userInfo:nil repeats:YES];
-    autohide = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(autoHidePlayerControl) userInfo:nil repeats:YES];
+//    autohide = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(autoHidePlayerControl) userInfo:nil repeats:YES];
     [playerSlider addTarget:self action:@selector(sliderMoveStart) forControlEvents:UIControlEventTouchDown];
     [playerSlider addTarget:self action:@selector(sliderMoving) forControlEvents:UIControlEventTouchDragInside];
     [playerSlider addTarget:self action:@selector(sliderMoveEnd) forControlEvents:UIControlEventTouchUpInside];
@@ -225,15 +226,58 @@ static bool isSubtitleInit;
 
 -(void)preloadDid:(NSNotification *)notification
 {
-    NSLog(@"preload");
+    
+    NSString *playBackState = @"";
+    switch ([(MPMoviePlayerController*)notification.object playbackState]) {
+        case MPMoviePlaybackStateStopped:
+            playBackState = @"MPMoviePlaybackStateStopped";
+            break;
+        case MPMoviePlaybackStatePlaying:
+            playBackState = @"MPMoviePlaybackStatePlaying";
+            break;
+        case MPMoviePlaybackStatePaused:
+            playBackState = @"MPMoviePlaybackStatePaused";
+            break;
+        case MPMoviePlaybackStateInterrupted:
+            playBackState = @"MPMoviePlaybackStateInterrupted";
+            break;
+        case MPMoviePlaybackStateSeekingForward:
+            playBackState = @"MPMoviePlaybackStateSeekingForward";
+            break;
+        case MPMoviePlaybackStateSeekingBackward:
+            playBackState = @"MPMoviePlaybackStateSeekingBackward";
+            break;
+        default:
+            break;
+    }
+    NSLog(@"Playback state: %@",playBackState);
+    NSString *state = @"";
+    switch ([(MPMoviePlayerController*)notification.object loadState]) {
+        case MPMovieLoadStatePlayable:
+            state = @"MPMovieLoadStatePlayable";
+            break;
+        case MPMovieLoadStateUnknown:
+            state = @"MPMovieLoadStateUnknown";
+            break;
+        case MPMovieLoadStatePlaythroughOK:
+            state = @"MPMovieLoadStatePlaythroughOK";
+            break;
+        case MPMovieLoadStateStalled:
+            state = @"MPMovieLoadStateStalled";
+            break;
+        default:
+            break;
+    }
+    NSLog(@"state: %@",state);
+    
     isSilderTouched = NO;
     currentTimeLabel.text = [self secondsToMMSS:self.moviePlayer.currentPlaybackTime];
     if(!isinit){
         loadingButton.hidden =TRUE;
         isinit =YES;
         endTimeLabel.text = [self secondsToMMSS:self.moviePlayer.duration];
+        [self.moviePlayer play];
     }
-    [self.moviePlayer play];
 }
 -(void)movieFinishedCallback:(NSNotification *) notification
 {
