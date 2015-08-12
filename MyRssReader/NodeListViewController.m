@@ -16,6 +16,8 @@
 #import <DMPlayerViewController.h>
 #import "MyMoviePlayerViewController.h"
 #import <PureLayout.h>
+#import <AFNetworking.h>
+#import <AFDownloadRequestOperation.h>
 
 @interface NodeListViewController ()
 {
@@ -125,6 +127,17 @@
     
     [cell.btn_addToFav addTarget:self action:@selector(onAddToFav:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btn_addToFav setTag:indexPath.row];
+    
+    if ([Constant typeOfNode:node.nodeType] == NODE_TYPE_MP4) {
+        UIButton *btn_download = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn_download setImage:[UIImage imageNamed:@"icon_download"] forState:UIControlStateNormal];
+        [btn_download setFrame:CGRectMake(0, 0, 50, 30)];
+        [btn_download addTarget:self action:@selector(onDownLoad:) forControlEvents:UIControlEventTouchUpInside];
+        [btn_download setTag:indexPath.row];
+        [cell setAccessoryView:btn_download];
+    }else{
+        [cell setAccessoryView:nil];
+    }
     return cell;
 }
 
@@ -148,6 +161,39 @@
     }
     [self.tableView reloadData];
 }
+-(void) onDownLoad:(id) sender
+{
+    NSInteger tag = [sender tag];
+    NSString *videoUrl = [nodeList[tag] nodeUrl];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:videoUrl]];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:videoUrl];
+    AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:path shouldResume:YES];
+    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+        NSLog(@"%lu---- %lld",(unsigned long)totalBytesRead,totalBytesExpectedToRead);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD showProgress:totalBytesRead/totalBytesExpectedToRead status:@"Downloading" maskType:SVProgressHUDMaskTypeGradient];
+        });
+    }];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Successfully downloaded file to %@", path);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+        });
+
+        [SVProgressHUD dismiss];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+        });
+    }];
+    
+    [operation start];
+    
+}
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     currentPath = indexPath;
@@ -167,6 +213,10 @@
             }
                 break;
             case NODE_TYPE_VIDEO:
+            {
+                [self preLoadInterstitial];
+            }
+            case NODE_TYPE_MP4:
             {
                 [self preLoadInterstitial];
             }
@@ -267,11 +317,13 @@
             break;
         case NODE_TYPE_VIDEO:
         {
-//            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
-//            [self presentMoviePlayerViewControllerAnimated:moviePlayer];
-            
-            MyMoviePlayerViewController *viewcontroller = [[MyMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
-            [self presentMoviePlayerViewControllerAnimated:viewcontroller];
+            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
+            [self presentMoviePlayerViewControllerAnimated:moviePlayer];
+        }
+        case NODE_TYPE_MP4:
+        {
+            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
+            [self presentMoviePlayerViewControllerAnimated:moviePlayer];
         }
             break;
         case NODE_TYPE_YOUTUBE:
@@ -381,4 +433,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void) dealloc
+{
+    moviePlayer = nil;
+    nodeCell = nil;
+}
 @end

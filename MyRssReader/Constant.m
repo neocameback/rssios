@@ -73,8 +73,11 @@
     if ([nodeType rangeOfString:@"rss"].location != NSNotFound) {
         return NODE_TYPE_RSS;
     }
-    else if ([nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame || [nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame){
+    else if ([nodeType caseInsensitiveCompare:@"application/x-mpegurl"] == NSOrderedSame){
         return NODE_TYPE_VIDEO;
+    }
+    else if ([nodeType caseInsensitiveCompare:@"video/mp4"] == NSOrderedSame){
+        return NODE_TYPE_MP4;
     }
     else if ([nodeType rangeOfString:@"youtube"].location != NSNotFound){
         return NODE_TYPE_YOUTUBE;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -22,7 +22,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="162" translatesAutoresizingMaskIntoConstraints="NO" id="9QI-57-tHd">
-                        <rect key="frame" x="118" y="10" width="162" height="50"/>
+                        <rect key="frame" x="118" y="10" width="137" height="50"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="JSj-7b-NHf"/>
@@ -32,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZ7-15-6Fe">
-                        <rect key="frame" x="273" y="20" width="50" height="30"/>
+                        <rect key="frame" x="254" y="20" width="50" height="30"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="NLn-GZ-rX3"/>
@@ -48,10 +48,10 @@
                     <constraint firstItem="UkU-GL-Df3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ApJ-N8-MtC"/>
                     <constraint firstItem="UkU-GL-Df3" firstAttribute="centerY" secondItem="pZ7-15-6Fe" secondAttribute="centerY" id="Bdr-59-hx6"/>
                     <constraint firstAttribute="bottom" secondItem="9QI-57-tHd" secondAttribute="bottom" constant="10" id="Jws-2Q-p4y"/>
-                    <constraint firstAttribute="trailing" secondItem="pZ7-15-6Fe" secondAttribute="trailing" constant="-3" id="Uq1-eV-D3u"/>
+                    <constraint firstAttribute="trailing" secondItem="pZ7-15-6Fe" secondAttribute="trailing" constant="16" id="Uq1-eV-D3u"/>
                     <constraint firstItem="9QI-57-tHd" firstAttribute="leading" secondItem="UkU-GL-Df3" secondAttribute="trailing" constant="2" id="aEy-sF-WUd"/>
-                    <constraint firstAttribute="trailing" secondItem="9QI-57-tHd" secondAttribute="trailing" constant="40" id="az9-d2-qWq"/>
                     <constraint firstAttribute="centerY" secondItem="UkU-GL-Df3" secondAttribute="centerY" id="bdd-pG-3w5"/>
+                    <constraint firstItem="pZ7-15-6Fe" firstAttribute="leading" secondItem="9QI-57-tHd" secondAttribute="trailing" constant="-1" id="cyw-Je-v8U"/>
                     <constraint firstItem="9QI-57-tHd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="tg1-t2-afX"/>
                 </constraints>
             </tableViewCellContentView>
