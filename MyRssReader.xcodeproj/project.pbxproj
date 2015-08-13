@@ -44,6 +44,23 @@
 		8465650E1B7B9A9000C9E99E /* icon_download.png in Resources */ = {isa = PBXBuildFile; fileRef = 8465650B1B7B9A9000C9E99E /* icon_download.png */; };
 		846565131B7BA57700C9E99E /* _File.m in Sources */ = {isa = PBXBuildFile; fileRef = 846565101B7BA57700C9E99E /* _File.m */; };
 		846565141B7BA57700C9E99E /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 846565121B7BA57700C9E99E /* File.m */; };
+		DE17B29C1B7C74D400905EEE /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DE17B29A1B7C74D400905EEE /* DownloadManager.m */; };
+		DE17B2B41B7C79FD00905EEE /* NoticeView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DE17B29E1B7C79FD00905EEE /* NoticeView.bundle */; };
+		DE17B2B51B7C79FD00905EEE /* NSOperationQueue+WBNoticeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = DE17B2A01B7C79FD00905EEE /* NSOperationQueue+WBNoticeExtensions.m */; };
+		DE17B2B61B7C79FD00905EEE /* UILabel+WBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = DE17B2A21B7C79FD00905EEE /* UILabel+WBExtensions.m */; };
+		DE17B2B71B7C79FD00905EEE /* WBBlueGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE17B2A41B7C79FD00905EEE /* WBBlueGradientView.m */; };
+		DE17B2B81B7C79FD00905EEE /* WBErrorNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE17B2A61B7C79FD00905EEE /* WBErrorNoticeView.m */; };
+		DE17B2B91B7C79FD00905EEE /* WBGrayGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE17B2A81B7C79FD00905EEE /* WBGrayGradientView.m */; };
+		DE17B2BA1B7C79FD00905EEE /* WBNoticeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DE17B2AA1B7C79FD00905EEE /* WBNoticeOperation.m */; };
+		DE17B2BB1B7C79FD00905EEE /* WBNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE17B2AD1B7C79FD00905EEE /* WBNoticeView.m */; };
+		DE17B2BC1B7C79FD00905EEE /* WBRedGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE17B2AF1B7C79FD00905EEE /* WBRedGradientView.m */; };
+		DE17B2BD1B7C79FD00905EEE /* WBStickyNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE17B2B11B7C79FD00905EEE /* WBStickyNoticeView.m */; };
+		DE17B2BE1B7C79FD00905EEE /* WBSuccessNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE17B2B31B7C79FD00905EEE /* WBSuccessNoticeView.m */; };
+		DE17B2C21B7C7C2800905EEE /* icon_check_status.png in Resources */ = {isa = PBXBuildFile; fileRef = DE17B2BF1B7C7C2800905EEE /* icon_check_status.png */; };
+		DE17B2C31B7C7C2800905EEE /* icon_check_status@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE17B2C01B7C7C2800905EEE /* icon_check_status@2x.png */; };
+		DE17B2C41B7C7C2800905EEE /* icon_check_status@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE17B2C11B7C7C2800905EEE /* icon_check_status@3x.png */; };
+		DE17B2C91B7C7DAA00905EEE /* DownloadManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE17B2C71B7C7DAA00905EEE /* DownloadManagerViewController.m */; };
+		DE17B2CA1B7C7DAA00905EEE /* DownloadManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE17B2C81B7C7DAA00905EEE /* DownloadManagerViewController.xib */; };
 		DE1B5B3B194AED9800A4B5D9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE04E6A8194AE52000BD30BC /* AdSupport.framework */; };
 		DE1B5B3C194AEDA400A4B5D9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE04E6A6194AE50300BD30BC /* libz.dylib */; };
 		DE1B5B3E194AEE2900A4B5D9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1B5B3D194AEE2900A4B5D9 /* libsqlite3.dylib */; };
@@ -160,6 +177,36 @@
 		846565121B7BA57700C9E99E /* File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = File.m; sourceTree = "<group>"; };
 		DE04E6A6194AE50300BD30BC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DE04E6A8194AE52000BD30BC /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		DE17B29A1B7C74D400905EEE /* DownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManager.m; sourceTree = "<group>"; };
+		DE17B29B1B7C74D400905EEE /* DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManager.h; sourceTree = "<group>"; };
+		DE17B29E1B7C79FD00905EEE /* NoticeView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NoticeView.bundle; sourceTree = "<group>"; };
+		DE17B29F1B7C79FD00905EEE /* NSOperationQueue+WBNoticeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOperationQueue+WBNoticeExtensions.h"; sourceTree = "<group>"; };
+		DE17B2A01B7C79FD00905EEE /* NSOperationQueue+WBNoticeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOperationQueue+WBNoticeExtensions.m"; sourceTree = "<group>"; };
+		DE17B2A11B7C79FD00905EEE /* UILabel+WBExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+WBExtensions.h"; sourceTree = "<group>"; };
+		DE17B2A21B7C79FD00905EEE /* UILabel+WBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+WBExtensions.m"; sourceTree = "<group>"; };
+		DE17B2A31B7C79FD00905EEE /* WBBlueGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBBlueGradientView.h; sourceTree = "<group>"; };
+		DE17B2A41B7C79FD00905EEE /* WBBlueGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBBlueGradientView.m; sourceTree = "<group>"; };
+		DE17B2A51B7C79FD00905EEE /* WBErrorNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBErrorNoticeView.h; sourceTree = "<group>"; };
+		DE17B2A61B7C79FD00905EEE /* WBErrorNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBErrorNoticeView.m; sourceTree = "<group>"; };
+		DE17B2A71B7C79FD00905EEE /* WBGrayGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBGrayGradientView.h; sourceTree = "<group>"; };
+		DE17B2A81B7C79FD00905EEE /* WBGrayGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBGrayGradientView.m; sourceTree = "<group>"; };
+		DE17B2A91B7C79FD00905EEE /* WBNoticeOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBNoticeOperation.h; sourceTree = "<group>"; };
+		DE17B2AA1B7C79FD00905EEE /* WBNoticeOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBNoticeOperation.m; sourceTree = "<group>"; };
+		DE17B2AB1B7C79FD00905EEE /* WBNoticeView+ForSubclassEyesOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBNoticeView+ForSubclassEyesOnly.h"; sourceTree = "<group>"; };
+		DE17B2AC1B7C79FD00905EEE /* WBNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBNoticeView.h; sourceTree = "<group>"; };
+		DE17B2AD1B7C79FD00905EEE /* WBNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBNoticeView.m; sourceTree = "<group>"; };
+		DE17B2AE1B7C79FD00905EEE /* WBRedGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBRedGradientView.h; sourceTree = "<group>"; };
+		DE17B2AF1B7C79FD00905EEE /* WBRedGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBRedGradientView.m; sourceTree = "<group>"; };
+		DE17B2B01B7C79FD00905EEE /* WBStickyNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStickyNoticeView.h; sourceTree = "<group>"; };
+		DE17B2B11B7C79FD00905EEE /* WBStickyNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStickyNoticeView.m; sourceTree = "<group>"; };
+		DE17B2B21B7C79FD00905EEE /* WBSuccessNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSuccessNoticeView.h; sourceTree = "<group>"; };
+		DE17B2B31B7C79FD00905EEE /* WBSuccessNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSuccessNoticeView.m; sourceTree = "<group>"; };
+		DE17B2BF1B7C7C2800905EEE /* icon_check_status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_check_status.png; sourceTree = "<group>"; };
+		DE17B2C01B7C7C2800905EEE /* icon_check_status@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_check_status@2x.png"; sourceTree = "<group>"; };
+		DE17B2C11B7C7C2800905EEE /* icon_check_status@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_check_status@3x.png"; sourceTree = "<group>"; };
+		DE17B2C61B7C7DAA00905EEE /* DownloadManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManagerViewController.h; sourceTree = "<group>"; };
+		DE17B2C71B7C7DAA00905EEE /* DownloadManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManagerViewController.m; sourceTree = "<group>"; };
+		DE17B2C81B7C7DAA00905EEE /* DownloadManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadManagerViewController.xib; sourceTree = "<group>"; };
 		DE1B5B3D194AEE2900A4B5D9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		DE1B5B3F194B0EA000A4B5D9 /* icon_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_default.png; sourceTree = "<group>"; };
 		DE1B5B40194B0EA000A4B5D9 /* icon_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_default@2x.png"; sourceTree = "<group>"; };
@@ -314,6 +361,45 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		DE17B29D1B7C79FD00905EEE /* WBNoticeView */ = {
+			isa = PBXGroup;
+			children = (
+				DE17B29E1B7C79FD00905EEE /* NoticeView.bundle */,
+				DE17B29F1B7C79FD00905EEE /* NSOperationQueue+WBNoticeExtensions.h */,
+				DE17B2A01B7C79FD00905EEE /* NSOperationQueue+WBNoticeExtensions.m */,
+				DE17B2A11B7C79FD00905EEE /* UILabel+WBExtensions.h */,
+				DE17B2A21B7C79FD00905EEE /* UILabel+WBExtensions.m */,
+				DE17B2A31B7C79FD00905EEE /* WBBlueGradientView.h */,
+				DE17B2A41B7C79FD00905EEE /* WBBlueGradientView.m */,
+				DE17B2A51B7C79FD00905EEE /* WBErrorNoticeView.h */,
+				DE17B2A61B7C79FD00905EEE /* WBErrorNoticeView.m */,
+				DE17B2A71B7C79FD00905EEE /* WBGrayGradientView.h */,
+				DE17B2A81B7C79FD00905EEE /* WBGrayGradientView.m */,
+				DE17B2A91B7C79FD00905EEE /* WBNoticeOperation.h */,
+				DE17B2AA1B7C79FD00905EEE /* WBNoticeOperation.m */,
+				DE17B2AB1B7C79FD00905EEE /* WBNoticeView+ForSubclassEyesOnly.h */,
+				DE17B2AC1B7C79FD00905EEE /* WBNoticeView.h */,
+				DE17B2AD1B7C79FD00905EEE /* WBNoticeView.m */,
+				DE17B2AE1B7C79FD00905EEE /* WBRedGradientView.h */,
+				DE17B2AF1B7C79FD00905EEE /* WBRedGradientView.m */,
+				DE17B2B01B7C79FD00905EEE /* WBStickyNoticeView.h */,
+				DE17B2B11B7C79FD00905EEE /* WBStickyNoticeView.m */,
+				DE17B2B21B7C79FD00905EEE /* WBSuccessNoticeView.h */,
+				DE17B2B31B7C79FD00905EEE /* WBSuccessNoticeView.m */,
+			);
+			path = WBNoticeView;
+			sourceTree = "<group>";
+		};
+		DE17B2C51B7C7D7F00905EEE /* Tab Download */ = {
+			isa = PBXGroup;
+			children = (
+				DE17B2C61B7C7DAA00905EEE /* DownloadManagerViewController.h */,
+				DE17B2C71B7C7DAA00905EEE /* DownloadManagerViewController.m */,
+				DE17B2C81B7C7DAA00905EEE /* DownloadManagerViewController.xib */,
+			);
+			name = "Tab Download";
+			sourceTree = "<group>";
+		};
 		DE1F7DFD1B72FDD000C53E95 /* CustomCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,6 +464,7 @@
 		DE22E7BE192F54180005E685 /* MyRssReader */ = {
 			isa = PBXGroup;
 			children = (
+				DE17B2C51B7C7D7F00905EEE /* Tab Download */,
 				DEF496211934496B00DD482D /* Tab Home */,
 				DEF496221934499C00DD482D /* Tab Manage */,
 				DEF49623193449B600DD482D /* Tab Favorite */,
@@ -390,6 +477,8 @@
 				DE22E7E9192F5C410005E685 /* HomeViewController.xib */,
 				DEF4961D1934385200DD482D /* Constant.h */,
 				DEF4961E1934385200DD482D /* Constant.m */,
+				DE17B29B1B7C74D400905EEE /* DownloadManager.h */,
+				DE17B29A1B7C74D400905EEE /* DownloadManager.m */,
 				DE1F7DFF1B73064900C53E95 /* Launch Screen.xib */,
 				DEC5DD3B19359A560088A62F /* BaseViewController.h */,
 				DEC5DD3C19359A560088A62F /* BaseViewController.m */,
@@ -466,6 +555,9 @@
 		DEB54D731933344800EC589E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DE17B2BF1B7C7C2800905EEE /* icon_check_status.png */,
+				DE17B2C01B7C7C2800905EEE /* icon_check_status@2x.png */,
+				DE17B2C11B7C7C2800905EEE /* icon_check_status@3x.png */,
 				846565091B7B9A9000C9E99E /* icon_download@3x.png */,
 				8465650A1B7B9A9000C9E99E /* icon_download@2x.png */,
 				8465650B1B7B9A9000C9E99E /* icon_download.png */,
@@ -540,6 +632,7 @@
 		DEF496121934339F00DD482D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				DE17B29D1B7C79FD00905EEE /* WBNoticeView */,
 				DE233F5B1B70A89F00C02DD6 /* MWFeedParser */,
 				DEF496131934349F00DD482D /* Reachability */,
 			);
@@ -673,10 +766,12 @@
 				42C70C0F193CBE3500736BCF /* icon-29.png in Resources */,
 				DEC5DD2D19357EDC0088A62F /* ic_about_normal@2x.png in Resources */,
 				DEC5DD2919357EDC0088A62F /* ic_channel_normal@2x.png in Resources */,
+				DE17B2CA1B7C7DAA00905EEE /* DownloadManagerViewController.xib in Resources */,
 				DEB54D84193337B200EC589E /* WebViewViewController.xib in Resources */,
 				DE22E7F5192F5D360005E685 /* ManageRssViewController.xib in Resources */,
 				DEC5DD2819357EDC0088A62F /* ic_channel_press.png in Resources */,
 				42C70C18193CBE3500736BCF /* icon-120.png in Resources */,
+				DE17B2B41B7C79FD00905EEE /* NoticeView.bundle in Resources */,
 				42C70C1A193CBE3500736BCF /* icon-152.png in Resources */,
 				42C70C10193CBE3500736BCF /* icon-40.png in Resources */,
 				DEC5DD2A19357EDC0088A62F /* ic_channel_normal.png in Resources */,
@@ -717,15 +812,18 @@
 				8465650E1B7B9A9000C9E99E /* icon_download.png in Resources */,
 				42C70C16193CBE3500736BCF /* icon-80.png in Resources */,
 				DE1F7E001B73064900C53E95 /* Launch Screen.xib in Resources */,
+				DE17B2C31B7C7C2800905EEE /* icon_check_status@2x.png in Resources */,
 				DEC5DD2219357EDC0088A62F /* ic_home_normal.png in Resources */,
 				DEB54D771933345000EC589E /* default_rss_img@2x.png in Resources */,
 				DEC5DD2019357EDC0088A62F /* ic_home_press.png in Resources */,
+				DE17B2C21B7C7C2800905EEE /* icon_check_status.png in Resources */,
 				DEC5DD2B19357EDC0088A62F /* ic_about_press@2x.png in Resources */,
 				DE22E7CB192F54180005E685 /* Images.xcassets in Resources */,
 				DE22E7EB192F5C410005E685 /* HomeViewController.xib in Resources */,
 				DEB54D7C193336BE00EC589E /* rate_star_0.png in Resources */,
 				DEC5DD2319357EDC0088A62F /* ic_favorites_press@2x.png in Resources */,
 				DEB54D7E193336BE00EC589E /* rate_star_1.png in Resources */,
+				DE17B2C41B7C7C2800905EEE /* icon_check_status@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -784,30 +882,41 @@
 			files = (
 				DE233F871B70AA1B00C02DD6 /* _Rss.m in Sources */,
 				DE233F7B1B70A9AD00C02DD6 /* Rss.m in Sources */,
+				DE17B2C91B7C7DAA00905EEE /* DownloadManagerViewController.m in Sources */,
 				DEB54D6C19331FA800EC589E /* NodeListViewController.m in Sources */,
 				DE233F6F1B70A89F00C02DD6 /* NSDate+InternetDateTime.m in Sources */,
 				DE233F701B70A89F00C02DD6 /* NSString+HTML.m in Sources */,
 				DEB54D711933333A00EC589E /* NodeListCustomCell.m in Sources */,
+				DE17B2B61B7C79FD00905EEE /* UILabel+WBExtensions.m in Sources */,
 				DE233F6E1B70A89F00C02DD6 /* MWFeedParser.m in Sources */,
 				DE233F6B1B70A89F00C02DD6 /* GTMNSString+HTML.m in Sources */,
 				DE233F711B70A89F00C02DD6 /* NSString+XMLEntities.m in Sources */,
 				DE233F7A1B70A9AD00C02DD6 /* Node.m in Sources */,
 				DE22E7F4192F5D360005E685 /* ManageRssViewController.m in Sources */,
 				846565141B7BA57700C9E99E /* File.m in Sources */,
+				DE17B2BC1B7C79FD00905EEE /* WBRedGradientView.m in Sources */,
+				DE17B2BB1B7C79FD00905EEE /* WBNoticeView.m in Sources */,
 				DE233F6D1B70A89F00C02DD6 /* MWFeedItem.m in Sources */,
 				DE22E7C9192F54180005E685 /* AppDelegate.m in Sources */,
 				DE7F39A81935DCC900C7C143 /* NSString+MD5.m in Sources */,
 				DE22E7F9192F5E4D0005E685 /* BookmarkViewController.m in Sources */,
 				DEF49610193431A800DD482D /* AboutViewController.m in Sources */,
+				DE17B29C1B7C74D400905EEE /* DownloadManager.m in Sources */,
+				DE17B2BA1B7C79FD00905EEE /* WBNoticeOperation.m in Sources */,
 				DE22E7EF192F5D230005E685 /* RssListViewController.m in Sources */,
 				DEF4961F1934385200DD482D /* Constant.m in Sources */,
 				DE233F861B70AA1B00C02DD6 /* _Node.m in Sources */,
+				DE17B2B51B7C79FD00905EEE /* NSOperationQueue+WBNoticeExtensions.m in Sources */,
 				DE7F39AB1935E27700C7C143 /* NSMutableURLRequest+Helper.m in Sources */,
+				DE17B2B91B7C79FD00905EEE /* WBGrayGradientView.m in Sources */,
 				DEB7BF2C19458DE700BF350D /* NSString+Helper.m in Sources */,
 				DEF49619193435FD00DD482D /* NSUserDefaults+Helper.m in Sources */,
 				DEB54D83193337B200EC589E /* WebViewViewController.m in Sources */,
 				DEF496591934A24C00DD482D /* BookmarkCustomCell.m in Sources */,
+				DE17B2B81B7C79FD00905EEE /* WBErrorNoticeView.m in Sources */,
 				DE233F791B70A9AD00C02DD6 /* Model.xcdatamodeld in Sources */,
+				DE17B2B71B7C79FD00905EEE /* WBBlueGradientView.m in Sources */,
+				DE17B2BE1B7C79FD00905EEE /* WBSuccessNoticeView.m in Sources */,
 				DEF4961C1934376700DD482D /* UIAlertView+Helper.m in Sources */,
 				846565131B7BA57700C9E99E /* _File.m in Sources */,
 				846565081B7B96AE00C9E99E /* MyMoviePlayerViewController.m in Sources */,
@@ -817,6 +926,7 @@
 				DE4303E0193878F4008A42A4 /* TempRss.m in Sources */,
 				DEB5F0DD1932D854008922E5 /* Categories.m in Sources */,
 				DE22E7EA192F5C410005E685 /* HomeViewController.m in Sources */,
+				DE17B2BD1B7C79FD00905EEE /* WBStickyNoticeView.m in Sources */,
 				DE4303E319387924008A42A4 /* TempNode.m in Sources */,
 				DEC5DD3E19359A560088A62F /* BaseViewController.m in Sources */,
 				DEB5F0DA1932D7DA008922E5 /* UIViewController+Helper.m in Sources */,

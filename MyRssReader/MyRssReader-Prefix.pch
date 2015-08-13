@@ -10,7 +10,7 @@
 #import "Constant.h"
 #import <SVProgressHUD.h>
 #import "BaseViewController.h"
-
+#import "AppDelegate.h"
 #import "GAI.h"
 #import "GAITracker.h"
 #import "GAITrackedViewController.h"
@@ -26,6 +26,8 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+#define APPDELEGATE             (AppDelegate*)[[UIApplication sharedApplication] delegate]
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 #define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)

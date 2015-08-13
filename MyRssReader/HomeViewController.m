@@ -11,6 +11,7 @@
 #import "ManageRssViewController.h"
 #import "BookmarkViewController.h"
 #import "AboutViewController.h"
+#import "DownloadManagerViewController.h"
 
 @interface HomeViewController ()
 
@@ -61,7 +62,12 @@
     UITabBarItem *tabBarItem4 = [[UITabBarItem alloc] initWithTitle:@"About" image:[UIImage imageNamed:@"ic_about_normal"] selectedImage:[UIImage imageNamed:@"ic_about_press"]];
     [aboutNav setTabBarItem:tabBarItem4];
     
-    self.viewControllers = @[homeNav, manageNav, favoriteNav, aboutNav];
+    DownloadManagerViewController *downloadVC = [DownloadManagerViewController initWithNibName];
+    UINavigationController *downloadNav = [[UINavigationController alloc] initWithRootViewController:downloadVC];
+    UITabBarItem *tabBarItem5 = [[UITabBarItem alloc] initWithTitle:@"About" image:[UIImage imageNamed:@"ic_about_normal"] selectedImage:[UIImage imageNamed:@"ic_about_press"]];
+    [downloadNav setTabBarItem:tabBarItem5];
+    
+    self.viewControllers = @[homeNav, manageNav, favoriteNav, aboutNav, downloadNav];
     
     
     UIColor *titleHighlightedColor = [UIColor colorWithRed:82/255.0 green:203/255.0 blue:149/255.0 alpha:1.0];

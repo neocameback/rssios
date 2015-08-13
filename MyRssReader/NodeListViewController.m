@@ -18,11 +18,15 @@
 #import <PureLayout.h>
 #import <AFNetworking.h>
 #import <AFDownloadRequestOperation.h>
+#import <MBProgressHUD.h>
+#import "DownloadManager.h"
 
-@interface NodeListViewController ()
+@interface NodeListViewController () <UIAlertViewDelegate>
 {
     MPMoviePlayerViewController *moviePlayer;
     NodeListCustomCell *nodeCell;
+    
+    NSInteger willDownloadAtIndex;
 }
 @end
 
@@ -141,59 +145,6 @@
     return cell;
 }
 
--(void) onAddToFav:(id) sender
-{
-    NSInteger tag = [sender tag];
-    
-    TempNode *temp = nodeList[tag];
-    NSString *nodeUrl = [nodeList[tag] nodeUrl];
-    if ([[temp isAddedToBoomark] boolValue]) {
-        Node *node = [Node MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"nodeUrl == %@",nodeUrl] inContext:[NSManagedObjectContext MR_defaultContext]];
-        [node MR_deleteEntity];
-        [temp setIsAddedToBoomark: [temp.isAddedToBoomark boolValue] ? @0 : @1];
-    }else{
-        Node *node = [Node MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"nodeUrl == %@",nodeUrl] inContext:[NSManagedObjectContext MR_defaultContext]];
-        if (!node) {
-            node = [Node MR_createEntity];
-        }
-        [temp setIsAddedToBoomark: [temp.isAddedToBoomark boolValue] ? @0 : @1];
-        [node initFromTempNode:nodeList[tag]];
-    }
-    [self.tableView reloadData];
-}
--(void) onDownLoad:(id) sender
-{
-    NSInteger tag = [sender tag];
-    NSString *videoUrl = [nodeList[tag] nodeUrl];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:videoUrl]];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:videoUrl];
-    AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:path shouldResume:YES];
-    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-        NSLog(@"%lu---- %lld",(unsigned long)totalBytesRead,totalBytesExpectedToRead);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [SVProgressHUD showProgress:totalBytesRead/totalBytesExpectedToRead status:@"Downloading" maskType:SVProgressHUDMaskTypeGradient];
-        });
-    }];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Successfully downloaded file to %@", path);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [SVProgressHUD dismiss];
-        });
-
-        [SVProgressHUD dismiss];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [SVProgressHUD dismiss];
-        });
-    }];
-    
-    [operation start];
-    
-}
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     currentPath = indexPath;
@@ -247,6 +198,53 @@
     }else{
         return;
     }
+}
+
+
+-(void) onAddToFav:(id) sender
+{
+    NSInteger tag = [sender tag];
+    
+    TempNode *temp = nodeList[tag];
+    NSString *nodeUrl = [nodeList[tag] nodeUrl];
+    if ([[temp isAddedToBoomark] boolValue]) {
+        Node *node = [Node MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"nodeUrl == %@",nodeUrl] inContext:[NSManagedObjectContext MR_defaultContext]];
+        [node MR_deleteEntity];
+        [temp setIsAddedToBoomark: [temp.isAddedToBoomark boolValue] ? @0 : @1];
+    }else{
+        Node *node = [Node MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"nodeUrl == %@",nodeUrl] inContext:[NSManagedObjectContext MR_defaultContext]];
+        if (!node) {
+            node = [Node MR_createEntity];
+        }
+        [temp setIsAddedToBoomark: [temp.isAddedToBoomark boolValue] ? @0 : @1];
+        [node initFromTempNode:nodeList[tag]];
+    }
+    [self.tableView reloadData];
+}
+-(void) onDownLoad:(id) sender
+{
+    willDownloadAtIndex = [sender tag];
+    /**
+     *     let user enter the file name will be saved
+     */
+    [self showAlertEnterFileName];
+}
+-(void) showAlertEnterFileName
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download video" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Download", nil];
+    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    [[alert textFieldAtIndex:0] setPlaceholder:@"Put file name here."];
+    [[alert textFieldAtIndex:0] setClearButtonMode:UITextFieldViewModeWhileEditing];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
+    [label setText:@"*"];
+    [label setTextColor:[UIColor redColor]];
+    [label setBackgroundColor:[UIColor clearColor]];
+    [[alert textFieldAtIndex:0] setRightViewMode:UITextFieldViewModeAlways];
+    [[alert textFieldAtIndex:0] setRightView:label];
+    [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeASCIICapable];
+    [[alert textFieldAtIndex:0] setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [alert setTag:ALERT_ENTER_FILE_NAME];
+    [alert show];
 }
 
 #pragma mark Admob
@@ -433,6 +431,34 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark uialertview delegate
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (alertView.tag) {
+        case ALERT_ENTER_FILE_NAME:
+        {
+            if (buttonIndex != alertView.cancelButtonIndex) {
+                NSString *videoUrl = [nodeList[willDownloadAtIndex] nodeUrl];
+                /**
+                 *  sample video url
+                 */
+                videoUrl = @"http://sample-videos.com/video/mp4/720/big_buck_bunny_720p_2mb.mp4";
+                [[DownloadManager shareManager] downloadFile:videoUrl name:[[alertView textFieldAtIndex:0] text] fromView:self];                
+            }
+        }
+            break;
+            
+        case ALERT_NAME_EXIST:
+        {
+                if (buttonIndex != alertView.cancelButtonIndex) {
+                    [self showAlertEnterFileName];
+                }
+        }
+            break;
+        default:
+            break;
+    }
+}
 -(void) dealloc
 {
     moviePlayer = nil;

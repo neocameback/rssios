@@ -4,10 +4,12 @@
 #import <CoreData/CoreData.h>
 
 extern const struct FileAttributes {
+	__unsafe_unretained NSString *absoluteUrl;
 	__unsafe_unretained NSString *createdAt;
 	__unsafe_unretained NSString *desc;
 	__unsafe_unretained NSString *downloadedBytes;
 	__unsafe_unretained NSString *expectedBytes;
+	__unsafe_unretained NSString *isCompleted;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *type;
 	__unsafe_unretained NSString *updatedAt;
@@ -22,6 +24,10 @@ extern const struct FileAttributes {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) FileID* objectID;
+
+@property (nonatomic, strong) NSString* absoluteUrl;
+
+//- (BOOL)validateAbsoluteUrl:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSDate* createdAt;
 
@@ -47,6 +53,14 @@ extern const struct FileAttributes {
 
 //- (BOOL)validateExpectedBytes:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSNumber* isCompleted;
+
+@property (atomic) BOOL isCompletedValue;
+- (BOOL)isCompletedValue;
+- (void)setIsCompletedValue:(BOOL)value_;
+
+//- (BOOL)validateIsCompleted:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* name;
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
@@ -67,6 +81,9 @@ extern const struct FileAttributes {
 
 @interface _File (CoreDataGeneratedPrimitiveAccessors)
 
+- (NSString*)primitiveAbsoluteUrl;
+- (void)setPrimitiveAbsoluteUrl:(NSString*)value;
+
 - (NSDate*)primitiveCreatedAt;
 - (void)setPrimitiveCreatedAt:(NSDate*)value;
 
@@ -84,6 +101,12 @@ extern const struct FileAttributes {
 
 - (double)primitiveExpectedBytesValue;
 - (void)setPrimitiveExpectedBytesValue:(double)value_;
+
+- (NSNumber*)primitiveIsCompleted;
+- (void)setPrimitiveIsCompleted:(NSNumber*)value;
+
+- (BOOL)primitiveIsCompletedValue;
+- (void)setPrimitiveIsCompletedValue:(BOOL)value_;
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;

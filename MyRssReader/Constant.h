@@ -38,6 +38,10 @@ enum NODE_TYPE {
     NODE_TYPE_WEB_CONTENT =7
 };
 
+typedef enum : NSUInteger {
+    ALERT_ENTER_FILE_NAME = 1,
+    ALERT_NAME_EXIST = 2
+} ALERT_VIEW_TYPE;
 
 @interface Constant : NSObject
 

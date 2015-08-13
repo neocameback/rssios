@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D131" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="File" representedClassName="File" syncable="YES">
+        <attribute name="absoluteUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="downloadedBytes" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="expectedBytes" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="isCompleted" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
@@ -25,8 +27,8 @@
         <attribute name="rssTitle" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
+        <element name="File" positionX="-2223" positionY="-918" width="128" height="195"/>
         <element name="Node" positionX="-1757" positionY="-748" width="128" height="163"/>
         <element name="Rss" positionX="-2007" positionY="-673" width="128" height="73"/>
-        <element name="File" positionX="-2223" positionY="-918" width="128" height="163"/>
     </elements>
 </model>

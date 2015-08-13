@@ -4,10 +4,12 @@
 #import "_File.h"
 
 const struct FileAttributes FileAttributes = {
+	.absoluteUrl = @"absoluteUrl",
 	.createdAt = @"createdAt",
 	.desc = @"desc",
 	.downloadedBytes = @"downloadedBytes",
 	.expectedBytes = @"expectedBytes",
+	.isCompleted = @"isCompleted",
 	.name = @"name",
 	.type = @"type",
 	.updatedAt = @"updatedAt",
@@ -50,9 +52,16 @@ const struct FileAttributes FileAttributes = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"isCompletedValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"isCompleted"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
+
+@dynamic absoluteUrl;
 
 @dynamic createdAt;
 
@@ -96,6 +105,26 @@ const struct FileAttributes FileAttributes = {
 
 - (void)setPrimitiveExpectedBytesValue:(double)value_ {
 	[self setPrimitiveExpectedBytes:[NSNumber numberWithDouble:value_]];
+}
+
+@dynamic isCompleted;
+
+- (BOOL)isCompletedValue {
+	NSNumber *result = [self isCompleted];
+	return [result boolValue];
+}
+
+- (void)setIsCompletedValue:(BOOL)value_ {
+	[self setIsCompleted:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveIsCompletedValue {
+	NSNumber *result = [self primitiveIsCompleted];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveIsCompletedValue:(BOOL)value_ {
+	[self setPrimitiveIsCompleted:[NSNumber numberWithBool:value_]];
 }
 
 @dynamic name;
