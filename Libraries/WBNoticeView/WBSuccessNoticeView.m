@@ -29,7 +29,7 @@
     return notice;
 }
 
-- (void)show
+- (void)showSuccess
 {
     // Obtain the screen width
     CGFloat viewWidth = self.view.bounds.size.width;
@@ -62,7 +62,7 @@
     
     // Make and add the icon view
     UIImageView *iconView = [[UIImageView alloc]initWithFrame:CGRectMake(10.0, statusBarHeight + 10.0, 36.0, 35.0)];
-    iconView.image = [UIImage imageNamed:@"icon_check_status"];
+    iconView.image = [UIImage imageNamed:@"notice_success_icon"];
     iconView.alpha = 1;
     [self.gradientView addSubview:iconView];
     
@@ -82,4 +82,56 @@
     [self displayNotice];
 }
 
+-(void) showFailure
+{
+    // Obtain the screen width
+    CGFloat viewWidth = self.view.bounds.size.width;
+    
+    NSInteger numberOfLines = 1;
+    CGFloat messageLineHeight = 35.0;
+    
+    CGFloat statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+    
+    // Make and add the title label
+    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(56, statusBarHeight + 10, viewWidth - 70, messageLineHeight)];
+    self.titleLabel.textColor = [UIColor whiteColor];
+    [self.titleLabel setNumberOfLines:2];
+    self.titleLabel.font = [UIFont systemFontOfSize:15];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    self.titleLabel.text = self.title;
+    
+    // Calculate the notice view height
+    float noticeViewHeight = 45.0 + statusBarHeight;
+    if (numberOfLines > 1) {
+        noticeViewHeight += (numberOfLines - 1) * messageLineHeight;
+    }
+    
+    // Make sure we hide completely the view, including its shadow
+    float hiddenYOrigin = self.slidingMode == WBNoticeViewSlidingModeDown ? -noticeViewHeight - 20.0: self.view.bounds.size.height;
+    
+    // Make and add the notice view
+    self.gradientView = [[WBBlueGradientView alloc] initWithFrame:CGRectMake(0.0, hiddenYOrigin, viewWidth, noticeViewHeight + 10.0)];
+    [self.view addSubview:self.gradientView];
+    
+    // Make and add the icon view
+    UIImageView *iconView = [[UIImageView alloc]initWithFrame:CGRectMake(10.0, statusBarHeight + 10.0, 36.0, 35.0)];
+    iconView.image = [UIImage imageNamed:@"notice_error_icon"];
+    iconView.alpha = 1;
+    [self.gradientView addSubview:iconView];
+    
+    // Add the title label
+    [self.gradientView addSubview:self.titleLabel];
+    
+    // Add the drop shadow to the notice view
+    CALayer *noticeLayer = self.gradientView.layer;
+    noticeLayer.shadowColor = [[UIColor blackColor]CGColor];
+    noticeLayer.shadowOffset = CGSizeMake(0.0, 0.0);
+    noticeLayer.shadowOpacity = 0.30;
+    noticeLayer.masksToBounds = NO;
+    noticeLayer.shouldRasterize = YES;
+    
+    self.hiddenYOrigin = hiddenYOrigin;
+    
+    [self displayNotice];
+}
 @end

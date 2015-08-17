@@ -7,8 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "File.h"
 
 @interface DownloadManager : NSObject
 + (DownloadManager *)shareManager;
 -(void) downloadFile:(NSString *) url name:(NSString*) name fromView:(id) viewcontroller;
+-(void) resumeDownloadFile:(File*) savedFile;
+-(void) deleteFile:(File*) file;
+- (NSURL *)applicationDocumentsDirectory;
 @end
+

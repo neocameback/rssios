@@ -8,7 +8,6 @@
 
 #import "DownloadManager.h"
 #import <AFDownloadRequestOperation.h>
-#import "File.h"
 #import "WBSuccessNoticeView.h"
 
 @interface DownloadManager()
@@ -34,7 +33,7 @@ static NSOperationQueue *operationQueue;
 
 -(void) downloadFile:(NSString *) url name:(NSString*) name fromView:(id) viewcontroller
 {
-    File *savedFile = [File MR_findFirstByAttribute:@"url" withValue:url];
+    File *savedFile = [File MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"url == %@ AND name == %@",url, name]];
     /**
      *  if file has not been created so create a file in db
      */
@@ -47,12 +46,11 @@ static NSOperationQueue *operationQueue;
     [savedFile setName:name];
     [savedFile setUpdatedAt:[NSDate date]];
     
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:name];
-    path = [path stringByAppendingPathExtension:@"mp4"];
+    
+    NSString *path = [[[self applicationDocumentsDirectory] path] stringByAppendingPathComponent:name];
+    path = [path stringByAppendingPathExtension:savedFile.type];
+    
     NSLog(@"will save file at path: %@",path);
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:path]) {
@@ -82,7 +80,7 @@ static NSOperationQueue *operationQueue;
              */
             NSString *successText = [NSString stringWithFormat:@"%@.mp4 has been downloaded successful",name];
             WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:[APPDELEGATE window].rootViewController.view title:successText duration:1 alpha:1 delay:0.7];
-            [notice show];                        
+            [notice showSuccess];
             NSLog(@"Successfully downloaded file to %@", path);
             
             
@@ -90,14 +88,93 @@ static NSOperationQueue *operationQueue;
             NSLog(@"Error: %@", error);
             NSString *successText = [NSString stringWithFormat:@"Failed to download %@.mp4",name];
             WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:[APPDELEGATE window].rootViewController.view title:successText duration:1 alpha:1 delay:0.7];
-            [notice show];
+            [notice showFailure];
             
             [savedFile MR_deleteEntity];
             
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
         }];
         [operationQueue addOperation:operation];
     }
+}
+
+-(void) resumeDownloadFile:(File*) savedFile
+{
+    [savedFile setUpdatedAt:[NSDate date]];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:savedFile.url]];
+    NSString *path = [[[self applicationDocumentsDirectory] path] stringByAppendingPathComponent:savedFile.name];
+    path = [path stringByAppendingPathExtension:savedFile.type];
+    
+    
+    AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:path shouldResume:YES];
+    if (operation.isExecuting) {
+        return;
+    }
+    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+        float percentComplete = (float)totalBytesRead/(float)totalBytesExpectedToRead * 100;
+        NSLog(@"Download progress: %lu---- %lld percent: %.2f",(unsigned long)totalBytesRead,totalBytesExpectedToRead, percentComplete);
+        [savedFile setDownloadedBytes:[NSNumber numberWithDouble:totalBytesRead]];
+        [savedFile setExpectedBytes:[NSNumber numberWithDouble:totalBytesExpectedToRead]];
+    }];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        /**
+         *  save completed infor to savedFile
+         */
+        [savedFile setIsCompletedValue:YES];
+        [savedFile setAbsoluteUrl:path];
+        
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        
+        /**
+         *  show success notice
+         */
+        NSString *successText = [NSString stringWithFormat:@"%@.mp4 has been downloaded successful",savedFile.name];
+        WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:[APPDELEGATE window].rootViewController.view title:successText duration:1 alpha:1 delay:0.7];
+        [notice showSuccess];
+        NSLog(@"Successfully downloaded file to %@", path);
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        NSString *successText = [NSString stringWithFormat:@"Failed to download %@.mp4",savedFile.name];
+        WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:[APPDELEGATE window].rootViewController.view title:successText duration:1 alpha:1 delay:0.7];
+        [notice showFailure];
+        
+        [self deleteFile:savedFile];
+    }];
+    [operationQueue addOperation:operation];
+}
+-(void) deleteFile:(File*) file;
+{
+    /**
+     *  delele file from document
+     */
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    
+    NSString *path = [[[self applicationDocumentsDirectory] path] stringByAppendingPathComponent:file.name];
+    path = [path stringByAppendingPathExtension:file.type];
+    
+    BOOL fileExists = [fileManager fileExistsAtPath:path];
+    NSLog(@"Path to file: %@", path);
+    NSLog(@"File exists: %d", fileExists);
+    NSLog(@"Is deletable file at path: %d", [fileManager isDeletableFileAtPath:path]);
+    if (fileExists)
+    {
+        BOOL success = [fileManager removeItemAtPath:path error:&error];
+        if (!success) NSLog(@"Error: %@", [error localizedDescription]);
+    }
+    /**
+     *  delete from db
+     */
+    [file MR_deleteEntity];
+    [[file managedObjectContext] MR_saveToPersistentStoreAndWait];
+}
+- (NSURL *)applicationDocumentsDirectory
+{
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 @end
 

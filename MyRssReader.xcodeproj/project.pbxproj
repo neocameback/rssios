@@ -137,6 +137,8 @@
 		DEC5DD2E19357EDC0088A62F /* ic_about_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC5DD1E19357EDC0088A62F /* ic_about_normal.png */; };
 		DEC5DD3E19359A560088A62F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC5DD3C19359A560088A62F /* BaseViewController.m */; };
 		DEC5DD3F19359A560088A62F /* BaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEC5DD3D19359A560088A62F /* BaseViewController.xib */; };
+		DEC77D5A1B81882800EFE1C3 /* DownloadManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC77D581B81882800EFE1C3 /* DownloadManageTableViewCell.m */; };
+		DEC77D5B1B81882800EFE1C3 /* DownloadManageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEC77D591B81882800EFE1C3 /* DownloadManageTableViewCell.xib */; };
 		DEF49610193431A800DD482D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF4960E193431A800DD482D /* AboutViewController.m */; };
 		DEF49611193431A800DD482D /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEF4960F193431A800DD482D /* AboutViewController.xib */; };
 		DEF496161934349F00DD482D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF496151934349F00DD482D /* Reachability.m */; };
@@ -315,6 +317,9 @@
 		DEC5DD3B19359A560088A62F /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		DEC5DD3C19359A560088A62F /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		DEC5DD3D19359A560088A62F /* BaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseViewController.xib; sourceTree = "<group>"; };
+		DEC77D571B81882800EFE1C3 /* DownloadManageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManageTableViewCell.h; sourceTree = "<group>"; };
+		DEC77D581B81882800EFE1C3 /* DownloadManageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManageTableViewCell.m; sourceTree = "<group>"; };
+		DEC77D591B81882800EFE1C3 /* DownloadManageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadManageTableViewCell.xib; sourceTree = "<group>"; };
 		DEF4960D193431A800DD482D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		DEF4960E193431A800DD482D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		DEF4960F193431A800DD482D /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
@@ -396,6 +401,9 @@
 				DE17B2C61B7C7DAA00905EEE /* DownloadManagerViewController.h */,
 				DE17B2C71B7C7DAA00905EEE /* DownloadManagerViewController.m */,
 				DE17B2C81B7C7DAA00905EEE /* DownloadManagerViewController.xib */,
+				DEC77D571B81882800EFE1C3 /* DownloadManageTableViewCell.h */,
+				DEC77D581B81882800EFE1C3 /* DownloadManageTableViewCell.m */,
+				DEC77D591B81882800EFE1C3 /* DownloadManageTableViewCell.xib */,
 			);
 			name = "Tab Download";
 			sourceTree = "<group>";
@@ -779,6 +787,7 @@
 				DE22E7C3192F54180005E685 /* InfoPlist.strings in Resources */,
 				DEB54D6D19331FA800EC589E /* NodeListViewController.xib in Resources */,
 				DEB54D7D193336BE00EC589E /* rate_star_0@2x.png in Resources */,
+				DEC77D5B1B81882800EFE1C3 /* DownloadManageTableViewCell.xib in Resources */,
 				42C70C19193CBE3500736BCF /* icon-144.png in Resources */,
 				DE210913194FE8A10026F481 /* close.png in Resources */,
 				42C70C12193CBE3500736BCF /* icon-57.png in Resources */,
@@ -904,6 +913,7 @@
 				DE17B29C1B7C74D400905EEE /* DownloadManager.m in Sources */,
 				DE17B2BA1B7C79FD00905EEE /* WBNoticeOperation.m in Sources */,
 				DE22E7EF192F5D230005E685 /* RssListViewController.m in Sources */,
+				DEC77D5A1B81882800EFE1C3 /* DownloadManageTableViewCell.m in Sources */,
 				DEF4961F1934385200DD482D /* Constant.m in Sources */,
 				DE233F861B70AA1B00C02DD6 /* _Node.m in Sources */,
 				DE17B2B51B7C79FD00905EEE /* NSOperationQueue+WBNoticeExtensions.m in Sources */,

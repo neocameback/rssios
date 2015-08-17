@@ -64,7 +64,7 @@
     
     DownloadManagerViewController *downloadVC = [DownloadManagerViewController initWithNibName];
     UINavigationController *downloadNav = [[UINavigationController alloc] initWithRootViewController:downloadVC];
-    UITabBarItem *tabBarItem5 = [[UITabBarItem alloc] initWithTitle:@"About" image:[UIImage imageNamed:@"ic_about_normal"] selectedImage:[UIImage imageNamed:@"ic_about_press"]];
+    UITabBarItem *tabBarItem5 = [[UITabBarItem alloc] initWithTitle:@"Download" image:[UIImage imageNamed:@"ic_about_normal"] selectedImage:[UIImage imageNamed:@"ic_about_press"]];
     [downloadNav setTabBarItem:tabBarItem5];
     
     self.viewControllers = @[homeNav, manageNav, favoriteNav, aboutNav, downloadNav];

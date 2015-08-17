@@ -26,4 +26,6 @@
  */
 + (WBSuccessNoticeView *)successNoticeInView:(UIView *)view title:(NSString *)title;
 + (WBSuccessNoticeView *)successNoticeInView:(UIView *)view title:(NSString *)title duration:(CGFloat) duration alpha:(CGFloat) alpha delay:(CGFloat) delay;
+- (void)showSuccess;
+-(void) showFailure;
 @end

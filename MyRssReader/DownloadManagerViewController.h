@@ -7,10 +7,16 @@
 //
 
 #import "BaseViewController.h"
+#import "File.h"
+#import "DownloadManageTableViewCell.h"
 
 @interface DownloadManagerViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 {
     __weak IBOutlet UITableView *_tableView;
 }
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
+- (void)configureCell:(DownloadManageTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end

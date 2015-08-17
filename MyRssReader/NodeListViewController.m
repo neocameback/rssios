@@ -442,7 +442,7 @@
                 /**
                  *  sample video url
                  */
-                videoUrl = @"http://sample-videos.com/video/mp4/720/big_buck_bunny_720p_2mb.mp4";
+//                videoUrl = @"http://sample-videos.com/video/mp4/720/big_buck_bunny_720p_2mb.mp4";
                 [[DownloadManager shareManager] downloadFile:videoUrl name:[[alertView textFieldAtIndex:0] text] fromView:self];                
             }
         }
