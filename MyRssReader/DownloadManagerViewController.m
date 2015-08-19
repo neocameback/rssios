@@ -112,7 +112,8 @@
     File *recipe = (File *)[self.fetchedResultsController objectAtIndexPath:indexPath];
     if ([recipe isCompletedValue]) {
         
-        NSString *path = [[[[DownloadManager shareManager] applicationDocumentsDirectory] path] stringByAppendingPathComponent:recipe.name];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:recipe.name];
         path = [path stringByAppendingPathExtension:recipe.type];
         
         NSLog(@"open video at path: %@",path);

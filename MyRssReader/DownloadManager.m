@@ -47,8 +47,10 @@ static NSOperationQueue *operationQueue;
     [savedFile setUpdatedAt:[NSDate date]];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    
-    NSString *path = [[[self applicationDocumentsDirectory] path] stringByAppendingPathComponent:name];
+
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:name];
+
     path = [path stringByAppendingPathExtension:savedFile.type];
     
     NSLog(@"will save file at path: %@",path);
@@ -103,7 +105,10 @@ static NSOperationQueue *operationQueue;
     [savedFile setUpdatedAt:[NSDate date]];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:savedFile.url]];
-    NSString *path = [[[self applicationDocumentsDirectory] path] stringByAppendingPathComponent:savedFile.name];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:savedFile.name];
+    
     path = [path stringByAppendingPathExtension:savedFile.type];
     
     
@@ -154,7 +159,9 @@ static NSOperationQueue *operationQueue;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
     
-    NSString *path = [[[self applicationDocumentsDirectory] path] stringByAppendingPathComponent:file.name];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:file.name];
+    
     path = [path stringByAppendingPathExtension:file.type];
     
     BOOL fileExists = [fileManager fileExistsAtPath:path];
