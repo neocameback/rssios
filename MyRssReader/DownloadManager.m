@@ -27,6 +27,7 @@ static NSOperationQueue *operationQueue;
     });
     if (!operationQueue) {
         operationQueue = [[NSOperationQueue alloc] init];
+        [operationQueue setMaxConcurrentOperationCount:1];
     }
     return _shareDownloadManager;
 }
@@ -48,12 +49,10 @@ static NSOperationQueue *operationQueue;
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
 
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:name];
-
-    path = [path stringByAppendingPathExtension:savedFile.type];
+    NSString *path = [Common getPathOfFile:savedFile.name extension:savedFile.type];
     
-    NSLog(@"will save file at path: %@",path);
+    
+    NSLog(@"downloadFile path: %@",path);
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:path]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"You entered a file that already exist. Please choose an other file name." delegate:viewcontroller cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
@@ -61,9 +60,10 @@ static NSOperationQueue *operationQueue;
         [alert show];
     }else{
         AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:path shouldResume:YES];
+        [operation setDeleteTempFileOnCancel:YES];
         [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-            float percentComplete = (float)totalBytesRead/(float)totalBytesExpectedToRead * 100;
-            NSLog(@"Download progress: %lu---- %lld percent: %.2f",(unsigned long)totalBytesRead,totalBytesExpectedToRead, percentComplete);
+//            float percentComplete = (float)totalBytesRead/(float)totalBytesExpectedToRead * 100;
+//            NSLog(@"Download progress: %lu---- %lld percent: %.2f",(unsigned long)totalBytesRead,totalBytesExpectedToRead, percentComplete);
             [savedFile setDownloadedBytes:[NSNumber numberWithDouble:totalBytesRead]];
             [savedFile setExpectedBytes:[NSNumber numberWithDouble:totalBytesExpectedToRead]];
         }];
@@ -105,20 +105,16 @@ static NSOperationQueue *operationQueue;
     [savedFile setUpdatedAt:[NSDate date]];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:savedFile.url]];
+
+    NSString *path = [Common getPathOfFile:savedFile.name extension:savedFile.type];
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:savedFile.name];
-    
-    path = [path stringByAppendingPathExtension:savedFile.type];
-    
+    NSLog(@"resumeDownloadFile path: %@",path);
     
     AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:path shouldResume:YES];
-    if (operation.isExecuting) {
-        return;
-    }
+    [operation setDeleteTempFileOnCancel:YES];
     [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-        float percentComplete = (float)totalBytesRead/(float)totalBytesExpectedToRead * 100;
-        NSLog(@"Download progress: %lu---- %lld percent: %.2f",(unsigned long)totalBytesRead,totalBytesExpectedToRead, percentComplete);
+//        float percentComplete = (float)totalBytesRead/(float)totalBytesExpectedToRead * 100;
+//        NSLog(@"Download progress: %lu---- %lld percent: %.2f",(unsigned long)totalBytesRead,totalBytesExpectedToRead, percentComplete);
         [savedFile setDownloadedBytes:[NSNumber numberWithDouble:totalBytesRead]];
         [savedFile setExpectedBytes:[NSNumber numberWithDouble:totalBytesExpectedToRead]];
     }];
@@ -159,10 +155,7 @@ static NSOperationQueue *operationQueue;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:file.name];
-    
-    path = [path stringByAppendingPathExtension:file.type];
+    NSString *path = [Common getPathOfFile:file.name extension:file.type];
     
     BOOL fileExists = [fileManager fileExistsAtPath:path];
     NSLog(@"Path to file: %@", path);

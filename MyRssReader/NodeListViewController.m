@@ -167,6 +167,7 @@
             {
                 [self preLoadInterstitial];
             }
+                break;
             case NODE_TYPE_MP4:
             {
                 [self preLoadInterstitial];
@@ -318,6 +319,7 @@
             moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
             [self presentMoviePlayerViewControllerAnimated:moviePlayer];
         }
+            break;
         case NODE_TYPE_MP4:
         {
             moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
@@ -340,6 +342,9 @@
             break;
         case NODE_TYPE_RTMP:
         {
+            /**
+             *  ignore RTMP node type
+             */
 //            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
 //            
 //            ELPlayerViewController *viewcontroller = [sb instantiateViewControllerWithIdentifier:@"ELPlayerViewController"];

@@ -14,8 +14,8 @@
 @interface DownloadManagerViewController ()<NSFetchedResultsControllerDelegate>
 {
     NSMutableArray *files;
-    MPMoviePlayerViewController *player;
 }
+@property (nonatomic, strong) MPMoviePlayerViewController *player;
 @end
 
 @implementation DownloadManagerViewController
@@ -101,25 +101,22 @@
     // Configure the cell
     File *file = (File *)[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.file = file;
-//    if (file.isCompletedValue) {
-//        [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
-//    }else{
-//        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-//    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     File *recipe = (File *)[self.fetchedResultsController objectAtIndexPath:indexPath];
     if ([recipe isCompletedValue]) {
         
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:recipe.name];
-        path = [path stringByAppendingPathExtension:recipe.type];
+        NSString *path = [Common getPathOfFile:recipe.name extension:recipe.type];
         
         NSLog(@"open video at path: %@",path);
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            NSLog(@"file is exist");
+        }
         if ([[NSFileManager defaultManager] isReadableFileAtPath:path]) {
-            player  = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:path]];
-            [self presentMoviePlayerViewControllerAnimated:player];
+            MPMoviePlayerViewController *moviePlayer  = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:path]];
+            self.player = moviePlayer;
+            [self presentMoviePlayerViewControllerAnimated:self.player];
         }
     }else{
         [[DownloadManager shareManager] resumeDownloadFile:recipe];
@@ -205,6 +202,7 @@
 
 -(void) dealloc
 {
-    player = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.player = nil;
 }
 @end

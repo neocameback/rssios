@@ -61,6 +61,7 @@
 		DE17B2C41B7C7C2800905EEE /* icon_check_status@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE17B2C11B7C7C2800905EEE /* icon_check_status@3x.png */; };
 		DE17B2C91B7C7DAA00905EEE /* DownloadManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE17B2C71B7C7DAA00905EEE /* DownloadManagerViewController.m */; };
 		DE17B2CA1B7C7DAA00905EEE /* DownloadManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE17B2C81B7C7DAA00905EEE /* DownloadManagerViewController.xib */; };
+		DE195AF01B8AFFDA000B4008 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = DE195AEF1B8AFFDA000B4008 /* Common.m */; };
 		DE1B5B3B194AED9800A4B5D9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE04E6A8194AE52000BD30BC /* AdSupport.framework */; };
 		DE1B5B3C194AEDA400A4B5D9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE04E6A6194AE50300BD30BC /* libz.dylib */; };
 		DE1B5B3E194AEE2900A4B5D9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1B5B3D194AEE2900A4B5D9 /* libsqlite3.dylib */; };
@@ -209,6 +210,8 @@
 		DE17B2C61B7C7DAA00905EEE /* DownloadManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManagerViewController.h; sourceTree = "<group>"; };
 		DE17B2C71B7C7DAA00905EEE /* DownloadManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManagerViewController.m; sourceTree = "<group>"; };
 		DE17B2C81B7C7DAA00905EEE /* DownloadManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadManagerViewController.xib; sourceTree = "<group>"; };
+		DE195AEE1B8AFFDA000B4008 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		DE195AEF1B8AFFDA000B4008 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		DE1B5B3D194AEE2900A4B5D9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		DE1B5B3F194B0EA000A4B5D9 /* icon_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_default.png; sourceTree = "<group>"; };
 		DE1B5B40194B0EA000A4B5D9 /* icon_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_default@2x.png"; sourceTree = "<group>"; };
@@ -408,6 +411,15 @@
 			name = "Tab Download";
 			sourceTree = "<group>";
 		};
+		DE195AED1B8AFFD0000B4008 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DE195AEE1B8AFFDA000B4008 /* Common.h */,
+				DE195AEF1B8AFFDA000B4008 /* Common.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		DE1F7DFD1B72FDD000C53E95 /* CustomCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +443,7 @@
 		DE22E7AC192F54180005E685 = {
 			isa = PBXGroup;
 			children = (
+				DE195AED1B8AFFD0000B4008 /* Common */,
 				DE233F721B70A9AD00C02DD6 /* CoreData */,
 				DEF496121934339F00DD482D /* Libraries */,
 				DEB54D731933344800EC589E /* Images */,
@@ -925,6 +938,7 @@
 				DEF496591934A24C00DD482D /* BookmarkCustomCell.m in Sources */,
 				DE17B2B81B7C79FD00905EEE /* WBErrorNoticeView.m in Sources */,
 				DE233F791B70A9AD00C02DD6 /* Model.xcdatamodeld in Sources */,
+				DE195AF01B8AFFDA000B4008 /* Common.m in Sources */,
 				DE17B2B71B7C79FD00905EEE /* WBBlueGradientView.m in Sources */,
 				DE17B2BE1B7C79FD00905EEE /* WBSuccessNoticeView.m in Sources */,
 				DEF4961C1934376700DD482D /* UIAlertView+Helper.m in Sources */,
