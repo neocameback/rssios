@@ -11,6 +11,7 @@
 
 @interface NodeListCustomCell : UITableViewCell
 
+@property (nonatomic, assign) TempNode* node;
 @property (weak, nonatomic) IBOutlet UIImageView *iv_image;
 @property (weak, nonatomic) IBOutlet UILabel *lb_title;
 @property (weak, nonatomic) IBOutlet UIButton *btn_addToFav;

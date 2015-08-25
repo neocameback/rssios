@@ -61,6 +61,7 @@
 		DE17B2C41B7C7C2800905EEE /* icon_check_status@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE17B2C11B7C7C2800905EEE /* icon_check_status@3x.png */; };
 		DE17B2C91B7C7DAA00905EEE /* DownloadManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE17B2C71B7C7DAA00905EEE /* DownloadManagerViewController.m */; };
 		DE17B2CA1B7C7DAA00905EEE /* DownloadManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE17B2C81B7C7DAA00905EEE /* DownloadManagerViewController.xib */; };
+		DE191D381B8C626E0024DE5D /* RPNodeDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE191D371B8C626E0024DE5D /* RPNodeDescriptionViewController.m */; };
 		DE195AF01B8AFFDA000B4008 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = DE195AEF1B8AFFDA000B4008 /* Common.m */; };
 		DE1B5B3B194AED9800A4B5D9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE04E6A8194AE52000BD30BC /* AdSupport.framework */; };
 		DE1B5B3C194AEDA400A4B5D9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE04E6A6194AE50300BD30BC /* libz.dylib */; };
@@ -210,6 +211,8 @@
 		DE17B2C61B7C7DAA00905EEE /* DownloadManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManagerViewController.h; sourceTree = "<group>"; };
 		DE17B2C71B7C7DAA00905EEE /* DownloadManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManagerViewController.m; sourceTree = "<group>"; };
 		DE17B2C81B7C7DAA00905EEE /* DownloadManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadManagerViewController.xib; sourceTree = "<group>"; };
+		DE191D361B8C626E0024DE5D /* RPNodeDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPNodeDescriptionViewController.h; sourceTree = "<group>"; };
+		DE191D371B8C626E0024DE5D /* RPNodeDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPNodeDescriptionViewController.m; sourceTree = "<group>"; };
 		DE195AEE1B8AFFDA000B4008 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		DE195AEF1B8AFFDA000B4008 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		DE1B5B3D194AEE2900A4B5D9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -218,7 +221,7 @@
 		DE1F7DFF1B73064900C53E95 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		DE210912194FE8A10026F481 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		DE21091D194FF04A0026F481 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		DE22E7B5192F54180005E685 /* Rss Video Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rss Video Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE22E7B5192F54180005E685 /* Rss Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rss Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE22E7B8192F54180005E685 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DE22E7BA192F54180005E685 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DE22E7BC192F54180005E685 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -459,7 +462,7 @@
 		DE22E7B6192F54180005E685 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DE22E7B5192F54180005E685 /* Rss Video Player.app */,
+				DE22E7B5192F54180005E685 /* Rss Player.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -485,11 +488,11 @@
 		DE22E7BE192F54180005E685 /* MyRssReader */ = {
 			isa = PBXGroup;
 			children = (
-				DE17B2C51B7C7D7F00905EEE /* Tab Download */,
 				DEF496211934496B00DD482D /* Tab Home */,
 				DEF496221934499C00DD482D /* Tab Manage */,
 				DEF49623193449B600DD482D /* Tab Favorite */,
 				DEF49624193449BE00DD482D /* Tab About */,
+				DE17B2C51B7C7D7F00905EEE /* Tab Download */,
 				DE22E7C7192F54180005E685 /* AppDelegate.h */,
 				DE22E7C8192F54180005E685 /* AppDelegate.m */,
 				DE22E7CA192F54180005E685 /* Images.xcassets */,
@@ -500,6 +503,7 @@
 				DEF4961E1934385200DD482D /* Constant.m */,
 				DE17B29B1B7C74D400905EEE /* DownloadManager.h */,
 				DE17B29A1B7C74D400905EEE /* DownloadManager.m */,
+				DE21091D194FF04A0026F481 /* Storyboard.storyboard */,
 				DE1F7DFF1B73064900C53E95 /* Launch Screen.xib */,
 				DEC5DD3B19359A560088A62F /* BaseViewController.h */,
 				DEC5DD3C19359A560088A62F /* BaseViewController.m */,
@@ -682,10 +686,11 @@
 				DEB54D6B19331FA800EC589E /* NodeListViewController.xib */,
 				846565061B7B96AE00C9E99E /* MyMoviePlayerViewController.m */,
 				846565071B7B96AE00C9E99E /* MyMoviePlayerViewController.h */,
-				DE21091D194FF04A0026F481 /* Storyboard.storyboard */,
 				DEB54D80193337B200EC589E /* WebViewViewController.h */,
 				DEB54D81193337B200EC589E /* WebViewViewController.m */,
 				DEB54D82193337B200EC589E /* WebViewViewController.xib */,
+				DE191D361B8C626E0024DE5D /* RPNodeDescriptionViewController.h */,
+				DE191D371B8C626E0024DE5D /* RPNodeDescriptionViewController.m */,
 			);
 			name = "Tab Home";
 			sourceTree = "<group>";
@@ -740,7 +745,7 @@
 			);
 			name = MyRssReader;
 			productName = MyRssReader;
-			productReference = DE22E7B5192F54180005E685 /* Rss Video Player.app */;
+			productReference = DE22E7B5192F54180005E685 /* Rss Player.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -911,6 +916,7 @@
 				DEB54D711933333A00EC589E /* NodeListCustomCell.m in Sources */,
 				DE17B2B61B7C79FD00905EEE /* UILabel+WBExtensions.m in Sources */,
 				DE233F6E1B70A89F00C02DD6 /* MWFeedParser.m in Sources */,
+				DE191D381B8C626E0024DE5D /* RPNodeDescriptionViewController.m in Sources */,
 				DE233F6B1B70A89F00C02DD6 /* GTMNSString+HTML.m in Sources */,
 				DE233F711B70A89F00C02DD6 /* NSString+XMLEntities.m in Sources */,
 				DE233F7A1B70A9AD00C02DD6 /* Node.m in Sources */,
@@ -1101,7 +1107,7 @@
 					Social,
 					"$(inherited)",
 				);
-				PRODUCT_NAME = "Rss Video Player";
+				PRODUCT_NAME = "Rss Player";
 				PROVISIONING_PROFILE = "bafa2298-8af7-469b-bd0b-0bab6fb2d1f2";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1168,7 +1174,7 @@
 					Social,
 					"$(inherited)",
 				);
-				PRODUCT_NAME = "Rss Video Player";
+				PRODUCT_NAME = "Rss Player";
 				PROVISIONING_PROFILE = "6EDBD209-C713-4632-9DDF-630E3A9D0FC5";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

@@ -219,9 +219,8 @@
     }
     [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeGradient];
     GADRequest *request = [GADRequest request];
-    interstitial_ = [[GADInterstitial alloc] init];
+    interstitial_ = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
     interstitial_.delegate = self;
-    interstitial_.adUnitID = kLargeAdUnitId;
     [interstitial_ loadRequest:request];
 }
 

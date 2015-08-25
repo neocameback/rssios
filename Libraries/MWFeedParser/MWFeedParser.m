@@ -603,6 +603,7 @@
                         else if ([currentPath isEqualToString:@"/rss/channel/item/content:encoded"]) { if (processedText.length > 0) item.content = processedText; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/pubDate"]) { if (processedText.length > 0) item.date = [NSDate dateFromInternetDateTimeString:processedText formatHint:DateFormatHintRFC822]; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/enclosure"]) { [self createEnclosureFromAttributes:currentElementAttributes andAddToItem:item]; processed = YES; }
+                        else if ([currentPath isEqualToString:@"/rss/channel/item/media:thumbnail"]) { [self createMediaFromAttributes:currentElementAttributes andAddToItem:item]; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/dc:date"]) { if (processedText.length > 0) item.date = [NSDate dateFromInternetDateTimeString:processedText formatHint:DateFormatHintRFC3339]; processed = YES; }
                     }
                     
@@ -923,7 +924,38 @@
 	} else {
 		return NO;
 	}
-	
+}
+-(BOOL) createMediaFromAttributes:(NSDictionary *) attributes andAddToItem:(MWFeedItem *)currentItem {
+
+    // Create enclosure
+    NSDictionary *media = nil;
+    NSString *thumbUrl = nil;
+    if (attributes) {
+        switch (feedType) {
+            case FeedTypeRSS: { // http://cyber.law.harvard.edu/rss/rss.html#ltenclosuregtSubelementOfLtitemgt
+                // <enclosure>
+                thumbUrl = [attributes objectForKey:@"url"];
+                break;
+            }
+            default: break;
+        }
+    }
+    if (thumbUrl) {
+        NSMutableDictionary *e = [[NSMutableDictionary alloc] init];
+        [e setObject:thumbUrl forKey:@"url"];
+        media = [NSDictionary dictionaryWithDictionary:e];
+    }
+    // Add to item		 
+    if (media) {
+        if (currentItem.medias) {
+            currentItem.medias = [currentItem.medias arrayByAddingObject:media];
+        } else {
+            currentItem.medias = [NSArray arrayWithObject:media];
+        }
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 // Process ATOM link and determine whether to ignore it, add it as the link element or add as enclosure

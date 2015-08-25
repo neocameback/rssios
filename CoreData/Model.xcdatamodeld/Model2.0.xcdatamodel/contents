@@ -16,6 +16,7 @@
         <attribute name="bookmarkStatus" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isAddedToBoomark" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isDeletedFlag" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="nodeDesc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nodeImage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nodeSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nodeTitle" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,7 +29,7 @@
     </entity>
     <elements>
         <element name="File" positionX="-2223" positionY="-918" width="128" height="195"/>
-        <element name="Node" positionX="-1757" positionY="-748" width="128" height="163"/>
+        <element name="Node" positionX="-1757" positionY="-748" width="128" height="178"/>
         <element name="Rss" positionX="-2007" positionY="-673" width="128" height="73"/>
     </elements>
 </model>

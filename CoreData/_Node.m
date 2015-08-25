@@ -7,6 +7,7 @@ const struct NodeAttributes NodeAttributes = {
 	.bookmarkStatus = @"bookmarkStatus",
 	.isAddedToBoomark = @"isAddedToBoomark",
 	.isDeletedFlag = @"isDeletedFlag",
+	.nodeDesc = @"nodeDesc",
 	.nodeImage = @"nodeImage",
 	.nodeSource = @"nodeSource",
 	.nodeTitle = @"nodeTitle",
@@ -95,6 +96,8 @@ const struct NodeAttributes NodeAttributes = {
 - (void)setPrimitiveIsDeletedFlagValue:(BOOL)value_ {
 	[self setPrimitiveIsDeletedFlag:[NSNumber numberWithBool:value_]];
 }
+
+@dynamic nodeDesc;
 
 @dynamic nodeImage;
 

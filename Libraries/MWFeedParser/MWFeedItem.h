@@ -47,7 +47,7 @@
 	//     length: how big it is in bytes (NSNumber)
 	//     type: what its type is, a standard MIME type  (NSString)
 	NSArray *enclosures;
-
+    NSArray *medias;
 }
 
 @property (nonatomic, copy) NSString *identifier;
@@ -61,5 +61,5 @@
 @property (nonatomic, copy) NSString* bookmarkStatus;
 
 @property (nonatomic, copy) NSArray *enclosures;
-
+@property (nonatomic, copy) NSArray *medias;
 @end

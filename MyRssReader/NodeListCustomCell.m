@@ -9,6 +9,7 @@
 #import "NodeListCustomCell.h"
 #import <UIImageView+AFNetworking.h>
 #import "Node.h"
+#import <UIView+AnimationExtensions.h>
 
 @implementation NodeListCustomCell
 
@@ -23,21 +24,46 @@
 
     // Configure the view for the selected state
 }
--(void) configWithNode:(TempNode*) node
+-(void) configWithNode:(TempNode*) aNode
 {
-    [self.iv_image setImageWithURL:[NSURL URLWithString:[node nodeImage]] placeholderImage:[UIImage imageNamed:@"icon_default"]];
-    self.lb_title.text = [node nodeTitle];
-    if ([node bookmarkStatus] != nil && ( [[node bookmarkStatus] caseInsensitiveCompare:@"true"] == NSOrderedSame || [[node bookmarkStatus] boolValue] == YES)) {
+    _node = aNode;
+    
+    [self.iv_image setImageWithURL:[NSURL URLWithString:[_node nodeImage]] placeholderImage:[UIImage imageNamed:@"icon_default"]];
+    self.lb_title.text = [_node nodeTitle];
+    /**
+     *  Bookmark status default = yes
+     *  if bookmarkStatus = false so hide the favorite button
+     */
+    if ([_node bookmarkStatus] != nil && ( [[_node bookmarkStatus] caseInsensitiveCompare:@"false"] == NSOrderedSame || [[_node bookmarkStatus] boolValue] == NO)) {
+        self.btn_addToFav.hidden = YES;
+    }else{
         self.btn_addToFav.hidden = NO;
-        NSString *nodeUrl = [node nodeUrl];
+        NSString *nodeUrl = [_node nodeUrl];
         Node *node = [Node MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"nodeUrl == %@",nodeUrl] inContext:[NSManagedObjectContext MR_defaultContext]];
         if (!node) {
             self.btn_addToFav.selected = NO;
         }else{
             self.btn_addToFav.selected = YES;
         }
-    }else{
-        self.btn_addToFav.hidden = YES;
     }
+}
+- (IBAction)onFavorite:(UIButton*)sender {
+    
+    [sender pulseToSize:1.2 duration:0.25 repeat:NO];
+    NSString *nodeUrl = [_node nodeUrl];
+    if ([[_node isAddedToBoomark] boolValue]) {
+        Node *node = [Node MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"nodeUrl == %@",nodeUrl] inContext:[NSManagedObjectContext MR_defaultContext]];
+        [node MR_deleteEntity];
+        [_node setIsAddedToBoomark: [_node.isAddedToBoomark boolValue] ? @0 : @1];
+    }else{
+        Node *node = [Node MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"nodeUrl == %@",nodeUrl] inContext:[NSManagedObjectContext MR_defaultContext]];
+        if (!node) {
+            node = [Node MR_createEntity];
+        }
+        [_node setIsAddedToBoomark: [_node.isAddedToBoomark boolValue] ? @0 : @1];
+        [node initFromTempNode:_node];
+    }
+    
+    [self configWithNode:_node];
 }
 @end

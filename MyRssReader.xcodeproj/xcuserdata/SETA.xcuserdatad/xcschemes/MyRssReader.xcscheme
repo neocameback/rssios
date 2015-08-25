@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DE22E7B4192F54180005E685"
-               BuildableName = "Rss Video Player.app"
+               BuildableName = "Rss Player.app"
                BlueprintName = "MyRssReader"
                ReferencedContainer = "container:MyRssReader.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DE22E7B4192F54180005E685"
-            BuildableName = "Rss Video Player.app"
+            BuildableName = "Rss Player.app"
             BlueprintName = "MyRssReader"
             ReferencedContainer = "container:MyRssReader.xcodeproj">
          </BuildableReference>
@@ -63,7 +63,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DE22E7B4192F54180005E685"
-            BuildableName = "Rss Video Player.app"
+            BuildableName = "Rss Player.app"
             BlueprintName = "MyRssReader"
             ReferencedContainer = "container:MyRssReader.xcodeproj">
          </BuildableReference>
@@ -82,7 +82,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DE22E7B4192F54180005E685"
-            BuildableName = "Rss Video Player.app"
+            BuildableName = "Rss Player.app"
             BlueprintName = "MyRssReader"
             ReferencedContainer = "container:MyRssReader.xcodeproj">
          </BuildableReference>

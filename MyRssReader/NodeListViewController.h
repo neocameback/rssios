@@ -25,9 +25,9 @@ typedef enum : NSUInteger {
     
     GADInterstitial *interstitial_;
     
-    NSIndexPath *currentPath;
+    TempNode *currentNode;
     NSMutableArray *nodeList;
-    
+    NSArray *searchResults;
     TempRss *tempRss;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

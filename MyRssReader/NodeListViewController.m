@@ -20,12 +20,14 @@
 #import <AFDownloadRequestOperation.h>
 #import <MBProgressHUD.h>
 #import "DownloadManager.h"
+#import "NSString+HTML.h"
+#import "RPNodeDescriptionViewController.h"
 
 @interface NodeListViewController () <UIAlertViewDelegate>
 {
     MPMoviePlayerViewController *moviePlayer;
     NodeListCustomCell *nodeCell;
-    
+    NSString *identifier;
     NSInteger willDownloadAtIndex;
 }
 @end
@@ -47,9 +49,11 @@
     // Do any additional setup after loading the view from its nib.
     [self parseRssFromURL:self.rssLink];
     
-    UINib *nib = [UINib nibWithNibName:@"NodeListCustomCell" bundle:nil];
+    identifier = @"NodeListCustomCell";
+    UINib *nib = [UINib nibWithNibName:identifier bundle:nil];
     nodeCell = [nib instantiateWithOwner:self options:nil][0];
-    [_tableView registerNib:nib forCellReuseIdentifier:@"NodeListCustomCell"];
+    [_tableView registerNib:nib forCellReuseIdentifier:identifier];
+    [self.searchDisplayController.searchResultsTableView registerNib:nib forCellReuseIdentifier:identifier];
     
     interstitial_ = [self createAndLoadInterstital];
 }
@@ -119,42 +123,45 @@
 }
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return nodeList.count;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [searchResults count];
+    } else {
+        return nodeList.count;
+    }
 }
 
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TempNode *node = nodeList[indexPath.row];
+    TempNode *node = nil;
     
-    NodeListCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NodeListCustomCell" forIndexPath:indexPath];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        node = searchResults[indexPath.row];
+    } else {
+        node = nodeList[indexPath.row];
+    }
+    
+    NodeListCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     [cell configWithNode:node];
     
-    [cell.btn_addToFav addTarget:self action:@selector(onAddToFav:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.btn_addToFav setTag:indexPath.row];
-    
-    if ([Constant typeOfNode:node.nodeType] == NODE_TYPE_MP4) {
-        UIButton *btn_download = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn_download setImage:[UIImage imageNamed:@"icon_download"] forState:UIControlStateNormal];
-        [btn_download setFrame:CGRectMake(0, 0, 50, 30)];
-        [btn_download addTarget:self action:@selector(onDownLoad:) forControlEvents:UIControlEventTouchUpInside];
-        [btn_download setTag:indexPath.row];
-        [cell setAccessoryView:btn_download];
-    }else{
-        [cell setAccessoryView:nil];
-    }
     return cell;
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    currentPath = indexPath;
     if ([self tableview:tableView cellTypeForRowAtIndexPath:indexPath] == CELL_TYPE_NORMAL) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        TempNode *node = nodeList[indexPath.row];
+        
+        currentNode = nil;
+        
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            currentNode = searchResults[indexPath.row];
+        } else {
+            currentNode = nodeList[indexPath.row];
+        }
         
         [self continueAtCurrentPath];
         return;
-        switch ([Constant typeOfNode:node.nodeType]) {
+        switch ([Constant typeOfNode:currentNode.nodeType]) {
             case NODE_TYPE_RSS:
             {
                 /**
@@ -201,27 +208,22 @@
     }
 }
 
-
--(void) onAddToFav:(id) sender
+#pragma mark search bar implement
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    NSInteger tag = [sender tag];
-    
-    TempNode *temp = nodeList[tag];
-    NSString *nodeUrl = [nodeList[tag] nodeUrl];
-    if ([[temp isAddedToBoomark] boolValue]) {
-        Node *node = [Node MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"nodeUrl == %@",nodeUrl] inContext:[NSManagedObjectContext MR_defaultContext]];
-        [node MR_deleteEntity];
-        [temp setIsAddedToBoomark: [temp.isAddedToBoomark boolValue] ? @0 : @1];
-    }else{
-        Node *node = [Node MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"nodeUrl == %@",nodeUrl] inContext:[NSManagedObjectContext MR_defaultContext]];
-        if (!node) {
-            node = [Node MR_createEntity];
-        }
-        [temp setIsAddedToBoomark: [temp.isAddedToBoomark boolValue] ? @0 : @1];
-        [node initFromTempNode:nodeList[tag]];
-    }
-    [self.tableView reloadData];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"nodeTitle contains[c] %@", searchText];
+    searchResults = [nodeList filteredArrayUsingPredicate:resultPredicate];
 }
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
 -(void) onDownLoad:(id) sender
 {
     willDownloadAtIndex = [sender tag];
@@ -304,38 +306,55 @@
 
 -(void) continueAtCurrentPath
 {
-    TempNode *node = nodeList[currentPath.row];
-    switch ([Constant typeOfNode:node.nodeType]) {
+    /**
+     *  check if node url is empty or not
+     */
+    if (!currentNode.nodeUrl || currentNode.nodeUrl.length <= 0) {
+        
+        RPNodeDescriptionViewController *viewcontroller = [Storyboard instantiateViewControllerWithIdentifier:@"RPNodeDescriptionViewController"];
+        [viewcontroller setTitle:currentNode.nodeTitle];
+        [viewcontroller setDesc:currentNode.nodeDesc];
+        [viewcontroller setUrl:currentNode.nodeLink];
+        [self.navigationController pushViewController:viewcontroller animated:YES];
+        return;
+    }
+    /**
+     *  otherwise
+     */
+    switch ([Constant typeOfNode:currentNode.nodeType]) {
         case NODE_TYPE_RSS:
         {
             NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
-            [viewcontroller setRssLink:node.nodeUrl];
-            [viewcontroller setTitle:node.nodeTitle];
+            [viewcontroller setRssLink:currentNode.nodeUrl];
+            [viewcontroller setTitle:currentNode.nodeTitle];
             [self.navigationController pushViewController:viewcontroller animated:YES];
         }
             break;
         case NODE_TYPE_VIDEO:
         {
-            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
+            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:currentNode.nodeUrl]];
             [self presentMoviePlayerViewControllerAnimated:moviePlayer];
         }
             break;
         case NODE_TYPE_MP4:
         {
-            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
+            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:currentNode.nodeUrl]];
             [self presentMoviePlayerViewControllerAnimated:moviePlayer];
         }
             break;
         case NODE_TYPE_YOUTUBE:
         {
-            XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:[node.nodeUrl extractYoutubeId]];
+            XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:[currentNode.nodeUrl extractYoutubeId]];
             [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
         }
             break;
         case NODE_TYPE_DAILYMOTION:
         {
-            DMPlayerViewController *playerViewcontroller = [[DMPlayerViewController alloc] initWithVideo:@"x1ythnm"];
-            [playerViewcontroller setTitle:node.nodeTitle];
+            NSString *url = currentNode.nodeUrl;
+            NSString *videoIdentifer = [url lastPathComponent];
+            
+            DMPlayerViewController *playerViewcontroller = [[DMPlayerViewController alloc] initWithVideo:videoIdentifer];
+            [playerViewcontroller setTitle:currentNode.nodeTitle];
             [playerViewcontroller setHidesBottomBarWhenPushed:YES];
              [self.navigationController pushViewController:playerViewcontroller animated:YES];
         }
@@ -363,8 +382,8 @@
         default:
         {
             WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
-            [viewcontroller setTitle:node.nodeTitle];
-            [viewcontroller setWebUrl:node.nodeUrl];
+            [viewcontroller setTitle:currentNode.nodeTitle];
+            [viewcontroller setWebUrl:currentNode.nodeUrl];
             [self.navigationController pushViewController:viewcontroller animated:YES];
         }
             break;
@@ -390,28 +409,36 @@
     TempNode *aNode = [[TempNode alloc] init];
     aNode.bookmarkStatus = item.bookmarkStatus;
     aNode.nodeTitle = item.title;
+    aNode.nodeDesc = [item.summary stringByConvertingHTMLToPlainText];
     aNode.nodeLink = item.link;
     if (item.enclosures.count > 0) {
         aNode.nodeType = item.enclosures[0][@"type"];
         aNode.nodeUrl = item.enclosures[0][@"url"];
     }
-    NSError *error = NULL;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<img\\s[\\s\\S]*?src\\s*?=\\s*?['\"](.*?)['\"][\\s\\S]*?>)+?"
-                                                                           options:NSRegularExpressionCaseInsensitive
-                                                                             error:&error];
-    
-    [regex enumerateMatchesInString:item.summary
-                            options:0
-                              range:NSMakeRange(0, [item.summary length])
-                         usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-                             
-                             aNode.nodeImage = [item.summary substringWithRange:[result rangeAtIndex:2]];
-                             aNode.nodeImage = [aNode.nodeImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                         }];
-    NSLog(@"didParseFeedItem: %@",[aNode nodeTitle]);
-    NSLog(@"didParseFeedItem: %@",[aNode nodeLink]);
-    NSLog(@"didParseFeedItem: %@",[aNode nodeType]);
-    NSLog(@"didParseFeedItem: %@",[aNode nodeUrl]);
+    /**
+     *  get node thumbnail from media:thumbnail
+     */
+    if (item.medias.count > 0) {
+        aNode.nodeImage = [item.medias firstObject][@"url"];
+    }
+    /**
+     *  if thumbnail = nil or length <= 0 so get from enclosure
+     */
+    if (!aNode.nodeImage || aNode.nodeImage.length <= 0) {
+        NSError *error = NULL;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<img\\s[\\s\\S]*?src\\s*?=\\s*?['\"](.*?)['\"][\\s\\S]*?>)+?"
+                                                                               options:NSRegularExpressionCaseInsensitive
+                                                                                 error:&error];
+        
+        [regex enumerateMatchesInString:item.summary
+                                options:0
+                                  range:NSMakeRange(0, [item.summary length])
+                             usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+                                 
+                                 aNode.nodeImage = [item.summary substringWithRange:[result rangeAtIndex:2]];
+                                 aNode.nodeImage = [aNode.nodeImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                             }];
+    }
     if (!nodeList) {
         nodeList = [NSMutableArray array];
     }
@@ -444,11 +471,7 @@
         {
             if (buttonIndex != alertView.cancelButtonIndex) {
                 NSString *videoUrl = [nodeList[willDownloadAtIndex] nodeUrl];
-                /**
-                 *  sample video url
-                 */
-//                videoUrl = @"http://sample-videos.com/video/mp4/720/big_buck_bunny_720p_2mb.mp4";
-                [[DownloadManager shareManager] downloadFile:videoUrl name:[[alertView textFieldAtIndex:0] text] fromView:self];                
+                [[DownloadManager shareManager] downloadFile:videoUrl name:[[alertView textFieldAtIndex:0] text] fromView:self];
             }
         }
             break;

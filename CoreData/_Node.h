@@ -7,6 +7,7 @@ extern const struct NodeAttributes {
 	__unsafe_unretained NSString *bookmarkStatus;
 	__unsafe_unretained NSString *isAddedToBoomark;
 	__unsafe_unretained NSString *isDeletedFlag;
+	__unsafe_unretained NSString *nodeDesc;
 	__unsafe_unretained NSString *nodeImage;
 	__unsafe_unretained NSString *nodeSource;
 	__unsafe_unretained NSString *nodeTitle;
@@ -42,6 +43,10 @@ extern const struct NodeAttributes {
 - (void)setIsDeletedFlagValue:(BOOL)value_;
 
 //- (BOOL)validateIsDeletedFlag:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* nodeDesc;
+
+//- (BOOL)validateNodeDesc:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* nodeImage;
 
@@ -81,6 +86,9 @@ extern const struct NodeAttributes {
 
 - (BOOL)primitiveIsDeletedFlagValue;
 - (void)setPrimitiveIsDeletedFlagValue:(BOOL)value_;
+
+- (NSString*)primitiveNodeDesc;
+- (void)setPrimitiveNodeDesc:(NSString*)value;
 
 - (NSString*)primitiveNodeImage;
 - (void)setPrimitiveNodeImage:(NSString*)value;

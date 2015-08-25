@@ -4,119 +4,60 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFDownloadRequestOperation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
+		</dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>MagicalRecord.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
-		</dict>
-		<key>Pods-AFDownloadRequestOperation.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>9</integer>
-		</dict>
-		<key>Pods-AFNetworking.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>10</integer>
-		</dict>
-		<key>Pods-MBProgressHUD.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>11</integer>
-		</dict>
-		<key>Pods-MagicalRecord.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>12</integer>
-		</dict>
-		<key>Pods-PureLayout.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>13</integer>
-		</dict>
-		<key>Pods-SVProgressHUD.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>14</integer>
-		</dict>
-		<key>Pods-XCDYouTubeKit.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>15</integer>
-		</dict>
-		<key>Pods-dailymotion-player-objc.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>16</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
 		<key>PureLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 		<key>SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>7</integer>
+		</dict>
+		<key>UIView+AnimationExtensions.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>XCDYouTubeKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>8</integer>
 		</dict>
 		<key>dailymotion-player-objc.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>000439D9353A4CA304ED5FD5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>03385156985AB90B9E144856</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>07224664B6C73B039C4BD881</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1E1C71D2428727813D918CEE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>202E6F0EBC315374B605C957043646E7</key>
+		<key>053ED74E456481EF32C3DF48006B6C48</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -126,17 +67,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>508BE85BA82C43FE46574D3E</key>
+		<key>4D051CD315B0056F138DDD47D669E23B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6536F9B45573D2FB23D86A79</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6752101C0678D355FDA10D7D</key>
+		<key>57D45E25749B4CE17E1EE8382A4F9CEF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -146,7 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8E95153843D1B0E1F2C7F004</key>
+		<key>95DC951215210926848B0D97976BF95C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -156,12 +92,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B360D44725BD7761F2C252DC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B5D406CEF6097B6EC82858184BCB94DF</key>
+		<key>C2B99619ECB1FA0953893F6B6727790C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -171,7 +102,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E54487EBE9573CF00531C6D0BD5C9535</key>
+		<key>FB6052156F1627BA1361D480923D7AC1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

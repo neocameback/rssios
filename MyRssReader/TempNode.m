@@ -9,5 +9,5 @@
 #import "TempNode.h"
 
 @implementation TempNode
-@synthesize bookmarkStatus, isAddedToBoomark, nodeImage, nodeSource, nodeTitle, nodeType, nodeUrl;
+@synthesize bookmarkStatus, isAddedToBoomark, nodeImage, nodeSource, nodeTitle, nodeDesc, nodeType, nodeUrl;
 @end
