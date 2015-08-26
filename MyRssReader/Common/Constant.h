@@ -45,8 +45,4 @@ typedef enum : NSUInteger {
 
 @interface Constant : NSObject
 
-+(NSString *) getIpAddress;
-+(NSMutableURLRequest*) requestWithMethod:(NSString *) method andUrl:(NSString *) url;
-
-+(enum NODE_TYPE) typeOfNode:(NSString *) nodeType;
 @end

@@ -1,14 +1,23 @@
 //
-//  Constant.m
+//  Common.m
 //  MyRssReader
 //
-//  Created by Huyns89 on 5/27/14.
-//  Copyright (c) 2014 Huyns. All rights reserved.
+//  Created by Huyns89 on 8/26/15.
+//  Copyright (c) 2015 Huyns. All rights reserved.
 //
 
-#import "Constant.h"
+#import "Common.h"
 
-@implementation Constant
+@implementation Common
+
++(NSString *) getPathOfFile:(NSString*) name extension:(NSString*) ext
+{
+    NSString *path = [NSTemporaryDirectory()  stringByAppendingPathComponent:name];
+    path = [path stringByAppendingPathExtension:ext];
+    
+    return path;
+}
+
 +(NSString *) getIpAddress
 {
     NSUInteger  an_Integer;
@@ -59,7 +68,7 @@
 +(NSMutableURLRequest*) requestWithMethod:(NSString *) method andUrl:(NSString *) url
 {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-//    NSString *ipAddres = [Constant getIpAddress];
+    //    NSString *ipAddres = [Constant getIpAddress];
     [request setValue:@"RSSVideoPlayer2.0-iOS" forHTTPHeaderField:@"User-Agent"];
     NSString *md5String = [[NSString stringWithFormat:@"%@%@",kDefaultMd5Prefix,url] MD5String];
     [request setHTTPMethod:method];
@@ -93,6 +102,6 @@
     }
     else{
         return NODE_TYPE_WEB;
-    }        
+    }
 }
 @end
