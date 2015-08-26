@@ -72,7 +72,7 @@
 
 -(void) parseRssFromURL:(NSString *) url
 {
-    feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Constant requestWithMethod:@"GET" andUrl:url]];
+    feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Common requestWithMethod:@"GET" andUrl:url]];
     feedParser.delegate = self;
     // Parse the feeds info (title, link) and all feed items
     feedParser.feedParseType = ParseTypeFull;
@@ -161,7 +161,7 @@
         
         [self continueAtCurrentPath];
         return;
-        switch ([Constant typeOfNode:currentNode.nodeType]) {
+        switch ([Common typeOfNode:currentNode.nodeType]) {
             case NODE_TYPE_RSS:
             {
                 /**
@@ -321,7 +321,7 @@
     /**
      *  otherwise
      */
-    switch ([Constant typeOfNode:currentNode.nodeType]) {
+    switch ([Common typeOfNode:currentNode.nodeType]) {
         case NODE_TYPE_RSS:
         {
             NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];

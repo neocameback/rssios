@@ -183,7 +183,7 @@
             else {
                 urlString = [NSString stringWithFormat:@"http://%@", urlString];
             }
-            feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Constant requestWithMethod:@"GET" andUrl:urlString]];
+            feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Common requestWithMethod:@"GET" andUrl:urlString]];
             
             feedParser.delegate = self;
             // Parse the feeds info (title, link) and all feed items

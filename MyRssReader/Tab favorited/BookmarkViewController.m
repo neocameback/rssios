@@ -144,7 +144,7 @@
         node = [nodeList objectAtIndex:indexPath.row];
     }
     
-    switch ([Constant typeOfNode:node.nodeType]) {
+    switch ([Common typeOfNode:node.nodeType]) {
         case NODE_TYPE_RSS:
         {
             NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
@@ -262,7 +262,7 @@
     } else {
         node = [nodeList objectAtIndex:currentPath.row];
     }
-    switch ([Constant typeOfNode:node.nodeType]) {
+    switch ([Common typeOfNode:node.nodeType]) {
         case NODE_TYPE_RSS:
         {
         }

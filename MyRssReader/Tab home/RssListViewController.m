@@ -57,7 +57,7 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Constant requestWithMethod:@"GET" andUrl:kDefaultRssUrl]];
+        feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Common requestWithMethod:@"GET" andUrl:kDefaultRssUrl]];
         feedParser.delegate = self;
         // Parse the feeds info (title, link) and all feed items
         feedParser.feedParseType = ParseTypeFull;
