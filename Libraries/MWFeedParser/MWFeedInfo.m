@@ -33,7 +33,7 @@
 
 @implementation MWFeedInfo
 
-@synthesize title, link, summary, url;
+@synthesize title, link, summary, url, shouldCache;
 @synthesize adBannerId, adFullId;
 
 #pragma mark NSObject

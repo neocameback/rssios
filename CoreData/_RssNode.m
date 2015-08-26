@@ -1,9 +1,9 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to Node.m instead.
+// Make changes to RssNode.m instead.
 
-#import "_Node.h"
+#import "_RssNode.h"
 
-const struct NodeAttributes NodeAttributes = {
+const struct RssNodeAttributes RssNodeAttributes = {
 	.bookmarkStatus = @"bookmarkStatus",
 	.createdAt = @"createdAt",
 	.isAddedToBoomark = @"isAddedToBoomark",
@@ -17,27 +17,31 @@ const struct NodeAttributes NodeAttributes = {
 	.updatedAt = @"updatedAt",
 };
 
-@implementation NodeID
+const struct RssNodeRelationships RssNodeRelationships = {
+	.rss = @"rss",
+};
+
+@implementation RssNodeID
 @end
 
-@implementation _Node
+@implementation _RssNode
 
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription insertNewObjectForEntityForName:@"Node" inManagedObjectContext:moc_];
+	return [NSEntityDescription insertNewObjectForEntityForName:@"RssNode" inManagedObjectContext:moc_];
 }
 
 + (NSString*)entityName {
-	return @"Node";
+	return @"RssNode";
 }
 
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription entityForName:@"Node" inManagedObjectContext:moc_];
+	return [NSEntityDescription entityForName:@"RssNode" inManagedObjectContext:moc_];
 }
 
-- (NodeID*)objectID {
-	return (NodeID*)[super objectID];
+- (RssNodeID*)objectID {
+	return (RssNodeID*)[super objectID];
 }
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
@@ -114,6 +118,8 @@ const struct NodeAttributes NodeAttributes = {
 @dynamic nodeUrl;
 
 @dynamic updatedAt;
+
+@dynamic rss;
 
 @end
 

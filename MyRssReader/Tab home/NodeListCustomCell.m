@@ -59,7 +59,9 @@
         Node *node = [Node MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"nodeUrl == %@",nodeUrl] inContext:[NSManagedObjectContext MR_defaultContext]];
         if (!node) {
             node = [Node MR_createEntity];
+            [node setCreatedAt:[NSDate date]];
         }
+        [node setUpdatedAt:[NSDate date]];
         [_node setIsAddedToBoomark: [_node.isAddedToBoomark boolValue] ? @0 : @1];
         [node initFromTempNode:_node];
     }

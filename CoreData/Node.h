@@ -9,6 +9,9 @@
 #import "TempNode.h"
 #import "_Node.h"
 
+/**
+ Favorited Node model
+ */
 @interface Node : _Node
 
 -(void) initFromTempNode:(TempNode*) temp;

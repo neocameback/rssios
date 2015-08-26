@@ -35,7 +35,7 @@
 	NSString *link; // Feed link
 	NSString *summary; // Feed summary / description
 	NSURL *url; // Feed url
-    
+    NSString *shouldCache;
     NSString *adBannerId, *adFullId;
 	
 }
@@ -44,6 +44,7 @@
 @property (nonatomic, copy) NSString *link;
 @property (nonatomic, copy) NSString *summary;
 @property (nonatomic, copy) NSURL *url;
+@property (nonatomic, copy) NSString *shouldCache;
 @property (nonatomic, copy) NSString *adBannerId, *adFullId;
 
 @end

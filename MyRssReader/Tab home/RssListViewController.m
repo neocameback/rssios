@@ -126,6 +126,8 @@
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
 {
     defaultRss = [Rss MR_createEntity];
+    [defaultRss setCreatedAt:[NSDate date]];
+    [defaultRss setUpdatedAt:[NSDate date]];
     defaultRss.rssTitle = info.title;
     defaultRss.rssLink = info.link;
 }

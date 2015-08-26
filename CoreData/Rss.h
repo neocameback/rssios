@@ -8,6 +8,9 @@
 
 #import "_Rss.h"
 
+/**
+ *  Rss Model
+ */
 @interface Rss : _Rss
 
 @end

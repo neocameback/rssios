@@ -225,6 +225,8 @@
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
 {
     newRss = [Rss MR_createEntity];
+    [newRss setCreatedAt:[NSDate date]];
+    [newRss setUpdatedAt:[NSDate date]];
     if (newRssName && newRssName.length > 0) {
         newRss.rssTitle = newRssName;
     }else{

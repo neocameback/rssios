@@ -1,9 +1,9 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to Node.h instead.
+// Make changes to RssNode.h instead.
 
 #import <CoreData/CoreData.h>
 
-extern const struct NodeAttributes {
+extern const struct RssNodeAttributes {
 	__unsafe_unretained NSString *bookmarkStatus;
 	__unsafe_unretained NSString *createdAt;
 	__unsafe_unretained NSString *isAddedToBoomark;
@@ -15,16 +15,22 @@ extern const struct NodeAttributes {
 	__unsafe_unretained NSString *nodeType;
 	__unsafe_unretained NSString *nodeUrl;
 	__unsafe_unretained NSString *updatedAt;
-} NodeAttributes;
+} RssNodeAttributes;
 
-@interface NodeID : NSManagedObjectID {}
+extern const struct RssNodeRelationships {
+	__unsafe_unretained NSString *rss;
+} RssNodeRelationships;
+
+@class Rss;
+
+@interface RssNodeID : NSManagedObjectID {}
 @end
 
-@interface _Node : NSManagedObject {}
+@interface _RssNode : NSManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) NodeID* objectID;
+@property (nonatomic, readonly, strong) RssNodeID* objectID;
 
 @property (nonatomic, strong) NSString* bookmarkStatus;
 
@@ -78,9 +84,13 @@ extern const struct NodeAttributes {
 
 //- (BOOL)validateUpdatedAt:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) Rss *rss;
+
+//- (BOOL)validateRss:(id*)value_ error:(NSError**)error_;
+
 @end
 
-@interface _Node (CoreDataGeneratedPrimitiveAccessors)
+@interface _RssNode (CoreDataGeneratedPrimitiveAccessors)
 
 - (NSString*)primitiveBookmarkStatus;
 - (void)setPrimitiveBookmarkStatus:(NSString*)value;
@@ -120,5 +130,8 @@ extern const struct NodeAttributes {
 
 - (NSDate*)primitiveUpdatedAt;
 - (void)setPrimitiveUpdatedAt:(NSDate*)value;
+
+- (Rss*)primitiveRss;
+- (void)setPrimitiveRss:(Rss*)value;
 
 @end
