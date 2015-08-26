@@ -7,6 +7,7 @@
 //
 
 #import "Common.h"
+#import <AFNetworking.h>
 
 @implementation Common
 
@@ -65,14 +66,33 @@
     }
     return nil;
 }
-+(NSMutableURLRequest*) requestWithMethod:(NSString *) method andUrl:(NSString *) url
++(void) getUserIpAddress:(void (^) (id)) success failureBlock:(void (^) (id)) fail
+{
+    /**
+     *  get user's IP Address
+     */
+    AFHTTPRequestOperationManager *operation = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:GET_IP_ADDRESS]];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    operation.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [operation.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"text/html", nil]];
+    [operation GET:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success(responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(error);
+    }];
+}
++(NSMutableURLRequest*) requestWithMethod:(NSString *) method ipAddress:(NSString*) ipAddres Url:(NSString *) url
 {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    //    NSString *ipAddres = [Constant getIpAddress];
     [request setValue:@"RSSVideoPlayer2.0-iOS" forHTTPHeaderField:@"User-Agent"];
-    NSString *md5String = [[NSString stringWithFormat:@"%@%@",kDefaultMd5Prefix,url] MD5String];
+    
+    NSString *uidString = [NSString stringWithFormat:@"RSSPLAYER201508-%@-%@",url,ipAddres];
+    NSLog(@"uidString: %@",uidString);
+    NSString *md5String = [uidString MD5String];
+    [request setValue:md5String forHTTPHeaderField:@"HTTP_UID"];
+    [request setValue:@"2.0" forHTTPHeaderField:@"HTTP_VERSION"];
     [request setHTTPMethod:method];
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?Auth=%@",url,md5String]]];
+    [request setURL:[NSURL URLWithString:url]];
     
     return request;
 }

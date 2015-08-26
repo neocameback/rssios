@@ -14,11 +14,12 @@
 #define kSecondsToPresentInterstitial   120
 #define kLastOpenFullScreen @"last_open_full_screen"
 
-#define kDefaultRssUrl  @"http://rssvideoplayer.com/sample.xml"
+#define GET_IP_ADDRESS      @"http://rssvideoplayer.com/ip"
+#define kDefaultRssUrl      @"http://rssvideoplayer.com/sample.xml"
 #define kDefaultMd5Prefix   @"RssVideoPlayer-Hanoi052014-"
 
 #define kDefaultShareTitle  @"Rss video player\nhttp://rssvideoplayer.com"
-#define kAboutUrl   @"http://rssvideoplayer.com/about.html"
+#define kAboutUrl           @"http://rssvideoplayer.com/about.html"
 
 #define kGoogleAnalyticId   @"UA-51537954-1"
 

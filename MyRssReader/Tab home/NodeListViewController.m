@@ -72,20 +72,35 @@
 
 -(void) parseRssFromURL:(NSString *) url
 {
-    feedParser = [[MWFeedParser alloc] initWithFeedRequest:[Common requestWithMethod:@"GET" andUrl:url]];
-    feedParser.delegate = self;
-    // Parse the feeds info (title, link) and all feed items
-    feedParser.feedParseType = ParseTypeFull;
-    // Connection type
-    feedParser.connectionType = ConnectionTypeAsynchronously;
-    // Begin parsing
-    if ([self isInternetConnected]) {
-        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
-        [feedParser parse];
-    }else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:kMessageInternetConnectionLost delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
+    [Common getUserIpAddress:^(NSDictionary *update) {
+        if (update) {
+            NSString *ipAddress = update[@"ip"];
+            NSMutableURLRequest *request = [Common requestWithMethod:@"GET" ipAddress:ipAddress Url:url];
+            if (!request) {
+                return;
+            }
+            feedParser = [[MWFeedParser alloc] initWithFeedRequest:request];
+            
+            feedParser.delegate = self;
+            // Parse the feeds info (title, link) and all feed items
+            feedParser.feedParseType = ParseTypeFull;
+            // Connection type
+            feedParser.connectionType = ConnectionTypeAsynchronously;
+            // Begin parsing
+            if ([self isInternetConnected]) {
+                [feedParser parse];
+            }else{
+                [SVProgressHUD popActivity];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:kMessageInternetConnectionLost delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }
+        }
+    } failureBlock:^(NSError * error) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
-    }
+        [SVProgressHUD popActivity];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -446,14 +461,14 @@
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser
 {
-    [SVProgressHUD dismiss];
+    [SVProgressHUD popActivity];
     NSLog(@"Finished Parsing%@", (parser.stopped ? @" (Stopped)" : @""));
     
     [self.tableView reloadData];
 }
 - (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error
 {
-    [SVProgressHUD dismiss];
+    [SVProgressHUD popActivity];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Parsing Incomplete"
                                                     message:@"There was an error during the parsing of this feed. Not all of the feed items could parsed."
                                                    delegate:nil
