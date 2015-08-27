@@ -59,7 +59,7 @@
     
     AboutViewController *aboutVC = [AboutViewController initWithNibName];
     UINavigationController *aboutNav = [[UINavigationController alloc] initWithRootViewController:aboutVC];
-    UITabBarItem *tabBarItem4 = [[UITabBarItem alloc] initWithTitle:@"About" image:[UIImage imageNamed:@"ic_about_normal"] selectedImage:[UIImage imageNamed:@"ic_about_press"]];
+    UITabBarItem *tabBarItem4 = [[UITabBarItem alloc] initWithTitle:@"Settings" image:[UIImage imageNamed:@"ic_about_normal"] selectedImage:[UIImage imageNamed:@"ic_about_press"]];
     [aboutNav setTabBarItem:tabBarItem4];
     
 //    DownloadManagerViewController *downloadVC = [DownloadManagerViewController initWithNibName];

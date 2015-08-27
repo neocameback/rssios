@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AboutViewController : BaseViewController
-
+@interface AboutViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
+{
+    __weak IBOutlet UITableView *_tableView;
+    
+}
 @end

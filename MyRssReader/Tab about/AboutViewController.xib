@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutViewController">
             <connections>
+                <outlet property="_tableView" destination="THv-rD-Ve2" id="QoD-eu-Y97"/>
                 <outlet property="bannerView_" destination="ydA-zl-z49" id="PTl-Js-89V"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,34 +24,24 @@
                         <constraint firstAttribute="height" constant="50" id="uJi-UJ-PyD"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DjZ-yN-N5e">
-                    <rect key="frame" x="30" y="250" width="260" height="30"/>
-                    <state key="normal" title="About us"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="THv-rD-Ve2">
+                    <rect key="frame" x="0.0" y="50" width="320" height="518"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <connections>
-                        <action selector="onAboutus:" destination="-1" eventType="touchUpInside" id="sR0-D1-wI0"/>
+                        <outlet property="dataSource" destination="-1" id="AiJ-NA-LAp"/>
+                        <outlet property="delegate" destination="-1" id="rmN-6H-p8k"/>
                     </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VbR-38-KfK">
-                    <rect key="frame" x="30" y="288" width="260" height="30"/>
-                    <state key="normal" title="Tell friends">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onShare:" destination="-1" eventType="touchUpInside" id="PDY-jK-xFs"/>
-                    </connections>
-                </button>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="ydA-zl-z49" secondAttribute="trailing" id="D8v-2W-2W9"/>
-                <constraint firstItem="DjZ-yN-N5e" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="GEK-Ag-GnX"/>
-                <constraint firstItem="VbR-38-KfK" firstAttribute="trailing" secondItem="DjZ-yN-N5e" secondAttribute="trailing" id="Jh2-Ot-NFz"/>
-                <constraint firstItem="DjZ-yN-N5e" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="OvH-dT-hJK"/>
-                <constraint firstItem="VbR-38-KfK" firstAttribute="top" secondItem="DjZ-yN-N5e" secondAttribute="bottom" constant="8" symbolic="YES" id="eEd-54-gP6"/>
-                <constraint firstItem="DjZ-yN-N5e" firstAttribute="leading" secondItem="VbR-38-KfK" secondAttribute="leading" id="kwA-KO-peu"/>
+                <constraint firstAttribute="trailing" secondItem="THv-rD-Ve2" secondAttribute="trailing" id="G9Z-lr-gTa"/>
+                <constraint firstItem="THv-rD-Ve2" firstAttribute="top" secondItem="ydA-zl-z49" secondAttribute="bottom" id="Opr-JX-dUo"/>
+                <constraint firstAttribute="bottom" secondItem="THv-rD-Ve2" secondAttribute="bottom" id="nqu-h3-YQY"/>
                 <constraint firstItem="ydA-zl-z49" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oOq-DH-Jmd"/>
                 <constraint firstItem="ydA-zl-z49" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rIQ-BU-VHJ"/>
-                <constraint firstAttribute="centerY" secondItem="DjZ-yN-N5e" secondAttribute="centerY" constant="19" id="uyJ-uP-LX7"/>
+                <constraint firstItem="THv-rD-Ve2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xJ0-sQ-IhT"/>
             </constraints>
         </view>
     </objects>

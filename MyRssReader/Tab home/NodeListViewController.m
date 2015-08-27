@@ -52,10 +52,21 @@
      *  retrieve the cached RSS
      */
     cachedRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:self.rssLink];
-    /**
-     *  if this Rss is not exist so parse it from rss link
+    /*
+     *  check auto refresh time to fetch new data
      */
-    if (!cachedRss || cachedRss.shouldCacheValue == NO || cachedRss.nodeList.count <= 0) {
+    NSInteger autoRefreshTime = [[NSUserDefaults standardUserDefaults] integerForKey:kAutoRefreshNewsTime];
+    BOOL needRefresh = NO;
+    if (cachedRss) {
+        NSDate *lastUpdated = [cachedRss updatedAt];
+        NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:lastUpdated];
+        if (interval >= autoRefreshTime) {
+            needRefresh = YES;
+        }else{
+            needRefresh = NO;
+        }
+    }
+    if (!cachedRss || cachedRss.shouldCacheValue == NO || cachedRss.nodeList.count <= 0 || needRefresh) {
         [self parseRssFromURL:self.rssLink];
     }else{
         if (!nodeList) {
@@ -432,8 +443,10 @@
 {
     tempRss = [[TempRss alloc] initWithFeedInfo:info];
     if (tempRss.shouldCache) {
-        cachedRss = [Rss MR_createEntity];
-        [cachedRss setCreatedAt:[NSDate date]];
+        if (!cachedRss) {
+            cachedRss = [Rss MR_createEntity];
+            [cachedRss setCreatedAt:[NSDate date]];
+        }
         [cachedRss initFromTempRss:tempRss];
     }
 }
