@@ -7,9 +7,15 @@
 //
 
 #import "Rss.h"
-
+#import "TempRss.h"
 
 @implementation Rss
 
-
+-(void) initFromTempRss:(TempRss *) temp
+{
+    self.rssTitle = temp.rssTitle;
+    self.rssLink = temp.rssLink;
+    self.shouldCacheValue = temp.shouldCache;
+    self.updatedAt = [NSDate date];
+}
 @end

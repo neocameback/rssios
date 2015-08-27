@@ -5,4 +5,5 @@
  */
 @interface RssNode : _RssNode {}
 // Custom logic goes here.
+-(void) initFromTempNode:(id) temp;
 @end

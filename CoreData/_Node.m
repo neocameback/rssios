@@ -10,6 +10,7 @@ const struct NodeAttributes NodeAttributes = {
 	.isDeletedFlag = @"isDeletedFlag",
 	.nodeDesc = @"nodeDesc",
 	.nodeImage = @"nodeImage",
+	.nodeLink = @"nodeLink",
 	.nodeSource = @"nodeSource",
 	.nodeTitle = @"nodeTitle",
 	.nodeType = @"nodeType",
@@ -104,6 +105,8 @@ const struct NodeAttributes NodeAttributes = {
 @dynamic nodeDesc;
 
 @dynamic nodeImage;
+
+@dynamic nodeLink;
 
 @dynamic nodeSource;
 

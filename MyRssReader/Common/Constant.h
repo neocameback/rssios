@@ -10,8 +10,8 @@
 
 #define kNotificationShouldReloadRssList    @"should_reload_rss"
 
-#define ad_range   16
 #define kSecondsToPresentInterstitial   120
+#define kAutoRefreshNewsTime                 @"auto_refresh_news_time"
 #define kLastOpenFullScreen @"last_open_full_screen"
 
 #define GET_IP_ADDRESS      @"http://rssvideoplayer.com/ip"

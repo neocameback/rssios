@@ -34,7 +34,7 @@
      *  Bookmark status default = yes
      *  if bookmarkStatus = false so hide the favorite button
      */
-    if ([_node bookmarkStatus] != nil && ( [[_node bookmarkStatus] caseInsensitiveCompare:@"false"] == NSOrderedSame || [[_node bookmarkStatus] boolValue] == NO)) {
+    if ([_node bookmarkStatus] != nil && ([[_node bookmarkStatus] caseInsensitiveCompare:@"false"] == NSOrderedSame)) {
         self.btn_addToFav.hidden = YES;
     }else{
         self.btn_addToFav.hidden = NO;

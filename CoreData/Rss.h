@@ -12,5 +12,5 @@
  *  Rss Model
  */
 @interface Rss : _Rss
-
+-(void) initFromTempRss:(id) temp;
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "ManageRssViewController.h"
+#import "TempRss.h"
+#import "RssNode.h"
 
 @interface ManageRssViewController ()
 
@@ -74,7 +76,8 @@
     }else{
         [rssList removeAllObjects];
     }
-    rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isBookmarkRss == 1"];
+    rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES withPredicate:predicate]];
     [_tableView reloadData];
 }
 -(void) viewWillDisappear:(BOOL)animated
@@ -225,6 +228,12 @@
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
 {
     newRss = [Rss MR_createEntity];
+    if ([info shouldCache] != nil && ([[info shouldCache] caseInsensitiveCompare:@"false"] == NSOrderedSame)) {
+        newRss.shouldCacheValue = NO;
+    }else{
+        newRss.shouldCacheValue = YES;
+    }
+    [newRss setIsBookmarkRssValue:YES];
     [newRss setCreatedAt:[NSDate date]];
     [newRss setUpdatedAt:[NSDate date]];
     if (newRssName && newRssName.length > 0) {
@@ -236,32 +245,16 @@
     NSUInteger queryLength = [[info.url query] length];
     strippedString = (queryLength ? [strippedString substringToIndex:[strippedString length] - (queryLength + 1)] : strippedString);
     newRss.rssLink = strippedString;
-    
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
-//    Node *aNode = [Node MR_createEntity];
-//    aNode.nodeTitle = item.title;
-//    //    aNode.nodeSource = item.s
-//    if (item.enclosures.count > 0) {
-//        aNode.nodeType = item.enclosures[0][@"type"];
-//        aNode.nodeUrl = item.enclosures[0][@"url"];
-//    }
-//    NSError *error = NULL;
-//    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<img\\s[\\s\\S]*?src\\s*?=\\s*?['\"](.*?)['\"][\\s\\S]*?>)+?"
-//                                                                           options:NSRegularExpressionCaseInsensitive
-//                                                                             error:&error];
-//    
-//    [regex enumerateMatchesInString:item.summary
-//                            options:0
-//                              range:NSMakeRange(0, [item.summary length])
-//                         usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-//                             
-//                             aNode.nodeImage = [item.summary substringWithRange:[result rangeAtIndex:2]];
-//                             aNode.nodeImage = [aNode.nodeImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//                         }];
-//    
-//    aNode.currentRss = newRss;    
+    TempNode *tempNode = [[TempNode alloc] initWithFeedItem:item];
+    if (newRss && newRss.shouldCacheValue) {
+        RssNode *node = [RssNode MR_createEntity];
+        [node setCreatedAt:[NSDate date]];
+        [node initFromTempNode:tempNode];
+        [node setRss:newRss];
+    }
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser
 {

@@ -19,6 +19,7 @@
         <attribute name="isDeletedFlag" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="nodeDesc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nodeImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nodeLink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nodeSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nodeTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nodeType" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,6 +28,7 @@
     </entity>
     <entity name="Rss" representedClassName="Rss" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="isBookmarkRss" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="rssLink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rssTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="shouldCache" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -40,6 +42,7 @@
         <attribute name="isDeletedFlag" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="nodeDesc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nodeImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nodeLink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nodeSource" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nodeTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nodeType" optional="YES" attributeType="String" syncable="YES"/>
@@ -49,8 +52,8 @@
     </entity>
     <elements>
         <element name="File" positionX="-2223" positionY="-918" width="128" height="195"/>
-        <element name="Node" positionX="-1980" positionY="-918" width="128" height="210"/>
-        <element name="Rss" positionX="-2151" positionY="-585" width="128" height="133"/>
-        <element name="RssNode" positionX="-1793" positionY="-585" width="128" height="223"/>
+        <element name="Node" positionX="-1980" positionY="-918" width="128" height="223"/>
+        <element name="Rss" positionX="-2151" positionY="-585" width="128" height="148"/>
+        <element name="RssNode" positionX="-1793" positionY="-585" width="128" height="238"/>
     </elements>
 </model>

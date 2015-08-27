@@ -13,6 +13,8 @@
 @property (nonatomic, retain) NSString * rssTitle;
 @property (nonatomic, retain) NSString * adsBannerId;
 @property (nonatomic, retain) NSString * adsFullId;
+@property (nonatomic) BOOL shouldCache;
 @property (nonatomic, retain) NSMutableArray *nodes;
 
+-(id) initWithFeedInfo:(id) info;
 @end

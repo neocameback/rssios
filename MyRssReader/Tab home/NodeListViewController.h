@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Rss.h"
+#import "RssNode.h"
 #import "TempRss.h"
 #import "TempNode.h"
 
@@ -29,6 +30,7 @@ typedef enum : NSUInteger {
     NSMutableArray *nodeList;
     NSArray *searchResults;
     TempRss *tempRss;
+    Rss *cachedRss;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSString *rssLink;

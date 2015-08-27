@@ -13,12 +13,14 @@
 
 -(void) initFromTempNode:(TempNode*) temp
 {
+    [self setUpdatedAt:[NSDate date]];
     self.bookmarkStatus = temp.bookmarkStatus;
     self.isAddedToBoomark = temp.isAddedToBoomark;
     self.nodeImage = temp.nodeImage;
     self.nodeSource = temp.nodeSource;
     self.nodeTitle = temp.nodeTitle;
     self.nodeUrl = temp.nodeUrl;
+    self.nodeLink = temp.nodeLink;
     self.nodeType = temp.nodeType;
     self.isDeletedFlag = temp.isDeletedFlag;
 }

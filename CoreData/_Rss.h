@@ -5,6 +5,7 @@
 
 extern const struct RssAttributes {
 	__unsafe_unretained NSString *createdAt;
+	__unsafe_unretained NSString *isBookmarkRss;
 	__unsafe_unretained NSString *rssLink;
 	__unsafe_unretained NSString *rssTitle;
 	__unsafe_unretained NSString *shouldCache;
@@ -29,6 +30,14 @@ extern const struct RssRelationships {
 @property (nonatomic, strong) NSDate* createdAt;
 
 //- (BOOL)validateCreatedAt:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* isBookmarkRss;
+
+@property (atomic) BOOL isBookmarkRssValue;
+- (BOOL)isBookmarkRssValue;
+- (void)setIsBookmarkRssValue:(BOOL)value_;
+
+//- (BOOL)validateIsBookmarkRss:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* rssLink;
 
@@ -75,6 +84,12 @@ extern const struct RssRelationships {
 
 - (NSDate*)primitiveCreatedAt;
 - (void)setPrimitiveCreatedAt:(NSDate*)value;
+
+- (NSNumber*)primitiveIsBookmarkRss;
+- (void)setPrimitiveIsBookmarkRss:(NSNumber*)value;
+
+- (BOOL)primitiveIsBookmarkRssValue;
+- (void)setPrimitiveIsBookmarkRssValue:(BOOL)value_;
 
 - (NSString*)primitiveRssLink;
 - (void)setPrimitiveRssLink:(NSString*)value;

@@ -19,4 +19,6 @@
 @property (nonatomic, retain) NSString * nodeUrl;
 @property (nonatomic, retain) NSNumber * isAddedToBoomark;
 @property (nonatomic, retain) NSNumber * isDeletedFlag;
+-(id) initWithFeedItem:(id) item;
+-(id) initWithRssNode:(id) rssNode;
 @end

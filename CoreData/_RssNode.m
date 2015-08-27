@@ -10,6 +10,7 @@ const struct RssNodeAttributes RssNodeAttributes = {
 	.isDeletedFlag = @"isDeletedFlag",
 	.nodeDesc = @"nodeDesc",
 	.nodeImage = @"nodeImage",
+	.nodeLink = @"nodeLink",
 	.nodeSource = @"nodeSource",
 	.nodeTitle = @"nodeTitle",
 	.nodeType = @"nodeType",
@@ -108,6 +109,8 @@ const struct RssNodeRelationships RssNodeRelationships = {
 @dynamic nodeDesc;
 
 @dynamic nodeImage;
+
+@dynamic nodeLink;
 
 @dynamic nodeSource;
 

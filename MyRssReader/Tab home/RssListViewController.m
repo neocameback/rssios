@@ -8,6 +8,7 @@
 
 #import "RssListViewController.h"
 #import "Rss.h"
+#import "RssNode.h"
 #import "Node.h"
 #import "NodeListViewController.h"
 #import "MWFeedParser.h"
@@ -49,7 +50,9 @@
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
     {
-        rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES]];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isBookmarkRss == 1"];
+        rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES withPredicate:predicate]];
+
         [_tableView reloadData];
     }
     else // first time lauche application, we'll save a sample RSS url
@@ -125,37 +128,23 @@
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
 {
+    TempRss *tempRss = [[TempRss alloc] initWithFeedInfo:info];
+    /**
+     *  create and save the default rss
+     */
     defaultRss = [Rss MR_createEntity];
+    [defaultRss setIsBookmarkRssValue:YES];
     [defaultRss setCreatedAt:[NSDate date]];
-    [defaultRss setUpdatedAt:[NSDate date]];
-    defaultRss.rssTitle = info.title;
-    defaultRss.rssLink = info.link;
+    [defaultRss initFromTempRss:tempRss];
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
-//    Node *aNode = [Node MR_createEntity];
-//    aNode.nodeTitle = item.title;
-//    aNode.bookmarkStatus = item.bookmarkStatus;
-//    if (item.enclosures.count > 0) {
-//        aNode.nodeType = item.enclosures[0][@"type"];
-//        aNode.nodeUrl = item.enclosures[0][@"url"];
-//    }
-//    NSError *error = NULL;
-//    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<img\\s[\\s\\S]*?src\\s*?=\\s*?['\"](.*?)['\"][\\s\\S]*?>)+?"
-//                                                                           options:NSRegularExpressionCaseInsensitive
-//                                                                             error:&error];
-//    
-//    [regex enumerateMatchesInString:item.summary
-//                            options:0
-//                              range:NSMakeRange(0, [item.summary length])
-//                         usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-//                             
-//                             aNode.nodeImage = [item.summary substringWithRange:[result rangeAtIndex:2]];
-//                             aNode.nodeImage = [aNode.nodeImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//                         }];
-//    
-//    aNode.currentRss = defaultRss;
+    TempNode *tempNode = [[TempNode alloc] initWithFeedItem:item];
     
+    RssNode *node = [RssNode MR_createEntity];
+    [node setCreatedAt:[NSDate date]];
+    [node initFromTempNode:tempNode];
+    [node setRss:defaultRss];
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser
 {

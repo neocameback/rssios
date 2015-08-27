@@ -5,6 +5,7 @@
 
 const struct RssAttributes RssAttributes = {
 	.createdAt = @"createdAt",
+	.isBookmarkRss = @"isBookmarkRss",
 	.rssLink = @"rssLink",
 	.rssTitle = @"rssTitle",
 	.shouldCache = @"shouldCache",
@@ -41,6 +42,11 @@ const struct RssRelationships RssRelationships = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"isBookmarkRssValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"isBookmarkRss"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"shouldCacheValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"shouldCache"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -51,6 +57,26 @@ const struct RssRelationships RssRelationships = {
 }
 
 @dynamic createdAt;
+
+@dynamic isBookmarkRss;
+
+- (BOOL)isBookmarkRssValue {
+	NSNumber *result = [self isBookmarkRss];
+	return [result boolValue];
+}
+
+- (void)setIsBookmarkRssValue:(BOOL)value_ {
+	[self setIsBookmarkRss:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveIsBookmarkRssValue {
+	NSNumber *result = [self primitiveIsBookmarkRss];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveIsBookmarkRssValue:(BOOL)value_ {
+	[self setPrimitiveIsBookmarkRss:[NSNumber numberWithBool:value_]];
+}
 
 @dynamic rssLink;
 

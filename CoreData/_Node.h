@@ -10,6 +10,7 @@ extern const struct NodeAttributes {
 	__unsafe_unretained NSString *isDeletedFlag;
 	__unsafe_unretained NSString *nodeDesc;
 	__unsafe_unretained NSString *nodeImage;
+	__unsafe_unretained NSString *nodeLink;
 	__unsafe_unretained NSString *nodeSource;
 	__unsafe_unretained NSString *nodeTitle;
 	__unsafe_unretained NSString *nodeType;
@@ -58,6 +59,10 @@ extern const struct NodeAttributes {
 
 //- (BOOL)validateNodeImage:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* nodeLink;
+
+//- (BOOL)validateNodeLink:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* nodeSource;
 
 //- (BOOL)validateNodeSource:(id*)value_ error:(NSError**)error_;
@@ -105,6 +110,9 @@ extern const struct NodeAttributes {
 
 - (NSString*)primitiveNodeImage;
 - (void)setPrimitiveNodeImage:(NSString*)value;
+
+- (NSString*)primitiveNodeLink;
+- (void)setPrimitiveNodeLink:(NSString*)value;
 
 - (NSString*)primitiveNodeSource;
 - (void)setPrimitiveNodeSource:(NSString*)value;

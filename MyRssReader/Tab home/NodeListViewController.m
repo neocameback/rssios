@@ -47,7 +47,25 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self parseRssFromURL:self.rssLink];
+    
+    /**
+     *  retrieve the cached RSS
+     */
+    cachedRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:self.rssLink];
+    /**
+     *  if this Rss is not exist so parse it from rss link
+     */
+    if (!cachedRss || cachedRss.shouldCacheValue == NO || cachedRss.nodeList.count <= 0) {
+        [self parseRssFromURL:self.rssLink];
+    }else{
+        if (!nodeList) {
+            nodeList = [NSMutableArray array];
+        }
+        for (RssNode *node in cachedRss.nodeList) {
+            TempNode *aNode = [[TempNode alloc] initWithRssNode:node];
+            [nodeList addObject:aNode];
+        }
+    }
     
     identifier = @"NodeListCustomCell";
     UINib *nib = [UINib nibWithNibName:identifier bundle:nil];
@@ -412,52 +430,29 @@
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
 {
-    tempRss = [[TempRss alloc] init];
-    
-    tempRss.rssTitle = info.title;
-    tempRss.rssLink = info.link;
-    tempRss.adsBannerId = info.adBannerId;
-    tempRss.adsFullId = info.adFullId;
+    tempRss = [[TempRss alloc] initWithFeedInfo:info];
+    if (tempRss.shouldCache) {
+        cachedRss = [Rss MR_createEntity];
+        [cachedRss setCreatedAt:[NSDate date]];
+        [cachedRss initFromTempRss:tempRss];
+    }
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
-    TempNode *aNode = [[TempNode alloc] init];
-    aNode.bookmarkStatus = item.bookmarkStatus;
-    aNode.nodeTitle = item.title;
-    aNode.nodeDesc = [item.summary stringByConvertingHTMLToPlainText];
-    aNode.nodeLink = item.link;
-    if (item.enclosures.count > 0) {
-        aNode.nodeType = item.enclosures[0][@"type"];
-        aNode.nodeUrl = item.enclosures[0][@"url"];
-    }
-    /**
-     *  get node thumbnail from media:thumbnail
-     */
-    if (item.medias.count > 0) {
-        aNode.nodeImage = [item.medias firstObject][@"url"];
-    }
-    /**
-     *  if thumbnail = nil or length <= 0 so get from enclosure
-     */
-    if (!aNode.nodeImage || aNode.nodeImage.length <= 0) {
-        NSError *error = NULL;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<img\\s[\\s\\S]*?src\\s*?=\\s*?['\"](.*?)['\"][\\s\\S]*?>)+?"
-                                                                               options:NSRegularExpressionCaseInsensitive
-                                                                                 error:&error];
-        
-        [regex enumerateMatchesInString:item.summary
-                                options:0
-                                  range:NSMakeRange(0, [item.summary length])
-                             usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-                                 
-                                 aNode.nodeImage = [item.summary substringWithRange:[result rangeAtIndex:2]];
-                                 aNode.nodeImage = [aNode.nodeImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                             }];
-    }
+    TempNode *aNode = [[TempNode alloc] initWithFeedItem:item];
     if (!nodeList) {
         nodeList = [NSMutableArray array];
     }
     [nodeList addObject:aNode];
+    /**
+     *  if this rss should be cache so create new RssNode entity
+     */
+    if (cachedRss && cachedRss.shouldCacheValue) {
+        RssNode *node = [RssNode MR_createEntity];
+        [node initFromTempNode:aNode];
+        [node setCreatedAt:[NSDate date]];
+        [node setRss:cachedRss];
+    }
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser
 {
