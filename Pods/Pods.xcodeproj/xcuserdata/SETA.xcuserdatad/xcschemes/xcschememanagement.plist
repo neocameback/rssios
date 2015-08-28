@@ -14,6 +14,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>AFgzipRequestSerializer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Godzippa.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,7 +67,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>053ED74E456481EF32C3DF48006B6C48</key>
+		<key>04EE47C3B3D3A7E176769389CCEA8BA1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3F99A1740895939C478319582673229E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,7 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4D051CD315B0056F138DDD47D669E23B</key>
+		<key>4B513A9E6EFC99DBB4A2B4125AEDA37F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,12 +92,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>68722590A57EA95BC543D7108665D308</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7CF857C3F7EEFDF0F7822A2733D7FAFD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>95DC951215210926848B0D97976BF95C</key>
+		<key>9C78904BF174B71D4993347A79050674</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,17 +112,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C2B99619ECB1FA0953893F6B6727790C</key>
+		<key>CBBA751BE9DEF37B3C457BEE19F7955B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D9AC2E7EA2BFC1CF6FE385C4980AF731</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E29C8E9E5465A09F1BF61C3693EE0F99</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FB6052156F1627BA1361D480923D7AC1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
