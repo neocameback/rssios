@@ -25,7 +25,11 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Crashlytics (3.1.1)
   - dailymotion-player-objc (2.9.0)
+  - Fabric (1.4.0):
+    - Fabric/Base (= 1.4.0)
+  - Fabric/Base (1.4.0)
   - Godzippa (1.1.0)
   - Google-Mobile-Ads-SDK (7.4.0)
   - GoogleAnalytics (3.13.0)
@@ -40,7 +44,9 @@ DEPENDENCIES:
   - AFDownloadRequestOperation (~> 2.0.1)
   - AFgzipRequestSerializer (~> 0.0.2)
   - AFNetworking (~> 2.5.4)
+  - Crashlytics
   - dailymotion-player-objc (~> 2.9)
+  - Fabric
   - Google-Mobile-Ads-SDK (~> 7.4)
   - GoogleAnalytics (~> 3.13)
   - MagicalRecord (~> 2.3.0)
@@ -54,7 +60,9 @@ SPEC CHECKSUMS:
   AFDownloadRequestOperation: 748a1643423e1ddb23f2178f778087d4f0ae8ac7
   AFgzipRequestSerializer: 329638fc8ed023a15188dc03dd2f1a930da30ea4
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  Crashlytics: 39ab395565bc03c29cdecd2b9d103ebf30930c10
   dailymotion-player-objc: e5c6b6e3a1f84f24241b793a678a6ee07297e8d0
+  Fabric: 6d1d1c1eaf7ebc76fc3307e2c0259456411baf26
   Godzippa: 21621e8ddc2f1521db473a72b48148c3f0e79d76
   Google-Mobile-Ads-SDK: ff8ce0c4b495c60113a6f37916956aab9504d527
   GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
@@ -65,4 +73,4 @@ SPEC CHECKSUMS:
   UIView+AnimationExtensions: f9ae95fa3064be09cf2fcaac1fb1948ee22397ec
   XCDYouTubeKit: 920ff5dfdf37f0f41b19610c5270b2ed23b05b13
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.37.2

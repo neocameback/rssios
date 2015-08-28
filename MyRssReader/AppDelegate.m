@@ -14,6 +14,8 @@
 #import "NSString+HTML.h"
 #import <SVProgressHUD.h>
 #import "Reachability.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate() 
 {    
@@ -25,6 +27,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    [Fabric with:@[[Crashlytics class]]];
+
     // Optional: automatically send uncaught exceptions to Google Analytics.
     [GAI sharedInstance].trackUncaughtExceptions = YES;
     
