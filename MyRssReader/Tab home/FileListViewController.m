@@ -15,6 +15,8 @@
 #import <DMPlayerViewController.h>
 #import "WebViewViewController.h"
 #import <XCDYouTubeKit.h>
+#import <AFNetworking.h>
+#import <AFgzipRequestSerializer.h>
 
 @interface FileListViewController ()
 {
@@ -38,8 +40,22 @@
     [self.searchDisplayController.searchResultsTableView registerNib:nib forCellReuseIdentifier:identifier];
     
     interstitial_ = [self createAndLoadInterstital];
+    [self getWebContent];
 }
 
+-(void) getWebContent
+{
+    NSLog(@"webPageUrl: %@",self.webPageUrl);
+    AFHTTPRequestOperationManager *operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:self.webPageUrl]];
+    [operationManager.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
+    [operationManager GET:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        NSLog(@"responseObject: %@",responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error: %@",[error localizedDescription]);
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -138,56 +154,6 @@
             break;
     }
 }
-#pragma mark Admob
-#pragma mark Interstitial delegate
--(GADInterstitial*) createAndLoadInterstital
-{
-    GADRequest *request = [GADRequest request];
-    GADInterstitial * interstitial = nil;
-        interstitial = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
-    interstitial.delegate = self;
-    [interstitial loadRequest:request];
-    
-    return interstitial;
-}
-
-- (void)preLoadInterstitial {
-    //Call this method as soon as you can - loadRequest will run in the background and your interstitial will be ready when you need to show it
-    
-    NSDate *lastOpenDate = [[NSUserDefaults standardUserDefaults] objectForKey:kLastOpenFullScreen];
-    NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:lastOpenDate];
-    
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastOpenFullScreen];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    if (interval <= kSecondsToPresentInterstitial) {
-        [self continueAtCurrentPath];
-        return;
-    }
-    if (interstitial_.isReady) {
-        [interstitial_ presentFromRootViewController:self];
-    }else{
-        [self continueAtCurrentPath];
-    }
-}
-
-- (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial
-{
-    NSLog(@"interstitialDidReceiveAd");
-}
-- (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
-{
-    NSLog(@"didFailToReceiveAdWithError: %@",[error localizedDescription]);
-    //If an error occurs and the interstitial is not received you might want to retry automatically after a certain interval
-    [self createAndLoadInterstital];
-}
-
-- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
-{
-    [self createAndLoadInterstital];
-    [self continueAtCurrentPath];
-}
-
 -(void) continueAtCurrentPath
 {
     /**
@@ -261,6 +227,56 @@
         }
             break;
     }
+}
+
+#pragma mark Admob
+#pragma mark Interstitial delegate
+-(GADInterstitial*) createAndLoadInterstital
+{
+    GADRequest *request = [GADRequest request];
+    GADInterstitial * interstitial = nil;
+        interstitial = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
+    interstitial.delegate = self;
+    [interstitial loadRequest:request];
+    
+    return interstitial;
+}
+
+- (void)preLoadInterstitial {
+    //Call this method as soon as you can - loadRequest will run in the background and your interstitial will be ready when you need to show it
+    
+    NSDate *lastOpenDate = [[NSUserDefaults standardUserDefaults] objectForKey:kLastOpenFullScreen];
+    NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:lastOpenDate];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastOpenFullScreen];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if (interval <= kSecondsToPresentInterstitial) {
+        [self continueAtCurrentPath];
+        return;
+    }
+    if (interstitial_.isReady) {
+        [interstitial_ presentFromRootViewController:self];
+    }else{
+        [self continueAtCurrentPath];
+    }
+}
+
+- (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial
+{
+    NSLog(@"interstitialDidReceiveAd");
+}
+- (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    NSLog(@"didFailToReceiveAdWithError: %@",[error localizedDescription]);
+    //If an error occurs and the interstitial is not received you might want to retry automatically after a certain interval
+    [self createAndLoadInterstital];
+}
+
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
+{
+    [self createAndLoadInterstital];
+    [self continueAtCurrentPath];
 }
 
 #pragma mark search bar implement

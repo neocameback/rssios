@@ -16,4 +16,5 @@
     NSArray *searchResults;
     GADInterstitial *interstitial_;
 }
+@property (nonatomic, strong) NSString *webPageUrl;
 @end

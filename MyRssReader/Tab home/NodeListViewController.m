@@ -22,6 +22,7 @@
 #import "DownloadManager.h"
 #import "NSString+HTML.h"
 #import "RPNodeDescriptionViewController.h"
+#import "FileListViewController.h"
 
 @interface NodeListViewController () <UIAlertViewDelegate>
 {
@@ -420,7 +421,9 @@
             break;
         case NODE_TYPE_WEB_CONTENT:
         {
-            
+            FileListViewController *viewcontroller = [Storyboard instantiateViewControllerWithIdentifier:@"FileListViewController"];
+            [viewcontroller setWebPageUrl:currentNode.nodeLink];
+            [self.navigationController pushViewController:viewcontroller animated:YES];
         }
             break;
         default:
