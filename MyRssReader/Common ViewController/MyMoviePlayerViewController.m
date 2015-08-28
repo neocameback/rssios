@@ -430,9 +430,9 @@ static bool isSubtitleInit;
     NSInteger mm = (time / 60) % 60;
     NSInteger ss = time % 60;
     if(hh > 0)
-        return  [NSString stringWithFormat:@"%d:%02i:%02i",hh,mm,ss];
+        return  [NSString stringWithFormat:@"%ld:%02li:%02li",(long)hh,(long)mm,(long)ss];
     else
-        return  [NSString stringWithFormat:@"%02i:%02i",mm,ss];
+        return  [NSString stringWithFormat:@"%02li:%02li",(long)mm,(long)ss];
 }
 
 -(void)ShowSettingView

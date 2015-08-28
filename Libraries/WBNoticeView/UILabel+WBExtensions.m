@@ -17,7 +17,7 @@
     NSMutableArray *lines = [NSMutableArray arrayWithCapacity:10];
     NSCharacterSet *wordSeparators = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     NSString *currentLine = self.text;
-    int textLength = [self.text length];
+    int textLength = (int)[self.text length];
     
     NSRange rCurrentLine = NSMakeRange(0, textLength);
     NSRange rWhitespace = NSMakeRange(0, 0);

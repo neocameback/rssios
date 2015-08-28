@@ -33,5 +33,5 @@ typedef enum : NSUInteger {
     Rss *cachedRss;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSString *rssLink;
+@property (nonatomic, strong) NSString *rssURL;
 @end

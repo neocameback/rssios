@@ -17,7 +17,7 @@
 @end
 
 @implementation WBNoticeOperation
-
+@dynamic executing, cancelled, finished;
 - (void)start
 {
     if (self.cancelled) {

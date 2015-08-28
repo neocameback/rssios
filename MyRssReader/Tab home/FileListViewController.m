@@ -43,9 +43,15 @@
     [self getWebContent];
 }
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
 -(void) getWebContent
 {
     NSLog(@"webPageUrl: %@",self.webPageUrl);
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.webPageUrl]]];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *content = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -66,14 +72,20 @@
                       [nodeList addObject:tempNode];
                   }
                   [_tableView reloadData];
+                  [SVProgressHUD dismiss];
               }
               failure:^(NSURLSessionDataTask *task, NSError *error) {
+                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                  [alert show];
+                  [self.navigationController popViewControllerAnimated:YES];
                   NSLog(@"[Error] %@", error);
+                  [SVProgressHUD dismiss];
               }];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         [self.navigationController popViewControllerAnimated:YES];
+        [SVProgressHUD dismiss];
     }];
     [operation start];
 }
@@ -122,18 +134,13 @@
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     currentNode = nil;
-    
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         currentNode = searchResults[indexPath.row];
     } else {
         currentNode = nodeList[indexPath.row];
-    }
-    
-    [self continueAtCurrentPath];
-    return;
+    }    
     switch ([Common typeOfNode:currentNode.nodeType]) {
         case NODE_TYPE_RSS:
         {
@@ -197,7 +204,7 @@
         case NODE_TYPE_RSS:
         {
             NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
-            [viewcontroller setRssLink:currentNode.nodeUrl];
+            [viewcontroller setRssURL:currentNode.nodeUrl];
             [viewcontroller setTitle:currentNode.nodeTitle];
             [self.navigationController pushViewController:viewcontroller animated:YES];
         }
@@ -231,13 +238,12 @@
             [self.navigationController pushViewController:playerViewcontroller animated:YES];
         }
             break;
-        case NODE_TYPE_RTMP:
-        {
-        }
-            break;
         case NODE_TYPE_WEB_CONTENT:
         {
-            
+            FileListViewController *viewcontroller = [Storyboard instantiateViewControllerWithIdentifier:@"FileListViewController"];
+            [viewcontroller setTitle:currentNode.nodeTitle];
+            [viewcontroller setWebPageUrl:currentNode.nodeUrl];
+            [self.navigationController pushViewController:viewcontroller animated:YES];
         }
             break;
         default:

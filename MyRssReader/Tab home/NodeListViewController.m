@@ -48,11 +48,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    NSLog(@"self.rssLink: %@",self.rssLink);
+    NSLog(@"self.rssLink: %@",self.rssURL);
     /**
      *  retrieve the cached RSS
      */
-    cachedRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:self.rssLink];
+    cachedRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:self.rssURL];
     /*
      *  check auto refresh time to fetch new data
      */
@@ -68,7 +68,7 @@
         }
     }
     if (!cachedRss || cachedRss.shouldCacheValue == NO || cachedRss.nodeList.count <= 0 || needRefresh) {
-        [self parseRssFromURL:self.rssLink];
+        [self parseRssFromURL:self.rssURL];
     }else{
         if (!nodeList) {
             nodeList = [NSMutableArray array];
@@ -204,8 +204,6 @@
             currentNode = nodeList[indexPath.row];
         }
         
-        [self continueAtCurrentPath];
-        return;
         switch ([Common typeOfNode:currentNode.nodeType]) {
             case NODE_TYPE_RSS:
             {
@@ -370,7 +368,7 @@
         case NODE_TYPE_RSS:
         {
             NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
-            [viewcontroller setRssLink:currentNode.nodeUrl];
+            [viewcontroller setRssURL:currentNode.nodeUrl];
             [viewcontroller setTitle:currentNode.nodeTitle];
             [self.navigationController pushViewController:viewcontroller animated:YES];
         }
@@ -401,22 +399,7 @@
             DMPlayerViewController *playerViewcontroller = [[DMPlayerViewController alloc] initWithVideo:videoIdentifer];
             [playerViewcontroller setTitle:currentNode.nodeTitle];
             [playerViewcontroller setHidesBottomBarWhenPushed:YES];
-             [self.navigationController pushViewController:playerViewcontroller animated:YES];
-        }
-            break;
-        case NODE_TYPE_RTMP:
-        {
-            /**
-             *  ignore RTMP node type
-             */
-//            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
-//            
-//            ELPlayerViewController *viewcontroller = [sb instantiateViewControllerWithIdentifier:@"ELPlayerViewController"];
-//            [viewcontroller setVideoUrl:node.nodeUrl];
-//            [viewcontroller setTitleName:node.nodeTitle];
-//            [self presentViewController:viewcontroller animated:YES completion:^{
-//                
-//            }];
+            [self.navigationController pushViewController:playerViewcontroller animated:YES];
         }
             break;
         case NODE_TYPE_WEB_CONTENT:
@@ -460,7 +443,7 @@
             cachedRss = [Rss MR_createEntity];
             [cachedRss setCreatedAt:[NSDate date]];
         }else {
-            [cachedRss setNodeList:nil];
+            [[cachedRss nodeListSet] removeAllObjects];
         }
         if (!cachedRss.isBookmarkRssValue) {
             [cachedRss setIsBookmarkRssValue:NO];
@@ -520,9 +503,9 @@
             
         case ALERT_NAME_EXIST:
         {
-                if (buttonIndex != alertView.cancelButtonIndex) {
-                    [self showAlertEnterFileName];
-                }
+            if (buttonIndex != alertView.cancelButtonIndex) {
+                [self showAlertEnterFileName];
+            }
         }
             break;
         default:

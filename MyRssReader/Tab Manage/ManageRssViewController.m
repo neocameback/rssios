@@ -145,6 +145,7 @@
 {
     Rss *aRss = rssList[indexPath.row];
     [aRss MR_deleteEntity];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     [rssList removeObjectAtIndex:indexPath.row];
     
     [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -181,12 +182,9 @@
             newRssName = [[alertView textFieldAtIndex:0] text];
             NSString *urlString = [[alertView textFieldAtIndex:1] text];            
             BOOL result = [[urlString lowercaseString] hasPrefix:@"http://"];
-            if (result) {
-            }
-            else {
+            if (!result) {
                 urlString = [NSString stringWithFormat:@"http://%@", urlString];
             }
-            
             [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
             [Common getUserIpAddress:^(NSDictionary *update) {
                 if (update) {
@@ -227,7 +225,12 @@
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
 {
-    newRss = [Rss MR_createEntity];
+    newRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:info.url];
+    if (!newRss) {
+        newRss = [Rss MR_createEntity];
+    }else{
+        [[newRss nodeListSet] removeAllObjects];
+    }
     if ([info shouldCache] != nil && ([[info shouldCache] caseInsensitiveCompare:@"false"] == NSOrderedSame)) {
         newRss.shouldCacheValue = NO;
     }else{

@@ -14,10 +14,13 @@
 #import "NodeListViewController.h"
 #import <XCDYouTubeVideoPlayerViewController.h>
 #import <DMPlayerViewController.h>
+#import "FileListViewController.h"
+#import "RPNodeDescriptionViewController.h"
 
 @interface BookmarkViewController ()
 {
     MPMoviePlayerViewController *moviePlayer;
+    Node *currentNode;
 }
 @end
 
@@ -40,6 +43,8 @@
     
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(onEdit)];
     self.navigationItem.leftBarButtonItem = editButton;
+    
+    interstitial_ = [self createAndLoadInterstital];
 }
 -(void) viewWillAppear:(BOOL)animated
 {
@@ -124,36 +129,30 @@
     [cell configWithNode:node];
     return cell;
 }
--(void) onAddToFav:(id) sender
-{
-    NSInteger tag = [sender tag];
-    Node *node = nodeList[tag];
-    
-    [node setIsAddedToBoomark: [node.isAddedToBoomark boolValue] ? @0 : @1];
-    
-    [sender setSelected:[node.isAddedToBoomark boolValue]];
-}
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    currentPath = indexPath;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    Node *node = nil;
+    currentNode = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        node = [searchResults objectAtIndex:indexPath.row];
+        currentNode = searchResults[indexPath.row];
     } else {
-        node = [nodeList objectAtIndex:indexPath.row];
-    }
-    
-    switch ([Common typeOfNode:node.nodeType]) {
+        currentNode = nodeList[indexPath.row];
+    }    
+    switch ([Common typeOfNode:currentNode.nodeType]) {
         case NODE_TYPE_RSS:
         {
-            NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
-            [viewcontroller setRssLink:node.nodeUrl];
-            [viewcontroller setTitle:node.nodeTitle];
-            [self.navigationController pushViewController:viewcontroller animated:YES];
+            /**
+             *  parse rss/xml
+             */
+            [self continueAtCurrentPath];
         }
             break;
         case NODE_TYPE_VIDEO:
+        {
+            [self preLoadInterstitial];
+        }
+            break;
+        case NODE_TYPE_MP4:
         {
             [self preLoadInterstitial];
         }
@@ -177,10 +176,6 @@
         default:
         {
             [self preLoadInterstitial];
-            WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
-            [viewcontroller setTitle:node.nodeTitle];
-            [viewcontroller setWebUrl:node.nodeUrl];
-            [self.navigationController pushViewController:viewcontroller animated:YES];
         }
             break;
     }
@@ -198,12 +193,23 @@
     Node *node = nodeList[indexPath.row];
     [node MR_deleteEntity];
     [nodeList removeObjectAtIndex:indexPath.row];
-    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark Admob
 #pragma mark Interstitial delegate
+-(GADInterstitial*) createAndLoadInterstital
+{
+    GADRequest *request = [GADRequest request];
+    GADInterstitial * interstitial = nil;
+    interstitial = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
+    interstitial.delegate = self;
+    [interstitial loadRequest:request];
+    
+    return interstitial;
+}
+
 - (void)preLoadInterstitial {
     //Call this method as soon as you can - loadRequest will run in the background and your interstitial will be ready when you need to show it
     
@@ -213,94 +219,103 @@
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastOpenFullScreen];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    if (interval <= 120) {
+    if (interval <= kSecondsToPresentInterstitial) {
         [self continueAtCurrentPath];
         return;
     }
-    [SVProgressHUD showWithStatus:@"Loading" maskType:SVProgressHUDMaskTypeGradient];
-    GADRequest *request = [GADRequest request];
-    interstitial_ = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
-    interstitial_.delegate = self;
-    [interstitial_ loadRequest:request];
+    if (interstitial_.isReady) {
+        [interstitial_ presentFromRootViewController:self];
+    }else{
+        [self continueAtCurrentPath];
+    }
 }
 
 - (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial
 {
-    [SVProgressHUD dismiss];
     NSLog(@"interstitialDidReceiveAd");
-    [interstitial_ presentFromRootViewController:self];
 }
 - (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
 {
-    [SVProgressHUD dismiss];
     NSLog(@"didFailToReceiveAdWithError: %@",[error localizedDescription]);
     //If an error occurs and the interstitial is not received you might want to retry automatically after a certain interval
+    [self createAndLoadInterstital];
 }
-- (void)interstitialWillPresentScreen:(GADInterstitial *)interstitial
-{
-    [SVProgressHUD dismiss];
-}
-- (void)interstitialWillDismissScreen:(GADInterstitial *)interstitial
-{
-    
-}
+
 - (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
 {
-    NSLog(@"interstitialDidDismissScreen");
+    [self createAndLoadInterstital];
     [self continueAtCurrentPath];
-}
-- (void)interstitialWillLeaveApplication:(GADInterstitial *)interstitial
-{
-    
 }
 
 -(void) continueAtCurrentPath
 {
-    Node *node = nil;
-    if (self.searchDisplayController.isActive) {
-        node = [searchResults objectAtIndex:currentPath.row];
-    } else {
-        node = [nodeList objectAtIndex:currentPath.row];
+    /**
+     *  check if node url is empty or not
+     */
+    if (!currentNode.nodeUrl || currentNode.nodeUrl.length <= 0) {
+        
+        RPNodeDescriptionViewController *viewcontroller = [Storyboard instantiateViewControllerWithIdentifier:@"RPNodeDescriptionViewController"];
+        [viewcontroller setTitle:currentNode.nodeTitle];
+        [viewcontroller setDesc:currentNode.nodeDesc];
+        [viewcontroller setUrl:currentNode.nodeLink];
+        [self.navigationController pushViewController:viewcontroller animated:YES];
+        return;
     }
-    switch ([Common typeOfNode:node.nodeType]) {
+    /**
+     *  otherwise
+     */
+    switch ([Common typeOfNode:currentNode.nodeType]) {
         case NODE_TYPE_RSS:
         {
+            NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
+            [viewcontroller setRssURL:currentNode.nodeUrl];
+            [viewcontroller setTitle:currentNode.nodeTitle];
+            [self.navigationController pushViewController:viewcontroller animated:YES];
         }
             break;
         case NODE_TYPE_VIDEO:
         {
-            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:node.nodeUrl]];
-            [self presentViewController:moviePlayer animated:YES completion:nil];
+            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:currentNode.nodeUrl]];
+            [self presentMoviePlayerViewControllerAnimated:moviePlayer];
+        }
+            break;
+        case NODE_TYPE_MP4:
+        {
+            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:currentNode.nodeUrl]];
+            [self presentMoviePlayerViewControllerAnimated:moviePlayer];
         }
             break;
         case NODE_TYPE_YOUTUBE:
         {
-            XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:[node.nodeUrl extractYoutubeId]];
+            XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:[currentNode.nodeUrl extractYoutubeId]];
             [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
         }
             break;
         case NODE_TYPE_DAILYMOTION:
         {
-            DMPlayerViewController *playerViewcontroller = [[DMPlayerViewController alloc] initWithVideo:@"x1ythnm"];
-            [playerViewcontroller setTitle:@"Dailymotion"];
+            NSString *url = currentNode.nodeUrl;
+            NSString *videoIdentifer = [url lastPathComponent];
+            
+            DMPlayerViewController *playerViewcontroller = [[DMPlayerViewController alloc] initWithVideo:videoIdentifer];
+            [playerViewcontroller setTitle:currentNode.nodeTitle];
+            [playerViewcontroller setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:playerViewcontroller animated:YES];
         }
             break;
-        case NODE_TYPE_RTMP:
+        case NODE_TYPE_WEB_CONTENT:
         {
-//            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
-//            
-//            ELPlayerViewController *viewcontroller = [sb instantiateViewControllerWithIdentifier:@"ELPlayerViewController"];
-//            [viewcontroller setVideoUrl:node.nodeUrl];
-//            [viewcontroller setTitleName:node.nodeTitle];
-//            [self presentViewController:viewcontroller animated:YES completion:^{
-//                
-//            }];
+            FileListViewController *viewcontroller = [Storyboard instantiateViewControllerWithIdentifier:@"FileListViewController"];
+            [viewcontroller setTitle:currentNode.nodeTitle];
+            [viewcontroller setWebPageUrl:currentNode.nodeUrl];
+            [self.navigationController pushViewController:viewcontroller animated:YES];
         }
             break;
-            
         default:
         {
+            WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
+            [viewcontroller setTitle:currentNode.nodeTitle];
+            [viewcontroller setWebUrl:currentNode.nodeUrl];
+            [self.navigationController pushViewController:viewcontroller animated:YES];
         }
             break;
     }

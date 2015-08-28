@@ -117,7 +117,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
     [viewcontroller setTitle:[rssList[indexPath.row] rssTitle]];
-    [viewcontroller setRssLink:[rssList[indexPath.row] rssLink]];
+    [viewcontroller setRssURL:[rssList[indexPath.row] rssLink]];
     [self.navigationController pushViewController:viewcontroller animated:YES];
 }
 #pragma mark MWFeedParser delegate
