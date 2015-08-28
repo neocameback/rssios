@@ -422,7 +422,8 @@
         case NODE_TYPE_WEB_CONTENT:
         {
             FileListViewController *viewcontroller = [Storyboard instantiateViewControllerWithIdentifier:@"FileListViewController"];
-            [viewcontroller setWebPageUrl:currentNode.nodeLink];
+            [viewcontroller setTitle:currentNode.nodeTitle];
+            [viewcontroller setWebPageUrl:currentNode.nodeUrl];
             [self.navigationController pushViewController:viewcontroller animated:YES];
         }
             break;
@@ -445,6 +446,15 @@
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
 {
     tempRss = [[TempRss alloc] initWithFeedInfo:info];
+    /**
+     *  the saved RSS can have an other name that's enter on manage RSS view
+     */
+    if (cachedRss && cachedRss.rssTitle.length > 0) {
+        [tempRss setRssTitle:cachedRss.rssTitle];
+    }
+    /**
+     *  check if this rss should be cache or not
+     */
     if (tempRss.shouldCache) {
         if (!cachedRss) {
             cachedRss = [Rss MR_createEntity];
@@ -477,6 +487,7 @@
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser
 {
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     [SVProgressHUD popActivity];
     NSLog(@"Finished Parsing%@", (parser.stopped ? @" (Stopped)" : @""));
     

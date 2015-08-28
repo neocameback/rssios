@@ -46,16 +46,38 @@
 -(void) getWebContent
 {
     NSLog(@"webPageUrl: %@",self.webPageUrl);
-    AFHTTPRequestOperationManager *operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:self.webPageUrl]];
-    [operationManager.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
-    [operationManager GET:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [SVProgressHUD dismiss];
-        NSLog(@"responseObject: %@",responseObject);
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.webPageUrl]]];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *content = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"content: %@",content);
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFgzipRequestSerializer serializerWithSerializer:[AFJSONRequestSerializer serializer]];
+        [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+        NSDictionary *parameters = @{@"url": self.webPageUrl, @"file": content};
+        [manager POST:POST_HANDLE_URL
+           parameters:parameters
+              success:^(NSURLSessionDataTask *task, id responseObject) {
+                  NSLog(@"%@", responseObject);
+                  if (!nodeList) {
+                      nodeList = [NSMutableArray array];
+                  }
+                  for (NSDictionary *item in responseObject[@"files"]) {
+                      TempNode *tempNode = [[TempNode alloc] initWithFile:item];
+                      [nodeList addObject:tempNode];
+                  }
+                  [_tableView reloadData];
+              }
+              failure:^(NSURLSessionDataTask *task, NSError *error) {
+                  NSLog(@"[Error] %@", error);
+              }];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"error: %@",[error localizedDescription]);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        [self.navigationController popViewControllerAnimated:YES];
     }];
+    [operation start];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

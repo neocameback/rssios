@@ -65,4 +65,16 @@
     
     return self;
 }
+-(id) initWithFile:(NSDictionary*) file;
+{
+    self = [super init];
+    
+    self.nodeTitle = file[@"name"];
+    self.nodeDesc = file[@"desc"];
+    self.nodeImage = file[@"thumbnail"];
+    self.nodeType = file[@"type"];
+    self.nodeUrl = file[@"url"];
+    
+    return self;
+}
 @end

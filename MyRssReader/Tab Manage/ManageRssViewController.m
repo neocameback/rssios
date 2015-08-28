@@ -258,6 +258,7 @@
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser
 {
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     [SVProgressHUD popActivity];
     NSLog(@"Finished Parsing%@", (parser.stopped ? @" (Stopped)" : @""));
     

@@ -21,4 +21,5 @@
 @property (nonatomic, retain) NSNumber * isDeletedFlag;
 -(id) initWithFeedItem:(id) item;
 -(id) initWithRssNode:(id) rssNode;
+-(id) initWithFile:(id) file;
 @end
