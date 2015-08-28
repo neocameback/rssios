@@ -47,7 +47,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    NSLog(@"self.rssLink: %@",self.rssLink);
     /**
      *  retrieve the cached RSS
      */
@@ -446,6 +446,11 @@
         if (!cachedRss) {
             cachedRss = [Rss MR_createEntity];
             [cachedRss setCreatedAt:[NSDate date]];
+        }else {
+            [cachedRss setNodeList:nil];
+        }
+        if (!cachedRss.isBookmarkRssValue) {
+            [cachedRss setIsBookmarkRssValue:NO];
         }
         [cachedRss initFromTempRss:tempRss];
     }
