@@ -87,7 +87,6 @@
     [request setValue:@"RSSVideoPlayer2.0-iOS" forHTTPHeaderField:@"User-Agent"];
     
     NSString *uidString = [NSString stringWithFormat:@"RSSPLAYER201508-%@-%@",url,ipAddres];
-    NSLog(@"uidString: %@",uidString);
     NSString *md5String = [uidString MD5String];
     [request setValue:md5String forHTTPHeaderField:@"UID"];
     [request setValue:@"2.0" forHTTPHeaderField:@"VERSION"];

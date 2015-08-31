@@ -1199,7 +1199,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "Rss Player";
-				PROVISIONING_PROFILE = "be7ef522-084d-4bdf-9b95-8050237d1127";
+				PROVISIONING_PROFILE = "e7f78932-c60b-4067-a6c6-983c43ccda01";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

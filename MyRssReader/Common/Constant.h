@@ -20,7 +20,7 @@
 
 #define kDefaultShareTitle  @"Rss video player\nhttp://rssvideoplayer.com"
 #define kAboutUrl           @"http://rssvideoplayer.com/about.html"
-#define POST_HANDLE_URL     @"http://rssvideoplayer.com/handle"
+#define POST_HANDLE_URL     @"http://rssvideoplayer.com/handle/index.php"
 
 #define kGoogleAnalyticId   @"UA-51537954-1"
 

@@ -50,12 +50,11 @@
 
 -(void) getWebContent
 {
-    NSLog(@"webPageUrl: %@",self.webPageUrl);
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.webPageUrl]]];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *content = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"content: %@",content);
+        
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.requestSerializer = [AFgzipRequestSerializer serializerWithSerializer:[AFJSONRequestSerializer serializer]];
         [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
@@ -63,7 +62,6 @@
         [manager POST:POST_HANDLE_URL
            parameters:parameters
               success:^(NSURLSessionDataTask *task, id responseObject) {
-                  NSLog(@"%@", responseObject);
                   if (!nodeList) {
                       nodeList = [NSMutableArray array];
                   }
@@ -78,7 +76,6 @@
                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
                   [alert show];
                   [self.navigationController popViewControllerAnimated:YES];
-                  NSLog(@"[Error] %@", error);
                   [SVProgressHUD dismiss];
               }];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -271,11 +268,9 @@
 
 - (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial
 {
-    NSLog(@"interstitialDidReceiveAd");
 }
 - (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
 {
-    NSLog(@"didFailToReceiveAdWithError: %@",[error localizedDescription]);
     //If an error occurs and the interstitial is not received you might want to retry automatically after a certain interval
     [self createAndLoadInterstital];
 }

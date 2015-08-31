@@ -149,7 +149,6 @@
 - (void)feedParserDidFinish:(MWFeedParser *)parser
 {
     [SVProgressHUD popActivity];
-    NSLog(@"Finished Parsing%@", (parser.stopped ? @" (Stopped)" : @""));
     
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
         rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES]];

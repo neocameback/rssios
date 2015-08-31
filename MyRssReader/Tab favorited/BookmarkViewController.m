@@ -211,11 +211,9 @@
 
 - (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial
 {
-    NSLog(@"interstitialDidReceiveAd");
 }
 - (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
 {
-    NSLog(@"didFailToReceiveAdWithError: %@",[error localizedDescription]);
     //If an error occurs and the interstitial is not received you might want to retry automatically after a certain interval
     [self createAndLoadInterstital];
 }

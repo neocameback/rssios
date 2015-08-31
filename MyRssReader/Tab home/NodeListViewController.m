@@ -48,7 +48,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    NSLog(@"self.rssLink: %@",self.rssURL);
     /**
      *  retrieve the cached RSS
      */
@@ -324,11 +323,9 @@
 
 - (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial
 {
-    NSLog(@"interstitialDidReceiveAd");
 }
 - (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
 {
-    NSLog(@"didFailToReceiveAdWithError: %@",[error localizedDescription]);
     //If an error occurs and the interstitial is not received you might want to retry automatically after a certain interval
     [self createAndLoadInterstital];
 }
@@ -463,7 +460,6 @@
     
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     [SVProgressHUD popActivity];
-    NSLog(@"Finished Parsing%@", (parser.stopped ? @" (Stopped)" : @""));
     
     [self.tableView reloadData];
 }

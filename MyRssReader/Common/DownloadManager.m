@@ -51,8 +51,6 @@ static NSOperationQueue *operationQueue;
 
     NSString *path = [Common getPathOfFile:savedFile.name extension:savedFile.type];
     
-    
-    NSLog(@"downloadFile path: %@",path);
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:path]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"You entered a file that already exist. Please choose an other file name." delegate:viewcontroller cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
@@ -83,8 +81,6 @@ static NSOperationQueue *operationQueue;
             NSString *successText = [NSString stringWithFormat:@"%@.mp4 has been downloaded successful",name];
             WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:[APPDELEGATE window].rootViewController.view title:successText duration:1 alpha:1 delay:0.7];
             [notice showSuccess];
-            NSLog(@"Successfully downloaded file to %@", path);
-            
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
