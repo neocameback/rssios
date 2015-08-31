@@ -19,6 +19,7 @@
     self.nodeImage = temp.nodeImage;
     self.nodeSource = temp.nodeSource;
     self.nodeTitle = temp.nodeTitle;
+    self.nodeDesc = temp.nodeDesc;
     self.nodeLink = temp.nodeLink;
     self.nodeUrl = temp.nodeUrl;
     self.nodeType = temp.nodeType;

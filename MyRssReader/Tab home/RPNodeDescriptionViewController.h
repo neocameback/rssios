@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RPNodeDescriptionViewController : BaseViewController
+@interface RPNodeDescriptionViewController : BaseViewController <UITextViewDelegate>
 {
     
     __weak IBOutlet UIScrollView *_scrollView;
     __weak IBOutlet UIButton *btn_readMore;
-    __weak IBOutlet UILabel *lb_desc;
+    __weak IBOutlet UITextView *tv_desc;
+    __weak IBOutlet NSLayoutConstraint *descriptionTextViewHeight;
+    
 }
 @property (nonatomic, strong) NSString *desc, *url;
 @end

@@ -51,6 +51,9 @@
     /**
      *  retrieve the cached RSS
      */
+    
+    self.rssURL = @"http://feed.mikle.com/support/rss/";
+    
     cachedRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:self.rssURL];
     /*
      *  check auto refresh time to fetch new data

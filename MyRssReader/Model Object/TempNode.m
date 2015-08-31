@@ -19,7 +19,7 @@
     
     self.bookmarkStatus = item.bookmarkStatus;
     self.nodeTitle = item.title;
-    self.nodeDesc = [item.summary stringByConvertingHTMLToPlainText];
+    self.nodeDesc = item.summary; //[item.summary stringByConvertingHTMLToPlainText];
     self.nodeLink = item.link;
     if (item.enclosures.count > 0) {
         self.nodeType = item.enclosures[0][@"type"];

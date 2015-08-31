@@ -18,7 +18,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    lb_desc.text = self.desc;
+    
+    [tv_desc setDelegate:self];
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[self.desc dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    tv_desc.attributedText = attributedString;
+    CGSize sizeThatFitsTextView = [tv_desc sizeThatFits:CGSizeMake(tv_desc.frame.size.width, MAXFLOAT)];
+    descriptionTextViewHeight.constant = ceilf(sizeThatFitsTextView.height);
+    
+    [self.view layoutIfNeeded];
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -46,4 +54,12 @@
     [self.navigationController pushViewController:viewcontroller animated:YES];
 }
 
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange NS_AVAILABLE_IOS(7_0);
+{
+    WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
+    [viewcontroller setTitle:self.title];
+    [viewcontroller setWebUrl:[URL absoluteString]];
+    [self.navigationController pushViewController:viewcontroller animated:YES];
+    return NO;
+}
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -174,14 +174,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ku8-1K-ocS">
                                 <rect key="frame" x="0.0" y="70" width="320" height="498"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXp-Mj-5PZ">
-                                        <rect key="frame" x="8" y="8" width="304" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q1P-m8-akG">
-                                        <rect key="frame" x="237" y="34" width="75" height="30"/>
+                                        <rect key="frame" x="237" y="46" width="75" height="30"/>
                                         <state key="normal" title="Read more">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -189,15 +183,25 @@
                                             <action selector="onReadMore:" destination="bhn-uZ-gnO" eventType="touchUpInside" id="K4j-Ly-Fev"/>
                                         </connections>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28X-EO-vhH">
+                                        <rect key="frame" x="15" y="8" width="290" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="g5T-3X-PMg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
+                                    </textView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="fXp-Mj-5PZ" secondAttribute="trailing" constant="8" id="A9i-bv-WcF"/>
-                                    <constraint firstItem="fXp-Mj-5PZ" firstAttribute="leading" secondItem="ku8-1K-ocS" secondAttribute="leading" constant="8" id="Eo3-4t-uvq"/>
-                                    <constraint firstItem="Q1P-m8-akG" firstAttribute="top" secondItem="fXp-Mj-5PZ" secondAttribute="bottom" constant="8" id="QLv-iA-m42"/>
+                                    <constraint firstAttribute="centerX" secondItem="28X-EO-vhH" secondAttribute="centerX" id="QSe-1N-Drd"/>
                                     <constraint firstAttribute="trailing" secondItem="Q1P-m8-akG" secondAttribute="trailing" constant="8" id="WQm-pp-zIm"/>
-                                    <constraint firstAttribute="centerX" secondItem="fXp-Mj-5PZ" secondAttribute="centerX" id="az1-2F-NLH"/>
-                                    <constraint firstItem="fXp-Mj-5PZ" firstAttribute="top" secondItem="ku8-1K-ocS" secondAttribute="top" constant="8" id="c8F-P1-oyn"/>
+                                    <constraint firstAttribute="trailing" secondItem="28X-EO-vhH" secondAttribute="trailing" constant="15" id="XbP-cr-3Ox"/>
+                                    <constraint firstItem="28X-EO-vhH" firstAttribute="top" secondItem="ku8-1K-ocS" secondAttribute="top" constant="8" id="Xlf-lP-yZc"/>
                                     <constraint firstAttribute="bottom" secondItem="Q1P-m8-akG" secondAttribute="bottom" constant="30" id="h3l-Wr-ieB"/>
+                                    <constraint firstItem="Q1P-m8-akG" firstAttribute="top" secondItem="28X-EO-vhH" secondAttribute="bottom" constant="8" id="q15-1q-0rL"/>
+                                    <constraint firstItem="28X-EO-vhH" firstAttribute="leading" secondItem="ku8-1K-ocS" secondAttribute="leading" constant="15" id="uRc-Ju-H65"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -216,7 +220,8 @@
                         <outlet property="_scrollView" destination="ku8-1K-ocS" id="5K1-FN-0yZ"/>
                         <outlet property="bannerView_" destination="Yff-lW-hTO" id="dC8-Rt-z8w"/>
                         <outlet property="btn_readMore" destination="Q1P-m8-akG" id="cv5-DO-JKN"/>
-                        <outlet property="lb_desc" destination="fXp-Mj-5PZ" id="8af-gL-8bd"/>
+                        <outlet property="descriptionTextViewHeight" destination="g5T-3X-PMg" id="cn8-vd-RDg"/>
+                        <outlet property="tv_desc" destination="28X-EO-vhH" id="SYp-qC-bqg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uab-xz-cBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
