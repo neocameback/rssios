@@ -150,32 +150,11 @@
             [self continueAtCurrentPath];
         }
             break;
-        case NODE_TYPE_VIDEO:
+        case NODE_TYPE_WEB_CONTENT:
         {
-            [self preLoadInterstitial];
+            [self continueAtCurrentPath];
         }
             break;
-        case NODE_TYPE_MP4:
-        {
-            [self preLoadInterstitial];
-        }
-            break;
-        case NODE_TYPE_YOUTUBE:
-        {
-            [self preLoadInterstitial];
-        }
-            break;
-        case NODE_TYPE_DAILYMOTION:
-        {
-            [self preLoadInterstitial];
-        }
-            break;
-        case NODE_TYPE_RTMP:
-        {
-            [self preLoadInterstitial];
-        }
-            break;
-            
         default:
         {
             [self preLoadInterstitial];

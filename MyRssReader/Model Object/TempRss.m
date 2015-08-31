@@ -17,7 +17,7 @@
 {
     self = [super init];
     self.rssTitle = info.title;
-    self.rssLink = info.link;
+    self.rssLink = [info.url absoluteString];
     self.adsBannerId = info.adBannerId;
     self.adsFullId = info.adFullId;
     if ([info shouldCache] != nil && ([[info shouldCache] caseInsensitiveCompare:@"false"] == NSOrderedSame)) {

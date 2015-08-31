@@ -31,8 +31,8 @@
     NSString *identifier;
     NSInteger willDownloadAtIndex;
 }
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
-
 @implementation NodeListViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -86,6 +86,16 @@
     [self.searchDisplayController.searchResultsTableView registerNib:nib forCellReuseIdentifier:identifier];
     
     interstitial_ = [self createAndLoadInterstital];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor clearColor];
+    self.refreshControl.tintColor = [UIColor blackColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(reloadDataSource)
+                  forControlEvents:UIControlEventValueChanged];
+    
+    [_tableView addSubview:self.refreshControl];
+    
 }
 -(void) viewWillAppear:(BOOL)animated
 {
@@ -99,7 +109,10 @@
     // Save ManagedObjectContext using MagicalRecord
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
-
+-(void) reloadDataSource
+{
+    [self parseRssFromURL:self.rssURL];
+}
 -(void) parseRssFromURL:(NSString *) url
 {
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
@@ -213,32 +226,11 @@
                 [self continueAtCurrentPath];
             }
                 break;
-            case NODE_TYPE_VIDEO:
+            case NODE_TYPE_WEB_CONTENT:
             {
-                [self preLoadInterstitial];
+                [self continueAtCurrentPath];
             }
                 break;
-            case NODE_TYPE_MP4:
-            {
-                [self preLoadInterstitial];
-            }
-                break;
-            case NODE_TYPE_YOUTUBE:
-            {
-                [self preLoadInterstitial];
-            }
-                break;
-            case NODE_TYPE_DAILYMOTION:
-            {
-                [self preLoadInterstitial];
-            }
-                break;
-            case NODE_TYPE_RTMP:
-            {
-                [self preLoadInterstitial];
-            }
-                break;
-                
             default:
             {
                 [self preLoadInterstitial];
@@ -424,7 +416,7 @@
 
 - (void)feedParserDidStart:(MWFeedParser *)parser
 {
-    
+    nodeList = [NSMutableArray array];
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
 {
@@ -454,9 +446,6 @@
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
     TempNode *aNode = [[TempNode alloc] initWithFeedItem:item];
-    if (!nodeList) {
-        nodeList = [NSMutableArray array];
-    }
     [nodeList addObject:aNode];
     /**
      *  if this rss should be cache so create new RssNode entity
@@ -470,6 +459,8 @@
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser
 {
+    [self.refreshControl endRefreshing];
+    
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     [SVProgressHUD popActivity];
     NSLog(@"Finished Parsing%@", (parser.stopped ? @" (Stopped)" : @""));
@@ -478,6 +469,7 @@
 }
 - (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error
 {
+    [self.refreshControl endRefreshing];
     [SVProgressHUD popActivity];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Parsing Incomplete"
                                                     message:@"There was an error during the parsing of this feed. Not all of the feed items could parsed."

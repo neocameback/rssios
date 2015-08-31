@@ -35,9 +35,8 @@ enum NODE_TYPE {
     NODE_TYPE_MP4 = 2,
     NODE_TYPE_YOUTUBE = 3,
     NODE_TYPE_DAILYMOTION = 4,
-    NODE_TYPE_RTMP = 5,
-    NODE_TYPE_WEB = 6,
-    NODE_TYPE_WEB_CONTENT =7
+    NODE_TYPE_WEB = 5,
+    NODE_TYPE_WEB_CONTENT = 6
 };
 
 typedef enum : NSUInteger {

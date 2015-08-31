@@ -89,8 +89,8 @@
     NSString *uidString = [NSString stringWithFormat:@"RSSPLAYER201508-%@-%@",url,ipAddres];
     NSLog(@"uidString: %@",uidString);
     NSString *md5String = [uidString MD5String];
-    [request setValue:md5String forHTTPHeaderField:@"HTTP_UID"];
-    [request setValue:@"2.0" forHTTPHeaderField:@"HTTP_VERSION"];
+    [request setValue:md5String forHTTPHeaderField:@"UID"];
+    [request setValue:@"2.0" forHTTPHeaderField:@"VERSION"];
     [request setHTTPMethod:method];
     [request setURL:[NSURL URLWithString:url]];
     
@@ -113,9 +113,6 @@
     }
     else if ([nodeType rangeOfString:@"dailymotion"].location != NSNotFound){
         return NODE_TYPE_DAILYMOTION;
-    }
-    else if ([nodeType rangeOfString:@"rtmp"].location != NSNotFound){
-        return NODE_TYPE_RTMP;
     }
     else if ([nodeType rangeOfString:@"web/content"].location != NSNotFound){
         return NODE_TYPE_WEB_CONTENT;

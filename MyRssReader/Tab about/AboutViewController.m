@@ -167,7 +167,14 @@
                                UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
     }
     controller.excludedActivityTypes = excludedActivities;
-    
+    if ([UIPopoverPresentationController class] != nil) {
+        UIPopoverPresentationController *popover = controller.popoverPresentationController;
+        if (popover)
+        {
+            popover.sourceView = self.view;
+            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        }
+    }
     [self presentViewController:controller animated:YES completion:nil];
 }
 #pragma mark UIActionSheet delegate
@@ -196,7 +203,6 @@
                 }
                 [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
             }
-            
         }
             break;
     }

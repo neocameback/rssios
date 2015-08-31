@@ -47,6 +47,7 @@
                         </connections>
                     </button>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="UkU-GL-Df3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ApJ-N8-MtC"/>
                     <constraint firstItem="UkU-GL-Df3" firstAttribute="centerY" secondItem="pZ7-15-6Fe" secondAttribute="centerY" id="Bdr-59-hx6"/>
@@ -58,6 +59,7 @@
                     <constraint firstItem="9QI-57-tHd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="tg1-t2-afX"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="btn_addToFav" destination="pZ7-15-6Fe" id="0gK-Sz-gNf"/>
                 <outlet property="iv_image" destination="UkU-GL-Df3" id="KeC-N1-EGS"/>
