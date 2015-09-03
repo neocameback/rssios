@@ -28,6 +28,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [_webView setScalesPageToFit:YES];
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_webUrl]]];
 }
 -(void) viewWillAppear:(BOOL)animated

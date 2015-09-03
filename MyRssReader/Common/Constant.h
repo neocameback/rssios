@@ -10,6 +10,7 @@
 
 #define kNotificationShouldReloadRssList    @"should_reload_rss"
 
+#define kRequestTimeOut                 60
 #define kSecondsToPresentInterstitial   120
 #define kAutoRefreshNewsTime                 @"auto_refresh_news_time"
 #define kLastOpenFullScreen @"last_open_full_screen"
@@ -27,8 +28,9 @@
 #define kSmallAdUnitId  @"ca-app-pub-8422191650855912/1857715781"
 #define kLargeAdUnitId  @"ca-app-pub-8422191650855912/4957456186"
 
+#define kStringLoading  @"Loading"
 #define kMessageInternetConnectionLost  @"Internet connection was lost!"
-
+#define kUserAgent      @"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36"
 enum NODE_TYPE {
     NODE_TYPE_RSS = 0,
     NODE_TYPE_VIDEO = 1,

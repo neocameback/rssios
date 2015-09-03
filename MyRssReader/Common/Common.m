@@ -85,7 +85,7 @@
 {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setValue:@"RSSVideoPlayer2.0-iOS" forHTTPHeaderField:@"User-Agent"];
-    
+    [request setTimeoutInterval:kRequestTimeOut];
     NSString *uidString = [NSString stringWithFormat:@"RSSPLAYER201508-%@-%@",url,ipAddres];
     NSString *md5String = [uidString MD5String];
     [request setValue:md5String forHTTPHeaderField:@"UID"];

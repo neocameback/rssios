@@ -74,6 +74,10 @@
     self.nodeImage = file[@"thumbnail"];
     self.nodeType = file[@"type"];
     self.nodeUrl = file[@"url"];
+    /**
+     *  file is not cacheable
+     */
+    self.bookmarkStatus = @"false";
     
     return self;
 }

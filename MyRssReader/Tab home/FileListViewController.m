@@ -50,8 +50,10 @@
 
 -(void) getWebContent
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.webPageUrl]]];
+    [SVProgressHUD showWithStatus:kStringLoading maskType:SVProgressHUDMaskTypeGradient];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.webPageUrl]];
+    [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];    
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *content = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         

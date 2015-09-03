@@ -108,13 +108,17 @@
     // Save ManagedObjectContext using MagicalRecord
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
+-(void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+}
 -(void) reloadDataSource
 {
     [self parseRssFromURL:self.rssURL];
 }
 -(void) parseRssFromURL:(NSString *) url
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD showWithStatus:kStringLoading maskType:SVProgressHUDMaskTypeGradient];
     [Common getUserIpAddress:^(NSDictionary *update) {
         if (update) {
             NSString *ipAddress = update[@"ip"];
@@ -289,12 +293,7 @@
 -(GADInterstitial*) createAndLoadInterstital
 {
     GADRequest *request = [GADRequest request];
-    GADInterstitial * interstitial = nil;
-    if (tempRss && tempRss.adsFullId && tempRss.adsFullId.length > 0) {
-        interstitial = [[GADInterstitial alloc] initWithAdUnitID:tempRss.adsFullId];
-    }else{
-        interstitial = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
-    }
+    GADInterstitial *interstitial = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
     interstitial.delegate = self;
     [interstitial loadRequest:request];
     

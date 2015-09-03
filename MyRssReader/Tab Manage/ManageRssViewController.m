@@ -185,7 +185,7 @@
             if (!result) {
                 urlString = [NSString stringWithFormat:@"http://%@", urlString];
             }
-            [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
+            [SVProgressHUD showWithStatus:kStringLoading maskType:SVProgressHUDMaskTypeGradient];
             [Common getUserIpAddress:^(NSDictionary *update) {
                 if (update) {
                     NSString *ipAddress = update[@"ip"];
