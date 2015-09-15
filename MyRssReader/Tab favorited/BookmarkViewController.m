@@ -173,7 +173,8 @@
     [node MR_deleteEntity];
     [nodeList removeObjectAtIndex:indexPath.row];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-    [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    [_tableView reloadData];
 }
 
 #pragma mark Admob

@@ -8,7 +8,7 @@
 
 #import "WebViewViewController.h"
 
-@interface WebViewViewController ()
+@interface WebViewViewController () <UIWebViewDelegate>
 
 @end
 
@@ -42,4 +42,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) dealloc
+{
+    [_webView setDelegate:nil];
+    _webView = nil;
+}
 @end

@@ -15,11 +15,6 @@
 #import "MWFeedParser.h"
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
-typedef enum : NSUInteger {
-    CELL_TYPE_NORMAL,
-    CELL_TYPE_AD,
-} CELL_TYPE;
-
 @interface NodeListViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource , MWFeedParserDelegate, GADInterstitialDelegate>
 {
     MWFeedParser *feedParser;

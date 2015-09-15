@@ -147,8 +147,8 @@
     [aRss MR_deleteEntity];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     [rssList removeObjectAtIndex:indexPath.row];
-    
-    [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+    [_tableView reloadData];
 }
 #pragma mark UIAlertView delegate
 - (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView

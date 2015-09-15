@@ -35,19 +35,21 @@
      *  if thumbnail = nil or length <= 0 so get from enclosure
      */
     if (!self.nodeImage || self.nodeImage.length <= 0) {
-        NSError *error = NULL;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<img\\s[\\s\\S]*?src\\s*?=\\s*?['\"](.*?)['\"][\\s\\S]*?>)+?"
-                                                                               options:NSRegularExpressionCaseInsensitive
-                                                                                 error:&error];
-        
-        [regex enumerateMatchesInString:item.summary
-                                options:0
-                                  range:NSMakeRange(0, [item.summary length])
-                             usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-                                 
-                                 self.nodeImage = [item.summary substringWithRange:[result rangeAtIndex:2]];
-                                 self.nodeImage = [self.nodeImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                             }];
+        if (item.summary && item.summary.length > 0) {
+            NSError *error = NULL;
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(<img\\s[\\s\\S]*?src\\s*?=\\s*?['\"](.*?)['\"][\\s\\S]*?>)+?"
+                                                                                   options:NSRegularExpressionCaseInsensitive
+                                                                                     error:&error];
+            
+            [regex enumerateMatchesInString:item.summary
+                                    options:0
+                                      range:NSMakeRange(0, [item.summary length])
+                                 usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+                                     
+                                     self.nodeImage = [item.summary substringWithRange:[result rangeAtIndex:2]];
+                                     self.nodeImage = [self.nodeImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                                 }];
+        }
     }
     
     return self;

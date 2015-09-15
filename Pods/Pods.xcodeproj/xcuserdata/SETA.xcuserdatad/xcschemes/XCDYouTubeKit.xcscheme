@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DC29D3B8754BF5BC0C390A0E"
+               BlueprintIdentifier = "9E07FB4C73FE2E7C95A8CBA6"
                BuildableName = "libXCDYouTubeKit.a"
                BlueprintName = "XCDYouTubeKit"
                ReferencedContainer = "container:Pods.xcodeproj">

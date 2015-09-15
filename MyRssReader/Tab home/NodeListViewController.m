@@ -157,29 +157,16 @@
 
 #pragma mark tableview delegate and datasource
 
--(CELL_TYPE) tableview:(UITableView*) tableView cellTypeForRowAtIndexPath:(NSIndexPath *) indexPath
-{
-    if( [nodeList[indexPath.row] isKindOfClass:[NSString class]] && [nodeList[indexPath.row] isEqualToString:@"Ads"]){
-        return CELL_TYPE_AD;
-    }else{
-        return CELL_TYPE_NORMAL;
-    }
-}
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self tableview:tableView cellTypeForRowAtIndexPath:indexPath] == CELL_TYPE_NORMAL) {
-        
-        TempNode *node = nodeList[indexPath.row];
-        [nodeCell configWithNode:node];
-        [nodeCell layoutIfNeeded];
-        CGFloat height = [nodeCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-        if (height < 71) {
-            return 71;
-        }else{
-            return height + 1;
-        }
+    TempNode *node = nodeList[indexPath.row];
+    [nodeCell configWithNode:node];
+    [nodeCell layoutIfNeeded];
+    CGFloat height = [nodeCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    if (height < 71) {
+        return 71;
     }else{
-        return 50;
+        return height + 1;
     }
 }
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -209,40 +196,35 @@
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self tableview:tableView cellTypeForRowAtIndexPath:indexPath] == CELL_TYPE_NORMAL) {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        
-        currentNode = nil;
-        
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            currentNode = searchResults[indexPath.row];
-        } else {
-            currentNode = nodeList[indexPath.row];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    currentNode = nil;
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        currentNode = searchResults[indexPath.row];
+    } else {
+        currentNode = nodeList[indexPath.row];
+    }
+    
+    switch ([Common typeOfNode:currentNode.nodeType]) {
+        case NODE_TYPE_RSS:
+        {
+            /**
+             *  parse rss/xml
+             */
+            [self continueAtCurrentPath];
         }
-        
-        switch ([Common typeOfNode:currentNode.nodeType]) {
-            case NODE_TYPE_RSS:
-            {
-                /**
-                 *  parse rss/xml
-                 */
-                [self continueAtCurrentPath];
-            }
-                break;
-            case NODE_TYPE_WEB_CONTENT:
-            {
-                [self continueAtCurrentPath];
-            }
-                break;
-            default:
-            {
-                [self preLoadInterstitial];
-            }
-                break;
+            break;
+        case NODE_TYPE_WEB_CONTENT:
+        {
+            [self continueAtCurrentPath];
         }
-        
-    }else{
-        return;
+            break;
+        default:
+        {
+            [self preLoadInterstitial];
+        }
+            break;
     }
 }
 
