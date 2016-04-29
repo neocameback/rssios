@@ -144,7 +144,7 @@ THE SOFTWARE.
  Software is furnished to do so, subject to the following
  conditions:
  
- * Link to the MagicalRecord Repository at http:/github.com/magicalpanda/magicalrecord in the credits section of your application
+ * Link to the MagicalRecord Repository at https://github.com/magicalpanda/MagicalRecord in the credits section of your application
 
  The above copyright notice and this permission notice shall be
  included in all copies or substantial portions of the Software.
@@ -327,7 +327,7 @@ For more information, please see
 
 The MIT License (MIT)
 
-Copyright (c) 2013-2015 Cédric Luthi
+Copyright (c) 2013-2016 Cédric Luthi
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

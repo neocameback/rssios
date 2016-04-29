@@ -746,6 +746,7 @@
 				DE22E7B3192F54180005E685 /* Resources */,
 				22F5C6D52E814B04934FF9BD /* Copy Pods Resources */,
 				849538F21B90AAED008E6B2A /* ShellScript */,
+				C8C0686FDFC05E6B7B67018C /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -762,7 +763,7 @@
 		DE22E7AD192F54180005E685 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Huyns;
 				TargetAttributes = {
 					DE233F7C1B70A9C600C02DD6 = {
@@ -908,6 +909,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		C8C0686FDFC05E6B7B67018C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DE233F801B70A9CD00C02DD6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1019,6 +1035,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1131,6 +1148,7 @@
 					Social,
 					"$(inherited)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rssvideoplayer.Rss-Video-Player";
 				PRODUCT_NAME = "Rss Player";
 				PROVISIONING_PROFILE = "bafa2298-8af7-469b-bd0b-0bab6fb2d1f2";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1198,6 +1216,7 @@
 					Social,
 					"$(inherited)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rssvideoplayer.Rss-Video-Player";
 				PRODUCT_NAME = "Rss Player";
 				PROVISIONING_PROFILE = "e7f78932-c60b-4067-a6c6-983c43ccda01";
 				TARGETED_DEVICE_FAMILY = "1,2";
