@@ -56,4 +56,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(GADInterstitial*) createAndLoadInterstital
+{
+    GADRequest *request = [GADRequest request];
+    GADInterstitial *interstitial = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
+    interstitial.delegate = self;
+    [interstitial loadRequest:request];
+    
+    return interstitial;
+}
+
+#pragma mark GADInterstitialDelegate
+- (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial
+{
+}
+- (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    //If an error occurs and the interstitial is not received you might want to retry automatically after a certain interval
+    [self createAndLoadInterstital];
+}
+
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
+{
+    [self createAndLoadInterstital];
+}
+
 @end

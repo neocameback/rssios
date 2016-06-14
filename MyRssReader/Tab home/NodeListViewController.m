@@ -272,15 +272,6 @@
 
 #pragma mark Admob
 #pragma mark Interstitial delegate
--(GADInterstitial*) createAndLoadInterstital
-{
-    GADRequest *request = [GADRequest request];
-    GADInterstitial *interstitial = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
-    interstitial.delegate = self;
-    [interstitial loadRequest:request];
-    
-    return interstitial;
-}
 
 - (void)preLoadInterstitial {
     //Call this method as soon as you can - loadRequest will run in the background and your interstitial will be ready when you need to show it
@@ -300,21 +291,6 @@
     }else{
         [self continueAtCurrentPath];
     }
-}
-
-- (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial
-{
-}
-- (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
-{
-    //If an error occurs and the interstitial is not received you might want to retry automatically after a certain interval
-    [self createAndLoadInterstital];
-}
-
-- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
-{
-    [self createAndLoadInterstital];
-    [self continueAtCurrentPath];
 }
 
 -(void) continueAtCurrentPath

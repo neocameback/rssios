@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '5982CF8794D1AFC9F7675B6C'
+               BlueprintIdentifier = '3713D080E4707A1F16BF87E0'
                BlueprintName = 'dailymotion-player-objc'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libdailymotion-player-objc.a'>

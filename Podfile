@@ -1,4 +1,5 @@
-platform :ios, '7.0'
+platform :ios, '8.0'
+
 pod 'Google-Mobile-Ads-SDK', '~> 7.4'
 pod 'SVProgressHUD', '~> 1.1.3'
 pod 'MagicalRecord', '~> 2.3.0'

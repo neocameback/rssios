@@ -15,12 +15,10 @@
 #import "MWFeedParser.h"
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
-@interface NodeListViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource , MWFeedParserDelegate, GADInterstitialDelegate>
+@interface NodeListViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource , MWFeedParserDelegate>
 {
     MWFeedParser *feedParser;
-    
-    GADInterstitial *interstitial_;
-    
+        
     TempNode *currentNode;
     NSMutableArray *nodeList;
     NSArray *searchResults;

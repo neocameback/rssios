@@ -9,12 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
-@interface FileListViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, GADInterstitialDelegate>
+@interface FileListViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 {
     __weak IBOutlet UITableView *_tableView;
     NSMutableArray *nodeList;
     NSArray *searchResults;
-    GADInterstitial *interstitial_;
 }
 @property (nonatomic, strong) NSString *webPageUrl;
 @end

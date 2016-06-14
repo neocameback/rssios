@@ -10,13 +10,12 @@
 #import "MWFeedParser.h"
 #import "Rss.h"
 #import <GoogleMobileAds/GoogleMobileAds.h>
-@interface BookmarkViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate,GADInterstitialDelegate, UISearchDisplayDelegate>
+@interface BookmarkViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate>
 {
     NSMutableArray *nodeList;
     NSMutableArray *searchResults;
     MWFeedParser *feedParser;
     Rss *newRss;
-    GADInterstitial *interstitial_;
     NSIndexPath *currentPath;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
