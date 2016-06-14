@@ -45,6 +45,8 @@
     self.navigationItem.leftBarButtonItem = editButton;
     
     interstitial_ = [self createAndLoadInterstital];
+    
+    [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 -(void) viewWillAppear:(BOOL)animated
 {

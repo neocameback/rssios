@@ -41,6 +41,8 @@
     
     interstitial_ = [self createAndLoadInterstital];
     [self getWebContent];
+    
+    [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -61,6 +63,7 @@
         manager.requestSerializer = [AFgzipRequestSerializer serializerWithSerializer:[AFJSONRequestSerializer serializer]];
         [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
         NSDictionary *parameters = @{@"url": self.webPageUrl, @"file": content};
+        
         [manager POST:POST_HANDLE_URL
            parameters:parameters
               success:^(NSURLSessionDataTask *task, id responseObject) {

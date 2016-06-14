@@ -6,7 +6,7 @@
 
 #import <Availability.h>
 #import "Categories.h"
-#import <MagicalRecord.h>
+#import <MagicalRecord/MagicalRecord.h>
 #import "Constant.h"
 #import <SVProgressHUD.h>
 #import "BaseViewController.h"
