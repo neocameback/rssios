@@ -46,6 +46,17 @@
             self.btn_addToFav.selected = YES;
         }
     }
+    
+    if ([Common typeOfNode:_node.nodeType] == NODE_TYPE_MP4) {
+        UIButton *btnDownload = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *downloadIcon = [UIImage imageNamed:@"download-arrow"];
+        [btnDownload setImage:downloadIcon forState:UIControlStateNormal];
+        [btnDownload setFrame:CGRectMake(0, 0, downloadIcon.size.width, downloadIcon.size.height)];
+        [btnDownload addTarget:self action:@selector(onDownload:) forControlEvents:UIControlEventTouchUpInside];
+        [self setAccessoryView:btnDownload];
+    }else{
+        [self setAccessoryView:nil];
+    }
 }
 - (IBAction)onFavorite:(UIButton*)sender {
     
@@ -67,5 +78,12 @@
     }
     
     [self configWithNode:_node];
+}
+
+-(void) onDownload:(UIButton*) sender
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(NodeListCustomCell:didTapOnDownload:)]) {
+        [self.delegate NodeListCustomCell:self didTapOnDownload:sender];
+    }
 }
 @end

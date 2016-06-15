@@ -9,11 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "RssNodeModel.h"
 
+@class NodeListCustomCell;
+@protocol NodeListCustomCellDelegate <NSObject>
+
+-(void) NodeListCustomCell:(NodeListCustomCell*) cell didTapOnDownload:(id) sender;
+
+@end
+
+
 @interface NodeListCustomCell : UITableViewCell
 
 @property (nonatomic, assign) RssNodeModel* node;
 @property (weak, nonatomic) IBOutlet UIImageView *iv_image;
 @property (weak, nonatomic) IBOutlet UILabel *lb_title;
 @property (weak, nonatomic) IBOutlet UIButton *btn_addToFav;
+@property (weak, nonatomic) id<NodeListCustomCellDelegate> delegate;
 -(void) configWithNode:(RssNodeModel*) node;
 @end

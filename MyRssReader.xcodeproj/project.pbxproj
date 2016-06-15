@@ -65,7 +65,6 @@
 		DE1AE54B1B8DA40B008C44F8 /* BaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1AE51D1B8DA40B008C44F8 /* BaseViewController.xib */; };
 		DE1AE54C1B8DA40B008C44F8 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1AE51F1B8DA40B008C44F8 /* HomeViewController.m */; };
 		DE1AE54D1B8DA40B008C44F8 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1AE5201B8DA40B008C44F8 /* HomeViewController.xib */; };
-		DE1AE54E1B8DA40B008C44F8 /* MyMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1AE5221B8DA40B008C44F8 /* MyMoviePlayerViewController.m */; };
 		DE1AE54F1B8DA40B008C44F8 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1AE5251B8DA40B008C44F8 /* AboutViewController.m */; };
 		DE1AE5501B8DA40B008C44F8 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1AE5261B8DA40B008C44F8 /* AboutViewController.xib */; };
 		DE1AE5511B8DA40B008C44F8 /* DownloadManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1AE5291B8DA40B008C44F8 /* DownloadManagerViewController.m */; };
@@ -155,6 +154,9 @@
 		DEF49619193435FD00DD482D /* NSUserDefaults+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF49618193435FD00DD482D /* NSUserDefaults+Helper.m */; };
 		DEF4961C1934376700DD482D /* UIAlertView+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF4961B1934376700DD482D /* UIAlertView+Helper.m */; };
 		E5B7BAB91D10700900B7CC03 /* RssManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B7BAB81D10700900B7CC03 /* RssManager.m */; };
+		E5D3B9931D11ABA100F3E400 /* download-arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D3B9901D11ABA100F3E400 /* download-arrow@2x.png */; };
+		E5D3B9941D11ABA100F3E400 /* download-arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D3B9911D11ABA100F3E400 /* download-arrow@3x.png */; };
+		E5D3B9951D11ABA100F3E400 /* download-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D3B9921D11ABA100F3E400 /* download-arrow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -224,8 +226,6 @@
 		DE1AE51E1B8DA40B008C44F8 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		DE1AE51F1B8DA40B008C44F8 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		DE1AE5201B8DA40B008C44F8 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
-		DE1AE5211B8DA40B008C44F8 /* MyMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMoviePlayerViewController.h; sourceTree = "<group>"; };
-		DE1AE5221B8DA40B008C44F8 /* MyMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMoviePlayerViewController.m; sourceTree = "<group>"; };
 		DE1AE5241B8DA40B008C44F8 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		DE1AE5251B8DA40B008C44F8 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		DE1AE5261B8DA40B008C44F8 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
@@ -358,6 +358,9 @@
 		DEF4961B1934376700DD482D /* UIAlertView+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Helper.m"; sourceTree = "<group>"; };
 		E5B7BAB71D10700900B7CC03 /* RssManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RssManager.h; sourceTree = "<group>"; };
 		E5B7BAB81D10700900B7CC03 /* RssManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RssManager.m; sourceTree = "<group>"; };
+		E5D3B9901D11ABA100F3E400 /* download-arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download-arrow@2x.png"; sourceTree = "<group>"; };
+		E5D3B9911D11ABA100F3E400 /* download-arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download-arrow@3x.png"; sourceTree = "<group>"; };
+		E5D3B9921D11ABA100F3E400 /* download-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download-arrow.png"; sourceTree = "<group>"; };
 		F3CAE5CC33CD02D3970373AB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -443,8 +446,6 @@
 				DE1AE51E1B8DA40B008C44F8 /* HomeViewController.h */,
 				DE1AE51F1B8DA40B008C44F8 /* HomeViewController.m */,
 				DE1AE5201B8DA40B008C44F8 /* HomeViewController.xib */,
-				DE1AE5211B8DA40B008C44F8 /* MyMoviePlayerViewController.h */,
-				DE1AE5221B8DA40B008C44F8 /* MyMoviePlayerViewController.m */,
 				B648CF051D1102C40030FE69 /* BaseNodeListViewController.h */,
 				B648CF061D1102C40030FE69 /* BaseNodeListViewController.m */,
 				B648CF071D1102C40030FE69 /* BaseNodeListViewController.xib */,
@@ -654,6 +655,9 @@
 		DEB54D731933344800EC589E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E5D3B9901D11ABA100F3E400 /* download-arrow@2x.png */,
+				E5D3B9911D11ABA100F3E400 /* download-arrow@3x.png */,
+				E5D3B9921D11ABA100F3E400 /* download-arrow.png */,
 				DE17B2BF1B7C7C2800905EEE /* icon_check_status.png */,
 				DE17B2C01B7C7C2800905EEE /* icon_check_status@2x.png */,
 				DE17B2C11B7C7C2800905EEE /* icon_check_status@3x.png */,
@@ -822,6 +826,7 @@
 				DEC5DD2819357EDC0088A62F /* ic_channel_press.png in Resources */,
 				42C70C18193CBE3500736BCF /* icon-120.png in Resources */,
 				DE17B2B41B7C79FD00905EEE /* NoticeView.bundle in Resources */,
+				E5D3B9931D11ABA100F3E400 /* download-arrow@2x.png in Resources */,
 				42C70C1A193CBE3500736BCF /* icon-152.png in Resources */,
 				42C70C10193CBE3500736BCF /* icon-40.png in Resources */,
 				DEC5DD2A19357EDC0088A62F /* ic_channel_normal.png in Resources */,
@@ -830,6 +835,7 @@
 				DE1AE5631B8DA40B008C44F8 /* ManageRssViewController.xib in Resources */,
 				DEB54D7D193336BE00EC589E /* rate_star_0@2x.png in Resources */,
 				42C70C19193CBE3500736BCF /* icon-144.png in Resources */,
+				E5D3B9951D11ABA100F3E400 /* download-arrow.png in Resources */,
 				DE210913194FE8A10026F481 /* close.png in Resources */,
 				42C70C12193CBE3500736BCF /* icon-57.png in Resources */,
 				42C70C1B193CBE3500736BCF /* iTunesArtwork.png in Resources */,
@@ -858,6 +864,7 @@
 				DEC5DD2519357EDC0088A62F /* ic_favorites_normal@2x.png in Resources */,
 				DEB54D761933345000EC589E /* default_rss_img.png in Resources */,
 				DEB54D7F193336BE00EC589E /* rate_star_1@2x.png in Resources */,
+				E5D3B9941D11ABA100F3E400 /* download-arrow@3x.png in Resources */,
 				8465650E1B7B9A9000C9E99E /* icon_download.png in Resources */,
 				DE1AE54B1B8DA40B008C44F8 /* BaseViewController.xib in Resources */,
 				42C70C16193CBE3500736BCF /* icon-80.png in Resources */,
@@ -963,7 +970,6 @@
 				DE1AE55E1B8DA40B008C44F8 /* RssListViewController.m in Sources */,
 				DE233F7B1B70A9AD00C02DD6 /* Rss.m in Sources */,
 				DE1AE5621B8DA40B008C44F8 /* ManageRssViewController.m in Sources */,
-				DE1AE54E1B8DA40B008C44F8 /* MyMoviePlayerViewController.m in Sources */,
 				DE233F6F1B70A89F00C02DD6 /* NSDate+InternetDateTime.m in Sources */,
 				DE1AE5591B8DA40B008C44F8 /* NodeListCustomCell.m in Sources */,
 				DE233F701B70A89F00C02DD6 /* NSString+HTML.m in Sources */,
