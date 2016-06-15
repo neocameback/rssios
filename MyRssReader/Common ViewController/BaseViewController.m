@@ -48,7 +48,9 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [_bannerView_ loadRequest:[GADRequest request]];
+    GADRequest *request = [GADRequest request];
+    request.testDevices = @[ kGADSimulatorID ];
+    [_bannerView_ loadRequest:request];
 }
 - (void)didReceiveMemoryWarning
 {

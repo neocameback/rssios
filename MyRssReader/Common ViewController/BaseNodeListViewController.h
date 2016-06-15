@@ -26,7 +26,6 @@ typedef void (^ ConfigureTableViewCellBlock) (id cell, id item);
     RssNodeModel *currentNode;
     
     NSArray *searchResults;
-//    Rss *cachedRss;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *nodeList;

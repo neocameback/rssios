@@ -106,9 +106,54 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
-    [viewcontroller setTitle:[rssList[indexPath.row] rssTitle]];
-    [viewcontroller setRssURL:[rssList[indexPath.row] rssLink]];
-    [self.navigationController pushViewController:viewcontroller animated:YES];
+    
+    /**
+     *  retrieve the cached RSS
+     */
+    Rss *currentRss = rssList[indexPath.row];
+    /*
+     *  check auto refresh time to fetch new data
+     */
+    NSInteger autoRefreshTime = [[NSUserDefaults standardUserDefaults] integerForKey:kAutoRefreshNewsTime];
+    BOOL needRefresh = NO;
+    if (currentRss) {
+        NSDate *lastUpdated = [currentRss updatedAt];
+        NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:lastUpdated];
+        if (interval >= autoRefreshTime) {
+            needRefresh = YES;
+        }else{
+            needRefresh = NO;
+        }
+    }
+    if (!currentRss || currentRss.shouldCacheValue == NO || currentRss.nodeList.count <= 0 || needRefresh) {
+        
+        manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:currentRss.rssLink]];
+        [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
+            
+            [currentRss setUpdatedAt:[NSDate date]];
+            
+            NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
+            [viewcontroller setNodeList:nodeList];
+            [viewcontroller setRssURL:currentRss.rssLink];
+            [viewcontroller setTitle:currentRss.rssTitle];
+            [self.navigationController pushViewController:viewcontroller animated:YES];
+            
+        } failure:^(NSError *error) {
+            
+        }];
+        
+    }else{
+        NSMutableArray *nodeList = [NSMutableArray array];
+        for (RssNode *node in currentRss.nodeList) {
+            RssNodeModel *aNode = [[RssNodeModel alloc] initWithRssNode:node];
+            [nodeList addObject:aNode];
+        }
+        
+        NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
+        [viewcontroller setNodeList:nodeList];
+        [viewcontroller setRssURL:currentRss.rssLink];
+        [viewcontroller setTitle:currentRss.rssTitle];
+        [self.navigationController pushViewController:viewcontroller animated:YES];
+    }
 }
 @end

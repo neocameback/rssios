@@ -29,6 +29,7 @@
 {
     MPMoviePlayerViewController *moviePlayer;
     NSInteger willDownloadAtIndex;
+    RssManager *manager;
 }
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
@@ -161,10 +162,54 @@
     switch ([Common typeOfNode:currentNode.nodeType]) {
         case NODE_TYPE_RSS:
         {
-            NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
-            [viewcontroller setRssURL:currentNode.nodeUrl];
-            [viewcontroller setTitle:currentNode.nodeTitle];
-            [self.navigationController pushViewController:viewcontroller animated:YES];
+            /**
+             *  retrieve the cached RSS
+             */
+            Rss *cachedRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:currentNode.nodeUrl];
+            /*
+             *  check auto refresh time to fetch new data
+             */
+            NSInteger autoRefreshTime = [[NSUserDefaults standardUserDefaults] integerForKey:kAutoRefreshNewsTime];
+            BOOL needRefresh = NO;
+            if (cachedRss) {
+                NSDate *lastUpdated = [cachedRss updatedAt];
+                NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:lastUpdated];
+                if (interval >= autoRefreshTime) {
+                    needRefresh = YES;
+                }else{
+                    needRefresh = NO;
+                }
+            }
+            if (!cachedRss || cachedRss.shouldCacheValue == NO || cachedRss.nodeList.count <= 0 || needRefresh) {
+                
+                manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:currentNode.nodeUrl]];
+                [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
+                    
+                    [cachedRss setUpdatedAt:[NSDate date]];
+                    
+                    NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
+                    [viewcontroller setNodeList:nodeList];
+                    [viewcontroller setRssURL:currentNode.nodeUrl];
+                    [viewcontroller setTitle:currentNode.nodeTitle];
+                    [self.navigationController pushViewController:viewcontroller animated:YES];
+                    
+                } failure:^(NSError *error) {
+                    
+                }];
+                
+            }else{
+                NSMutableArray *nodeList = [NSMutableArray array];
+                for (RssNode *node in cachedRss.nodeList) {
+                    RssNodeModel *aNode = [[RssNodeModel alloc] initWithRssNode:node];
+                    [nodeList addObject:aNode];
+                }
+                
+                NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
+                [viewcontroller setNodeList:nodeList];
+                [viewcontroller setRssURL:currentNode.nodeUrl];
+                [viewcontroller setTitle:currentNode.nodeTitle];
+                [self.navigationController pushViewController:viewcontroller animated:YES];
+            }
         }
             break;
         case NODE_TYPE_VIDEO:
@@ -260,6 +305,7 @@
 -(GADInterstitial*) createAndLoadInterstital
 {
     GADRequest *request = [GADRequest request];
+    request.testDevices = @[ kGADSimulatorID ];
     GADInterstitial *interstitial = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
     interstitial.delegate = self;
     [interstitial loadRequest:request];

@@ -50,35 +50,35 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    /**
-     *  retrieve the cached RSS
-     */
-    cachedRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:self.rssURL];
-    /*
-     *  check auto refresh time to fetch new data
-     */
-    NSInteger autoRefreshTime = [[NSUserDefaults standardUserDefaults] integerForKey:kAutoRefreshNewsTime];
-    BOOL needRefresh = NO;
-    if (cachedRss) {
-        NSDate *lastUpdated = [cachedRss updatedAt];
-        NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:lastUpdated];
-        if (interval >= autoRefreshTime) {
-            needRefresh = YES;
-        }else{
-            needRefresh = NO;
-        }
-    }
-    if (!cachedRss || cachedRss.shouldCacheValue == NO || cachedRss.nodeList.count <= 0 || needRefresh) {
-        [self parseRssFromURL:self.rssURL];
-    }else{
-        if (!self.nodeList) {
-            self.nodeList = [NSMutableArray array];
-        }
-        for (RssNode *node in cachedRss.nodeList) {
-            RssNodeModel *aNode = [[RssNodeModel alloc] initWithRssNode:node];
-            [self.nodeList addObject:aNode];
-        }
-    }
+//    /**
+//     *  retrieve the cached RSS
+//     */
+//    cachedRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:self.rssURL];
+//    /*
+//     *  check auto refresh time to fetch new data
+//     */
+//    NSInteger autoRefreshTime = [[NSUserDefaults standardUserDefaults] integerForKey:kAutoRefreshNewsTime];
+//    BOOL needRefresh = NO;
+//    if (cachedRss) {
+//        NSDate *lastUpdated = [cachedRss updatedAt];
+//        NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:lastUpdated];
+//        if (interval >= autoRefreshTime) {
+//            needRefresh = YES;
+//        }else{
+//            needRefresh = NO;
+//        }
+//    }
+//    if (!cachedRss || cachedRss.shouldCacheValue == NO || cachedRss.nodeList.count <= 0 || needRefresh) {
+//        [self parseRssFromURL:self.rssURL];
+//    }else{
+//        if (!self.nodeList) {
+//            self.nodeList = [NSMutableArray array];
+//        }
+//        for (RssNode *node in cachedRss.nodeList) {
+//            RssNodeModel *aNode = [[RssNodeModel alloc] initWithRssNode:node];
+//            [self.nodeList addObject:aNode];
+//        }
+//    }
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.backgroundColor = [UIColor clearColor];
