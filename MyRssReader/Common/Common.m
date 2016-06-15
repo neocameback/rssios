@@ -81,7 +81,7 @@
         fail(error);
     }];
 }
-+(NSMutableURLRequest*) requestWithMethod:(NSString *) method ipAddress:(NSString*) ipAddres Url:(NSString *) url
++(NSMutableURLRequest*) requestWithMethod:(NSString *) method ipAddress:(NSString*) ipAddres Url:(NSURL *) url
 {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setValue:@"RSSVideoPlayer2.0-iOS" forHTTPHeaderField:@"User-Agent"];
@@ -91,7 +91,7 @@
     [request setValue:md5String forHTTPHeaderField:@"UID"];
     [request setValue:@"2.0" forHTTPHeaderField:@"VERSION"];
     [request setHTTPMethod:method];
-    [request setURL:[NSURL URLWithString:url]];
+    [request setURL:url];
     
     return request;
 }

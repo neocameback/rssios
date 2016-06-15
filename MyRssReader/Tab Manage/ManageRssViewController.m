@@ -11,7 +11,9 @@
 #import "RssNode.h"
 
 @interface ManageRssViewController ()
-
+{
+    RssManager *manager;
+}
 @end
 
 @implementation ManageRssViewController
@@ -185,99 +187,50 @@
             if (!result) {
                 urlString = [NSString stringWithFormat:@"http://%@", urlString];
             }
-            [SVProgressHUD showWithStatus:kStringLoading maskType:SVProgressHUDMaskTypeGradient];
-            [Common getUserIpAddress:^(NSDictionary *update) {
-                if (update) {
-                    NSString *ipAddress = update[@"ip"];
-                    NSMutableURLRequest *request = [Common requestWithMethod:@"GET" ipAddress:ipAddress Url:urlString];
-                    if (!request) {
-                        return;
-                    }
-                    feedParser = [[MWFeedParser alloc] initWithFeedRequest:request];
-                    
-                    feedParser.delegate = self;
-                    // Parse the feeds info (title, link) and all feed items
-                    feedParser.feedParseType = ParseTypeFull;
-                    // Connection type
-                    feedParser.connectionType = ConnectionTypeAsynchronously;
-                    // Begin parsing
-                    if ([self isInternetConnected]) {
-                        [feedParser parse];
-                    }else{
-                        [SVProgressHUD popActivity];
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:kMessageInternetConnectionLost delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                        [alert show];
-                    }
+            
+            manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:urlString]];
+            [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
+                /**
+                 *  save the new RSS
+                 */
+                newRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:rssModel.rssLink];
+                if (!newRss) {
+                    newRss = [Rss MR_createEntity];
+                }else{
+                    [[newRss nodeListSet] removeAllObjects];
                 }
-            } failureBlock:^(NSError * error) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
-                [SVProgressHUD popActivity];
+                if (rssModel.shouldCache) {
+                    newRss.shouldCacheValue = NO;
+                }else{
+                    newRss.shouldCacheValue = YES;
+                }
+                [newRss setIsBookmarkRssValue:YES];
+                [newRss setCreatedAt:[NSDate date]];
+                [newRss setUpdatedAt:[NSDate date]];
+                if (newRssName && newRssName.length > 0) {
+                    newRss.rssTitle = newRssName;
+                }else{
+                    newRss.rssTitle = rssModel.rssTitle;
+                }
+
+                NSURL *rssUrl = [NSURL URLWithString:rssModel.rssLink];
+                NSString *strippedString = [rssUrl absoluteString];
+                NSUInteger queryLength = [[rssUrl query] length];
+                strippedString = (queryLength ? [strippedString substringToIndex:[strippedString length] - (queryLength + 1)] : strippedString);
+                newRss.rssLink = strippedString;
+                
+                /**
+                 *  reload the rss list
+                 */
+                [rssList addObject:newRss];
+                [_tableView reloadData];
+                
+            } failure:^(NSError *error) {
+                
             }];
         }
             break;
     }
 }
-#pragma mark MWFeedParser delegate
-- (void)feedParserDidStart:(MWFeedParser *)parser
-{
-    
-}
-- (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
-{
-    newRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:info.url];
-    if (!newRss) {
-        newRss = [Rss MR_createEntity];
-    }else{
-        [[newRss nodeListSet] removeAllObjects];
-    }
-    if ([info shouldCache] != nil && ([[info shouldCache] caseInsensitiveCompare:@"false"] == NSOrderedSame)) {
-        newRss.shouldCacheValue = NO;
-    }else{
-        newRss.shouldCacheValue = YES;
-    }
-    [newRss setIsBookmarkRssValue:YES];
-    [newRss setCreatedAt:[NSDate date]];
-    [newRss setUpdatedAt:[NSDate date]];
-    if (newRssName && newRssName.length > 0) {
-        newRss.rssTitle = newRssName;
-    }else{
-        newRss.rssTitle = info.title;
-    }
-    NSString *strippedString = [info.url absoluteString];
-    NSUInteger queryLength = [[info.url query] length];
-    strippedString = (queryLength ? [strippedString substringToIndex:[strippedString length] - (queryLength + 1)] : strippedString);
-    newRss.rssLink = strippedString;
-}
-- (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
-{
-    RssNodeModel *tempNode = [[RssNodeModel alloc] initWithFeedItem:item];
-    if (newRss && newRss.shouldCacheValue) {
-        RssNode *node = [RssNode MR_createEntity];
-        [node setCreatedAt:[NSDate date]];
-        [node initFromTempNode:tempNode];
-        [node setRss:newRss];
-    }
-}
-- (void)feedParserDidFinish:(MWFeedParser *)parser
-{
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-    [SVProgressHUD popActivity];
-    
-    if (!rssList) {
-        rssList = [[NSMutableArray alloc] init];
-    }
-    [rssList addObject:newRss];
-    [_tableView reloadData];
-}
-- (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error
-{
-    [SVProgressHUD popActivity];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Parsing Incomplete"
-                                                    message:@"There was an error during the parsing of this feed. Not all of the feed items could parsed."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"Dismiss"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
+
 @end

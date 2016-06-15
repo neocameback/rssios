@@ -14,7 +14,6 @@
 @interface ManageRssViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, MWFeedParserDelegate>
 {
     NSMutableArray *rssList;
-    MWFeedParser *feedParser;
     Rss *newRss;
     NSString *newRssName;
     

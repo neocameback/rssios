@@ -30,6 +30,8 @@
     NodeListCustomCell *nodeCell;
     NSString *identifier;
     NSInteger willDownloadAtIndex;
+    
+    RssManager *manager;
 }
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
@@ -110,34 +112,49 @@
 }
 -(void) parseRssFromURL:(NSString *) url
 {
-    [SVProgressHUD showWithStatus:kStringLoading maskType:SVProgressHUDMaskTypeGradient];
-    [Common getUserIpAddress:^(NSDictionary *update) {
-        if (update) {
-            NSString *ipAddress = update[@"ip"];
-            NSMutableURLRequest *request = [Common requestWithMethod:@"GET" ipAddress:ipAddress Url:url];
-            if (!request) {
-                return;
+    manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:url]];
+    [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
+        /**
+         *  the saved RSS can have an other name that's enter on manage RSS view
+         */
+        if (cachedRss && cachedRss.rssTitle.length > 0) {
+            [rssModel setRssTitle:cachedRss.rssTitle];
+        }
+        /**
+         *  check if this rss should be cache or not
+         */
+        if (rssModel.shouldCache) {
+            if (!cachedRss) {
+                cachedRss = [Rss MR_createEntity];
+                [cachedRss setCreatedAt:[NSDate date]];
+            }else {
+                [[cachedRss nodeListSet] removeAllObjects];
             }
-            feedParser = [[MWFeedParser alloc] initWithFeedRequest:request];
-            
-            feedParser.delegate = self;
-            // Parse the feeds info (title, link) and all feed items
-            feedParser.feedParseType = ParseTypeFull;
-            // Connection type
-            feedParser.connectionType = ConnectionTypeAsynchronously;
-            // Begin parsing
-            if ([self isInternetConnected]) {
-                [feedParser parse];
-            }else{
-                [SVProgressHUD popActivity];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:kMessageInternetConnectionLost delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
+            if (!cachedRss.isBookmarkRssValue) {
+                [cachedRss setIsBookmarkRssValue:NO];
+            }
+            [cachedRss initFromTempRss:rssModel];
+        }
+        
+        self.nodeList = nodeList;
+        /**
+         *  if this rss should be cache so create new RssNode entity
+         */
+        if (cachedRss && cachedRss.shouldCacheValue) {
+            for (RssNodeModel *nodeModel in nodeList) {
+                RssNode *node = [RssNode MR_createEntity];
+                [node initFromTempNode:nodeModel];
+                [node setCreatedAt:[NSDate date]];
+                [node setRss:cachedRss];
             }
         }
-    } failureBlock:^(NSError * error) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-        [SVProgressHUD popActivity];
+        
+        [self.refreshControl endRefreshing];
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
+            [self.tableView reloadData];
+        }];
+    } failure:^(NSError *error) {
+        [self.refreshControl endRefreshing];
     }];
 }
 
@@ -184,73 +201,6 @@
     [[alert textFieldAtIndex:0] setClearButtonMode:UITextFieldViewModeWhileEditing];
     [alert setTag:ALERT_ENTER_FILE_NAME];
     [alert show];
-}
-
-#pragma mark MWFeedParser delegate
-
-- (void)feedParserDidStart:(MWFeedParser *)parser
-{
-    self.nodeList = [NSMutableArray array];
-}
-- (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
-{
-    RssModel *tempRss = [[RssModel alloc] initWithFeedInfo:info];
-    /**
-     *  the saved RSS can have an other name that's enter on manage RSS view
-     */
-    if (cachedRss && cachedRss.rssTitle.length > 0) {
-        [tempRss setRssTitle:cachedRss.rssTitle];
-    }
-    /**
-     *  check if this rss should be cache or not
-     */
-    if (tempRss.shouldCache) {
-        if (!cachedRss) {
-            cachedRss = [Rss MR_createEntity];
-            [cachedRss setCreatedAt:[NSDate date]];
-        }else {
-            [[cachedRss nodeListSet] removeAllObjects];
-        }
-        if (!cachedRss.isBookmarkRssValue) {
-            [cachedRss setIsBookmarkRssValue:NO];
-        }
-        [cachedRss initFromTempRss:tempRss];
-    }
-}
-- (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
-{
-    RssNodeModel *aNode = [[RssNodeModel alloc] initWithFeedItem:item];
-    [self.nodeList addObject:aNode];
-    /**
-     *  if this rss should be cache so create new RssNode entity
-     */
-    if (cachedRss && cachedRss.shouldCacheValue) {
-        RssNode *node = [RssNode MR_createEntity];
-        [node initFromTempNode:aNode];
-        [node setCreatedAt:[NSDate date]];
-        [node setRss:cachedRss];
-    }
-}
-- (void)feedParserDidFinish:(MWFeedParser *)parser
-{
-    [self.refreshControl endRefreshing];
-    
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-    [SVProgressHUD popActivity];
-    
-    [self.tableView reloadData];
-}
-- (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error
-{
-    [self.refreshControl endRefreshing];
-    [SVProgressHUD popActivity];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Parsing Incomplete"
-                                                    message:@"There was an error during the parsing of this feed. Not all of the feed items could parsed."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"Dismiss"
-                                          otherButtonTitles:nil];
-    [alert show];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark uialertview delegate

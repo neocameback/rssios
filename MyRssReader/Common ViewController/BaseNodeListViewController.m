@@ -45,7 +45,7 @@
     [self.searchDisplayController.searchResultsTableView registerNib:nib forCellReuseIdentifier:[self cellIdentifier]];
     
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [self createAndLoadInterstital];
+    _interstitial = [self createAndLoadInterstital];
     
 }
 
@@ -243,15 +243,15 @@
     NSDate *lastOpenDate = [[NSUserDefaults standardUserDefaults] objectForKey:kLastOpenFullScreen];
     NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:lastOpenDate];
     
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastOpenFullScreen];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
     if (interval <= kSecondsToPresentInterstitial) {
         [self continueAtCurrentPath];
         return;
     }
     if (_interstitial.isReady) {
         [_interstitial presentFromRootViewController:self];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastOpenFullScreen];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }else{
         [self continueAtCurrentPath];
     }
@@ -274,12 +274,12 @@
 - (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
 {
     //If an error occurs and the interstitial is not received you might want to retry automatically after a certain interval
-    [self createAndLoadInterstital];
+    _interstitial = [self createAndLoadInterstital];
 }
 
 - (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
 {
-    [self createAndLoadInterstital];
+    _interstitial = [self createAndLoadInterstital];
 }
 
 

@@ -186,6 +186,7 @@
 		B648CF051D1102C40030FE69 /* BaseNodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNodeListViewController.h; sourceTree = "<group>"; };
 		B648CF061D1102C40030FE69 /* BaseNodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNodeListViewController.m; sourceTree = "<group>"; };
 		B648CF071D1102C40030FE69 /* BaseNodeListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseNodeListViewController.xib; sourceTree = "<group>"; };
+		B648CF0A1D1136170030FE69 /* Model2.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.1.xcdatamodel; sourceTree = "<group>"; };
 		DE04E6A6194AE50300BD30BC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DE04E6A8194AE52000BD30BC /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		DE17B29E1B7C79FD00905EEE /* NoticeView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NoticeView.bundle; sourceTree = "<group>"; };
@@ -1290,10 +1291,11 @@
 		DE233F731B70A9AD00C02DD6 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				B648CF0A1D1136170030FE69 /* Model2.1.xcdatamodel */,
 				DE233F811B70A9E400C02DD6 /* Model2.0.xcdatamodel */,
 				DE233F741B70A9AD00C02DD6 /* Model.xcdatamodel */,
 			);
-			currentVersion = DE233F811B70A9E400C02DD6 /* Model2.0.xcdatamodel */;
+			currentVersion = B648CF0A1D1136170030FE69 /* Model2.1.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -1,4 +1,5 @@
 platform :ios, '8.0'
+inhibit_all_warnings!
 
 pod 'Google-Mobile-Ads-SDK', '~> 7.4'
 pod 'SVProgressHUD', '~> 1.1.3'

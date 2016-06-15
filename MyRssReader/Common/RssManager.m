@@ -8,11 +8,6 @@
 
 #import "RssManager.h"
 #import "Reachability.h"
-#import "RssModel.h"
-#import "RssNodeModel.h"
-#import "Rss.h"
-#import "RssNode.h"
-
 
 @implementation RssManager
 
@@ -24,13 +19,17 @@
     return self;
 }
 
--(void) startParse
+-(void) startParseCompletion:(ParseCompletionBlock) completionBlock failure:(ParseFailedBlock) failedBlock
 {
     [SVProgressHUD showWithStatus:kStringLoading maskType:SVProgressHUDMaskTypeGradient];
     [Common getUserIpAddress:^(NSDictionary *update) {
         if (update) {
+            
+            _completionBlock = completionBlock;
+            _failureBlock = failedBlock;
+            
             NSString *ipAddress = update[@"ip"];
-            NSMutableURLRequest *request = [Common requestWithMethod:@"GET" ipAddress:ipAddress Url:kDefaultRssUrl];
+            NSMutableURLRequest *request = [Common requestWithMethod:@"GET" ipAddress:ipAddress Url:_rssUrl];
             if (!request) {
                 return;
             }
@@ -60,39 +59,29 @@
 #pragma mark MWFeedParserDelegate
 - (void)feedParserDidStart:(MWFeedParser *)parser
 {
-    
+    _nodeList = [NSMutableArray array];
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
 {
-    RssModel *tempRss = [[RssModel alloc] initWithFeedInfo:info];
-    /**
-     *  create and save the default rss
-     */
-//    defaultRss = [Rss MR_createEntity];
-//    [defaultRss setIsBookmarkRssValue:YES];
-//    [defaultRss setCreatedAt:[NSDate date]];
-//    [defaultRss initFromTempRss:tempRss];
+    _rssModel = [[RssModel alloc] initWithFeedInfo:info];
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
     RssNodeModel *tempNode = [[RssNodeModel alloc] initWithFeedItem:item];
-    
-    RssNode *node = [RssNode MR_createEntity];
-    [node setCreatedAt:[NSDate date]];
-    [node initFromTempNode:tempNode];
-//    [node setRss:defaultRss];
+    [_nodeList addObject:tempNode];
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser
 {
+    if (_completionBlock) {
+        _completionBlock(_rssModel, _nodeList);
+    }
     [SVProgressHUD popActivity];
-    
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-//        rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES]];
-//        [_tableView reloadData];
-    }];
 }
 - (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error
 {
+    if (_failureBlock) {
+        _failureBlock(error);
+    }
     [SVProgressHUD popActivity];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Parsing Incomplete"
                                                     message:@"There was an error during the parsing of this feed. Not all of the feed items could parsed."

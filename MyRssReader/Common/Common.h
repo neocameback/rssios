@@ -12,7 +12,7 @@
 
 +(NSString *) getPathOfFile:(NSString*) name extension:(NSString*) ext;
 +(NSString *) getIpAddress;
-+(NSMutableURLRequest*) requestWithMethod:(NSString *) method ipAddress:(NSString*) ipAddres Url:(NSString *) url;
++(NSMutableURLRequest*) requestWithMethod:(NSString *) method ipAddress:(NSString*) ipAddres Url:(NSURL *) url;
 
 +(enum NODE_TYPE) typeOfNode:(NSString *) nodeType;
 +(void) getUserIpAddress:(void (^) (id)) success failureBlock:(void (^) (id)) fail;

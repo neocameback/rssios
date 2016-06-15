@@ -16,9 +16,8 @@
 #import "MWFeedParser.h"
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
-@interface NodeListViewController : BaseNodeListViewController <MWFeedParserDelegate>
+@interface NodeListViewController : BaseNodeListViewController
 {
-    MWFeedParser *feedParser;    
     Rss *cachedRss;
 }
 @property (nonatomic, strong) NSString *rssURL;
