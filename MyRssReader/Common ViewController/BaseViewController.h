@@ -10,9 +10,8 @@
 #import <GAITrackedViewController.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
-@interface BaseViewController : GAITrackedViewController <GADInterstitialDelegate>
+@interface BaseViewController : GAITrackedViewController
 {
 }
 @property (nonatomic, strong) IBOutlet GADBannerView *bannerView_;
-@property (nonatomic, strong) GADInterstitial *interstitial;
 @end

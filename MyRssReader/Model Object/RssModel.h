@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TempRss : NSObject
+@interface RssModel : NSObject
 @property (nonatomic, retain) NSString * rssLink;
 @property (nonatomic, retain) NSString * rssTitle;
 @property (nonatomic, retain) NSString * adsBannerId;

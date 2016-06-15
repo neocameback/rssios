@@ -8,12 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
+#import "BaseNodeListViewController.h"
 
-@interface FileListViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
+@interface FileListViewController : BaseNodeListViewController
 {
-    __weak IBOutlet UITableView *_tableView;
-    NSMutableArray *nodeList;
-    NSArray *searchResults;
 }
 @property (nonatomic, strong) NSString *webPageUrl;
 @end

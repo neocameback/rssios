@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Huyns. All rights reserved.
 //
 
-#import "TempRss.h"
+#import "RssModel.h"
 #import "MWFeedInfo.h"
 
-@implementation TempRss
+@implementation RssModel
 @synthesize rssTitle, rssLink, nodes, shouldCache;
 @synthesize adsBannerId, adsFullId;
 

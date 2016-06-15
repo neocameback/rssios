@@ -11,6 +11,6 @@
 
 @interface BookmarkCustomCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *lb_title;
--(void) configWithNode:(Node*) node;
+-(void) configWithNode:(RssNodeModel*) node;
 
 @end

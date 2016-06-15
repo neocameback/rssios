@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -16,6 +16,9 @@
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="270" translatesAutoresizingMaskIntoConstraints="NO" id="HZL-j2-YmD">
                         <rect key="frame" x="15" y="7" width="270" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="myS-aQ-hLo"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -25,6 +28,7 @@
                     <constraint firstItem="HZL-j2-YmD" firstAttribute="leading" secondItem="y9s-0r-egn" secondAttribute="leading" constant="15" id="6Sa-Cs-Jsj"/>
                     <constraint firstAttribute="trailing" secondItem="HZL-j2-YmD" secondAttribute="trailing" constant="2" id="YQr-V7-Lcf"/>
                     <constraint firstItem="HZL-j2-YmD" firstAttribute="top" secondItem="y9s-0r-egn" secondAttribute="top" constant="7" id="YR7-8G-wm2"/>
+                    <constraint firstAttribute="bottom" secondItem="HZL-j2-YmD" secondAttribute="bottom" constant="7" id="l9f-zJ-60l"/>
                     <constraint firstItem="HZL-j2-YmD" firstAttribute="centerY" secondItem="y9s-0r-egn" secondAttribute="centerY" id="zdd-d9-M5f"/>
                 </constraints>
             </tableViewCellContentView>

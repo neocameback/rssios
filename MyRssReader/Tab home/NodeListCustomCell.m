@@ -24,7 +24,7 @@
 
     // Configure the view for the selected state
 }
--(void) configWithNode:(TempNode*) aNode
+-(void) configWithNode:(RssNodeModel*) aNode
 {
     _node = aNode;
     

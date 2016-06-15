@@ -8,8 +8,8 @@
 
 #import "RssManager.h"
 #import "Reachability.h"
-#import "TempRss.h"
-#import "TempNode.h"
+#import "RssModel.h"
+#import "RssNodeModel.h"
 #import "Rss.h"
 #import "RssNode.h"
 
@@ -64,7 +64,7 @@
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
 {
-    TempRss *tempRss = [[TempRss alloc] initWithFeedInfo:info];
+    RssModel *tempRss = [[RssModel alloc] initWithFeedInfo:info];
     /**
      *  create and save the default rss
      */
@@ -75,7 +75,7 @@
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
-    TempNode *tempNode = [[TempNode alloc] initWithFeedItem:item];
+    RssNodeModel *tempNode = [[RssNodeModel alloc] initWithFeedItem:item];
     
     RssNode *node = [RssNode MR_createEntity];
     [node setCreatedAt:[NSDate date]];

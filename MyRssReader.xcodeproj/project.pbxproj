@@ -43,6 +43,8 @@
 		8465650E1B7B9A9000C9E99E /* icon_download.png in Resources */ = {isa = PBXBuildFile; fileRef = 8465650B1B7B9A9000C9E99E /* icon_download.png */; };
 		846565131B7BA57700C9E99E /* _File.m in Sources */ = {isa = PBXBuildFile; fileRef = 846565101B7BA57700C9E99E /* _File.m */; };
 		846565141B7BA57700C9E99E /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 846565121B7BA57700C9E99E /* File.m */; };
+		B648CF081D1102C40030FE69 /* BaseNodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B648CF061D1102C40030FE69 /* BaseNodeListViewController.m */; };
+		B648CF091D1102C40030FE69 /* BaseNodeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B648CF071D1102C40030FE69 /* BaseNodeListViewController.xib */; };
 		DE17B2B41B7C79FD00905EEE /* NoticeView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DE17B29E1B7C79FD00905EEE /* NoticeView.bundle */; };
 		DE17B2B51B7C79FD00905EEE /* NSOperationQueue+WBNoticeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = DE17B2A01B7C79FD00905EEE /* NSOperationQueue+WBNoticeExtensions.m */; };
 		DE17B2B61B7C79FD00905EEE /* UILabel+WBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = DE17B2A21B7C79FD00905EEE /* UILabel+WBExtensions.m */; };
@@ -86,8 +88,8 @@
 		DE1AE5621B8DA40B008C44F8 /* ManageRssViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1AE5461B8DA40B008C44F8 /* ManageRssViewController.m */; };
 		DE1AE5631B8DA40B008C44F8 /* ManageRssViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1AE5471B8DA40B008C44F8 /* ManageRssViewController.xib */; };
 		DE1AE5661B8DA42F008C44F8 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1AE5651B8DA42F008C44F8 /* Common.m */; };
-		DE1AE56C1B8DA567008C44F8 /* TempNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1AE5691B8DA567008C44F8 /* TempNode.m */; };
-		DE1AE56D1B8DA567008C44F8 /* TempRss.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1AE56B1B8DA567008C44F8 /* TempRss.m */; };
+		DE1AE56C1B8DA567008C44F8 /* RssNodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1AE5691B8DA567008C44F8 /* RssNodeModel.m */; };
+		DE1AE56D1B8DA567008C44F8 /* RssModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1AE56B1B8DA567008C44F8 /* RssModel.m */; };
 		DE1AE5721B8DC92F008C44F8 /* _RssNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1AE56F1B8DC92F008C44F8 /* _RssNode.m */; };
 		DE1AE5731B8DC92F008C44F8 /* RssNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1AE5711B8DC92F008C44F8 /* RssNode.m */; };
 		DE1B5B3B194AED9800A4B5D9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE04E6A8194AE52000BD30BC /* AdSupport.framework */; };
@@ -181,6 +183,9 @@
 		846565101B7BA57700C9E99E /* _File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _File.m; sourceTree = "<group>"; };
 		846565111B7BA57700C9E99E /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
 		846565121B7BA57700C9E99E /* File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = File.m; sourceTree = "<group>"; };
+		B648CF051D1102C40030FE69 /* BaseNodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNodeListViewController.h; sourceTree = "<group>"; };
+		B648CF061D1102C40030FE69 /* BaseNodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNodeListViewController.m; sourceTree = "<group>"; };
+		B648CF071D1102C40030FE69 /* BaseNodeListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseNodeListViewController.xib; sourceTree = "<group>"; };
 		DE04E6A6194AE50300BD30BC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DE04E6A8194AE52000BD30BC /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		DE17B29E1B7C79FD00905EEE /* NoticeView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NoticeView.bundle; sourceTree = "<group>"; };
@@ -254,10 +259,10 @@
 		DE1AE5471B8DA40B008C44F8 /* ManageRssViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManageRssViewController.xib; sourceTree = "<group>"; };
 		DE1AE5641B8DA42F008C44F8 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		DE1AE5651B8DA42F008C44F8 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
-		DE1AE5681B8DA567008C44F8 /* TempNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempNode.h; sourceTree = "<group>"; };
-		DE1AE5691B8DA567008C44F8 /* TempNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempNode.m; sourceTree = "<group>"; };
-		DE1AE56A1B8DA567008C44F8 /* TempRss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempRss.h; sourceTree = "<group>"; };
-		DE1AE56B1B8DA567008C44F8 /* TempRss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempRss.m; sourceTree = "<group>"; };
+		DE1AE5681B8DA567008C44F8 /* RssNodeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RssNodeModel.h; sourceTree = "<group>"; };
+		DE1AE5691B8DA567008C44F8 /* RssNodeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RssNodeModel.m; sourceTree = "<group>"; };
+		DE1AE56A1B8DA567008C44F8 /* RssModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RssModel.h; sourceTree = "<group>"; };
+		DE1AE56B1B8DA567008C44F8 /* RssModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RssModel.m; sourceTree = "<group>"; };
 		DE1AE56E1B8DC92F008C44F8 /* _RssNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _RssNode.h; sourceTree = "<group>"; };
 		DE1AE56F1B8DC92F008C44F8 /* _RssNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _RssNode.m; sourceTree = "<group>"; };
 		DE1AE5701B8DC92F008C44F8 /* RssNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RssNode.h; sourceTree = "<group>"; };
@@ -439,6 +444,9 @@
 				DE1AE5201B8DA40B008C44F8 /* HomeViewController.xib */,
 				DE1AE5211B8DA40B008C44F8 /* MyMoviePlayerViewController.h */,
 				DE1AE5221B8DA40B008C44F8 /* MyMoviePlayerViewController.m */,
+				B648CF051D1102C40030FE69 /* BaseNodeListViewController.h */,
+				B648CF061D1102C40030FE69 /* BaseNodeListViewController.m */,
+				B648CF071D1102C40030FE69 /* BaseNodeListViewController.xib */,
 			);
 			path = "Common ViewController";
 			sourceTree = "<group>";
@@ -515,10 +523,10 @@
 		DE1AE5671B8DA567008C44F8 /* Model Object */ = {
 			isa = PBXGroup;
 			children = (
-				DE1AE5681B8DA567008C44F8 /* TempNode.h */,
-				DE1AE5691B8DA567008C44F8 /* TempNode.m */,
-				DE1AE56A1B8DA567008C44F8 /* TempRss.h */,
-				DE1AE56B1B8DA567008C44F8 /* TempRss.m */,
+				DE1AE5681B8DA567008C44F8 /* RssNodeModel.h */,
+				DE1AE5691B8DA567008C44F8 /* RssNodeModel.m */,
+				DE1AE56A1B8DA567008C44F8 /* RssModel.h */,
+				DE1AE56B1B8DA567008C44F8 /* RssModel.m */,
 			);
 			path = "Model Object";
 			sourceTree = "<group>";
@@ -809,6 +817,7 @@
 				DE1AE55A1B8DA40B008C44F8 /* NodeListCustomCell.xib in Resources */,
 				DEC5DD2D19357EDC0088A62F /* ic_about_normal@2x.png in Resources */,
 				DEC5DD2919357EDC0088A62F /* ic_channel_normal@2x.png in Resources */,
+				B648CF091D1102C40030FE69 /* BaseNodeListViewController.xib in Resources */,
 				DEC5DD2819357EDC0088A62F /* ic_channel_press.png in Resources */,
 				42C70C18193CBE3500736BCF /* icon-120.png in Resources */,
 				DE17B2B41B7C79FD00905EEE /* NoticeView.bundle in Resources */,
@@ -998,12 +1007,13 @@
 				DE1AE5551B8DA40B008C44F8 /* BookmarkCustomCell.m in Sources */,
 				DE1AE5601B8DA40B008C44F8 /* WebViewViewController.m in Sources */,
 				DEF496161934349F00DD482D /* Reachability.m in Sources */,
-				DE1AE56D1B8DA567008C44F8 /* TempRss.m in Sources */,
+				B648CF081D1102C40030FE69 /* BaseNodeListViewController.m in Sources */,
+				DE1AE56D1B8DA567008C44F8 /* RssModel.m in Sources */,
 				DE22E7C5192F54180005E685 /* main.m in Sources */,
 				DE233F6C1B70A89F00C02DD6 /* MWFeedInfo.m in Sources */,
 				DEB5F0DD1932D854008922E5 /* Categories.m in Sources */,
 				DE17B2BD1B7C79FD00905EEE /* WBStickyNoticeView.m in Sources */,
-				DE1AE56C1B8DA567008C44F8 /* TempNode.m in Sources */,
+				DE1AE56C1B8DA567008C44F8 /* RssNodeModel.m in Sources */,
 				DEB5F0DA1932D7DA008922E5 /* UIViewController+Helper.m in Sources */,
 				DE1AE54C1B8DA40B008C44F8 /* HomeViewController.m in Sources */,
 			);

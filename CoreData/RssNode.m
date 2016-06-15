@@ -1,5 +1,5 @@
 #import "RssNode.h"
-#import "TempNode.h"
+#import "RssNodeModel.h"
 
 @interface RssNode ()
 
@@ -11,7 +11,7 @@
 
 // Custom logic goes here.
 
--(void) initFromTempNode:(TempNode*) temp
+-(void) initFromTempNode:(RssNodeModel*) temp
 {
     [self setUpdatedAt:[NSDate date]];
     self.bookmarkStatus = temp.bookmarkStatus;

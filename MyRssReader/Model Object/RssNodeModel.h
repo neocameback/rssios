@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TempNode : NSObject
+@interface RssNodeModel : NSObject
 @property (nonatomic, retain) NSString * bookmarkStatus;
 @property (nonatomic, retain) NSString * nodeImage;
 @property (nonatomic, retain) NSString * nodeSource;
@@ -21,5 +21,6 @@
 @property (nonatomic, retain) NSNumber * isDeletedFlag;
 -(id) initWithFeedItem:(id) item;
 -(id) initWithRssNode:(id) rssNode;
+-(id) initWithBookmarkNode:(id) rssNode;
 -(id) initWithFile:(id) file;
 @end

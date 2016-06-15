@@ -11,7 +11,7 @@
 
 @implementation Node
 
--(void) initFromTempNode:(TempNode*) temp
+-(void) initFromTempNode:(RssNodeModel*) temp
 {
     [self setUpdatedAt:[NSDate date]];
     self.bookmarkStatus = temp.bookmarkStatus;

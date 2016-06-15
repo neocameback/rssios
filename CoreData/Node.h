@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Huyns. All rights reserved.
 //
 
-#import "TempNode.h"
+#import "RssNodeModel.h"
 #import "_Node.h"
 
 /**
@@ -14,5 +14,5 @@
  */
 @interface Node : _Node
 
--(void) initFromTempNode:(TempNode*) temp;
+-(void) initFromTempNode:(RssNodeModel*) temp;
 @end

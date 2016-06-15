@@ -22,7 +22,7 @@
 
     // Configure the view for the selected state
 }
--(void) configWithNode:(Node*) node
+-(void) configWithNode:(RssNodeModel*) node
 {
     self.lb_title.text = [node nodeTitle];
 }

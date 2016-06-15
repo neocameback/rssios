@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TempNode.h"
+#import "RssNodeModel.h"
 
 @interface NodeListCustomCell : UITableViewCell
 
-@property (nonatomic, assign) TempNode* node;
+@property (nonatomic, assign) RssNodeModel* node;
 @property (weak, nonatomic) IBOutlet UIImageView *iv_image;
 @property (weak, nonatomic) IBOutlet UILabel *lb_title;
 @property (weak, nonatomic) IBOutlet UIButton *btn_addToFav;
--(void) configWithNode:(TempNode*) node;
+-(void) configWithNode:(RssNodeModel*) node;
 @end

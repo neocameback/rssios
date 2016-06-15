@@ -7,11 +7,11 @@
 //
 
 #import "Rss.h"
-#import "TempRss.h"
+#import "RssModel.h"
 
 @implementation Rss
 
--(void) initFromTempRss:(TempRss *) temp
+-(void) initFromTempRss:(RssModel *) temp
 {
     self.rssTitle = temp.rssTitle;
     self.rssLink = temp.rssLink;

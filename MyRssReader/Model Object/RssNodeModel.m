@@ -6,12 +6,13 @@
 //  Copyright (c) 2014 Huyns. All rights reserved.
 //
 
-#import "TempNode.h"
+#import "RssNodeModel.h"
 #import "MWFeedItem.h"
 #import "NSString+HTML.h"
 #import "RssNode.h"
+#import "Node.h"
 
-@implementation TempNode
+@implementation RssNodeModel
 @synthesize bookmarkStatus, isAddedToBoomark, nodeImage, nodeSource, nodeTitle, nodeDesc, nodeType, nodeUrl;
 -(id) initWithFeedItem:(MWFeedItem*) item
 {
@@ -67,6 +68,20 @@
     
     return self;
 }
+-(id) initWithBookmarkNode:(Node *) rssNode
+{
+    self = [super init];
+    self.bookmarkStatus = rssNode.bookmarkStatus;
+    self.nodeTitle = rssNode.nodeTitle;
+    self.nodeDesc = rssNode.nodeDesc;
+    self.nodeLink = rssNode.nodeLink;
+    self.nodeType = rssNode.nodeType;
+    self.nodeUrl = rssNode.nodeUrl;
+    self.nodeImage = rssNode.nodeImage;
+    
+    return self;
+}
+
 -(id) initWithFile:(NSDictionary*) file;
 {
     self = [super init];

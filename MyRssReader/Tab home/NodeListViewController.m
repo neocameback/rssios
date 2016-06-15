@@ -69,22 +69,14 @@
     if (!cachedRss || cachedRss.shouldCacheValue == NO || cachedRss.nodeList.count <= 0 || needRefresh) {
         [self parseRssFromURL:self.rssURL];
     }else{
-        if (!nodeList) {
-            nodeList = [NSMutableArray array];
+        if (!self.nodeList) {
+            self.nodeList = [NSMutableArray array];
         }
         for (RssNode *node in cachedRss.nodeList) {
-            TempNode *aNode = [[TempNode alloc] initWithRssNode:node];
-            [nodeList addObject:aNode];
+            RssNodeModel *aNode = [[RssNodeModel alloc] initWithRssNode:node];
+            [self.nodeList addObject:aNode];
         }
     }
-    
-    identifier = @"NodeListCustomCell";
-    UINib *nib = [UINib nibWithNibName:identifier bundle:nil];
-    nodeCell = [nib instantiateWithOwner:self options:nil][0];
-    [_tableView registerNib:nib forCellReuseIdentifier:identifier];
-    [self.searchDisplayController.searchResultsTableView registerNib:nib forCellReuseIdentifier:identifier];
-    
-    interstitial_ = [self createAndLoadInterstital];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.backgroundColor = [UIColor clearColor];
@@ -93,7 +85,7 @@
                             action:@selector(reloadDataSource)
                   forControlEvents:UIControlEventValueChanged];
     
-    [_tableView addSubview:self.refreshControl];
+    [self.tableView addSubview:self.refreshControl];
     
 }
 -(void) viewWillAppear:(BOOL)animated
@@ -155,93 +147,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark tableview delegate and datasource
-
--(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+-(NSString *) cellIdentifier
 {
-    TempNode *node = nodeList[indexPath.row];
-    [nodeCell configWithNode:node];
-    [nodeCell layoutIfNeeded];
-    CGFloat height = [nodeCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    if (height < 71) {
-        return 71;
-    }else{
-        return height + 1;
-    }
-}
--(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return [searchResults count];
-    } else {
-        return nodeList.count;
-    }
+    return NSStringFromClass([NodeListCustomCell class]);
 }
 
--(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(ConfigureTableViewCellBlock) configureCellBlock
 {
-    TempNode *node = nil;
-    
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        node = searchResults[indexPath.row];
-    } else {
-        node = nodeList[indexPath.row];
-    }
-    
-    NodeListCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-    [cell configWithNode:node];
-    
-    return cell;
-}
-
--(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    currentNode = nil;
-    
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        currentNode = searchResults[indexPath.row];
-    } else {
-        currentNode = nodeList[indexPath.row];
-    }
-    
-    switch ([Common typeOfNode:currentNode.nodeType]) {
-        case NODE_TYPE_RSS:
-        {
-            /**
-             *  parse rss/xml
-             */
-            [self continueAtCurrentPath];
-        }
-            break;
-        case NODE_TYPE_WEB_CONTENT:
-        {
-            [self continueAtCurrentPath];
-        }
-            break;
-        default:
-        {
-            [self preLoadInterstitial];
-        }
-            break;
-    }
-}
-
-#pragma mark search bar implement
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-{
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"nodeTitle contains[c] %@", searchText];
-    searchResults = [nodeList filteredArrayUsingPredicate:resultPredicate];
-}
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [self filterContentForSearchText:searchString
-                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-                                      objectAtIndex:[self.searchDisplayController.searchBar
-                                                     selectedScopeButtonIndex]]];
-    
-    return YES;
+    ConfigureTableViewCellBlock configureCellBlock = ^(NodeListCustomCell *cell, RssNodeModel *nodeModel){
+        [cell configWithNode:nodeModel];
+    };
+    return configureCellBlock;
 }
 
 -(void) onDownLoad:(id) sender
@@ -270,111 +186,15 @@
     [alert show];
 }
 
-#pragma mark Admob
-#pragma mark Interstitial delegate
-
-- (void)preLoadInterstitial {
-    //Call this method as soon as you can - loadRequest will run in the background and your interstitial will be ready when you need to show it
-    
-    NSDate *lastOpenDate = [[NSUserDefaults standardUserDefaults] objectForKey:kLastOpenFullScreen];
-    NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:lastOpenDate];
-    
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastOpenFullScreen];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    if (interval <= kSecondsToPresentInterstitial) {
-        [self continueAtCurrentPath];
-        return;
-    }
-    if (interstitial_.isReady) {
-        [interstitial_ presentFromRootViewController:self];
-    }else{
-        [self continueAtCurrentPath];
-    }
-}
-
--(void) continueAtCurrentPath
-{
-    /**
-     *  check if node url is empty or not
-     */
-    if (!currentNode.nodeUrl || currentNode.nodeUrl.length <= 0) {
-        
-        RPNodeDescriptionViewController *viewcontroller = [Storyboard instantiateViewControllerWithIdentifier:@"RPNodeDescriptionViewController"];
-        [viewcontroller setTitle:currentNode.nodeTitle];
-        [viewcontroller setDesc:currentNode.nodeDesc];
-        [viewcontroller setUrl:currentNode.nodeLink];
-        [self.navigationController pushViewController:viewcontroller animated:YES];
-        return;
-    }
-    /**
-     *  otherwise
-     */
-    switch ([Common typeOfNode:currentNode.nodeType]) {
-        case NODE_TYPE_RSS:
-        {
-            NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
-            [viewcontroller setRssURL:currentNode.nodeUrl];
-            [viewcontroller setTitle:currentNode.nodeTitle];
-            [self.navigationController pushViewController:viewcontroller animated:YES];
-        }
-            break;
-        case NODE_TYPE_VIDEO:
-        {
-            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:currentNode.nodeUrl]];
-            [self presentMoviePlayerViewControllerAnimated:moviePlayer];
-        }
-            break;
-        case NODE_TYPE_MP4:
-        {
-            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:currentNode.nodeUrl]];
-            [self presentMoviePlayerViewControllerAnimated:moviePlayer];
-        }
-            break;
-        case NODE_TYPE_YOUTUBE:
-        {
-            XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:[currentNode.nodeUrl extractYoutubeId]];
-            [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
-        }
-            break;
-        case NODE_TYPE_DAILYMOTION:
-        {
-            NSString *url = currentNode.nodeUrl;
-            NSString *videoIdentifer = [url lastPathComponent];
-            
-            DMPlayerViewController *playerViewcontroller = [[DMPlayerViewController alloc] initWithVideo:videoIdentifer];
-            [playerViewcontroller setTitle:currentNode.nodeTitle];
-            [playerViewcontroller setHidesBottomBarWhenPushed:YES];
-            [self.navigationController pushViewController:playerViewcontroller animated:YES];
-        }
-            break;
-        case NODE_TYPE_WEB_CONTENT:
-        {
-            FileListViewController *viewcontroller = [Storyboard instantiateViewControllerWithIdentifier:@"FileListViewController"];
-            [viewcontroller setTitle:currentNode.nodeTitle];
-            [viewcontroller setWebPageUrl:currentNode.nodeUrl];
-            [self.navigationController pushViewController:viewcontroller animated:YES];
-        }
-            break;
-        default:
-        {
-            WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
-            [viewcontroller setTitle:currentNode.nodeTitle];
-            [viewcontroller setWebUrl:currentNode.nodeUrl];
-            [self.navigationController pushViewController:viewcontroller animated:YES];
-        }
-            break;
-    }
-}
 #pragma mark MWFeedParser delegate
 
 - (void)feedParserDidStart:(MWFeedParser *)parser
 {
-    nodeList = [NSMutableArray array];
+    self.nodeList = [NSMutableArray array];
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
 {
-    tempRss = [[TempRss alloc] initWithFeedInfo:info];
+    RssModel *tempRss = [[RssModel alloc] initWithFeedInfo:info];
     /**
      *  the saved RSS can have an other name that's enter on manage RSS view
      */
@@ -399,8 +219,8 @@
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
-    TempNode *aNode = [[TempNode alloc] initWithFeedItem:item];
-    [nodeList addObject:aNode];
+    RssNodeModel *aNode = [[RssNodeModel alloc] initWithFeedItem:item];
+    [self.nodeList addObject:aNode];
     /**
      *  if this rss should be cache so create new RssNode entity
      */
@@ -440,7 +260,7 @@
         case ALERT_ENTER_FILE_NAME:
         {
             if (buttonIndex != alertView.cancelButtonIndex) {
-                NSString *videoUrl = [nodeList[willDownloadAtIndex] nodeUrl];
+                NSString *videoUrl = [self.nodeList[willDownloadAtIndex] nodeUrl];
                 [[DownloadManager shareManager] downloadFile:videoUrl name:[[alertView textFieldAtIndex:0] text] fromView:self];
             }
         }

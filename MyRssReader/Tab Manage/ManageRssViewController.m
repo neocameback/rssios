@@ -7,7 +7,7 @@
 //
 
 #import "ManageRssViewController.h"
-#import "TempRss.h"
+#import "RssModel.h"
 #import "RssNode.h"
 
 @interface ManageRssViewController ()
@@ -251,7 +251,7 @@
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
-    TempNode *tempNode = [[TempNode alloc] initWithFeedItem:item];
+    RssNodeModel *tempNode = [[RssNodeModel alloc] initWithFeedItem:item];
     if (newRss && newRss.shouldCacheValue) {
         RssNode *node = [RssNode MR_createEntity];
         [node setCreatedAt:[NSDate date]];
