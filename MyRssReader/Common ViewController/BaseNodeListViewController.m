@@ -23,6 +23,7 @@
 #import "RPNodeDescriptionViewController.h"
 #import "FileListViewController.h"
 #import "NodeListViewController.h"
+#import "MyPlayerViewController.h"
 
 @interface BaseNodeListViewController ()<UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, NodeListCustomCellDelegate>
 {
@@ -225,12 +226,17 @@
         {
             moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:currentNode.nodeUrl]];
             [self presentMoviePlayerViewControllerAnimated:moviePlayer];
+            
         }
             break;
         case NODE_TYPE_MP4:
         {
-            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:currentNode.nodeUrl]];
-            [self presentMoviePlayerViewControllerAnimated:moviePlayer];
+//            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:currentNode.nodeUrl]];
+//            [self presentMoviePlayerViewControllerAnimated:moviePlayer];
+            
+            MyPlayerViewController *viewcontroller = [[MyPlayerViewController alloc] init];
+            [viewcontroller setCurrentNode:currentNode];
+            [self presentViewController:viewcontroller animated:YES completion:nil];
         }
             break;
         case NODE_TYPE_YOUTUBE:

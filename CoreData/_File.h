@@ -11,8 +11,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class NSObject;
-
 @interface FileID : NSManagedObjectID {}
 @end
 
@@ -41,8 +39,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setExpectedBytesValue:(double)value_;
 
 @property (nonatomic, strong, nullable) NSString* name;
-
-@property (nonatomic, strong, nullable) id operation;
 
 @property (nonatomic, strong, nullable) NSNumber* progress;
 
@@ -92,9 +88,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
-- (id)primitiveOperation;
-- (void)setPrimitiveOperation:(id)value;
-
 - (NSNumber*)primitiveProgress;
 - (void)setPrimitiveProgress:(NSNumber*)value;
 
@@ -125,7 +118,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)downloadedBytes;
 + (NSString *)expectedBytes;
 + (NSString *)name;
-+ (NSString *)operation;
 + (NSString *)progress;
 + (NSString *)state;
 + (NSString *)thumbnail;

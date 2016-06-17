@@ -101,8 +101,6 @@
 
 @dynamic name;
 
-@dynamic operation;
-
 @dynamic progress;
 
 - (int16_t)progressValue {
@@ -171,9 +169,6 @@
 }
 + (NSString *)name {
 	return @"name";
-}
-+ (NSString *)operation {
-	return @"operation";
 }
 + (NSString *)progress {
 	return @"progress";

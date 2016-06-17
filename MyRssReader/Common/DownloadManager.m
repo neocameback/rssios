@@ -117,7 +117,6 @@ static NSOperationQueue *operationQueue;
 -(void) resumeDownloadFile:(File*) savedFile
 {
     [savedFile setUpdatedAt:[NSDate date]];
-    [savedFile.operation start];
 }
 -(void) deleteFile:(File*) file;
 {
