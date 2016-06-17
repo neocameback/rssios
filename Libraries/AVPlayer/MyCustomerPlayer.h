@@ -66,5 +66,6 @@
  *  delegate
  */
 @property (nonatomic, weak) id<MyCustomerPlayerDelegate> delegate;
+-(AVPlayer *) player;
 @end
 

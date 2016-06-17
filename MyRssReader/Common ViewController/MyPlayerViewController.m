@@ -22,6 +22,13 @@
     [self initVideoPlayer];
     
     [self.myPlayer setURL:[NSURL URLWithString:self.currentNode.nodeUrl]];
+    
+    NSURL *subtitlesURL = [[NSBundle mainBundle] URLForResource:@"welcome1" withExtension:@"srt"];
+    NSError *error = nil;
+    self.subtitling.player = [self.myPlayer player];
+    [self.subtitling loadSubtitlesAtURL:subtitlesURL error:&error];
+    self.subtitling.containerView.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.5].CGColor;
+    
     [self.myPlayer play];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
@@ -35,8 +42,7 @@
      */
     if (self.myPlayer) {
         [self.myPlayer pause];
-    }
-    
+    }    
 }
 
 -(void)appWillResignActive:(NSNotification*)note
@@ -60,6 +66,7 @@
     self.myPlayer = [self videoPlayer];
     [self addChildViewController:self.myPlayer];
     [self.view addSubview:self.myPlayer.view];
+    [self.view sendSubviewToBack:self.myPlayer.view];
     [self.myPlayer.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];
     [self.myPlayer.view autoPinToTopLayoutGuideOfViewController:self withInset:0];
     [self.myPlayer didMoveToParentViewController:self];

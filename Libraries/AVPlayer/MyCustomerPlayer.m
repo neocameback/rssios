@@ -83,6 +83,10 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
     shouldSeekToTime = kCMTimeInvalid;
 }
 
+-(AVPlayer *) player
+{
+    return _player;
+}
 #pragma mark - Private API
 
 - (void)reportUnableToCreatePlayerItem

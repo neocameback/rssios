@@ -1,21 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyPlayerViewController">
             <connections>
+                <outlet property="lbSubTitle" destination="vZC-xZ-g1l" id="xRI-AS-tCT"/>
+                <outlet property="subtitling" destination="dQs-qH-5K8" id="VtD-JV-uWe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewSubtitle" destination="Lct-1f-i7Z" id="dMu-fc-Eyk"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lct-1f-i7Z" userLabel="Subtitle View">
+                    <rect key="frame" x="290" y="550" width="20" height="20"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZC-xZ-g1l" userLabel="Subtitle Label">
+                            <rect key="frame" x="10" y="10" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="vZC-xZ-g1l" firstAttribute="top" secondItem="Lct-1f-i7Z" secondAttribute="top" constant="10" id="Cxj-Hg-e5c"/>
+                        <constraint firstAttribute="bottom" secondItem="vZC-xZ-g1l" secondAttribute="bottom" constant="10" id="NfR-IQ-0dJ"/>
+                        <constraint firstItem="vZC-xZ-g1l" firstAttribute="leading" secondItem="Lct-1f-i7Z" secondAttribute="leading" constant="10" id="XKG-Kr-wbI"/>
+                        <constraint firstAttribute="trailing" secondItem="vZC-xZ-g1l" secondAttribute="trailing" constant="10" id="wec-A8-ZMa"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="392" y="400"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Lct-1f-i7Z" secondAttribute="bottom" constant="30" id="Fto-5o-JUl"/>
+                <constraint firstItem="Lct-1f-i7Z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="j7C-bX-ctd"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Lct-1f-i7Z" secondAttribute="trailing" constant="15" id="lKp-tK-ejo"/>
+                <constraint firstItem="Lct-1f-i7Z" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mnf-w5-1Vh"/>
+            </constraints>
+            <point key="canvasLocation" x="293" y="311"/>
         </view>
+        <customObject id="dQs-qH-5K8" customClass="ASBPlayerSubtitling">
+            <connections>
+                <outlet property="containerView" destination="Lct-1f-i7Z" id="1I6-OD-8x9"/>
+                <outlet property="label" destination="vZC-xZ-g1l" id="68I-MJ-Lvj"/>
+            </connections>
+        </customObject>
     </objects>
 </document>

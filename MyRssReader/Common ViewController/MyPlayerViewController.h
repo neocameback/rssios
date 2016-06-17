@@ -8,8 +8,17 @@
 
 #import "BaseViewController.h"
 #import "MyCustomerPlayer.h"
+#import "ASBPlayerSubtitling.h"
 
 @interface MyPlayerViewController : BaseViewController
+{
+    __weak IBOutlet UIView *viewSubtitle;
+    __weak IBOutlet UILabel *lbSubTitle;
+    
+    __weak IBOutlet UIStepper *stepper;
+}
+@property (strong, nonatomic) IBOutlet ASBPlayerSubtitling *subtitling;
+
 
 @property (nonatomic, strong) RssNodeModel *currentNode;
 @property (nonatomic, strong) MyCustomerPlayer *myPlayer;
