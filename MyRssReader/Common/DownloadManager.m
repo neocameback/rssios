@@ -27,7 +27,7 @@ static NSOperationQueue *operationQueue;
     });
     if (!operationQueue) {
         operationQueue = [[NSOperationQueue alloc] init];
-        [operationQueue setMaxConcurrentOperationCount:1];
+        [operationQueue setMaxConcurrentOperationCount:3];
     }
     return _shareDownloadManager;
 }
@@ -60,8 +60,16 @@ static NSOperationQueue *operationQueue;
         AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:path shouldResume:YES];
         [operation setDeleteTempFileOnCancel:YES];
         [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-//            float percentComplete = (float)totalBytesRead/(float)totalBytesExpectedToRead * 100;
-//            NSLog(@"Download progress: %lu---- %lld percent: %.2f",(unsigned long)totalBytesRead,totalBytesExpectedToRead, percentComplete);
+            float percentComplete = 0;
+            @try {
+                percentComplete = (float)totalBytesRead/(float)totalBytesExpectedToRead * 100;
+            }
+            @catch (NSException *exception) {
+                
+            }
+            @finally {
+                [savedFile setProgressValue:percentComplete];
+            }
             [savedFile setDownloadedBytes:[NSNumber numberWithDouble:totalBytesRead]];
             [savedFile setExpectedBytes:[NSNumber numberWithDouble:totalBytesExpectedToRead]];
         }];
@@ -70,7 +78,7 @@ static NSOperationQueue *operationQueue;
             /**
              *  save completed infor to savedFile
              */
-            [savedFile setIsCompletedValue:YES];
+            [savedFile setProgressValue:100];
             [savedFile setAbsoluteUrl:path];
             
             [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
@@ -119,7 +127,6 @@ static NSOperationQueue *operationQueue;
         /**
          *  save completed infor to savedFile
          */
-        [savedFile setIsCompletedValue:YES];
         [savedFile setAbsoluteUrl:path];
         
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
@@ -171,6 +178,12 @@ static NSOperationQueue *operationQueue;
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+-(void) cancelDownloadingTasks
+{
+    [operationQueue cancelAllOperations];
+    [File MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"progress < 100"] inContext:[NSManagedObjectContext MR_defaultContext]];
 }
 @end
 

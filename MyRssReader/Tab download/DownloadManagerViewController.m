@@ -14,6 +14,7 @@
 @interface DownloadManagerViewController ()<NSFetchedResultsControllerDelegate>
 {
     NSMutableArray *files;
+    NSTimer *_timer;
 }
 @property (nonatomic, strong) MPMoviePlayerViewController *player;
 @end
@@ -25,12 +26,21 @@
     // Do any additional setup after loading the view from its nib.
     
     self.navigationItem.title = @"Download";
+    [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [_tableView setSeparatorInset:UIEdgeInsetsMake(0, 15, 0, 0)];
+//    [self reloadFetchedResults:nil];
+//    
+//    // observe the app delegate telling us when it's finished asynchronously setting up the persistent store
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:@"RefetchAllDatabaseData" object:[[UIApplication sharedApplication] delegate]];
     
-    [self reloadFetchedResults:nil];
-    
-    // observe the app delegate telling us when it's finished asynchronously setting up the persistent store
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:@"RefetchAllDatabaseData" object:[[UIApplication sharedApplication] delegate]];
-    
+    [self getFileList];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(getFileList) userInfo:nil repeats:YES];
+}
+
+-(void) getFileList
+{
+    files = [NSMutableArray arrayWithArray:[File MR_findAllSortedBy:@"createdAt" ascending:NO inContext:[NSManagedObjectContext MR_defaultContext]]];
+    [_tableView reloadData];
 }
 - (void)reloadFetchedResults:(NSNotification*)note {
     
@@ -45,9 +55,6 @@
         abort();
     }
     
-//    if (note) {
-//        [_tableView reloadData];
-//    }
     [_tableView reloadData];
 }
 
@@ -65,21 +72,25 @@
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 
 {
-    NSInteger count = self.fetchedResultsController.sections.count;
-    if (count == 0) {
-        count = 1;
-    }
-    return count;
+//    NSInteger count = self.fetchedResultsController.sections.count;
+//    if (count == 0) {
+//        count = 1;
+//    }
+//    return count;
+    
+    return 1;
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger numberOfRows = 0;
-    if (self.fetchedResultsController.sections.count > 0) {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-        numberOfRows = [sectionInfo numberOfObjects];
-    }
-    return numberOfRows;
+//    NSInteger numberOfRows = 0;
+//    if (self.fetchedResultsController.sections.count > 0) {
+//        id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+//        numberOfRows = [sectionInfo numberOfObjects];
+//    }
+//    return numberOfRows;
+    
+    return files.count;
 }
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -99,13 +110,15 @@
 
 - (void)configureCell:(DownloadManageTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     // Configure the cell
-    File *file = (File *)[self.fetchedResultsController objectAtIndexPath:indexPath];
+//    File *file = (File *)[self.fetchedResultsController objectAtIndexPath:indexPath];
+    File *file = [files objectAtIndex:indexPath.row];
     cell.file = file;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    File *recipe = (File *)[self.fetchedResultsController objectAtIndexPath:indexPath];
-    if ([recipe isCompletedValue]) {
+//    File *recipe = (File *)[self.fetchedResultsController objectAtIndexPath:indexPath];
+    File *recipe = [files objectAtIndex:indexPath.row];
+    if ([recipe progressValue] >= 100) {
         
         NSString *path = [Common getPathOfFile:recipe.name extension:recipe.type];
         
@@ -119,7 +132,7 @@
             [self presentMoviePlayerViewControllerAnimated:self.player];
         }
     }else{
-        [[DownloadManager shareManager] resumeDownloadFile:recipe];
+//        [[DownloadManager shareManager] resumeDownloadFile:recipe];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -128,8 +141,10 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        File *managedObject = (File*)[self.fetchedResultsController objectAtIndexPath:indexPath];
-        [[DownloadManager shareManager] deleteFile:managedObject];
+//        File *managedObject = (File*)[self.fetchedResultsController objectAtIndexPath:indexPath];
+//        [[DownloadManager shareManager] deleteFile:managedObject];
+        File *file = [files objectAtIndex:indexPath.row];
+        [[DownloadManager shareManager] deleteFile:file];
     }
 }
 

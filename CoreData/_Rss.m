@@ -3,25 +3,12 @@
 
 #import "_Rss.h"
 
-const struct RssAttributes RssAttributes = {
-	.createdAt = @"createdAt",
-	.isBookmarkRss = @"isBookmarkRss",
-	.rssLink = @"rssLink",
-	.rssTitle = @"rssTitle",
-	.shouldCache = @"shouldCache",
-	.updatedAt = @"updatedAt",
-};
-
-const struct RssRelationships RssRelationships = {
-	.nodeList = @"nodeList",
-};
-
 @implementation RssID
 @end
 
 @implementation _Rss
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"Rss" inManagedObjectContext:moc_];
 }
@@ -66,7 +53,7 @@ const struct RssRelationships RssRelationships = {
 }
 
 - (void)setIsBookmarkRssValue:(BOOL)value_ {
-	[self setIsBookmarkRss:[NSNumber numberWithBool:value_]];
+	[self setIsBookmarkRss:@(value_)];
 }
 
 - (BOOL)primitiveIsBookmarkRssValue {
@@ -75,7 +62,7 @@ const struct RssRelationships RssRelationships = {
 }
 
 - (void)setPrimitiveIsBookmarkRssValue:(BOOL)value_ {
-	[self setPrimitiveIsBookmarkRss:[NSNumber numberWithBool:value_]];
+	[self setPrimitiveIsBookmarkRss:@(value_)];
 }
 
 @dynamic rssLink;
@@ -90,7 +77,7 @@ const struct RssRelationships RssRelationships = {
 }
 
 - (void)setShouldCacheValue:(BOOL)value_ {
-	[self setShouldCache:[NSNumber numberWithBool:value_]];
+	[self setShouldCache:@(value_)];
 }
 
 - (BOOL)primitiveShouldCacheValue {
@@ -99,17 +86,17 @@ const struct RssRelationships RssRelationships = {
 }
 
 - (void)setPrimitiveShouldCacheValue:(BOOL)value_ {
-	[self setPrimitiveShouldCache:[NSNumber numberWithBool:value_]];
+	[self setPrimitiveShouldCache:@(value_)];
 }
 
 @dynamic updatedAt;
 
 @dynamic nodeList;
 
-- (NSMutableOrderedSet*)nodeListSet {
+- (NSMutableOrderedSet<RssNode*>*)nodeListSet {
 	[self willAccessValueForKey:@"nodeList"];
 
-	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"nodeList"];
+	NSMutableOrderedSet<RssNode*> *result = (NSMutableOrderedSet<RssNode*>*)[self mutableOrderedSetValueForKey:@"nodeList"];
 
 	[self didAccessValueForKey:@"nodeList"];
 	return result;
@@ -118,10 +105,10 @@ const struct RssRelationships RssRelationships = {
 @end
 
 @implementation _Rss (NodeListCoreDataGeneratedAccessors)
-- (void)addNodeList:(NSOrderedSet*)value_ {
+- (void)addNodeList:(NSOrderedSet<RssNode*>*)value_ {
 	[self.nodeListSet unionOrderedSet:value_];
 }
-- (void)removeNodeList:(NSOrderedSet*)value_ {
+- (void)removeNodeList:(NSOrderedSet<RssNode*>*)value_ {
 	[self.nodeListSet minusOrderedSet:value_];
 }
 - (void)addNodeListObject:(RssNode*)value_ {
@@ -174,6 +161,33 @@ const struct RssRelationships RssRelationships = {
     [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"nodeList"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"nodeList"];
+}
+@end
+
+@implementation RssAttributes 
++ (NSString *)createdAt {
+	return @"createdAt";
+}
++ (NSString *)isBookmarkRss {
+	return @"isBookmarkRss";
+}
++ (NSString *)rssLink {
+	return @"rssLink";
+}
++ (NSString *)rssTitle {
+	return @"rssTitle";
+}
++ (NSString *)shouldCache {
+	return @"shouldCache";
+}
++ (NSString *)updatedAt {
+	return @"updatedAt";
+}
+@end
+
+@implementation RssRelationships 
++ (NSString *)nodeList {
+	return @"nodeList";
 }
 @end
 

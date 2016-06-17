@@ -15,5 +15,6 @@
 -(void) resumeDownloadFile:(File*) savedFile;
 -(void) deleteFile:(File*) file;
 - (NSURL *)applicationDocumentsDirectory;
+-(void) cancelDownloadingTasks;
 @end
 

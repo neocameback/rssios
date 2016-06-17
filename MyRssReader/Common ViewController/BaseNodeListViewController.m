@@ -338,7 +338,21 @@
     /**
      *     let user enter the file name will be saved
      */
-    [self showAlertEnterFileName];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *enterNameAction = [UIAlertAction actionWithTitle:@"New name" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+       [self showAlertEnterFileName];
+    }];
+    UIAlertAction *defaultNameAction = [UIAlertAction actionWithTitle:@"Use default" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        RssNodeModel *node = self.nodeList[willDownloadAtIndex];
+        [[DownloadManager shareManager] downloadFile:node.nodeUrl name:node.nodeTitle fromView:self];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alertController addAction:enterNameAction];
+    [alertController addAction:defaultNameAction];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 -(void) showAlertEnterFileName
 {

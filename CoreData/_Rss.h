@@ -1,73 +1,55 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to Rss.h instead.
 
-#import <CoreData/CoreData.h>
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-extern const struct RssAttributes {
-	__unsafe_unretained NSString *createdAt;
-	__unsafe_unretained NSString *isBookmarkRss;
-	__unsafe_unretained NSString *rssLink;
-	__unsafe_unretained NSString *rssTitle;
-	__unsafe_unretained NSString *shouldCache;
-	__unsafe_unretained NSString *updatedAt;
-} RssAttributes;
-
-extern const struct RssRelationships {
-	__unsafe_unretained NSString *nodeList;
-} RssRelationships;
+NS_ASSUME_NONNULL_BEGIN
 
 @class RssNode;
 
 @interface RssID : NSManagedObjectID {}
 @end
 
-@interface _Rss : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _Rss : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) RssID* objectID;
+@property (nonatomic, readonly, strong) RssID *objectID;
 
-@property (nonatomic, strong) NSDate* createdAt;
+@property (nonatomic, strong, nullable) NSDate* createdAt;
 
-//- (BOOL)validateCreatedAt:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* isBookmarkRss;
+@property (nonatomic, strong, nullable) NSNumber* isBookmarkRss;
 
 @property (atomic) BOOL isBookmarkRssValue;
 - (BOOL)isBookmarkRssValue;
 - (void)setIsBookmarkRssValue:(BOOL)value_;
 
-//- (BOOL)validateIsBookmarkRss:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* rssLink;
 
-@property (nonatomic, strong) NSString* rssLink;
+@property (nonatomic, strong, nullable) NSString* rssTitle;
 
-//- (BOOL)validateRssLink:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* rssTitle;
-
-//- (BOOL)validateRssTitle:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* shouldCache;
+@property (nonatomic, strong, nullable) NSNumber* shouldCache;
 
 @property (atomic) BOOL shouldCacheValue;
 - (BOOL)shouldCacheValue;
 - (void)setShouldCacheValue:(BOOL)value_;
 
-//- (BOOL)validateShouldCache:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSDate* updatedAt;
 
-@property (nonatomic, strong) NSDate* updatedAt;
-
-//- (BOOL)validateUpdatedAt:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSOrderedSet *nodeList;
-
-- (NSMutableOrderedSet*)nodeListSet;
+@property (nonatomic, strong, nullable) NSOrderedSet<RssNode*> *nodeList;
+- (nullable NSMutableOrderedSet<RssNode*>*)nodeListSet;
 
 @end
 
 @interface _Rss (NodeListCoreDataGeneratedAccessors)
-- (void)addNodeList:(NSOrderedSet*)value_;
-- (void)removeNodeList:(NSOrderedSet*)value_;
+- (void)addNodeList:(NSOrderedSet<RssNode*>*)value_;
+- (void)removeNodeList:(NSOrderedSet<RssNode*>*)value_;
 - (void)addNodeListObject:(RssNode*)value_;
 - (void)removeNodeListObject:(RssNode*)value_;
 
@@ -106,7 +88,22 @@ extern const struct RssRelationships {
 - (NSDate*)primitiveUpdatedAt;
 - (void)setPrimitiveUpdatedAt:(NSDate*)value;
 
-- (NSMutableOrderedSet*)primitiveNodeList;
-- (void)setPrimitiveNodeList:(NSMutableOrderedSet*)value;
+- (NSMutableOrderedSet<RssNode*>*)primitiveNodeList;
+- (void)setPrimitiveNodeList:(NSMutableOrderedSet<RssNode*>*)value;
 
 @end
+
+@interface RssAttributes: NSObject 
++ (NSString *)createdAt;
++ (NSString *)isBookmarkRss;
++ (NSString *)rssLink;
++ (NSString *)rssTitle;
++ (NSString *)shouldCache;
++ (NSString *)updatedAt;
+@end
+
+@interface RssRelationships: NSObject
++ (NSString *)nodeList;
+@end
+
+NS_ASSUME_NONNULL_END

@@ -3,25 +3,12 @@
 
 #import "_File.h"
 
-const struct FileAttributes FileAttributes = {
-	.absoluteUrl = @"absoluteUrl",
-	.createdAt = @"createdAt",
-	.desc = @"desc",
-	.downloadedBytes = @"downloadedBytes",
-	.expectedBytes = @"expectedBytes",
-	.isCompleted = @"isCompleted",
-	.name = @"name",
-	.type = @"type",
-	.updatedAt = @"updatedAt",
-	.url = @"url",
-};
-
 @implementation FileID
 @end
 
 @implementation _File
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"File" inManagedObjectContext:moc_];
 }
@@ -52,8 +39,8 @@ const struct FileAttributes FileAttributes = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"isCompletedValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"isCompleted"];
+	if ([key isEqualToString:@"progressValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"progress"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -75,7 +62,7 @@ const struct FileAttributes FileAttributes = {
 }
 
 - (void)setDownloadedBytesValue:(double)value_ {
-	[self setDownloadedBytes:[NSNumber numberWithDouble:value_]];
+	[self setDownloadedBytes:@(value_)];
 }
 
 - (double)primitiveDownloadedBytesValue {
@@ -84,7 +71,7 @@ const struct FileAttributes FileAttributes = {
 }
 
 - (void)setPrimitiveDownloadedBytesValue:(double)value_ {
-	[self setPrimitiveDownloadedBytes:[NSNumber numberWithDouble:value_]];
+	[self setPrimitiveDownloadedBytes:@(value_)];
 }
 
 @dynamic expectedBytes;
@@ -95,7 +82,7 @@ const struct FileAttributes FileAttributes = {
 }
 
 - (void)setExpectedBytesValue:(double)value_ {
-	[self setExpectedBytes:[NSNumber numberWithDouble:value_]];
+	[self setExpectedBytes:@(value_)];
 }
 
 - (double)primitiveExpectedBytesValue {
@@ -104,30 +91,30 @@ const struct FileAttributes FileAttributes = {
 }
 
 - (void)setPrimitiveExpectedBytesValue:(double)value_ {
-	[self setPrimitiveExpectedBytes:[NSNumber numberWithDouble:value_]];
-}
-
-@dynamic isCompleted;
-
-- (BOOL)isCompletedValue {
-	NSNumber *result = [self isCompleted];
-	return [result boolValue];
-}
-
-- (void)setIsCompletedValue:(BOOL)value_ {
-	[self setIsCompleted:[NSNumber numberWithBool:value_]];
-}
-
-- (BOOL)primitiveIsCompletedValue {
-	NSNumber *result = [self primitiveIsCompleted];
-	return [result boolValue];
-}
-
-- (void)setPrimitiveIsCompletedValue:(BOOL)value_ {
-	[self setPrimitiveIsCompleted:[NSNumber numberWithBool:value_]];
+	[self setPrimitiveExpectedBytes:@(value_)];
 }
 
 @dynamic name;
+
+@dynamic progress;
+
+- (int16_t)progressValue {
+	NSNumber *result = [self progress];
+	return [result shortValue];
+}
+
+- (void)setProgressValue:(int16_t)value_ {
+	[self setProgress:@(value_)];
+}
+
+- (int16_t)primitiveProgressValue {
+	NSNumber *result = [self primitiveProgress];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveProgressValue:(int16_t)value_ {
+	[self setPrimitiveProgress:@(value_)];
+}
 
 @dynamic type;
 
@@ -135,5 +122,38 @@ const struct FileAttributes FileAttributes = {
 
 @dynamic url;
 
+@end
+
+@implementation FileAttributes 
++ (NSString *)absoluteUrl {
+	return @"absoluteUrl";
+}
++ (NSString *)createdAt {
+	return @"createdAt";
+}
++ (NSString *)desc {
+	return @"desc";
+}
++ (NSString *)downloadedBytes {
+	return @"downloadedBytes";
+}
++ (NSString *)expectedBytes {
+	return @"expectedBytes";
+}
++ (NSString *)name {
+	return @"name";
+}
++ (NSString *)progress {
+	return @"progress";
+}
++ (NSString *)type {
+	return @"type";
+}
++ (NSString *)updatedAt {
+	return @"updatedAt";
+}
++ (NSString *)url {
+	return @"url";
+}
 @end
 

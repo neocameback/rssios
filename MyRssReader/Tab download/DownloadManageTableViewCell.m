@@ -25,10 +25,18 @@
 -(void) setFile:(File *)file
 {
     lb_fileName.text = file.name;
-    if (file.isCompletedValue) {
-        lb_progress.text = @"Download Completed";
+    if (file.progressValue >= 100) {
+        lb_progress.text = file.desc;
+        coverView.hidden = YES;
+        lb_progress.textColor = [UIColor blackColor];
     }else{
-        lb_progress.text = [NSString stringWithFormat:@"%.2f%%(%.2fMB/%.2fMB)",file.downloadedBytesValue/file.expectedBytesValue*100, file.downloadedBytesValue/MB2B, file.expectedBytesValue/MB2B];
+        if (file.progressValue <= 0) {
+            lb_progress.text = [NSString stringWithFormat:@"Pending"];
+        }else{
+            lb_progress.text = [NSString stringWithFormat:@"Saved: %.0hd%%",file.progressValue];
+        }
+        coverView.hidden = NO;
+        lb_progress.textColor = [UIColor colorWithRed:33.0/255 green:150.0/255 blue:243.0/255 alpha:1];
     }
 }
 @end

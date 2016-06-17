@@ -1,81 +1,56 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to File.h instead.
 
-#import <CoreData/CoreData.h>
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-extern const struct FileAttributes {
-	__unsafe_unretained NSString *absoluteUrl;
-	__unsafe_unretained NSString *createdAt;
-	__unsafe_unretained NSString *desc;
-	__unsafe_unretained NSString *downloadedBytes;
-	__unsafe_unretained NSString *expectedBytes;
-	__unsafe_unretained NSString *isCompleted;
-	__unsafe_unretained NSString *name;
-	__unsafe_unretained NSString *type;
-	__unsafe_unretained NSString *updatedAt;
-	__unsafe_unretained NSString *url;
-} FileAttributes;
+NS_ASSUME_NONNULL_BEGIN
 
 @interface FileID : NSManagedObjectID {}
 @end
 
-@interface _File : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _File : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) FileID* objectID;
+@property (nonatomic, readonly, strong) FileID *objectID;
 
-@property (nonatomic, strong) NSString* absoluteUrl;
+@property (nonatomic, strong, nullable) NSString* absoluteUrl;
 
-//- (BOOL)validateAbsoluteUrl:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSDate* createdAt;
 
-@property (nonatomic, strong) NSDate* createdAt;
+@property (nonatomic, strong, nullable) NSString* desc;
 
-//- (BOOL)validateCreatedAt:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* desc;
-
-//- (BOOL)validateDesc:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* downloadedBytes;
+@property (nonatomic, strong, nullable) NSNumber* downloadedBytes;
 
 @property (atomic) double downloadedBytesValue;
 - (double)downloadedBytesValue;
 - (void)setDownloadedBytesValue:(double)value_;
 
-//- (BOOL)validateDownloadedBytes:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* expectedBytes;
+@property (nonatomic, strong, nullable) NSNumber* expectedBytes;
 
 @property (atomic) double expectedBytesValue;
 - (double)expectedBytesValue;
 - (void)setExpectedBytesValue:(double)value_;
 
-//- (BOOL)validateExpectedBytes:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* name;
 
-@property (nonatomic, strong) NSNumber* isCompleted;
+@property (nonatomic, strong, nullable) NSNumber* progress;
 
-@property (atomic) BOOL isCompletedValue;
-- (BOOL)isCompletedValue;
-- (void)setIsCompletedValue:(BOOL)value_;
+@property (atomic) int16_t progressValue;
+- (int16_t)progressValue;
+- (void)setProgressValue:(int16_t)value_;
 
-//- (BOOL)validateIsCompleted:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* type;
 
-@property (nonatomic, strong) NSString* name;
+@property (nonatomic, strong, nullable) NSDate* updatedAt;
 
-//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* type;
-
-//- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSDate* updatedAt;
-
-//- (BOOL)validateUpdatedAt:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* url;
-
-//- (BOOL)validateUrl:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* url;
 
 @end
 
@@ -102,14 +77,14 @@ extern const struct FileAttributes {
 - (double)primitiveExpectedBytesValue;
 - (void)setPrimitiveExpectedBytesValue:(double)value_;
 
-- (NSNumber*)primitiveIsCompleted;
-- (void)setPrimitiveIsCompleted:(NSNumber*)value;
-
-- (BOOL)primitiveIsCompletedValue;
-- (void)setPrimitiveIsCompletedValue:(BOOL)value_;
-
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+- (NSNumber*)primitiveProgress;
+- (void)setPrimitiveProgress:(NSNumber*)value;
+
+- (int16_t)primitiveProgressValue;
+- (void)setPrimitiveProgressValue:(int16_t)value_;
 
 - (NSDate*)primitiveUpdatedAt;
 - (void)setPrimitiveUpdatedAt:(NSDate*)value;
@@ -118,3 +93,18 @@ extern const struct FileAttributes {
 - (void)setPrimitiveUrl:(NSString*)value;
 
 @end
+
+@interface FileAttributes: NSObject 
++ (NSString *)absoluteUrl;
++ (NSString *)createdAt;
++ (NSString *)desc;
++ (NSString *)downloadedBytes;
++ (NSString *)expectedBytes;
++ (NSString *)name;
++ (NSString *)progress;
++ (NSString *)type;
++ (NSString *)updatedAt;
++ (NSString *)url;
+@end
+
+NS_ASSUME_NONNULL_END

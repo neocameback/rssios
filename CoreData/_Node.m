@@ -3,27 +3,12 @@
 
 #import "_Node.h"
 
-const struct NodeAttributes NodeAttributes = {
-	.bookmarkStatus = @"bookmarkStatus",
-	.createdAt = @"createdAt",
-	.isAddedToBoomark = @"isAddedToBoomark",
-	.isDeletedFlag = @"isDeletedFlag",
-	.nodeDesc = @"nodeDesc",
-	.nodeImage = @"nodeImage",
-	.nodeLink = @"nodeLink",
-	.nodeSource = @"nodeSource",
-	.nodeTitle = @"nodeTitle",
-	.nodeType = @"nodeType",
-	.nodeUrl = @"nodeUrl",
-	.updatedAt = @"updatedAt",
-};
-
 @implementation NodeID
 @end
 
 @implementation _Node
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"Node" inManagedObjectContext:moc_];
 }
@@ -70,7 +55,7 @@ const struct NodeAttributes NodeAttributes = {
 }
 
 - (void)setIsAddedToBoomarkValue:(BOOL)value_ {
-	[self setIsAddedToBoomark:[NSNumber numberWithBool:value_]];
+	[self setIsAddedToBoomark:@(value_)];
 }
 
 - (BOOL)primitiveIsAddedToBoomarkValue {
@@ -79,7 +64,7 @@ const struct NodeAttributes NodeAttributes = {
 }
 
 - (void)setPrimitiveIsAddedToBoomarkValue:(BOOL)value_ {
-	[self setPrimitiveIsAddedToBoomark:[NSNumber numberWithBool:value_]];
+	[self setPrimitiveIsAddedToBoomark:@(value_)];
 }
 
 @dynamic isDeletedFlag;
@@ -90,7 +75,7 @@ const struct NodeAttributes NodeAttributes = {
 }
 
 - (void)setIsDeletedFlagValue:(BOOL)value_ {
-	[self setIsDeletedFlag:[NSNumber numberWithBool:value_]];
+	[self setIsDeletedFlag:@(value_)];
 }
 
 - (BOOL)primitiveIsDeletedFlagValue {
@@ -99,7 +84,7 @@ const struct NodeAttributes NodeAttributes = {
 }
 
 - (void)setPrimitiveIsDeletedFlagValue:(BOOL)value_ {
-	[self setPrimitiveIsDeletedFlag:[NSNumber numberWithBool:value_]];
+	[self setPrimitiveIsDeletedFlag:@(value_)];
 }
 
 @dynamic nodeDesc;
@@ -118,5 +103,44 @@ const struct NodeAttributes NodeAttributes = {
 
 @dynamic updatedAt;
 
+@end
+
+@implementation NodeAttributes 
++ (NSString *)bookmarkStatus {
+	return @"bookmarkStatus";
+}
++ (NSString *)createdAt {
+	return @"createdAt";
+}
++ (NSString *)isAddedToBoomark {
+	return @"isAddedToBoomark";
+}
++ (NSString *)isDeletedFlag {
+	return @"isDeletedFlag";
+}
++ (NSString *)nodeDesc {
+	return @"nodeDesc";
+}
++ (NSString *)nodeImage {
+	return @"nodeImage";
+}
++ (NSString *)nodeLink {
+	return @"nodeLink";
+}
++ (NSString *)nodeSource {
+	return @"nodeSource";
+}
++ (NSString *)nodeTitle {
+	return @"nodeTitle";
+}
++ (NSString *)nodeType {
+	return @"nodeType";
+}
++ (NSString *)nodeUrl {
+	return @"nodeUrl";
+}
++ (NSString *)updatedAt {
+	return @"updatedAt";
+}
 @end
 

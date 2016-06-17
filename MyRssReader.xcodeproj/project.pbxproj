@@ -957,7 +957,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mogenerator -m \"CoreData/Model.xcdatamodeld/Model2.0.xcdatamodel\" -O CoreData/ --template-var arc=true\n";
+			shellScript = "mogenerator -m \"CoreData/Model.xcdatamodeld/Model2.1.xcdatamodel\" -O CoreData/ --template-var arc=true\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

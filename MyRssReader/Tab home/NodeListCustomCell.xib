@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,14 +15,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="UkU-GL-Df3">
-                        <rect key="frame" x="10" y="5" width="106" height="60"/>
+                        <rect key="frame" x="15" y="5" width="106" height="60"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="106" id="cd0-Rk-g1M"/>
                             <constraint firstAttribute="height" constant="60" id="xAU-Bs-Yrp"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="162" translatesAutoresizingMaskIntoConstraints="NO" id="9QI-57-tHd">
-                        <rect key="frame" x="118" y="10" width="149" height="50"/>
+                        <rect key="frame" x="123" y="10" width="144" height="50"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="JSj-7b-NHf"/>
@@ -49,7 +49,7 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="UkU-GL-Df3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ApJ-N8-MtC"/>
+                    <constraint firstItem="UkU-GL-Df3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="ApJ-N8-MtC"/>
                     <constraint firstItem="UkU-GL-Df3" firstAttribute="centerY" secondItem="pZ7-15-6Fe" secondAttribute="centerY" id="Bdr-59-hx6"/>
                     <constraint firstAttribute="bottom" secondItem="9QI-57-tHd" secondAttribute="bottom" constant="10" id="Jws-2Q-p4y"/>
                     <constraint firstAttribute="trailing" secondItem="pZ7-15-6Fe" secondAttribute="trailing" constant="8" id="Uq1-eV-D3u"/>

@@ -14,6 +14,7 @@
     __weak IBOutlet UILabel *lb_fileName;
     __weak IBOutlet UILabel *lb_progress;
     
+    __weak IBOutlet UIView *coverView;
 }
 @property (nonatomic, strong) File *file;
 

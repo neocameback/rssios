@@ -1,87 +1,56 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to Node.h instead.
 
-#import <CoreData/CoreData.h>
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-extern const struct NodeAttributes {
-	__unsafe_unretained NSString *bookmarkStatus;
-	__unsafe_unretained NSString *createdAt;
-	__unsafe_unretained NSString *isAddedToBoomark;
-	__unsafe_unretained NSString *isDeletedFlag;
-	__unsafe_unretained NSString *nodeDesc;
-	__unsafe_unretained NSString *nodeImage;
-	__unsafe_unretained NSString *nodeLink;
-	__unsafe_unretained NSString *nodeSource;
-	__unsafe_unretained NSString *nodeTitle;
-	__unsafe_unretained NSString *nodeType;
-	__unsafe_unretained NSString *nodeUrl;
-	__unsafe_unretained NSString *updatedAt;
-} NodeAttributes;
+NS_ASSUME_NONNULL_BEGIN
 
 @interface NodeID : NSManagedObjectID {}
 @end
 
-@interface _Node : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _Node : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) NodeID* objectID;
+@property (nonatomic, readonly, strong) NodeID *objectID;
 
-@property (nonatomic, strong) NSString* bookmarkStatus;
+@property (nonatomic, strong, nullable) NSString* bookmarkStatus;
 
-//- (BOOL)validateBookmarkStatus:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSDate* createdAt;
 
-@property (nonatomic, strong) NSDate* createdAt;
-
-//- (BOOL)validateCreatedAt:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* isAddedToBoomark;
+@property (nonatomic, strong, nullable) NSNumber* isAddedToBoomark;
 
 @property (atomic) BOOL isAddedToBoomarkValue;
 - (BOOL)isAddedToBoomarkValue;
 - (void)setIsAddedToBoomarkValue:(BOOL)value_;
 
-//- (BOOL)validateIsAddedToBoomark:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* isDeletedFlag;
+@property (nonatomic, strong, nullable) NSNumber* isDeletedFlag;
 
 @property (atomic) BOOL isDeletedFlagValue;
 - (BOOL)isDeletedFlagValue;
 - (void)setIsDeletedFlagValue:(BOOL)value_;
 
-//- (BOOL)validateIsDeletedFlag:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* nodeDesc;
 
-@property (nonatomic, strong) NSString* nodeDesc;
+@property (nonatomic, strong, nullable) NSString* nodeImage;
 
-//- (BOOL)validateNodeDesc:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* nodeLink;
 
-@property (nonatomic, strong) NSString* nodeImage;
+@property (nonatomic, strong, nullable) NSString* nodeSource;
 
-//- (BOOL)validateNodeImage:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* nodeTitle;
 
-@property (nonatomic, strong) NSString* nodeLink;
+@property (nonatomic, strong, nullable) NSString* nodeType;
 
-//- (BOOL)validateNodeLink:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* nodeUrl;
 
-@property (nonatomic, strong) NSString* nodeSource;
-
-//- (BOOL)validateNodeSource:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* nodeTitle;
-
-//- (BOOL)validateNodeTitle:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* nodeType;
-
-//- (BOOL)validateNodeType:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* nodeUrl;
-
-//- (BOOL)validateNodeUrl:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSDate* updatedAt;
-
-//- (BOOL)validateUpdatedAt:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSDate* updatedAt;
 
 @end
 
@@ -130,3 +99,20 @@ extern const struct NodeAttributes {
 - (void)setPrimitiveUpdatedAt:(NSDate*)value;
 
 @end
+
+@interface NodeAttributes: NSObject 
++ (NSString *)bookmarkStatus;
++ (NSString *)createdAt;
++ (NSString *)isAddedToBoomark;
++ (NSString *)isDeletedFlag;
++ (NSString *)nodeDesc;
++ (NSString *)nodeImage;
++ (NSString *)nodeLink;
++ (NSString *)nodeSource;
++ (NSString *)nodeTitle;
++ (NSString *)nodeType;
++ (NSString *)nodeUrl;
++ (NSString *)updatedAt;
+@end
+
+NS_ASSUME_NONNULL_END
