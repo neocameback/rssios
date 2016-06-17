@@ -11,6 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class NSObject;
+
 @interface FileID : NSManagedObjectID {}
 @end
 
@@ -40,11 +42,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSString* name;
 
+@property (nonatomic, strong, nullable) id operation;
+
 @property (nonatomic, strong, nullable) NSNumber* progress;
 
 @property (atomic) int16_t progressValue;
 - (int16_t)progressValue;
 - (void)setProgressValue:(int16_t)value_;
+
+@property (nonatomic, strong, nullable) NSNumber* state;
+
+@property (atomic) int16_t stateValue;
+- (int16_t)stateValue;
+- (void)setStateValue:(int16_t)value_;
+
+@property (nonatomic, strong, nullable) NSString* thumbnail;
 
 @property (nonatomic, strong, nullable) NSString* type;
 
@@ -80,11 +92,23 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
+- (id)primitiveOperation;
+- (void)setPrimitiveOperation:(id)value;
+
 - (NSNumber*)primitiveProgress;
 - (void)setPrimitiveProgress:(NSNumber*)value;
 
 - (int16_t)primitiveProgressValue;
 - (void)setPrimitiveProgressValue:(int16_t)value_;
+
+- (NSNumber*)primitiveState;
+- (void)setPrimitiveState:(NSNumber*)value;
+
+- (int16_t)primitiveStateValue;
+- (void)setPrimitiveStateValue:(int16_t)value_;
+
+- (NSString*)primitiveThumbnail;
+- (void)setPrimitiveThumbnail:(NSString*)value;
 
 - (NSDate*)primitiveUpdatedAt;
 - (void)setPrimitiveUpdatedAt:(NSDate*)value;
@@ -101,7 +125,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)downloadedBytes;
 + (NSString *)expectedBytes;
 + (NSString *)name;
++ (NSString *)operation;
 + (NSString *)progress;
++ (NSString *)state;
++ (NSString *)thumbnail;
 + (NSString *)type;
 + (NSString *)updatedAt;
 + (NSString *)url;

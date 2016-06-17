@@ -7,6 +7,7 @@
 //
 
 #import "DownloadManageTableViewCell.h"
+#import <UIImageView+AFNetworking.h>
 
 #define MB2B    1000000
 
@@ -24,16 +25,17 @@
 
 -(void) setFile:(File *)file
 {
+    [ivThumbnail setImageWithURL:[NSURL URLWithString:file.thumbnail] placeholderImage:[UIImage imageNamed:@"icon_default"]];
     lb_fileName.text = file.name;
-    if (file.progressValue >= 100) {
+    if (file.stateValue == DownloadStateCompleted) {
         lb_progress.text = file.desc;
         coverView.hidden = YES;
         lb_progress.textColor = [UIColor blackColor];
     }else{
         if (file.progressValue <= 0) {
-            lb_progress.text = [NSString stringWithFormat:@"Pending"];
+            lb_progress.text = [NSString stringWithFormat:@"Waiting..."];
         }else{
-            lb_progress.text = [NSString stringWithFormat:@"Saved: %.0hd%%",file.progressValue];
+            lb_progress.text = [NSString stringWithFormat:@"Saving: %.0hd%%",file.progressValue];
         }
         coverView.hidden = NO;
         lb_progress.textColor = [UIColor colorWithRed:33.0/255 green:150.0/255 blue:243.0/255 alpha:1];

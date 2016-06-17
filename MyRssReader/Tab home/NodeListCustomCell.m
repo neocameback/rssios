@@ -10,6 +10,8 @@
 #import <UIImageView+AFNetworking.h>
 #import "Node.h"
 #import <UIView+AnimationExtensions.h>
+#import "File.h"
+#import <SCSkypeActivityIndicatorView.h>
 
 @implementation NodeListCustomCell
 
@@ -48,12 +50,29 @@
     }
     
     if ([Common typeOfNode:_node.nodeType] == NODE_TYPE_MP4) {
-        UIButton *btnDownload = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *downloadIcon = [UIImage imageNamed:@"download-arrow"];
-        [btnDownload setImage:downloadIcon forState:UIControlStateNormal];
-        [btnDownload setFrame:CGRectMake(0, 0, downloadIcon.size.width, downloadIcon.size.height)];
-        [btnDownload addTarget:self action:@selector(onDownload:) forControlEvents:UIControlEventTouchUpInside];
-        [self setAccessoryView:btnDownload];
+        
+        File *file = [File MR_findFirstByAttribute:@"url" withValue:_node.nodeUrl];
+        if (!file) {
+            UIButton *btnDownload = [UIButton buttonWithType:UIButtonTypeCustom];
+            UIImage *downloadIcon = [UIImage imageNamed:@"download-arrow"];
+            [btnDownload setImage:downloadIcon forState:UIControlStateNormal];
+            [btnDownload setImage:[UIImage imageNamed:@"icon_tick"] forState:UIControlStateDisabled];
+            [btnDownload setFrame:CGRectMake(0, 0, downloadIcon.size.width, downloadIcon.size.height)];
+            [btnDownload addTarget:self action:@selector(onDownload:) forControlEvents:UIControlEventTouchUpInside];
+            [self setAccessoryView:btnDownload];
+        }else{
+            if (file.stateValue == DownloadStateCompleted) {
+                UIImageView *tickImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+                [tickImageView setImage:[UIImage imageNamed:@"icon_tick"]];
+                [self setAccessoryView:tickImageView];
+            }else{
+                SCSkypeActivityIndicatorView *indicatorView = [[SCSkypeActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+                [indicatorView setBubbleColor:kGreenColor];
+                [indicatorView setBubbleSize:CGSizeMake(4, 4)];
+                [indicatorView startAnimating];
+                [self setAccessoryView:indicatorView];
+            }
+        }
     }else{
         [self setAccessoryView:nil];
     }

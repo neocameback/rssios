@@ -8,7 +8,7 @@
 
 #import "DownloadManager.h"
 #import <AFDownloadRequestOperation.h>
-#import "WBSuccessNoticeView.h"
+#import <JDStatusBarNotification.h>
 
 @interface DownloadManager()
 {
@@ -32,8 +32,12 @@ static NSOperationQueue *operationQueue;
     return _shareDownloadManager;
 }
 
--(void) downloadFile:(NSString *) url name:(NSString*) name fromView:(id) viewcontroller
+-(void) downloadFile:(NSString *) url name:(NSString*) name thumbnail:(NSString *)thumb fromView:(id) viewcontroller
 {
+    NSString *successText = [NSString stringWithFormat:@"%@.mp4 has been added to Saved videos",name];
+    [JDStatusBarNotification showWithStatus:successText dismissAfter:2 styleName:JDStatusBarStyleDark];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDownloadOperationStarted object:nil];
+    
     File *savedFile = [File MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"url == %@ AND name == %@",url, name]];
     /**
      *  if file has not been created so create a file in db
@@ -45,6 +49,7 @@ static NSOperationQueue *operationQueue;
         [savedFile setType:@"mp4"];
     }
     [savedFile setName:name];
+    [savedFile setThumbnail:thumb];
     [savedFile setUpdatedAt:[NSDate date]];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -59,6 +64,7 @@ static NSOperationQueue *operationQueue;
     }else{
         AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:path shouldResume:YES];
         [operation setDeleteTempFileOnCancel:YES];
+        
         [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
             float percentComplete = 0;
             @try {
@@ -72,12 +78,14 @@ static NSOperationQueue *operationQueue;
             }
             [savedFile setDownloadedBytes:[NSNumber numberWithDouble:totalBytesRead]];
             [savedFile setExpectedBytes:[NSNumber numberWithDouble:totalBytesExpectedToRead]];
+            [savedFile setStateValue:DownloadStateInProgress];
         }];
         
         [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
             /**
              *  save completed infor to savedFile
              */
+            [savedFile setStateValue:DownloadStateCompleted];
             [savedFile setProgressValue:100];
             [savedFile setAbsoluteUrl:path];
             
@@ -87,18 +95,20 @@ static NSOperationQueue *operationQueue;
              *  show success notice
              */
             NSString *successText = [NSString stringWithFormat:@"%@.mp4 has been downloaded successful",name];
-            WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:[APPDELEGATE window].rootViewController.view title:successText duration:1 alpha:1 delay:0.7];
-            [notice showSuccess];
+            [JDStatusBarNotification showWithStatus:successText dismissAfter:2 styleName:JDStatusBarStyleDark];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDownloadOperationCompleted object:nil];
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
             NSString *successText = [NSString stringWithFormat:@"Failed to download %@.mp4",name];
-            WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:[APPDELEGATE window].rootViewController.view title:successText duration:1 alpha:1 delay:0.7];
-            [notice showFailure];
+            [JDStatusBarNotification showWithStatus:successText dismissAfter:2 styleName:JDStatusBarStyleDark];
+            [savedFile setStateValue:DownloadStateFailed];
             
             [savedFile MR_deleteEntity];
-            
             [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDownloadOperationCompleted object:nil];
         }];
         [operationQueue addOperation:operation];
     }
@@ -107,48 +117,7 @@ static NSOperationQueue *operationQueue;
 -(void) resumeDownloadFile:(File*) savedFile
 {
     [savedFile setUpdatedAt:[NSDate date]];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:savedFile.url]];
-
-    NSString *path = [Common getPathOfFile:savedFile.name extension:savedFile.type];
-    
-    NSLog(@"resumeDownloadFile path: %@",path);
-    
-    AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:path shouldResume:YES];
-    [operation setDeleteTempFileOnCancel:YES];
-    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-//        float percentComplete = (float)totalBytesRead/(float)totalBytesExpectedToRead * 100;
-//        NSLog(@"Download progress: %lu---- %lld percent: %.2f",(unsigned long)totalBytesRead,totalBytesExpectedToRead, percentComplete);
-        [savedFile setDownloadedBytes:[NSNumber numberWithDouble:totalBytesRead]];
-        [savedFile setExpectedBytes:[NSNumber numberWithDouble:totalBytesExpectedToRead]];
-    }];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        /**
-         *  save completed infor to savedFile
-         */
-        [savedFile setAbsoluteUrl:path];
-        
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-        
-        /**
-         *  show success notice
-         */
-        NSString *successText = [NSString stringWithFormat:@"%@.mp4 has been downloaded successful",savedFile.name];
-        WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:[APPDELEGATE window].rootViewController.view title:successText duration:1 alpha:1 delay:0.7];
-        [notice showSuccess];
-        NSLog(@"Successfully downloaded file to %@", path);
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        NSString *successText = [NSString stringWithFormat:@"Failed to download %@.mp4",savedFile.name];
-        WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:[APPDELEGATE window].rootViewController.view title:successText duration:1 alpha:1 delay:0.7];
-        [notice showFailure];
-        
-        [self deleteFile:savedFile];
-    }];
-    [operationQueue addOperation:operation];
+    [savedFile.operation start];
 }
 -(void) deleteFile:(File*) file;
 {
@@ -173,7 +142,7 @@ static NSOperationQueue *operationQueue;
      *  delete from db
      */
     [file MR_deleteEntity];
-    [[file managedObjectContext] MR_saveToPersistentStoreAndWait];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
 }
 - (NSURL *)applicationDocumentsDirectory
 {

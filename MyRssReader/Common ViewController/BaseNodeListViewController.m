@@ -47,6 +47,8 @@
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     _interstitial = [self createAndLoadInterstital];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:kNotificationDownloadOperationStarted object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:kNotificationDownloadOperationCompleted object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,6 +68,11 @@
 -(ConfigureTableViewCellBlock) configureCellBlock
 {
     return nil;
+}
+
+-(void) reloadTableView
+{
+    [self.tableView reloadData];
 }
 
 #pragma mark tableview delegate and datasource
@@ -344,7 +351,7 @@
     }];
     UIAlertAction *defaultNameAction = [UIAlertAction actionWithTitle:@"Use default" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         RssNodeModel *node = self.nodeList[willDownloadAtIndex];
-        [[DownloadManager shareManager] downloadFile:node.nodeUrl name:node.nodeTitle fromView:self];
+        [[DownloadManager shareManager] downloadFile:node.nodeUrl name:node.nodeTitle thumbnail:node.nodeImage fromView:self];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
@@ -380,7 +387,7 @@
         {
             if (buttonIndex != alertView.cancelButtonIndex) {
                 NSString *videoUrl = [self.nodeList[willDownloadAtIndex] nodeUrl];
-                [[DownloadManager shareManager] downloadFile:videoUrl name:[[alertView textFieldAtIndex:0] text] fromView:self];
+                [[DownloadManager shareManager] downloadFile:videoUrl name:[[alertView textFieldAtIndex:0] text] thumbnail:[self.nodeList[willDownloadAtIndex] nodeImage] fromView:self];
             }
         }
             break;
@@ -395,6 +402,12 @@
         default:
             break;
     }
+}
+
+-(void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    NSLog(@"BaseNodeListViewController: dealloc");
 }
 
 @end

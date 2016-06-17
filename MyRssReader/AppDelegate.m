@@ -16,6 +16,7 @@
 #import "Reachability.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import <JDStatusBarNotification.h>
 #import "DownloadManager.h"
 
 @interface AppDelegate() 
@@ -57,6 +58,11 @@
     
     // init core data
     [MagicalRecord setupAutoMigratingCoreDataStack];
+    
+//    [JDStatusBarNotification setDefaultStyle:^JDStatusBarStyle *(JDStatusBarStyle *style) {
+//        JDStatusBarStyle *style = JDStatusBarStyleDark;
+//        return nil;
+//    }];
     
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];

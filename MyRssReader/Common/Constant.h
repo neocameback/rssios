@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #define kNotificationShouldReloadRssList    @"should_reload_rss"
+#define kNotificationDownloadOperationStarted @"downloadOperationStarted"
+#define kNotificationDownloadOperationCompleted @"downloadOperationCompleted"
 
 #define kRequestTimeOut                 60
 #define kSecondsToPresentInterstitial   120
@@ -31,6 +33,8 @@
 #define kStringLoading  @"Loading"
 #define kMessageInternetConnectionLost  @"Internet connection was lost!"
 #define kUserAgent      @"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36"
+
+#define kGreenColor [UIColor colorWithRed:0/255 green:204.0/255 blue:151.0/255 alpha:1]
 enum NODE_TYPE {
     NODE_TYPE_RSS = 0,
     NODE_TYPE_VIDEO = 1,
@@ -45,6 +49,13 @@ typedef enum : NSUInteger {
     ALERT_ENTER_FILE_NAME = 1,
     ALERT_NAME_EXIST = 2
 } ALERT_VIEW_TYPE;
+
+typedef enum : NSUInteger {
+    DownloadStateInProgress = 0,
+    DownloadStatePause,
+    DownloadStateCompleted,
+    DownloadStateFailed,
+} DownloadState;
 
 @interface Constant : NSObject
 

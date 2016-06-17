@@ -11,6 +11,7 @@
 
 @interface DownloadManageTableViewCell : UITableViewCell
 {
+    __weak IBOutlet UIImageView *ivThumbnail;
     __weak IBOutlet UILabel *lb_fileName;
     __weak IBOutlet UILabel *lb_progress;
     

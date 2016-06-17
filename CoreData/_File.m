@@ -44,6 +44,11 @@
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"stateValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"state"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -96,6 +101,8 @@
 
 @dynamic name;
 
+@dynamic operation;
+
 @dynamic progress;
 
 - (int16_t)progressValue {
@@ -115,6 +122,28 @@
 - (void)setPrimitiveProgressValue:(int16_t)value_ {
 	[self setPrimitiveProgress:@(value_)];
 }
+
+@dynamic state;
+
+- (int16_t)stateValue {
+	NSNumber *result = [self state];
+	return [result shortValue];
+}
+
+- (void)setStateValue:(int16_t)value_ {
+	[self setState:@(value_)];
+}
+
+- (int16_t)primitiveStateValue {
+	NSNumber *result = [self primitiveState];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveStateValue:(int16_t)value_ {
+	[self setPrimitiveState:@(value_)];
+}
+
+@dynamic thumbnail;
 
 @dynamic type;
 
@@ -143,8 +172,17 @@
 + (NSString *)name {
 	return @"name";
 }
++ (NSString *)operation {
+	return @"operation";
+}
 + (NSString *)progress {
 	return @"progress";
+}
++ (NSString *)state {
+	return @"state";
+}
++ (NSString *)thumbnail {
+	return @"thumbnail";
 }
 + (NSString *)type {
 	return @"type";

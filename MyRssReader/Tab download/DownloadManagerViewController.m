@@ -33,14 +33,39 @@
 //    // observe the app delegate telling us when it's finished asynchronously setting up the persistent store
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:@"RefetchAllDatabaseData" object:[[UIApplication sharedApplication] delegate]];
     
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
     [self getFileList];
+    
+    [_timer invalidate];
+    _timer = nil;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(getFileList) userInfo:nil repeats:YES];
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [_timer invalidate];
+    _timer = nil;
 }
 
 -(void) getFileList
 {
+    
     files = [NSMutableArray arrayWithArray:[File MR_findAllSortedBy:@"createdAt" ascending:NO inContext:[NSManagedObjectContext MR_defaultContext]]];
-    [_tableView reloadData];
+    if (!_tableView.isEditing) {
+        [_tableView reloadData];
+    }
+    
+    NSArray *downloadingFiles = [File MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"progress < 100"]];
+    if (downloadingFiles.count <= 0) {
+        [_timer invalidate];
+        _timer = nil;
+    }
 }
 - (void)reloadFetchedResults:(NSNotification*)note {
     
@@ -61,11 +86,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
 }
 
 #pragma mark UITableViewDatasource
@@ -92,9 +112,13 @@
     
     return files.count;
 }
+-(CGFloat) tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 71;
+}
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 65;
+    return UITableViewAutomaticDimension;
 }
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -118,21 +142,26 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    File *recipe = (File *)[self.fetchedResultsController objectAtIndexPath:indexPath];
     File *recipe = [files objectAtIndex:indexPath.row];
-    if ([recipe progressValue] >= 100) {
-        
-        NSString *path = [Common getPathOfFile:recipe.name extension:recipe.type];
-        
-        NSLog(@"open video at path: %@",path);
-        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-            NSLog(@"file is exist");
+    switch (recipe.stateValue) {
+        case DownloadStateCompleted:
+        {
+            NSString *path = [Common getPathOfFile:recipe.name extension:recipe.type];
+            
+            NSLog(@"open video at path: %@",path);
+            if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+                NSLog(@"file is exist");
+            }
+            if ([[NSFileManager defaultManager] isReadableFileAtPath:path]) {
+                MPMoviePlayerViewController *moviePlayer  = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:path]];
+                self.player = moviePlayer;
+                [self presentMoviePlayerViewControllerAnimated:self.player];
+            }
         }
-        if ([[NSFileManager defaultManager] isReadableFileAtPath:path]) {
-            MPMoviePlayerViewController *moviePlayer  = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:path]];
-            self.player = moviePlayer;
-            [self presentMoviePlayerViewControllerAnimated:self.player];
+            break;
+        default:
+        {
         }
-    }else{
-//        [[DownloadManager shareManager] resumeDownloadFile:recipe];
+            break;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -140,11 +169,11 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
-//        File *managedObject = (File*)[self.fetchedResultsController objectAtIndexPath:indexPath];
-//        [[DownloadManager shareManager] deleteFile:managedObject];
         File *file = [files objectAtIndex:indexPath.row];
         [[DownloadManager shareManager] deleteFile:file];
+        
+        [files removeObjectAtIndex:indexPath.row];
+        [tableView reloadData];
     }
 }
 
