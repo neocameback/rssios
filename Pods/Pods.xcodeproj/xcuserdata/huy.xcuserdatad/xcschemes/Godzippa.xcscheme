@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '46C416FBDECCFE4AD2F09B41'
+               BlueprintIdentifier = '6B44E0D5F71E37719E94B8DB'
                BlueprintName = 'Godzippa'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libGodzippa.a'>
