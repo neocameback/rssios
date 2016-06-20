@@ -355,7 +355,7 @@
     }];
     UIAlertAction *defaultNameAction = [UIAlertAction actionWithTitle:@"Use default" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         RssNodeModel *node = self.nodeList[willDownloadAtIndex];
-        [[DownloadManager shareManager] downloadFile:node.nodeUrl name:node.nodeTitle thumbnail:node.nodeImage fromView:self];
+        [[DownloadManager shareManager] downloadNode:node fromView:self];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
@@ -390,8 +390,8 @@
         case ALERT_ENTER_FILE_NAME:
         {
             if (buttonIndex != alertView.cancelButtonIndex) {
-                NSString *videoUrl = [self.nodeList[willDownloadAtIndex] nodeUrl];
-                [[DownloadManager shareManager] downloadFile:videoUrl name:[[alertView textFieldAtIndex:0] text] thumbnail:[self.nodeList[willDownloadAtIndex] nodeImage] fromView:self];
+                RssNodeModel *node = self.nodeList[willDownloadAtIndex];
+                [[DownloadManager shareManager] downloadNode:node fromView:self];
             }
         }
             break;

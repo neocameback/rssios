@@ -45,6 +45,9 @@
 		846565141B7BA57700C9E99E /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 846565121B7BA57700C9E99E /* File.m */; };
 		B648CF081D1102C40030FE69 /* BaseNodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B648CF061D1102C40030FE69 /* BaseNodeListViewController.m */; };
 		B648CF091D1102C40030FE69 /* BaseNodeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B648CF071D1102C40030FE69 /* BaseNodeListViewController.xib */; };
+		B6A1CC301D17F1C90026430B /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1CC2F1D17F1C90026430B /* Singleton.m */; };
+		B6A1CC331D17F8DB0026430B /* MWFeedItemSubTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1CC321D17F8DB0026430B /* MWFeedItemSubTitle.m */; };
+		B6A1CC361D17FA2C0026430B /* NSDictionary+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1CC351D17FA2C0026430B /* NSDictionary+Helper.m */; };
 		B6B4A3721D13E20D0000DD02 /* icon_tick.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B4A36F1D13E20D0000DD02 /* icon_tick.png */; };
 		B6B4A3731D13E20D0000DD02 /* icon_tick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B4A3701D13E20D0000DD02 /* icon_tick@2x.png */; };
 		B6B4A3741D13E20D0000DD02 /* icon_tick@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B4A3711D13E20D0000DD02 /* icon_tick@3x.png */; };
@@ -196,6 +199,12 @@
 		B648CF061D1102C40030FE69 /* BaseNodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNodeListViewController.m; sourceTree = "<group>"; };
 		B648CF071D1102C40030FE69 /* BaseNodeListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseNodeListViewController.xib; sourceTree = "<group>"; };
 		B648CF0A1D1136170030FE69 /* Model2.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.1.xcdatamodel; sourceTree = "<group>"; };
+		B6A1CC2E1D17F1C90026430B /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
+		B6A1CC2F1D17F1C90026430B /* Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Singleton.m; sourceTree = "<group>"; };
+		B6A1CC311D17F8DB0026430B /* MWFeedItemSubTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedItemSubTitle.h; sourceTree = "<group>"; };
+		B6A1CC321D17F8DB0026430B /* MWFeedItemSubTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWFeedItemSubTitle.m; sourceTree = "<group>"; };
+		B6A1CC341D17FA2C0026430B /* NSDictionary+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Helper.h"; sourceTree = "<group>"; };
+		B6A1CC351D17FA2C0026430B /* NSDictionary+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Helper.m"; sourceTree = "<group>"; };
 		B6B4A36F1D13E20D0000DD02 /* icon_tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tick.png; sourceTree = "<group>"; };
 		B6B4A3701D13E20D0000DD02 /* icon_tick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_tick@2x.png"; sourceTree = "<group>"; };
 		B6B4A3711D13E20D0000DD02 /* icon_tick@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_tick@3x.png"; sourceTree = "<group>"; };
@@ -390,6 +399,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B6A1CC2D1D17F1C10026430B /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				B6A1CC2E1D17F1C90026430B /* Singleton.h */,
+				B6A1CC2F1D17F1C90026430B /* Singleton.m */,
+			);
+			path = Singleton;
+			sourceTree = "<group>";
+		};
 		B6B4A3821D140BDF0000DD02 /* AVPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +547,7 @@
 		DE22E7AC192F54180005E685 = {
 			isa = PBXGroup;
 			children = (
+				B6A1CC2D1D17F1C10026430B /* Singleton */,
 				DE233F721B70A9AD00C02DD6 /* CoreData */,
 				DEF496121934339F00DD482D /* Libraries */,
 				DEB54D731933344800EC589E /* Images */,
@@ -608,6 +627,8 @@
 				DE233F5F1B70A89F00C02DD6 /* MWFeedInfo.m */,
 				DE233F601B70A89F00C02DD6 /* MWFeedItem.h */,
 				DE233F611B70A89F00C02DD6 /* MWFeedItem.m */,
+				B6A1CC311D17F8DB0026430B /* MWFeedItemSubTitle.h */,
+				B6A1CC321D17F8DB0026430B /* MWFeedItemSubTitle.m */,
 				DE233F621B70A89F00C02DD6 /* MWFeedParser.h */,
 				DE233F631B70A89F00C02DD6 /* MWFeedParser.m */,
 				DE233F641B70A89F00C02DD6 /* MWFeedParser_Private.h */,
@@ -719,6 +740,8 @@
 		DEB5F0D71932D7B7008922E5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				B6A1CC341D17FA2C0026430B /* NSDictionary+Helper.h */,
+				B6A1CC351D17FA2C0026430B /* NSDictionary+Helper.m */,
 				DEB5F0D81932D7DA008922E5 /* UIViewController+Helper.h */,
 				DEB5F0D91932D7DA008922E5 /* UIViewController+Helper.m */,
 				DEB5F0DB1932D854008922E5 /* Categories.h */,
@@ -985,6 +1008,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6A1CC301D17F1C90026430B /* Singleton.m in Sources */,
 				DE233F871B70AA1B00C02DD6 /* _Rss.m in Sources */,
 				DE1AE55E1B8DA40B008C44F8 /* RssListViewController.m in Sources */,
 				DE233F7B1B70A9AD00C02DD6 /* Rss.m in Sources */,
@@ -1012,6 +1036,7 @@
 				DE1AE5511B8DA40B008C44F8 /* DownloadManagerViewController.m in Sources */,
 				DE1AE5731B8DC92F008C44F8 /* RssNode.m in Sources */,
 				DEB7BF2C19458DE700BF350D /* NSString+Helper.m in Sources */,
+				B6A1CC361D17FA2C0026430B /* NSDictionary+Helper.m in Sources */,
 				DE1AE5571B8DA40B008C44F8 /* BookmarkViewController.m in Sources */,
 				DEF49619193435FD00DD482D /* NSUserDefaults+Helper.m in Sources */,
 				E5B7BAB91D10700900B7CC03 /* RssManager.m in Sources */,
@@ -1022,6 +1047,7 @@
 				DE1AE54F1B8DA40B008C44F8 /* AboutViewController.m in Sources */,
 				DE1AE5531B8DA40B008C44F8 /* DownloadManageTableViewCell.m in Sources */,
 				DEF4961C1934376700DD482D /* UIAlertView+Helper.m in Sources */,
+				B6A1CC331D17F8DB0026430B /* MWFeedItemSubTitle.m in Sources */,
 				846565131B7BA57700C9E99E /* _File.m in Sources */,
 				DE1AE5551B8DA40B008C44F8 /* BookmarkCustomCell.m in Sources */,
 				B6B4A3861D140BE60000DD02 /* MyCustomerPlayer.m in Sources */,

@@ -11,7 +11,7 @@
 
 @interface DownloadManager : NSObject
 + (DownloadManager *)shareManager;
--(void) downloadFile:(NSString *) url name:(NSString*) name thumbnail:(NSString *)thumb fromView:(id) viewcontroller;
+-(void) downloadNode:(RssNodeModel *)node fromView:(id) viewcontroller;
 -(void) resumeDownloadFile:(File*) savedFile;
 -(void) deleteFile:(File*) file;
 - (NSURL *)applicationDocumentsDirectory;

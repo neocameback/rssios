@@ -20,6 +20,7 @@
 #import "GAILogger.h"
 #import "Common.h"
 #import "RssManager.h"
+#import "Singleton.h"
 
 #ifndef __IPHONE_3_0
 #warning "This project uses features only available in iOS SDK 3.0 and later."

@@ -604,6 +604,7 @@
                         else if ([currentPath isEqualToString:@"/rss/channel/item/pubDate"]) { if (processedText.length > 0) item.date = [NSDate dateFromInternetDateTimeString:processedText formatHint:DateFormatHintRFC822]; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/enclosure"]) { [self createEnclosureFromAttributes:currentElementAttributes andAddToItem:item]; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/media:thumbnail"]) { [self createMediaFromAttributes:currentElementAttributes andAddToItem:item]; processed = YES; }
+                        else if ([currentPath isEqualToString:@"/rss/channel/item/media:subTitle"]) { [self createSubtitlesFromAttributes:currentElementAttributes andAddToItem:item]; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/dc:date"]) { if (processedText.length > 0) item.date = [NSDate dateFromInternetDateTimeString:processedText formatHint:DateFormatHintRFC3339]; processed = YES; }
                     }
                     
@@ -957,6 +958,20 @@
     } else {
         return NO;
     }
+}
+
+-(BOOL) createSubtitlesFromAttributes:(NSDictionary *) attributes andAddToItem:(MWFeedItem *)currentItem {
+    
+    if (attributes) {
+        if (!currentItem.subTitles) {
+            [currentItem setSubTitles:[NSMutableArray array]];
+        }
+        MWFeedItemSubTitle *subtitle = [[MWFeedItemSubTitle alloc] initWithDictionary:attributes];
+        [currentItem.subTitles addObject:subtitle];
+        return YES;
+    }else{
+        return NO;
+    }    
 }
 
 // Process ATOM link and determine whether to ignore it, add it as the link element or add as enclosure

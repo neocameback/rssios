@@ -21,39 +21,69 @@
 
 -(void) startParseCompletion:(ParseCompletionBlock) completionBlock failure:(ParseFailedBlock) failedBlock
 {
-    [SVProgressHUD showWithStatus:kStringLoading maskType:SVProgressHUDMaskTypeGradient];
-    [Common getUserIpAddress:^(NSDictionary *update) {
-        if (update) {
-            
-            _completionBlock = completionBlock;
-            _failureBlock = failedBlock;
-            
-            NSString *ipAddress = update[@"ip"];
-            NSMutableURLRequest *request = [Common requestWithMethod:@"GET" ipAddress:ipAddress Url:_rssUrl];
-            if (!request) {
-                return;
-            }
-            _feedParser = [[MWFeedParser alloc] initWithFeedRequest:request];
-            
-            _feedParser.delegate = self;
-            // Parse the feeds info (title, link) and all feed items
-            _feedParser.feedParseType = ParseTypeFull;
-            // Connection type
-            _feedParser.connectionType = ConnectionTypeAsynchronously;
-            // Begin parsing
-            if ([self isInternetConnected]) {
-                [_feedParser parse];
-            }else{
-                [SVProgressHUD popActivity];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:kMessageInternetConnectionLost delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
-            }
+    if ([Singleton shareInstance].currentIpAddress) {
+        
+        [SVProgressHUD showWithStatus:kStringLoading maskType:SVProgressHUDMaskTypeGradient];
+        _completionBlock = completionBlock;
+        _failureBlock = failedBlock;
+        
+        NSString *ipAddress = [Singleton shareInstance].currentIpAddress;
+        DLog(@"%@",ipAddress);
+        NSMutableURLRequest *request = [Common requestWithMethod:@"GET" ipAddress:ipAddress Url:_rssUrl];
+        if (!request) {
+            return;
         }
-    } failureBlock:^(NSError * error) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-        [SVProgressHUD popActivity];
-    }];
+        _feedParser = [[MWFeedParser alloc] initWithFeedRequest:request];
+        
+        _feedParser.delegate = self;
+        // Parse the feeds info (title, link) and all feed items
+        _feedParser.feedParseType = ParseTypeFull;
+        // Connection type
+        _feedParser.connectionType = ConnectionTypeAsynchronously;
+        // Begin parsing
+        if ([self isInternetConnected]) {
+            [_feedParser parse];
+        }else{
+            [SVProgressHUD popActivity];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:kMessageInternetConnectionLost delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+    }else{
+        [SVProgressHUD showWithStatus:kStringLoading maskType:SVProgressHUDMaskTypeGradient];
+        [Common getUserIpAddress:^(NSDictionary *update) {
+            if (update) {
+                
+                _completionBlock = completionBlock;
+                _failureBlock = failedBlock;
+                
+                NSString *ipAddress = update[@"ip"];
+                DLog(@"%@",ipAddress);
+                NSMutableURLRequest *request = [Common requestWithMethod:@"GET" ipAddress:ipAddress Url:_rssUrl];
+                if (!request) {
+                    return;
+                }
+                _feedParser = [[MWFeedParser alloc] initWithFeedRequest:request];
+                
+                _feedParser.delegate = self;
+                // Parse the feeds info (title, link) and all feed items
+                _feedParser.feedParseType = ParseTypeFull;
+                // Connection type
+                _feedParser.connectionType = ConnectionTypeAsynchronously;
+                // Begin parsing
+                if ([self isInternetConnected]) {
+                    [_feedParser parse];
+                }else{
+                    [SVProgressHUD popActivity];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:kMessageInternetConnectionLost delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                }
+            }
+        } failureBlock:^(NSError * error) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            [SVProgressHUD popActivity];
+        }];
+    }
 }
 
 #pragma mark MWFeedParserDelegate

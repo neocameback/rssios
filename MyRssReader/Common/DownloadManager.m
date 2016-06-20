@@ -32,27 +32,27 @@ static NSOperationQueue *operationQueue;
     return _shareDownloadManager;
 }
 
--(void) downloadFile:(NSString *) url name:(NSString*) name thumbnail:(NSString *)thumb fromView:(id) viewcontroller
+-(void) downloadNode:(RssNodeModel *)node fromView:(id) viewcontroller
 {
-    NSString *successText = [NSString stringWithFormat:@"%@.mp4 has been added to Saved videos",name];
+    NSString *successText = [NSString stringWithFormat:@"%@.mp4 has been added to Saved videos",node.nodeTitle];
     [JDStatusBarNotification showWithStatus:successText dismissAfter:2 styleName:JDStatusBarStyleDark];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDownloadOperationStarted object:nil];
     
-    File *savedFile = [File MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"url == %@ AND name == %@",url, name]];
+    File *savedFile = [File MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"url == %@ AND name == %@",node.nodeUrl, node.nodeTitle]];
     /**
      *  if file has not been created so create a file in db
      */
     if (!savedFile) {
         savedFile = [File MR_createEntity];
         [savedFile setCreatedAt:[NSDate date]];
-        [savedFile setUrl:url];
+        [savedFile setUrl:node.nodeUrl];
         [savedFile setType:@"mp4"];
     }
-    [savedFile setName:name];
-    [savedFile setThumbnail:thumb];
+    [savedFile setName:node.nodeTitle];
+    [savedFile setThumbnail:node.nodeImage];
     [savedFile setUpdatedAt:[NSDate date]];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:node.nodeUrl]];
 
     NSString *path = [Common getPathOfFile:savedFile.name extension:savedFile.type];
     
@@ -94,14 +94,14 @@ static NSOperationQueue *operationQueue;
             /**
              *  show success notice
              */
-            NSString *successText = [NSString stringWithFormat:@"%@.mp4 has been downloaded successful",name];
+            NSString *successText = [NSString stringWithFormat:@"%@.mp4 has been downloaded successful",node.nodeTitle];
             [JDStatusBarNotification showWithStatus:successText dismissAfter:2 styleName:JDStatusBarStyleDark];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDownloadOperationCompleted object:nil];
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
-            NSString *successText = [NSString stringWithFormat:@"Failed to download %@.mp4",name];
+            NSString *successText = [NSString stringWithFormat:@"Failed to download %@.mp4",node.nodeTitle];
             [JDStatusBarNotification showWithStatus:successText dismissAfter:2 styleName:JDStatusBarStyleDark];
             [savedFile setStateValue:DownloadStateFailed];
             
