@@ -8,9 +8,12 @@
 
 #import "MyPlayerViewController.h"
 #import "DownloadManager.h"
+#import "MyCustomerPlayer.h"
+#import "ASBPlayerSubtitling.h"
 
 @interface MyPlayerViewController () <MyCustomerPlayerDelegate>
-
+@property (strong, nonatomic) IBOutlet ASBPlayerSubtitling *subtitling;
+@property (nonatomic, strong) MyCustomerPlayer *myPlayer;
 @end
 
 @implementation MyPlayerViewController
@@ -21,17 +24,27 @@
     [self.view setBackgroundColor:[UIColor blackColor]];
     [self initVideoPlayer];
     
-    [self.myPlayer setURL:[NSURL URLWithString:self.currentNode.nodeUrl]];
-    
-    NSURL *subtitlesURL = [[NSBundle mainBundle] URLForResource:@"welcome1" withExtension:@"srt"];
-    NSError *error = nil;
-    self.subtitling.player = [self.myPlayer player];
-    [self.subtitling loadSubtitlesAtURL:subtitlesURL error:&error];
-    self.subtitling.containerView.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.5].CGColor;
-    
-    [self.myPlayer play];
-    
+    if (self.currentNode) {
+        _downloadedFile = [File MR_findFirstByAttribute:@"url" withValue:self.currentNode.nodeUrl];
+        if (_downloadedFile) {
+            NSString *path = [Common getPathOfFile:_downloadedFile.name extension:_downloadedFile.type];
+            [self.myPlayer setURL:[NSURL fileURLWithPath:path]];
+            [self.myPlayer play];
+        }else{
+            [self.myPlayer setURL:[NSURL URLWithString:self.currentNode.nodeUrl]];
+            [self.myPlayer play];
+        }
+    }else{
+        NSString *path = [Common getPathOfFile:_downloadedFile.name extension:_downloadedFile.type];
+        [self.myPlayer setURL:[NSURL fileURLWithPath:path]];
+        [self.myPlayer play];
+    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -53,7 +66,6 @@
     if (self.myPlayer) {
         [self.myPlayer pause];
     }
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,10 +84,18 @@
     [self.myPlayer didMoveToParentViewController:self];
     [self.myPlayer setDelegate:self];
     
-    File *file = [File MR_findFirstByAttribute:@"url" withValue:self.currentNode.nodeUrl];
-    if (file) {
+    if (_downloadedFile) {
         [self.myPlayer hideDownloadButton];
     }
+    
+    /**
+     *  add example subtitle
+     */
+    NSURL *subtitlesURL = [[NSBundle mainBundle] URLForResource:@"welcome" withExtension:@"srt"];
+    NSError *error = nil;
+    self.subtitling.player = [self.myPlayer player];
+    [self.subtitling loadSubtitlesAtURL:subtitlesURL error:&error];
+    self.subtitling.containerView.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.5].CGColor;
 }
 
 -(MyCustomerPlayer *) videoPlayer

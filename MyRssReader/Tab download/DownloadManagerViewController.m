@@ -10,6 +10,7 @@
 #import "File.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "DownloadManager.h"
+#import "MyPlayerViewController.h"
 
 @interface DownloadManagerViewController ()<NSFetchedResultsControllerDelegate>
 {
@@ -152,9 +153,9 @@
                 NSLog(@"file is exist");
             }
             if ([[NSFileManager defaultManager] isReadableFileAtPath:path]) {
-                MPMoviePlayerViewController *moviePlayer  = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:path]];
-                self.player = moviePlayer;
-                [self presentMoviePlayerViewControllerAnimated:self.player];
+                MyPlayerViewController *playerVC = [[MyPlayerViewController alloc] initWithNibName:NSStringFromClass([MyPlayerViewController class]) bundle:nil];
+                [playerVC setDownloadedFile:recipe];
+                [self presentViewController:playerVC animated:YES completion:nil];
             }
         }
             break;

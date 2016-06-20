@@ -282,7 +282,7 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
                 [loadingIndicator startAnimating];
                 btPlay.alpha = 0;
             }
-            if (playing) {
+            if ([self isPlaying]) {
                 [self play];
             }
         });
@@ -489,16 +489,12 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
     if (CMTimeGetSeconds(duration) == CMTimeGetSeconds(kCMTimeZero)) {
         lbElapsedTime.text = [self getStringFromCMTime:elapsedTime];
         lbDuration.text = @"--:--";
-        if (!isSeeking) {
-            seekSlider.value = 0.0f;
-        }
+        seekSlider.value = 0.0f;
         [self disableScrubber];
     }else{
         lbElapsedTime.text = [self getStringFromCMTime:elapsedTime];
         lbDuration.text = [self getStringFromCMTime:duration];
-        if (!isSeeking) {
-            seekSlider.value = CMTimeGetSeconds(elapsedTime)/ CMTimeGetSeconds(duration);
-        }
+        seekSlider.value = CMTimeGetSeconds(elapsedTime)/ CMTimeGetSeconds(duration);        
         [self enableScrubber];
     }
 }
@@ -526,8 +522,8 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
 }
 
 -(void) sliderBeganTracking:(UISlider *) slider {
+    DLog(@"");
     [[_player currentItem] cancelPendingSeeks];
-    
     [_player pause];
 }
 
@@ -537,6 +533,7 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
 }
 
 -(void) sliderEndedTracking:(UISlider *) slider {
+    DLog(@"");
     CMTime seekTime = CMTimeMakeWithSeconds(slider.value * (double)_player.currentItem.duration.value/(double)_player.currentItem.duration.timescale, _player.currentTime.timescale);
     
     [self updateTimeLabel:seekTime duration:_player.currentItem.duration];

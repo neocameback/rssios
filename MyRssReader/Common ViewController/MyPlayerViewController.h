@@ -7,8 +7,7 @@
 //
 
 #import "BaseViewController.h"
-#import "MyCustomerPlayer.h"
-#import "ASBPlayerSubtitling.h"
+#import "File.h"
 
 @interface MyPlayerViewController : BaseViewController
 {
@@ -17,9 +16,13 @@
     
     __weak IBOutlet UIStepper *stepper;
 }
-@property (strong, nonatomic) IBOutlet ASBPlayerSubtitling *subtitling;
-
-
+/**
+ *  play video from node list
+ */
 @property (nonatomic, strong) RssNodeModel *currentNode;
-@property (nonatomic, strong) MyCustomerPlayer *myPlayer;
+
+/**
+ *  play video from downloaded list
+ */
+@property (nonatomic, strong) File *downloadedFile;
 @end

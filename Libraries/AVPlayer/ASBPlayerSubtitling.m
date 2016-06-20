@@ -51,8 +51,10 @@
     [self.player pause];
     [self removeTimeObserver];
     _player = player;
-    
-    self.nbFramesPerSecond = [ASBPlayerSubtitling nominalFrameRateForPlayer:self.player];
+    DLog(@"");
+//    self.nbFramesPerSecond = [ASBPlayerSubtitling nominalFrameRateForPlayer:self.player];
+    self.nbFramesPerSecond = 24;
+    DLog(@"frames per second: %f",self.nbFramesPerSecond);
     self.frameDuration = 1/self.nbFramesPerSecond;
     self.label.text = @"";
     self.containerView.hidden = YES;

@@ -230,10 +230,7 @@
         }
             break;
         case NODE_TYPE_MP4:
-        {
-//            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:currentNode.nodeUrl]];
-//            [self presentMoviePlayerViewControllerAnimated:moviePlayer];
-            
+        {           
             MyPlayerViewController *viewcontroller = [[MyPlayerViewController alloc] init];
             [viewcontroller setCurrentNode:currentNode];
             [self presentViewController:viewcontroller animated:YES completion:nil];
@@ -303,7 +300,8 @@
     NSDate *lastOpenDate = [[NSUserDefaults standardUserDefaults] objectForKey:kLastOpenFullScreen];
     NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:lastOpenDate];
     
-    if (interval <= kSecondsToPresentInterstitial) {
+//    if (interval <= kSecondsToPresentInterstitial) {
+    if (YES){
         [self continueAtCurrentPath];
         return;
     }
