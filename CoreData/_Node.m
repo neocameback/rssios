@@ -103,6 +103,77 @@
 
 @dynamic updatedAt;
 
+@dynamic subtitles;
+
+- (NSMutableOrderedSet<Subtitle*>*)subtitlesSet {
+	[self willAccessValueForKey:@"subtitles"];
+
+	NSMutableOrderedSet<Subtitle*> *result = (NSMutableOrderedSet<Subtitle*>*)[self mutableOrderedSetValueForKey:@"subtitles"];
+
+	[self didAccessValueForKey:@"subtitles"];
+	return result;
+}
+
+@end
+
+@implementation _Node (SubtitlesCoreDataGeneratedAccessors)
+- (void)addSubtitles:(NSOrderedSet<Subtitle*>*)value_ {
+	[self.subtitlesSet unionOrderedSet:value_];
+}
+- (void)removeSubtitles:(NSOrderedSet<Subtitle*>*)value_ {
+	[self.subtitlesSet minusOrderedSet:value_];
+}
+- (void)addSubtitlesObject:(Subtitle*)value_ {
+	[self.subtitlesSet addObject:value_];
+}
+- (void)removeSubtitlesObject:(Subtitle*)value_ {
+	[self.subtitlesSet removeObject:value_];
+}
+- (void)insertObject:(Subtitle*)value inSubtitlesAtIndex:(NSUInteger)idx {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"subtitles"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self subtitles]];
+    [tmpOrderedSet insertObject:value atIndex:idx];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"subtitles"];
+    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"subtitles"];
+}
+- (void)removeObjectFromSubtitlesAtIndex:(NSUInteger)idx {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"subtitles"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self subtitles]];
+    [tmpOrderedSet removeObjectAtIndex:idx];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"subtitles"];
+    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"subtitles"];
+}
+- (void)insertSubtitles:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
+    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"subtitles"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self subtitles]];
+    [tmpOrderedSet insertObjects:value atIndexes:indexes];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"subtitles"];
+    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"subtitles"];
+}
+- (void)removeSubtitlesAtIndexes:(NSIndexSet *)indexes {
+    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"subtitles"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self subtitles]];
+    [tmpOrderedSet removeObjectsAtIndexes:indexes];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"subtitles"];
+    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"subtitles"];
+}
+- (void)replaceObjectInSubtitlesAtIndex:(NSUInteger)idx withObject:(Subtitle*)value {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"subtitles"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self subtitles]];
+    [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"subtitles"];
+    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"subtitles"];
+}
+- (void)replaceSubtitlesAtIndexes:(NSIndexSet *)indexes withSubtitles:(NSArray *)value {
+    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"subtitles"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self subtitles]];
+    [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"subtitles"];
+    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"subtitles"];
+}
 @end
 
 @implementation NodeAttributes 
@@ -141,6 +212,12 @@
 }
 + (NSString *)updatedAt {
 	return @"updatedAt";
+}
+@end
+
+@implementation NodeRelationships 
++ (NSString *)subtitles {
+	return @"subtitles";
 }
 @end
 

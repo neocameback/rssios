@@ -53,6 +53,7 @@
         }
     }
     
+    self.subtitles = [NSArray arrayWithArray:item.subTitles];
     return self;
 }
 -(id) initWithRssNode:(RssNode*) rssNode;
@@ -65,6 +66,16 @@
     self.nodeType = rssNode.nodeType;
     self.nodeUrl = rssNode.nodeUrl;
     self.nodeImage = rssNode.nodeImage;
+    
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (Subtitle *subtitle in rssNode.subtitlesSet) {
+        MWFeedItemSubTitle *subItem = [[MWFeedItemSubTitle alloc] init];
+        subItem.languageCode = subtitle.languageCode;
+        subItem.link = subtitle.link;
+        [subtitle setType:subtitle.type];
+        [tempArray addObject:subItem];
+    }
+    self.subtitles = [NSArray arrayWithArray:tempArray];
     
     return self;
 }
@@ -79,6 +90,15 @@
     self.nodeUrl = rssNode.nodeUrl;
     self.nodeImage = rssNode.nodeImage;
     
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (Subtitle *subtitle in rssNode.subtitlesSet) {
+        MWFeedItemSubTitle *subItem = [[MWFeedItemSubTitle alloc] init];
+        subItem.languageCode = subtitle.languageCode;
+        subItem.link = subtitle.link;
+        [subtitle setType:subtitle.type];
+        [tempArray addObject:subItem];
+    }
+    self.subtitles = [NSArray arrayWithArray:tempArray];
     return self;
 }
 

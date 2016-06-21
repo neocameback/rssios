@@ -24,6 +24,18 @@
     self.nodeLink = temp.nodeLink;
     self.nodeType = temp.nodeType;
     self.isDeletedFlag = temp.isDeletedFlag;
+    
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (MWFeedItemSubTitle *sub in temp.subtitles) {
+        Subtitle *subtitle = [Subtitle MR_createEntity];
+        subtitle.createdAt = [NSDate date];
+        
+        [subtitle setBookmarkedNode:self];
+        [subtitle initFromSubtitleItem:sub];
+        
+        [tempArray addObject:subtitle];
+    }
+    self.subtitles = [NSOrderedSet orderedSetWithArray:tempArray];
 }
 
 @end

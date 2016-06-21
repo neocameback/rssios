@@ -11,6 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class Subtitle;
+
 @interface NodeID : NSManagedObjectID {}
 @end
 
@@ -51,6 +53,24 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable) NSString* nodeUrl;
 
 @property (nonatomic, strong, nullable) NSDate* updatedAt;
+
+@property (nonatomic, strong, nullable) NSOrderedSet<Subtitle*> *subtitles;
+- (nullable NSMutableOrderedSet<Subtitle*>*)subtitlesSet;
+
+@end
+
+@interface _Node (SubtitlesCoreDataGeneratedAccessors)
+- (void)addSubtitles:(NSOrderedSet<Subtitle*>*)value_;
+- (void)removeSubtitles:(NSOrderedSet<Subtitle*>*)value_;
+- (void)addSubtitlesObject:(Subtitle*)value_;
+- (void)removeSubtitlesObject:(Subtitle*)value_;
+
+- (void)insertObject:(Subtitle*)value inSubtitlesAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromSubtitlesAtIndex:(NSUInteger)idx;
+- (void)insertSubtitles:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeSubtitlesAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInSubtitlesAtIndex:(NSUInteger)idx withObject:(Subtitle*)value;
+- (void)replaceSubtitlesAtIndexes:(NSIndexSet *)indexes withSubtitles:(NSArray *)values;
 
 @end
 
@@ -98,6 +118,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSDate*)primitiveUpdatedAt;
 - (void)setPrimitiveUpdatedAt:(NSDate*)value;
 
+- (NSMutableOrderedSet<Subtitle*>*)primitiveSubtitles;
+- (void)setPrimitiveSubtitles:(NSMutableOrderedSet<Subtitle*>*)value;
+
 @end
 
 @interface NodeAttributes: NSObject 
@@ -113,6 +136,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)nodeType;
 + (NSString *)nodeUrl;
 + (NSString *)updatedAt;
+@end
+
+@interface NodeRelationships: NSObject
++ (NSString *)subtitles;
 @end
 
 NS_ASSUME_NONNULL_END

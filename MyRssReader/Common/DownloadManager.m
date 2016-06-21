@@ -52,9 +52,22 @@ static NSOperationQueue *operationQueue;
     [savedFile setThumbnail:node.nodeImage];
     [savedFile setUpdatedAt:[NSDate date]];
     
+    /**
+     *  download subtitle also
+     */
+    for (MWFeedItemSubTitle *subItem in node.subtitles) {
+        Subtitle *subtitle = [Subtitle MR_createEntity];
+        subtitle.createdAt = [NSDate date];
+        [subtitle initFromSubtitleItem:subItem];
+        [subtitle setName:node.nodeTitle];
+        [subtitle setFile:savedFile];
+        [savedFile.subtitlesSet addObject:subtitle];
+        
+        [self downloadSubtitle:subtitle];
+    }
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:node.nodeUrl]];
-
-    NSString *path = [Common getPathOfFile:savedFile.name extension:savedFile.type];
+    NSString *path = [savedFile getFilePath];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:path]) {
@@ -89,7 +102,7 @@ static NSOperationQueue *operationQueue;
             [savedFile setProgressValue:100];
             [savedFile setAbsoluteUrl:path];
             
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
             
             /**
              *  show success notice
@@ -114,6 +127,22 @@ static NSOperationQueue *operationQueue;
     }
 }
 
+-(void) downloadSubtitle:(Subtitle *) subtitle
+{
+    NSString *path = [subtitle getFilePath];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:subtitle.link]];
+    AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:path shouldResume:YES];
+    [operation setDeleteTempFileOnCancel:YES];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [subtitle MR_deleteEntity];
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
+    }];
+    [operation start];
+}
+
 -(void) resumeDownloadFile:(File*) savedFile
 {
     [savedFile setUpdatedAt:[NSDate date]];
@@ -126,17 +155,27 @@ static NSOperationQueue *operationQueue;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
     
-    NSString *path = [Common getPathOfFile:file.name extension:file.type];
+    NSString *path = [file getFilePath];
     
     BOOL fileExists = [fileManager fileExistsAtPath:path];
-    NSLog(@"Path to file: %@", path);
-    NSLog(@"File exists: %d", fileExists);
-    NSLog(@"Is deletable file at path: %d", [fileManager isDeletableFileAtPath:path]);
     if (fileExists)
     {
         BOOL success = [fileManager removeItemAtPath:path error:&error];
         if (!success) NSLog(@"Error: %@", [error localizedDescription]);
     }
+    /**
+     *  delete subtitle from document
+     */
+    for (Subtitle *subtitle in file.subtitlesSet) {
+        NSString *path = [subtitle getFilePath];
+        BOOL fileExists = [fileManager fileExistsAtPath:path];
+        if (fileExists)
+        {
+            BOOL success = [fileManager removeItemAtPath:path error:&error];
+            if (!success) NSLog(@"Error: %@", [error localizedDescription]);
+        }
+    }
+    
     /**
      *  delete from db
      */

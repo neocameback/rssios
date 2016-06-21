@@ -45,6 +45,8 @@
 		846565141B7BA57700C9E99E /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 846565121B7BA57700C9E99E /* File.m */; };
 		B648CF081D1102C40030FE69 /* BaseNodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B648CF061D1102C40030FE69 /* BaseNodeListViewController.m */; };
 		B648CF091D1102C40030FE69 /* BaseNodeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B648CF071D1102C40030FE69 /* BaseNodeListViewController.xib */; };
+		B65A72FB1D19196500504151 /* _Subtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = B65A72F81D19196400504151 /* _Subtitle.m */; };
+		B65A72FC1D19196500504151 /* Subtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = B65A72FA1D19196500504151 /* Subtitle.m */; };
 		B6A1CC301D17F1C90026430B /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1CC2F1D17F1C90026430B /* Singleton.m */; };
 		B6A1CC331D17F8DB0026430B /* MWFeedItemSubTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1CC321D17F8DB0026430B /* MWFeedItemSubTitle.m */; };
 		B6A1CC361D17FA2C0026430B /* NSDictionary+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1CC351D17FA2C0026430B /* NSDictionary+Helper.m */; };
@@ -199,6 +201,10 @@
 		B648CF061D1102C40030FE69 /* BaseNodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNodeListViewController.m; sourceTree = "<group>"; };
 		B648CF071D1102C40030FE69 /* BaseNodeListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseNodeListViewController.xib; sourceTree = "<group>"; };
 		B648CF0A1D1136170030FE69 /* Model2.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.1.xcdatamodel; sourceTree = "<group>"; };
+		B65A72F71D19196400504151 /* _Subtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Subtitle.h; sourceTree = "<group>"; };
+		B65A72F81D19196400504151 /* _Subtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Subtitle.m; sourceTree = "<group>"; };
+		B65A72F91D19196500504151 /* Subtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subtitle.h; sourceTree = "<group>"; };
+		B65A72FA1D19196500504151 /* Subtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Subtitle.m; sourceTree = "<group>"; };
 		B6A1CC2E1D17F1C90026430B /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		B6A1CC2F1D17F1C90026430B /* Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Singleton.m; sourceTree = "<group>"; };
 		B6A1CC311D17F8DB0026430B /* MWFeedItemSubTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedItemSubTitle.h; sourceTree = "<group>"; };
@@ -645,6 +651,8 @@
 		DE233F721B70A9AD00C02DD6 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				B65A72F71D19196400504151 /* _Subtitle.h */,
+				B65A72F81D19196400504151 /* _Subtitle.m */,
 				DE233F821B70AA1B00C02DD6 /* _Node.h */,
 				DE233F831B70AA1B00C02DD6 /* _Node.m */,
 				DE233F841B70AA1B00C02DD6 /* _Rss.h */,
@@ -658,6 +666,8 @@
 				DE1AE5711B8DC92F008C44F8 /* RssNode.m */,
 				846565111B7BA57700C9E99E /* File.h */,
 				846565121B7BA57700C9E99E /* File.m */,
+				B65A72F91D19196500504151 /* Subtitle.h */,
+				B65A72FA1D19196500504151 /* Subtitle.m */,
 				DE233F751B70A9AD00C02DD6 /* Node.h */,
 				DE233F761B70A9AD00C02DD6 /* Node.m */,
 				DE233F771B70A9AD00C02DD6 /* Rss.h */,
@@ -956,7 +966,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" a99ba62ff0c8764f735c11010f5bf96f34223641 217f2bae0dca40919750a5b22dd689335eaf8ac068395b0c1efbd19c8a38a2b4";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" a99ba62ff0c8764f735c11010f5bf96f34223641 217f2bae0dca40919750a5b22dd689335eaf8ac068395b0c1efbd19c8a38a2b4";
 		};
 		8BAA930CD2D344B2B2C5363B /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1009,6 +1019,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6A1CC301D17F1C90026430B /* Singleton.m in Sources */,
+				B65A72FC1D19196500504151 /* Subtitle.m in Sources */,
 				DE233F871B70AA1B00C02DD6 /* _Rss.m in Sources */,
 				DE1AE55E1B8DA40B008C44F8 /* RssListViewController.m in Sources */,
 				DE233F7B1B70A9AD00C02DD6 /* Rss.m in Sources */,
@@ -1043,6 +1054,7 @@
 				E5BCE8531D1460AC00580653 /* ASBPlayerSubtitling.m in Sources */,
 				DE233F791B70A9AD00C02DD6 /* Model.xcdatamodeld in Sources */,
 				DE1AE55B1B8DA40B008C44F8 /* NodeListViewController.m in Sources */,
+				B65A72FB1D19196500504151 /* _Subtitle.m in Sources */,
 				DE1AE5661B8DA42F008C44F8 /* Common.m in Sources */,
 				DE1AE54F1B8DA40B008C44F8 /* AboutViewController.m in Sources */,
 				DE1AE5531B8DA40B008C44F8 /* DownloadManageTableViewCell.m in Sources */,

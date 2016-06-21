@@ -27,7 +27,7 @@
     if (self.currentNode) {
         _downloadedFile = [File MR_findFirstByAttribute:@"url" withValue:self.currentNode.nodeUrl];
         if (_downloadedFile) {
-            NSString *path = [Common getPathOfFile:_downloadedFile.name extension:_downloadedFile.type];
+            NSString *path = [_downloadedFile getFilePath];
             [self.myPlayer setURL:[NSURL fileURLWithPath:path]];
             [self.myPlayer play];
         }else{
@@ -35,10 +35,11 @@
             [self.myPlayer play];
         }
     }else{
-        NSString *path = [Common getPathOfFile:_downloadedFile.name extension:_downloadedFile.type];
+        NSString *path = [_downloadedFile getFilePath];
         [self.myPlayer setURL:[NSURL fileURLWithPath:path]];
         [self.myPlayer play];
     }
+    [self loadSubtitle];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
 }
 
@@ -84,18 +85,24 @@
     [self.myPlayer didMoveToParentViewController:self];
     [self.myPlayer setDelegate:self];
     
+}
+
+-(void) loadSubtitle
+{
     if (_downloadedFile) {
         [self.myPlayer hideDownloadButton];
+        
+        if (_downloadedFile.subtitlesSet.count > 0) {
+            /**
+             *  add example subtitle
+             */
+            NSURL *subtitlesURL = [NSURL fileURLWithPath:[_downloadedFile.subtitlesSet.firstObject getFilePath]];
+            NSError *error = nil;
+            self.subtitling.player = [self.myPlayer player];
+            [self.subtitling loadSubtitlesAtURL:subtitlesURL error:&error];
+            self.subtitling.containerView.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.5].CGColor;
+        }
     }
-    
-    /**
-     *  add example subtitle
-     */
-    NSURL *subtitlesURL = [[NSBundle mainBundle] URLForResource:@"welcome" withExtension:@"srt"];
-    NSError *error = nil;
-    self.subtitling.player = [self.myPlayer player];
-    [self.subtitling loadSubtitlesAtURL:subtitlesURL error:&error];
-    self.subtitling.containerView.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.5].CGColor;
 }
 
 -(MyCustomerPlayer *) videoPlayer

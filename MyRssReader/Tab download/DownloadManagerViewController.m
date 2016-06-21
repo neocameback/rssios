@@ -146,7 +146,7 @@
     switch (recipe.stateValue) {
         case DownloadStateCompleted:
         {
-            NSString *path = [Common getPathOfFile:recipe.name extension:recipe.type];
+            NSString *path = [recipe getFilePath];
             
             NSLog(@"open video at path: %@",path);
             if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {

@@ -353,7 +353,7 @@
     UIAlertAction *enterNameAction = [UIAlertAction actionWithTitle:@"New name" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
        [self showAlertEnterFileName];
     }];
-    UIAlertAction *defaultNameAction = [UIAlertAction actionWithTitle:@"Use default" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *defaultNameAction = [UIAlertAction actionWithTitle:@"Use default name" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         RssNodeModel *node = self.nodeList[willDownloadAtIndex];
         [[DownloadManager shareManager] downloadNode:node fromView:self];
     }];

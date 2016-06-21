@@ -10,4 +10,8 @@
 
 // Custom logic goes here.
 
+-(NSString *) getFilePath
+{
+    return [Common getPathOfFile:self.name extension:self.type];
+}
 @end
