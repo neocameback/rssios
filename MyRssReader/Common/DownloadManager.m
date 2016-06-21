@@ -55,6 +55,7 @@ static NSOperationQueue *operationQueue;
     /**
      *  download subtitle also
      */
+    [savedFile.subtitlesSet removeAllObjects];
     for (MWFeedItemSubTitle *subItem in node.subtitles) {
         Subtitle *subtitle = [Subtitle MR_createEntity];
         subtitle.createdAt = [NSDate date];

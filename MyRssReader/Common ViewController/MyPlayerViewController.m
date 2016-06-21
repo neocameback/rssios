@@ -90,7 +90,7 @@
 -(void) loadSubtitle
 {
     if (_downloadedFile) {
-        [self.myPlayer hideDownloadButton];
+        [self.myPlayer hideDownloadButton:YES];
         
         if (_downloadedFile.subtitlesSet.count > 0) {
             /**
@@ -101,7 +101,13 @@
             self.subtitling.player = [self.myPlayer player];
             [self.subtitling loadSubtitlesAtURL:subtitlesURL error:&error];
             self.subtitling.containerView.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.5].CGColor;
+            
+            [self.myPlayer hideCaptionButton:NO];
+        }else{
+            [self.myPlayer hideCaptionButton:YES];
         }
+    }else{
+        [self.myPlayer hideDownloadButton:NO];
     }
 }
 
@@ -135,6 +141,11 @@
     [alertController addAction:defaultNameAction];
     [alertController addAction:cancelAction];
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+-(void) myCustomPlayer:(MyCustomerPlayer *)playerView didTapOnClosedCaption:(id)sender
+{
+    
 }
 
 -(void) myCustomPlayerprepareToPlay:(MyCustomerPlayer *) playerView

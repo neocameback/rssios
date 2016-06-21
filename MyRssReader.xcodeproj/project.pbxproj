@@ -47,6 +47,9 @@
 		B648CF091D1102C40030FE69 /* BaseNodeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B648CF071D1102C40030FE69 /* BaseNodeListViewController.xib */; };
 		B65A72FB1D19196500504151 /* _Subtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = B65A72F81D19196400504151 /* _Subtitle.m */; };
 		B65A72FC1D19196500504151 /* Subtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = B65A72FA1D19196500504151 /* Subtitle.m */; };
+		B65A73001D19542900504151 /* closed-caption.png in Resources */ = {isa = PBXBuildFile; fileRef = B65A72FD1D19542900504151 /* closed-caption.png */; };
+		B65A73011D19542900504151 /* closed-caption@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B65A72FE1D19542900504151 /* closed-caption@2x.png */; };
+		B65A73021D19542900504151 /* closed-caption@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B65A72FF1D19542900504151 /* closed-caption@3x.png */; };
 		B6A1CC301D17F1C90026430B /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1CC2F1D17F1C90026430B /* Singleton.m */; };
 		B6A1CC331D17F8DB0026430B /* MWFeedItemSubTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1CC321D17F8DB0026430B /* MWFeedItemSubTitle.m */; };
 		B6A1CC361D17FA2C0026430B /* NSDictionary+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1CC351D17FA2C0026430B /* NSDictionary+Helper.m */; };
@@ -205,6 +208,9 @@
 		B65A72F81D19196400504151 /* _Subtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Subtitle.m; sourceTree = "<group>"; };
 		B65A72F91D19196500504151 /* Subtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subtitle.h; sourceTree = "<group>"; };
 		B65A72FA1D19196500504151 /* Subtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Subtitle.m; sourceTree = "<group>"; };
+		B65A72FD1D19542900504151 /* closed-caption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closed-caption.png"; sourceTree = "<group>"; };
+		B65A72FE1D19542900504151 /* closed-caption@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closed-caption@2x.png"; sourceTree = "<group>"; };
+		B65A72FF1D19542900504151 /* closed-caption@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closed-caption@3x.png"; sourceTree = "<group>"; };
 		B6A1CC2E1D17F1C90026430B /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		B6A1CC2F1D17F1C90026430B /* Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Singleton.m; sourceTree = "<group>"; };
 		B6A1CC311D17F8DB0026430B /* MWFeedItemSubTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedItemSubTitle.h; sourceTree = "<group>"; };
@@ -679,6 +685,9 @@
 		DEB54D731933344800EC589E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B65A72FD1D19542900504151 /* closed-caption.png */,
+				B65A72FE1D19542900504151 /* closed-caption@2x.png */,
+				B65A72FF1D19542900504151 /* closed-caption@3x.png */,
 				B6B4A3941D140CCF0000DD02 /* ic_player_pause.png */,
 				B6B4A3951D140CCF0000DD02 /* ic_player_pause@2x.png */,
 				B6B4A3961D140CCF0000DD02 /* ic_player_pause@3x.png */,
@@ -881,6 +890,7 @@
 				DEB54D7D193336BE00EC589E /* rate_star_0@2x.png in Resources */,
 				42C70C19193CBE3500736BCF /* icon-144.png in Resources */,
 				B6B4A3981D140CCF0000DD02 /* ic_player_pause@2x.png in Resources */,
+				B65A73011D19542900504151 /* closed-caption@2x.png in Resources */,
 				E5D3B9951D11ABA100F3E400 /* download-arrow.png in Resources */,
 				DE210913194FE8A10026F481 /* close.png in Resources */,
 				42C70C12193CBE3500736BCF /* icon-57.png in Resources */,
@@ -925,9 +935,11 @@
 				DEC5DD2019357EDC0088A62F /* ic_home_press.png in Resources */,
 				DE1AE5501B8DA40B008C44F8 /* AboutViewController.xib in Resources */,
 				DE17B2C21B7C7C2800905EEE /* icon_check_status.png in Resources */,
+				B65A73001D19542900504151 /* closed-caption.png in Resources */,
 				DEC5DD2B19357EDC0088A62F /* ic_about_press@2x.png in Resources */,
 				DE22E7CB192F54180005E685 /* Images.xcassets in Resources */,
 				DEB54D7C193336BE00EC589E /* rate_star_0.png in Resources */,
+				B65A73021D19542900504151 /* closed-caption@3x.png in Resources */,
 				DEC5DD2319357EDC0088A62F /* ic_favorites_press@2x.png in Resources */,
 				DEB54D7E193336BE00EC589E /* rate_star_1.png in Resources */,
 				B6B4A3911D140C800000DD02 /* ic_player_play.png in Resources */,

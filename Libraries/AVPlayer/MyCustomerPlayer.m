@@ -606,10 +606,16 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
     [self preparePlayerItem:playerItem];
 }
 
-- (void) hideDownloadButton
+- (void) hideDownloadButton:(BOOL) hidden
 {
-    [btDownload setHidden:YES];
+    [btDownload setHidden:hidden];
 }
+
+-(void) hideCaptionButton:(BOOL) hidden
+{
+    [btClosedCaption setHidden:hidden];
+}
+
 #pragma mark - Playback
 
 - (void)play
@@ -721,6 +727,12 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
 - (IBAction)onDowload:(id)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(myCustomPlayer:didTapOnDownload:)]) {
         [self.delegate myCustomPlayer:self didTapOnDownload:sender];
+    }
+}
+
+- (IBAction)onShowCaption:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(myCustomPlayer:didTapOnClosedCaption:)]) {
+        [self.delegate myCustomPlayer:self didTapOnClosedCaption:sender];
     }
 }
 

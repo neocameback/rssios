@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -15,6 +15,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyCustomerPlayer">
             <connections>
                 <outlet property="btClose" destination="fQj-oE-rLZ" id="NYv-CN-kG3"/>
+                <outlet property="btClosedCaption" destination="DLV-Tf-wQH" id="gto-ms-Zwg"/>
                 <outlet property="btDownload" destination="wWr-k6-AK7" id="k51-64-6Tc"/>
                 <outlet property="btPlay" destination="ILr-F5-emI" id="Zhc-Dp-9dp"/>
                 <outlet property="lbDuration" destination="v8k-up-MsV" id="CIt-Gd-77T"/>
@@ -51,8 +52,8 @@
                                         <action selector="onClose:" destination="-1" eventType="touchUpInside" id="xeg-1q-JRM"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWr-k6-AK7">
-                                    <rect key="frame" x="335" y="0.0" width="40" height="30"/>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWr-k6-AK7">
+                                    <rect key="frame" x="327" y="0.0" width="40" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="40" id="DM2-pq-Xw1"/>
                                     </constraints>
@@ -63,10 +64,26 @@
                                         <action selector="onDowload:" destination="-1" eventType="touchUpInside" id="4YR-Ln-V79"/>
                                     </connections>
                                 </button>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLV-Tf-wQH">
+                                    <rect key="frame" x="283" y="0.0" width="40" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="pZk-uA-bHy"/>
+                                    </constraints>
+                                    <state key="normal" image="closed-caption.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="onDowload:" destination="-1" eventType="touchUpInside" id="7kW-eO-FCJ"/>
+                                        <action selector="onShowCaption:" destination="-1" eventType="touchUpInside" id="um4-R8-SFe"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="wWr-k6-AK7" secondAttribute="trailing" id="J08-H4-7ub"/>
+                                <constraint firstItem="DLV-Tf-wQH" firstAttribute="top" secondItem="QYe-Z1-0x9" secondAttribute="top" id="38k-Bw-tG4"/>
+                                <constraint firstItem="wWr-k6-AK7" firstAttribute="leading" secondItem="DLV-Tf-wQH" secondAttribute="trailing" constant="4" id="Icr-ir-Vhl"/>
+                                <constraint firstAttribute="trailing" secondItem="wWr-k6-AK7" secondAttribute="trailing" constant="8" id="J08-H4-7ub"/>
+                                <constraint firstAttribute="bottom" secondItem="DLV-Tf-wQH" secondAttribute="bottom" id="MgK-Ab-6O9"/>
                                 <constraint firstItem="fQj-oE-rLZ" firstAttribute="centerY" secondItem="QYe-Z1-0x9" secondAttribute="centerY" id="QLe-Xu-g4K"/>
                                 <constraint firstAttribute="bottom" secondItem="wWr-k6-AK7" secondAttribute="bottom" id="VSf-Wu-bVP"/>
                                 <constraint firstItem="fQj-oE-rLZ" firstAttribute="leading" secondItem="QYe-Z1-0x9" secondAttribute="leading" id="VtG-d8-ccU"/>
@@ -74,6 +91,11 @@
                                 <constraint firstItem="wWr-k6-AK7" firstAttribute="top" secondItem="QYe-Z1-0x9" secondAttribute="top" id="dsm-3D-maf"/>
                                 <constraint firstAttribute="height" constant="30" id="r9M-0t-ZWg"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Xg5-Tu-NIr"/>
+                                </mask>
+                            </variation>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Czb-Sl-k7F">
                             <rect key="frame" x="0.0" y="150" width="375" height="30"/>
@@ -152,6 +174,7 @@
         </view>
     </objects>
     <resources>
+        <image name="closed-caption.png" width="30" height="30"/>
         <image name="download-arrow.png" width="30" height="30"/>
         <image name="ic_close.png" width="18" height="18"/>
         <image name="ic_player_pause.png" width="36" height="36"/>

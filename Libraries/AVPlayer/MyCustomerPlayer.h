@@ -16,6 +16,7 @@
 -(void) myCustomPlayerFinishedPlayback:(MyCustomerPlayer *) view;
 -(void) myCustomPlayer:(MyCustomerPlayer *) playerView didTapOnClose:(id) sender;
 -(void) myCustomPlayer:(MyCustomerPlayer *) playerView didTapOnDownload:(id) sender;
+-(void) myCustomPlayer:(MyCustomerPlayer *) playerView didTapOnClosedCaption:(id) sender;
 
 
 -(void) myCustomPlayerprepareToPlay:(MyCustomerPlayer *) playerView;
@@ -37,6 +38,7 @@
     /// action buttons
     __weak IBOutlet UIButton *btClose;
     __weak IBOutlet UIButton *btDownload;
+    __weak IBOutlet UIButton *btClosedCaption;
     
     /// view over lay
     __weak IBOutlet UIView *viewOverlay;
@@ -55,7 +57,8 @@
 - (void)setPlayerItem:(AVPlayerItem *)playerItem;
 - (void)setAsset:(AVAsset *)asset;
 
-- (void) hideDownloadButton;
+- (void) hideDownloadButton:(BOOL) hidden;
+-(void) hideCaptionButton:(BOOL) hidden;
 // Playback
 - (void)play;
 - (void)pause;
