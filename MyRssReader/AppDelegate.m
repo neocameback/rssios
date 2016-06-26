@@ -56,13 +56,10 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    [[DownloadManager shareManager] cancelDownloadingTasks];
+    
     // init core data
     [MagicalRecord setupAutoMigratingCoreDataStack];
-    
-//    [JDStatusBarNotification setDefaultStyle:^JDStatusBarStyle *(JDStatusBarStyle *style) {
-//        JDStatusBarStyle *style = JDStatusBarStyleDark;
-//        return nil;
-//    }];
     
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
