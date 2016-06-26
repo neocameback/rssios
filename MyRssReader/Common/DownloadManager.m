@@ -62,6 +62,7 @@ static NSOperationQueue *operationQueue;
         [subtitle initFromSubtitleItem:subItem];
         [subtitle setName:node.nodeTitle];
         [subtitle setFile:savedFile];
+        
         [savedFile.subtitlesSet addObject:subtitle];
         
         [self downloadSubtitle:subtitle];

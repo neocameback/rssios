@@ -10,8 +10,9 @@
 #import "DownloadManager.h"
 #import "MyCustomerPlayer.h"
 #import "ASBPlayerSubtitling.h"
+#import "SubtitleSelectionViewController.h"
 
-@interface MyPlayerViewController () <MyCustomerPlayerDelegate>
+@interface MyPlayerViewController () <MyCustomerPlayerDelegate, SubtitleSelectionViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet ASBPlayerSubtitling *subtitling;
 @property (nonatomic, strong) MyCustomerPlayer *myPlayer;
 @end
@@ -145,7 +146,11 @@
 
 -(void) myCustomPlayer:(MyCustomerPlayer *)playerView didTapOnClosedCaption:(id)sender
 {
-    
+    SubtitleSelectionViewController *viewcontroller = [[SubtitleSelectionViewController alloc] initWithNibName:NSStringFromClass([SubtitleSelectionViewController class]) bundle:nil];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewcontroller];
+    [viewcontroller setDownloadedFile:_downloadedFile];
+    [viewcontroller setDelegate:self];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 -(void) myCustomPlayerprepareToPlay:(MyCustomerPlayer *) playerView
@@ -204,6 +209,23 @@
             break;
         default:
             break;
+    }
+}
+
+#pragma mark SubtitleSelectionViewControllerDelegate
+-(void) subtitleSelectionViewController:(SubtitleSelectionViewController *)viewcontroller didSelectSubWithUrl:(NSString *)url
+{
+    if (!url) {
+        [self.subtitling removeSubtitles];
+    }else{
+        NSError *error = nil;
+        [self.subtitling loadSubtitlesAtURL:[NSURL fileURLWithPath:url] error:&error];
+        if (error) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        }else{
+            [self.myPlayer play];
+        }
     }
 }
 

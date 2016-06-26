@@ -166,6 +166,9 @@
 		DEF496161934349F00DD482D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF496151934349F00DD482D /* Reachability.m */; };
 		DEF49619193435FD00DD482D /* NSUserDefaults+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF49618193435FD00DD482D /* NSUserDefaults+Helper.m */; };
 		DEF4961C1934376700DD482D /* UIAlertView+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF4961B1934376700DD482D /* UIAlertView+Helper.m */; };
+		E5AA3F941D1FDE91000B7B37 /* SubtitleSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AA3F921D1FDE91000B7B37 /* SubtitleSelectionViewController.m */; };
+		E5AA3F951D1FDE91000B7B37 /* SubtitleSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5AA3F931D1FDE91000B7B37 /* SubtitleSelectionViewController.xib */; };
+		E5AA3F981D1FE188000B7B37 /* SubtitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AA3F971D1FE188000B7B37 /* SubtitleModel.m */; };
 		E5B7BAB91D10700900B7CC03 /* RssManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B7BAB81D10700900B7CC03 /* RssManager.m */; };
 		E5BCE8501D1455EB00580653 /* welcome.srt in Resources */ = {isa = PBXBuildFile; fileRef = E5BCE84F1D1455EB00580653 /* welcome.srt */; };
 		E5BCE8531D1460AC00580653 /* ASBPlayerSubtitling.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BCE8511D1460AC00580653 /* ASBPlayerSubtitling.m */; };
@@ -380,6 +383,11 @@
 		DEF49618193435FD00DD482D /* NSUserDefaults+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Helper.m"; sourceTree = "<group>"; };
 		DEF4961A1934376700DD482D /* UIAlertView+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Helper.h"; sourceTree = "<group>"; };
 		DEF4961B1934376700DD482D /* UIAlertView+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Helper.m"; sourceTree = "<group>"; };
+		E5AA3F911D1FDE91000B7B37 /* SubtitleSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubtitleSelectionViewController.h; sourceTree = "<group>"; };
+		E5AA3F921D1FDE91000B7B37 /* SubtitleSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubtitleSelectionViewController.m; sourceTree = "<group>"; };
+		E5AA3F931D1FDE91000B7B37 /* SubtitleSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubtitleSelectionViewController.xib; sourceTree = "<group>"; };
+		E5AA3F961D1FE188000B7B37 /* SubtitleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubtitleModel.h; sourceTree = "<group>"; };
+		E5AA3F971D1FE188000B7B37 /* SubtitleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubtitleModel.m; sourceTree = "<group>"; };
 		E5B7BAB71D10700900B7CC03 /* RssManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RssManager.h; sourceTree = "<group>"; };
 		E5B7BAB81D10700900B7CC03 /* RssManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RssManager.m; sourceTree = "<group>"; };
 		E5BCE84F1D1455EB00580653 /* welcome.srt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = welcome.srt; sourceTree = "<group>"; };
@@ -472,6 +480,9 @@
 				B6B4A37D1D140B4B0000DD02 /* MyPlayerViewController.h */,
 				B6B4A37E1D140B4B0000DD02 /* MyPlayerViewController.m */,
 				B6B4A37F1D140B4B0000DD02 /* MyPlayerViewController.xib */,
+				E5AA3F911D1FDE91000B7B37 /* SubtitleSelectionViewController.h */,
+				E5AA3F921D1FDE91000B7B37 /* SubtitleSelectionViewController.m */,
+				E5AA3F931D1FDE91000B7B37 /* SubtitleSelectionViewController.xib */,
 			);
 			path = "Common ViewController";
 			sourceTree = "<group>";
@@ -552,6 +563,8 @@
 				DE1AE5691B8DA567008C44F8 /* RssNodeModel.m */,
 				DE1AE56A1B8DA567008C44F8 /* RssModel.h */,
 				DE1AE56B1B8DA567008C44F8 /* RssModel.m */,
+				E5AA3F961D1FE188000B7B37 /* SubtitleModel.h */,
+				E5AA3F971D1FE188000B7B37 /* SubtitleModel.m */,
 			);
 			path = "Model Object";
 			sourceTree = "<group>";
@@ -928,6 +941,7 @@
 				DE1F7E001B73064900C53E95 /* Launch Screen.xib in Resources */,
 				DE17B2C31B7C7C2800905EEE /* icon_check_status@2x.png in Resources */,
 				DEC5DD2219357EDC0088A62F /* ic_home_normal.png in Resources */,
+				E5AA3F951D1FDE91000B7B37 /* SubtitleSelectionViewController.xib in Resources */,
 				B6B4A3921D140C800000DD02 /* ic_player_play@2x.png in Resources */,
 				DEB54D771933345000EC589E /* default_rss_img@2x.png in Resources */,
 				B6B4A3871D140BE60000DD02 /* MyCustomerPlayer.xib in Resources */,
@@ -1043,6 +1057,7 @@
 				DE233F6B1B70A89F00C02DD6 /* GTMNSString+HTML.m in Sources */,
 				DE1AE5481B8DA40B008C44F8 /* Constant.m in Sources */,
 				DE233F711B70A89F00C02DD6 /* NSString+XMLEntities.m in Sources */,
+				E5AA3F981D1FE188000B7B37 /* SubtitleModel.m in Sources */,
 				DE233F7A1B70A9AD00C02DD6 /* Node.m in Sources */,
 				DEE77B561B9007E800F1C352 /* FileListViewController.m in Sources */,
 				846565141B7BA57700C9E99E /* File.m in Sources */,
@@ -1077,6 +1092,7 @@
 				B6B4A3861D140BE60000DD02 /* MyCustomerPlayer.m in Sources */,
 				DE1AE5601B8DA40B008C44F8 /* WebViewViewController.m in Sources */,
 				DEF496161934349F00DD482D /* Reachability.m in Sources */,
+				E5AA3F941D1FDE91000B7B37 /* SubtitleSelectionViewController.m in Sources */,
 				B648CF081D1102C40030FE69 /* BaseNodeListViewController.m in Sources */,
 				DE1AE56D1B8DA567008C44F8 /* RssModel.m in Sources */,
 				DE22E7C5192F54180005E685 /* main.m in Sources */,
