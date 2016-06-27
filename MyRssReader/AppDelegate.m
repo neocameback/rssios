@@ -18,6 +18,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import <JDStatusBarNotification.h>
 #import "DownloadManager.h"
+#import <Firebase.h>
 
 @interface AppDelegate() 
 {    
@@ -28,6 +29,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    // Use Firebase library to configure APIs
+    [FIRApp configure];
     
     [Fabric with:@[[Crashlytics class]]];
 
@@ -56,10 +60,10 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    [[DownloadManager shareManager] cancelDownloadingTasks];
-    
     // init core data
     [MagicalRecord setupAutoMigratingCoreDataStack];
+    
+    [[DownloadManager shareManager] cancelDownloadingTasks];
     
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
