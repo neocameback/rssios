@@ -318,7 +318,7 @@
 -(GADInterstitial*) createAndLoadInterstital
 {
     GADRequest *request = [GADRequest request];
-    request.testDevices = @[ kGADSimulatorID ];
+//    request.testDevices = @[ kGADSimulatorID ];
     GADInterstitial *interstitial = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
     interstitial.delegate = self;
     [interstitial loadRequest:request];

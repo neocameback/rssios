@@ -37,12 +37,11 @@
     
     // Specify the ad unit ID.
     [_bannerView_ setAdSize:kGADAdSizeBanner];
-    _bannerView_.adUnitID = @"ca-app-pub-8422191650855912/5422546188";
+    _bannerView_.adUnitID = @"ca-app-pub-8422191650855912/2270603386";
     // Let the runtime know which UIViewController to restore after taking
     // the user wherever the ad goes and add it to the view hierarchy.
     _bannerView_.rootViewController = self;
     // Initiate a generic request to load it with an ad.
-    [_bannerView_ loadRequest:[GADRequest request]];
 }
 
 -(void) viewWillAppear:(BOOL)animated

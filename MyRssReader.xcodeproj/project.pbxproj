@@ -50,6 +50,7 @@
 		B65A73001D19542900504151 /* closed-caption.png in Resources */ = {isa = PBXBuildFile; fileRef = B65A72FD1D19542900504151 /* closed-caption.png */; };
 		B65A73011D19542900504151 /* closed-caption@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B65A72FE1D19542900504151 /* closed-caption@2x.png */; };
 		B65A73021D19542900504151 /* closed-caption@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B65A72FF1D19542900504151 /* closed-caption@3x.png */; };
+		B6931A031D223FA500F37718 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B6931A021D223FA500F37718 /* GoogleService-Info.plist */; };
 		B6A1CC301D17F1C90026430B /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1CC2F1D17F1C90026430B /* Singleton.m */; };
 		B6A1CC331D17F8DB0026430B /* MWFeedItemSubTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1CC321D17F8DB0026430B /* MWFeedItemSubTitle.m */; };
 		B6A1CC361D17FA2C0026430B /* NSDictionary+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A1CC351D17FA2C0026430B /* NSDictionary+Helper.m */; };
@@ -214,6 +215,7 @@
 		B65A72FD1D19542900504151 /* closed-caption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closed-caption.png"; sourceTree = "<group>"; };
 		B65A72FE1D19542900504151 /* closed-caption@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closed-caption@2x.png"; sourceTree = "<group>"; };
 		B65A72FF1D19542900504151 /* closed-caption@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closed-caption@3x.png"; sourceTree = "<group>"; };
+		B6931A021D223FA500F37718 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B6A1CC2E1D17F1C90026430B /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		B6A1CC2F1D17F1C90026430B /* Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Singleton.m; sourceTree = "<group>"; };
 		B6A1CC311D17F8DB0026430B /* MWFeedItemSubTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedItemSubTitle.h; sourceTree = "<group>"; };
@@ -634,6 +636,7 @@
 		DE22E7BF192F54180005E685 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B6931A021D223FA500F37718 /* GoogleService-Info.plist */,
 				DE22E7C0192F54180005E685 /* MyRssReader-Info.plist */,
 				DE22E7C1192F54180005E685 /* InfoPlist.strings */,
 				DE22E7C4192F54180005E685 /* main.m */,
@@ -914,6 +917,7 @@
 				DEC5DD2E19357EDC0088A62F /* ic_about_normal.png in Resources */,
 				42C70C1C193CBE3500736BCF /* iTunesArtwork@2x.png in Resources */,
 				B6B4A3731D13E20D0000DD02 /* icon_tick@2x.png in Resources */,
+				B6931A031D223FA500F37718 /* GoogleService-Info.plist in Resources */,
 				DEC5DD2C19357EDC0088A62F /* ic_about_press.png in Resources */,
 				DEC5DD2419357EDC0088A62F /* ic_favorites_press.png in Resources */,
 				DE1AE55F1B8DA40B008C44F8 /* RssListViewController.xib in Resources */,
@@ -1319,7 +1323,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rssvideoplayer.Rss-Video-Player";
 				PRODUCT_NAME = "Rss Player";
-				PROVISIONING_PROFILE = "e7f78932-c60b-4067-a6c6-983c43ccda01";
+				PROVISIONING_PROFILE = "20486f45-c617-4e73-a82a-4551e5127e3e";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
