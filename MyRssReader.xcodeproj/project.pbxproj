@@ -1325,7 +1325,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rssvideoplayer.Rss-Video-Player";
 				PRODUCT_NAME = "Rss Player";
-				PROVISIONING_PROFILE = "20486f45-c617-4e73-a82a-4551e5127e3e";
+				PROVISIONING_PROFILE = "c5415072-da44-4b87-a591-b8350bc36d18";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

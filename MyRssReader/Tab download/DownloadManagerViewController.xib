@@ -17,15 +17,15 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2j2-TK-x37" customClass="GADBannerView">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2j2-TK-x37" customClass="GADNativeExpressAdView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="29X-yd-B1u"/>
+                        <constraint firstAttribute="height" constant="80" id="29X-yd-B1u"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hcA-6L-diE">
-                    <rect key="frame" x="0.0" y="50" width="600" height="550"/>
+                    <rect key="frame" x="0.0" y="80" width="600" height="520"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <connections>
@@ -41,7 +41,7 @@
                 <constraint firstAttribute="centerX" secondItem="hcA-6L-diE" secondAttribute="centerX" id="NEZ-78-xRz"/>
                 <constraint firstItem="2j2-TK-x37" firstAttribute="top" secondItem="0tG-oE-gbt" secondAttribute="top" id="Vxg-TN-eR1"/>
                 <constraint firstAttribute="trailing" secondItem="2j2-TK-x37" secondAttribute="trailing" id="Y32-NV-o9b"/>
-                <constraint firstItem="hcA-6L-diE" firstAttribute="top" secondItem="0tG-oE-gbt" secondAttribute="top" constant="50" id="md4-kL-K0r"/>
+                <constraint firstItem="hcA-6L-diE" firstAttribute="top" secondItem="2j2-TK-x37" secondAttribute="bottom" id="d0b-bK-fue"/>
                 <constraint firstAttribute="trailing" secondItem="hcA-6L-diE" secondAttribute="trailing" id="s60-zJ-d0D"/>
                 <constraint firstAttribute="bottom" secondItem="hcA-6L-diE" secondAttribute="bottom" id="xJq-qM-L5H"/>
             </constraints>

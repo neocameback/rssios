@@ -13,5 +13,7 @@
 @interface BaseViewController : GAITrackedViewController
 {
 }
-@property (nonatomic, strong) IBOutlet GADBannerView *bannerView_;
+//@property (nonatomic, strong) IBOutlet GADBannerView *bannerView_;
+@property(nonatomic, weak) IBOutlet GADNativeExpressAdView *bannerView_;
+
 @end

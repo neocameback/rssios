@@ -26,7 +26,7 @@
     [self initVideoPlayer];
     
     if (self.currentNode) {
-        _downloadedFile = [File MR_findFirstByAttribute:@"url" withValue:self.currentNode.nodeUrl];
+        _downloadedFile = [File MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"url == %@ AND progress == 100", self.currentNode.nodeUrl] sortedBy:@"url" ascending:YES];
         if (_downloadedFile) {
             NSString *path = [_downloadedFile getFilePath];
             [self.myPlayer setURL:[NSURL fileURLWithPath:path]];

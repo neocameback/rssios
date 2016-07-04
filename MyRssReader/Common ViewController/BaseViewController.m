@@ -42,6 +42,7 @@
     // the user wherever the ad goes and add it to the view hierarchy.
     _bannerView_.rootViewController = self;
     // Initiate a generic request to load it with an ad.
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated

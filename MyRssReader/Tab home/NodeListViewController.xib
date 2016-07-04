@@ -18,15 +18,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kMy-ts-BiD" customClass="GADBannerView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kMy-ts-BiD" customClass="GADNativeExpressAdView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="7eG-ax-0a6"/>
+                        <constraint firstAttribute="height" constant="80" id="7eG-ax-0a6"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lkA-Ja-Pd8">
-                    <rect key="frame" x="0.0" y="50" width="320" height="430"/>
+                    <rect key="frame" x="0.0" y="80" width="320" height="400"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <searchBar key="tableHeaderView" contentMode="redraw" id="Zg5-rY-hu0">
@@ -45,6 +45,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="lkA-Ja-Pd8" firstAttribute="top" secondItem="kMy-ts-BiD" secondAttribute="bottom" id="5ls-CA-dYS"/>
                 <constraint firstAttribute="bottom" secondItem="lkA-Ja-Pd8" secondAttribute="bottom" id="B0r-er-rP5"/>
                 <constraint firstAttribute="trailing" secondItem="lkA-Ja-Pd8" secondAttribute="trailing" id="JdY-Cf-9UK"/>
                 <constraint firstAttribute="centerX" secondItem="lkA-Ja-Pd8" secondAttribute="centerX" id="Oru-Jw-hTa"/>
@@ -52,7 +53,6 @@
                 <constraint firstItem="kMy-ts-BiD" firstAttribute="leading" secondItem="4pU-Hp-BGi" secondAttribute="leading" id="XRd-QI-2li"/>
                 <constraint firstItem="kMy-ts-BiD" firstAttribute="top" secondItem="4pU-Hp-BGi" secondAttribute="top" id="dPf-TK-MHD"/>
                 <constraint firstAttribute="trailing" secondItem="kMy-ts-BiD" secondAttribute="trailing" id="r9W-Ij-BzI"/>
-                <constraint firstItem="lkA-Ja-Pd8" firstAttribute="top" secondItem="4pU-Hp-BGi" secondAttribute="top" constant="50" id="yw3-ME-z0M"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
