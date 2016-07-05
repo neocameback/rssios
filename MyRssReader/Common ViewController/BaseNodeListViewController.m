@@ -300,8 +300,7 @@
     NSDate *lastOpenDate = [[NSUserDefaults standardUserDefaults] objectForKey:kLastOpenFullScreen];
     NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:lastOpenDate];
     
-//    if (interval <= kSecondsToPresentInterstitial) {
-    if (YES){
+    if (interval <= kSecondsToPresentInterstitial) {
         [self continueAtCurrentPath];
         return;
     }
@@ -355,7 +354,7 @@
     }];
     UIAlertAction *defaultNameAction = [UIAlertAction actionWithTitle:@"Use default name" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         RssNodeModel *node = self.nodeList[willDownloadAtIndex];
-        [[DownloadManager shareManager] downloadNode:node fromView:self];
+        [[DownloadManager shareManager] downloadNode:node withName:nil fromView:self];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
@@ -391,7 +390,13 @@
         {
             if (buttonIndex != alertView.cancelButtonIndex) {
                 RssNodeModel *node = self.nodeList[willDownloadAtIndex];
-                [[DownloadManager shareManager] downloadNode:node fromView:self];
+                NSString *name = [alertView textFieldAtIndex:0].text;
+                name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                if (!name || name.length == 0) {
+                    ALERT_WITH_TITLE(@"", @"Name cannot be empty");
+                }else{
+                    [[DownloadManager shareManager] downloadNode:node withName:name fromView:self];
+                }
             }
         }
             break;

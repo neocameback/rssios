@@ -32,8 +32,17 @@ static NSOperationQueue *operationQueue;
     return _shareDownloadManager;
 }
 
--(void) downloadNode:(RssNodeModel *)node fromView:(id) viewcontroller
+-(void) downloadNode:(RssNodeModel *)node withName:(NSString *) name fromView:(id) viewcontroller
 {
+    NSString *fileName = name ?: node.nodeTitle;
+    File *existFile = [File MR_findFirstByAttribute:@"name" withValue:fileName];
+    if (existFile) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"You entered a file that already exist. Please choose an other file name." delegate:viewcontroller cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
+        [alert setTag:ALERT_NAME_EXIST];
+        [alert show];
+        return;
+    }
+    
     NSString *successText = [NSString stringWithFormat:@"%@.mp4 has been added to Saved videos",node.nodeTitle];
     [JDStatusBarNotification showWithStatus:successText dismissAfter:2 styleName:JDStatusBarStyleDark];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDownloadOperationStarted object:nil];
@@ -48,7 +57,7 @@ static NSOperationQueue *operationQueue;
         [savedFile setUrl:node.nodeUrl];
         [savedFile setType:@"mp4"];
     }
-    [savedFile setName:node.nodeTitle];
+    [savedFile setName:name ?: node.nodeTitle];
     [savedFile setThumbnail:node.nodeImage];
     [savedFile setUpdatedAt:[NSDate date]];
     
@@ -60,7 +69,7 @@ static NSOperationQueue *operationQueue;
         Subtitle *subtitle = [Subtitle MR_createEntity];
         subtitle.createdAt = [NSDate date];
         [subtitle initFromSubtitleItem:subItem];
-        [subtitle setName:node.nodeTitle];
+        [subtitle setName:name ?: node.nodeTitle];
         [subtitle setFile:savedFile];
         
         [savedFile.subtitlesSet addObject:subtitle];
@@ -71,62 +80,55 @@ static NSOperationQueue *operationQueue;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:node.nodeUrl]];
     NSString *path = [savedFile getFilePath];
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:path]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"You entered a file that already exist. Please choose an other file name." delegate:viewcontroller cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
-        [alert setTag:ALERT_NAME_EXIST];
-        [alert show];
-    }else{
-        AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:path shouldResume:YES];
-        [operation setDeleteTempFileOnCancel:YES];
+    AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:path shouldResume:YES];
+    [operation setDeleteTempFileOnCancel:YES];
+    
+    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+        float percentComplete = 0;
+        @try {
+            percentComplete = (float)totalBytesRead/(float)totalBytesExpectedToRead * 100;
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            [savedFile setProgressValue:percentComplete];
+        }
+        [savedFile setDownloadedBytes:[NSNumber numberWithDouble:totalBytesRead]];
+        [savedFile setExpectedBytes:[NSNumber numberWithDouble:totalBytesExpectedToRead]];
+        [savedFile setStateValue:DownloadStateInProgress];
+    }];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        /**
+         *  save completed infor to savedFile
+         */
+        [savedFile setStateValue:DownloadStateCompleted];
+        [savedFile setProgressValue:100];
+        [savedFile setAbsoluteUrl:path];
         
-        [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-            float percentComplete = 0;
-            @try {
-                percentComplete = (float)totalBytesRead/(float)totalBytesExpectedToRead * 100;
-            }
-            @catch (NSException *exception) {
-                
-            }
-            @finally {
-                [savedFile setProgressValue:percentComplete];
-            }
-            [savedFile setDownloadedBytes:[NSNumber numberWithDouble:totalBytesRead]];
-            [savedFile setExpectedBytes:[NSNumber numberWithDouble:totalBytesExpectedToRead]];
-            [savedFile setStateValue:DownloadStateInProgress];
-        }];
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
         
-        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            /**
-             *  save completed infor to savedFile
-             */
-            [savedFile setStateValue:DownloadStateCompleted];
-            [savedFile setProgressValue:100];
-            [savedFile setAbsoluteUrl:path];
-            
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
-            
-            /**
-             *  show success notice
-             */
-            NSString *successText = [NSString stringWithFormat:@"%@.mp4 has been downloaded successful",node.nodeTitle];
-            [JDStatusBarNotification showWithStatus:successText dismissAfter:2 styleName:JDStatusBarStyleDark];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDownloadOperationCompleted object:nil];
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Error: %@", error);
-            NSString *successText = [NSString stringWithFormat:@"Failed to download %@.mp4",node.nodeTitle];
-            [JDStatusBarNotification showWithStatus:successText dismissAfter:2 styleName:JDStatusBarStyleDark];
-            [savedFile setStateValue:DownloadStateFailed];
-            
-            [savedFile MR_deleteEntity];
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDownloadOperationCompleted object:nil];
-        }];
-        [operationQueue addOperation:operation];
-    }
+        /**
+         *  show success notice
+         */
+        NSString *successText = [NSString stringWithFormat:@"%@.mp4 has been downloaded successful",node.nodeTitle];
+        [JDStatusBarNotification showWithStatus:successText dismissAfter:2 styleName:JDStatusBarStyleDark];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDownloadOperationCompleted object:nil];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        NSString *successText = [NSString stringWithFormat:@"Failed to download %@.mp4",node.nodeTitle];
+        [JDStatusBarNotification showWithStatus:successText dismissAfter:2 styleName:JDStatusBarStyleDark];
+        [savedFile setStateValue:DownloadStateFailed];
+        
+        [savedFile MR_deleteEntity];
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDownloadOperationCompleted object:nil];
+    }];
+    [operationQueue addOperation:operation];
 }
 
 -(void) downloadSubtitle:(Subtitle *) subtitle

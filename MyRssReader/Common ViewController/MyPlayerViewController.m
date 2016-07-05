@@ -133,7 +133,7 @@
         [self showAlertEnterFileName];
     }];
     UIAlertAction *defaultNameAction = [UIAlertAction actionWithTitle:@"Use default" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [[DownloadManager shareManager] downloadNode:self.currentNode fromView:self];
+        [[DownloadManager shareManager] downloadNode:self.currentNode withName:nil fromView:self];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
@@ -195,7 +195,13 @@
         case ALERT_ENTER_FILE_NAME:
         {
             if (buttonIndex != alertView.cancelButtonIndex) {
-                [[DownloadManager shareManager] downloadNode:self.currentNode fromView:self];
+                NSString *name = [alertView textFieldAtIndex:0].text;
+                name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                if (!name || name.length == 0) {
+                    ALERT_WITH_TITLE(@"", @"Name cannot be empty");
+                }else{
+                    [[DownloadManager shareManager] downloadNode:self.currentNode withName:name fromView:self];
+                }
             }
         }
             break;

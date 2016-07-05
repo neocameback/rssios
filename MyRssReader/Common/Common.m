@@ -84,9 +84,11 @@
 +(NSMutableURLRequest*) requestWithMethod:(NSString *) method ipAddress:(NSString*) ipAddres Url:(NSURL *) url
 {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setValue:@"RSSVideoPlayer2.0-iOS" forHTTPHeaderField:@"User-Agent"];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *majorVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    [request setValue:[NSString stringWithFormat:@"RSSVideoPlayer%@-iOS",majorVersion] forHTTPHeaderField:@"User-Agent"];
     [request setTimeoutInterval:kRequestTimeOut];
-    NSString *uidString = [NSString stringWithFormat:@"RSSPLAYER201508-%@-%@",url,ipAddres];
+    NSString *uidString = [NSString stringWithFormat:@"RSSPLAYER2016-%@-%@",url,ipAddres];
     NSString *md5String = [uidString MD5String];
     [request setValue:md5String forHTTPHeaderField:@"UID"];
     [request setValue:@"2.0" forHTTPHeaderField:@"VERSION"];
