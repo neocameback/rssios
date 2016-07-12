@@ -129,6 +129,10 @@
 -(void) myCustomPlayer:(MyCustomerPlayer *) playerView didTapOnDownload:(id) sender
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    if ( [alertController respondsToSelector:@selector(popoverPresentationController)] ) {
+        // iOS8
+        alertController.popoverPresentationController.sourceView = sender;
+    }
     UIAlertAction *enterNameAction = [UIAlertAction actionWithTitle:@"New name" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self showAlertEnterFileName];
     }];

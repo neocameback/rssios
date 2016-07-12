@@ -57,6 +57,7 @@
                 _failureBlock = failedBlock;
                 
                 NSString *ipAddress = update[@"ip"];
+                [[Singleton shareInstance] setCurrentIpAddress:ipAddress];
                 DLog(@"%@",ipAddress);
                 NSMutableURLRequest *request = [Common requestWithMethod:@"GET" ipAddress:ipAddress Url:_rssUrl];
                 if (!request) {

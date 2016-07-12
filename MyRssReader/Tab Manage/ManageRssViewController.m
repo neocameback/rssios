@@ -200,9 +200,9 @@
                     [[newRss nodeListSet] removeAllObjects];
                 }
                 if (rssModel.shouldCache) {
-                    newRss.shouldCacheValue = NO;
-                }else{
                     newRss.shouldCacheValue = YES;
+                }else{
+                    newRss.shouldCacheValue = NO;
                 }
                 [newRss setIsBookmarkRssValue:YES];
                 [newRss setCreatedAt:[NSDate date]];
@@ -220,10 +220,24 @@
                 newRss.rssLink = strippedString;
                 
                 /**
+                 *  if this rss should be cache so create new RssNode entity
+                 */
+                if (newRss && newRss.shouldCacheValue) {
+                    for (RssNodeModel *nodeModel in nodeList) {
+                        RssNode *node = [RssNode MR_createEntity];
+                        [node initFromTempNode:nodeModel];
+                        [node setCreatedAt:[NSDate date]];
+                        [node setRss:newRss];
+                    }
+                }
+                
+                /**
                  *  reload the rss list
                  */
                 [rssList addObject:newRss];
-                [_tableView reloadData];
+                [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
+                    [_tableView reloadData];
+                }];
                 
             } failure:^(NSError *error) {
                 

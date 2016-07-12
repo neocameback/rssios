@@ -131,6 +131,15 @@
         [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
             
             [currentRss setUpdatedAt:[NSDate date]];
+            if (currentRss && currentRss.shouldCacheValue) {
+                for (RssNodeModel *nodeModel in nodeList) {
+                    RssNode *node = [RssNode MR_createEntity];
+                    [node initFromTempNode:nodeModel];
+                    [node setCreatedAt:[NSDate date]];
+                    [node setRss:currentRss];
+                }
+            }
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
             
             NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
             [viewcontroller setNodeList:nodeList];
