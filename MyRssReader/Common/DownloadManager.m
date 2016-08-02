@@ -35,8 +35,7 @@ static NSOperationQueue *operationQueue;
 -(void) downloadNode:(RssNodeModel *)node withName:(NSString *) name fromView:(id) viewcontroller
 {
     NSString *fileName = name ?: node.nodeTitle;
-    File *existFile = [File MR_findFirstByAttribute:@"name" withValue:fileName];
-    if (existFile) {
+    if ([DownloadManager isFileNameExist:fileName]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"You entered a file that already exist. Please choose an other file name." delegate:viewcontroller cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
         [alert setTag:ALERT_NAME_EXIST];
         [alert show];
@@ -145,6 +144,16 @@ static NSOperationQueue *operationQueue;
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
     }];
     [operation start];
+}
+
++(BOOL) isFileNameExist:(NSString *) fileName
+{
+    File *existFile = [File MR_findFirstByAttribute:@"name" withValue:fileName];
+    if (existFile) {
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 -(void) resumeDownloadFile:(File*) savedFile

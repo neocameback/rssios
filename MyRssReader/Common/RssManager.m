@@ -94,15 +94,18 @@
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
 {
+//    NSLog(@"didParseFeedInfo: %@",[NSDate date]);
     _rssModel = [[RssModel alloc] initWithFeedInfo:info];
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
+//    NSLog(@"didParseFeedItem: %@",[NSDate date]);
     RssNodeModel *tempNode = [[RssNodeModel alloc] initWithFeedItem:item];
     [_nodeList addObject:tempNode];
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser
 {
+//    NSLog(@"feedParserDidFinish: %@",[NSDate date]);
     if (_completionBlock) {
         _completionBlock(_rssModel, _nodeList);
     }

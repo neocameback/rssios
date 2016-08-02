@@ -12,10 +12,12 @@
 #import "DownloadManager.h"
 #import "MyPlayerViewController.h"
 
-@interface DownloadManagerViewController ()<NSFetchedResultsControllerDelegate>
+@interface DownloadManagerViewController ()<NSFetchedResultsControllerDelegate, MGSwipeTableCellDelegate>
 {
     NSMutableArray *files;
     NSTimer *_timer;
+    
+    UITextField *_tfName;
 }
 @property (nonatomic, strong) MPMoviePlayerViewController *player;
 @end
@@ -37,11 +39,11 @@
 {
     [super viewWillAppear:animated];
     
-    [self getFileList];
-    
     [_timer invalidate];
     _timer = nil;
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(getFileList) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(getFileList) userInfo:nil repeats:YES];
+    
+    [self getFileList];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -53,7 +55,6 @@
 
 -(void) getFileList
 {
-    
     files = [NSMutableArray arrayWithArray:[File MR_findAllSortedBy:@"createdAt" ascending:NO inContext:[NSManagedObjectContext MR_defaultContext]]];
     if (!_tableView.isEditing) {
         [_tableView reloadData];
@@ -123,25 +124,41 @@
     } else {
         file = [files objectAtIndex:indexPath.row];
     }
-    
     cell.file = file;
+    
+    if (file.stateValue == DownloadStateCompleted) {
+        cell.delegate = self;
+        __weak typeof(self) wself = self;
+        cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"Delete" backgroundColor:[UIColor redColor] callback:^BOOL(MGSwipeTableCell *sender) {
+            [wself onDeleteDownloadededFileAtIndex:indexPath];
+            return YES;
+        }],
+                              [MGSwipeButton buttonWithTitle:@"Rename" backgroundColor:[UIColor lightGrayColor] callback:^BOOL(MGSwipeTableCell *sender) {
+                                  [wself onEditDownloadededFileAtIndex:indexPath];
+                                  return YES;
+                              }]];
+        cell.rightSwipeSettings.transition = MGSwipeTransitionStatic;
+    }else{
+        cell.delegate = nil;
+        cell.rightButtons = nil;
+    }
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    File *recipe = nil;
+    File *file = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        recipe = [searchResults objectAtIndex:indexPath.row];
+        file = [searchResults objectAtIndex:indexPath.row];
     } else {
-        recipe = [files objectAtIndex:indexPath.row];
+        file = [files objectAtIndex:indexPath.row];
     }
     
-    switch (recipe.stateValue) {
+    switch (file.stateValue) {
         case DownloadStateCompleted:
         {
-            NSString *path = [recipe getFilePath];
+            NSString *path = [file getFilePath];
             
             NSLog(@"open video at path: %@",path);
             if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
@@ -149,7 +166,7 @@
             }
             if ([[NSFileManager defaultManager] isReadableFileAtPath:path]) {
                 MyPlayerViewController *playerVC = [[MyPlayerViewController alloc] initWithNibName:NSStringFromClass([MyPlayerViewController class]) bundle:nil];
-                [playerVC setDownloadedFile:recipe];
+                [playerVC setDownloadedFile:file];
                 [self presentViewController:playerVC animated:YES completion:nil];
             }
         }
@@ -162,14 +179,72 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
+-(void) onEditDownloadededFileAtIndex:(NSIndexPath *) indexPath
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Rename" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *newName = _tfName.text;
+        newName = [newName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if (!newName || newName.length == 0) {
+            ALERT_WITH_TITLE(@"", @"Name cannot be empty.");
+        }else{
+            if ([DownloadManager isFileNameExist:_tfName.text]) {
+                ALERT_WITH_TITLE(@"", @"You entered a file that already exist. Please choose an other file name.");
+            }else{
+                File *file = [files objectAtIndex:indexPath.row];
+                [file setName:newName];
+                for (Subtitle *sub in file.subtitlesSet) {
+                    [sub setName:newName];
+                }
+                
+                [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
+                    if (contextDidSave) {
+                        [_tableView reloadData];
+                    }
+                }];
+            }
+        }
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        [self addTextField:textField];
+    }];
+    [alertController addAction:okAction];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+-(void) addTextField:(UITextField *) textField
+{
+    [textField setPlaceholder:@"Put new name here"];
+    _tfName = textField;
+}
+
+-(void) onDeleteDownloadededFileAtIndex:(NSIndexPath *) indexPath
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"Are you sure to delete this file?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         File *file = [files objectAtIndex:indexPath.row];
         [[DownloadManager shareManager] deleteFile:file];
         
         [files removeObjectAtIndex:indexPath.row];
-        [tableView reloadData];
+        [_tableView reloadData];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alertController addAction:okAction];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+#pragma mark MGSwipeTableCellDelegate
+-(void) swipeTableCell:(MGSwipeTableCell*) cell didChangeSwipeState:(MGSwipeState) state gestureIsActive:(BOOL) gestureIsActive
+{
+    if (state != MGSwipeStateNone) {
+        
     }
 }
 

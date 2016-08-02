@@ -12,6 +12,7 @@
 @interface DownloadManager : NSObject
 + (DownloadManager *)shareManager;
 -(void) downloadNode:(RssNodeModel *)node withName:(NSString *) name fromView:(id) viewcontroller;
++(BOOL) isFileNameExist:(NSString *) fileName;
 -(void) resumeDownloadFile:(File*) savedFile;
 -(void) deleteFile:(File*) file;
 - (NSURL *)applicationDocumentsDirectory;

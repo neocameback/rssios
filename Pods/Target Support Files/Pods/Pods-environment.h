@@ -150,6 +150,12 @@
 #define COCOAPODS_VERSION_MINOR_MBProgressHUD 9
 #define COCOAPODS_VERSION_PATCH_MBProgressHUD 2
 
+// MGSwipeTableCell
+#define COCOAPODS_POD_AVAILABLE_MGSwipeTableCell
+#define COCOAPODS_VERSION_MAJOR_MGSwipeTableCell 1
+#define COCOAPODS_VERSION_MINOR_MGSwipeTableCell 5
+#define COCOAPODS_VERSION_PATCH_MGSwipeTableCell 5
+
 // MagicalRecord
 #define COCOAPODS_POD_AVAILABLE_MagicalRecord
 #define COCOAPODS_VERSION_MAJOR_MagicalRecord 2

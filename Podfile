@@ -15,7 +15,10 @@ pod 'UIView+AnimationExtensions', '~> 1.0'
 pod 'AFgzipRequestSerializer', '~> 0.0.2'
 pod 'SCSkypeActivityIndicatorView', '~> 1.0'
 pod 'JDStatusBarNotification'
+pod 'MGSwipeTableCell', '~> 1.5'
+
 pod 'Fabric'
 pod 'Crashlytics'
+
 pod 'Firebase/Core'
 pod 'Firebase/AdMob'

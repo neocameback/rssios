@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "File.h"
+#import <MGSwipeTableCell/MGSwipeTableCell.h>
 
-@interface DownloadManageTableViewCell : UITableViewCell
+@interface DownloadManageTableViewCell : MGSwipeTableCell
 {
     __weak IBOutlet UIImageView *ivThumbnail;
     __weak IBOutlet UILabel *lb_fileName;

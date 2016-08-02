@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "476A79E042EFAAA1C5A62FA5"
-               BuildableName = "libPods-dailymotion-player-objc.a"
-               BlueprintName = "Pods-dailymotion-player-objc"
+               BlueprintIdentifier = "828B65E0923B3DBE465CE6BA"
+               BuildableName = "libPods-MGSwipeTableCell.a"
+               BlueprintName = "Pods-MGSwipeTableCell"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
