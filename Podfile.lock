@@ -25,25 +25,25 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Crashlytics (3.7.1):
+  - Crashlytics (3.7.2):
     - Fabric (~> 1.6.3)
   - dailymotion-player-objc (2.9.3)
   - Fabric (1.6.7)
-  - Firebase/AdMob (3.2.1):
-    - Firebase/Analytics (= 3.2.1)
-    - Google-Mobile-Ads-SDK (= 7.8.1)
-  - Firebase/Analytics (3.2.1):
-    - FirebaseAnalytics (= 3.2.0)
-  - Firebase/Core (3.2.1):
-    - Firebase/Analytics (= 3.2.1)
-  - FirebaseAnalytics (3.2.0):
+  - Firebase/AdMob (3.4.0):
+    - Firebase/Analytics
+    - Google-Mobile-Ads-SDK (= 7.9.1)
+  - Firebase/Analytics (3.4.0):
+    - FirebaseAnalytics (~> 3.3)
+  - Firebase/Core (3.4.0):
+    - Firebase/Analytics
+  - FirebaseAnalytics (3.3.0):
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
-    - GoogleUtilities (~> 1.3)
-  - FirebaseInstanceID (1.0.6)
+    - GoogleUtilities (~> 1.2)
+  - FirebaseInstanceID (1.0.8)
   - Godzippa (1.1.0)
-  - Google-Mobile-Ads-SDK (7.8.1)
+  - Google-Mobile-Ads-SDK (7.9.1)
   - GoogleAnalytics (3.14.0)
   - GoogleInterchangeUtilities (1.2.1):
     - GoogleSymbolUtilities (~> 1.0)
@@ -59,7 +59,7 @@ PODS:
   - SCSkypeActivityIndicatorView (1.0.0)
   - SVProgressHUD (1.1.3)
   - UIView+AnimationExtensions (1.0.0)
-  - XCDYouTubeKit (2.5.2)
+  - XCDYouTubeKit (2.5.3)
 
 DEPENDENCIES:
   - AFDownloadRequestOperation (~> 2.0.1)
@@ -85,14 +85,14 @@ SPEC CHECKSUMS:
   AFDownloadRequestOperation: 748a1643423e1ddb23f2178f778087d4f0ae8ac7
   AFgzipRequestSerializer: 329638fc8ed023a15188dc03dd2f1a930da30ea4
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
-  Crashlytics: 3cdd4c9655be68032a0cf0379e0fb5ef6af22cad
+  Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
   dailymotion-player-objc: f7edac9fc199ac944f35bb1561f8f4488fe25ec8
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  Firebase: 6c80ac28d59d06bfd9152a7b6ea17625ca93183d
-  FirebaseAnalytics: 6f75b04e6bfb8e0b6e9ef298e04c24eea3b13863
-  FirebaseInstanceID: d014d574053a2fe84478f12f7bae96979e7051bb
+  Firebase: 754562547af419cc2f4b15247fee419081924bc2
+  FirebaseAnalytics: 228be2991cb28efb96cdafc4d62f64680e615c69
+  FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   Godzippa: 21621e8ddc2f1521db473a72b48148c3f0e79d76
-  Google-Mobile-Ads-SDK: 3c2a6656117989469bfe7645640aa1de024a4c6c
+  Google-Mobile-Ads-SDK: 575583d7eae25793bb81ad8673737d1b4ecbedc5
   GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
   GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
@@ -104,6 +104,6 @@ SPEC CHECKSUMS:
   SCSkypeActivityIndicatorView: 4e98ca2ba8f092786c3b1e79168df228b4ce27ba
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   UIView+AnimationExtensions: f9ae95fa3064be09cf2fcaac1fb1948ee22397ec
-  XCDYouTubeKit: bb81db52d5539f8f34c4081f344980ef38f4644d
+  XCDYouTubeKit: 90690f9e3523735dc93b8024269d991b0cfffe78
 
-COCOAPODS: 0.39.0
+COCOAPODS: 0.37.2
