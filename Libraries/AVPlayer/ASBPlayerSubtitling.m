@@ -64,21 +64,21 @@
 
 - (void)loadSubtitlesAtURL:(NSURL *)url error:(NSError **)error
 {
-    NSError *localError;
-    NSString *text;
     DLog(@"")
-    text = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&localError];
-    if (localError == nil)
-    {
-        DLog(@"");
-        [self loadSRTContent:text error:&localError];
-        DLog(@"");
-    }
     
-    if(error != NULL)
-    {
-        *error = localError;
-    }
+    NSURLRequest *req = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        NSError *localError;
+        NSString *text;
+        
+        text = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&localError];
+        if (localError == nil)
+        {
+            DLog(@"");
+            [self loadSRTContent:text error:&localError];
+            DLog(@"");
+        }
+    }];
 }
 
 - (void)computeStyle
