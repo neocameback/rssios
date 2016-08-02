@@ -29,11 +29,8 @@
     self.navigationItem.title = @"Download";
     [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [_tableView setSeparatorInset:UIEdgeInsetsMake(0, 15, 0, 0)];
-//    [self reloadFetchedResults:nil];
-//    
-//    // observe the app delegate telling us when it's finished asynchronously setting up the persistent store
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:@"RefetchAllDatabaseData" object:[[UIApplication sharedApplication] delegate]];
     
+    [self.searchDisplayController.searchResultsTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -68,50 +65,41 @@
         _timer = nil;
     }
 }
-- (void)reloadFetchedResults:(NSNotification*)note {
-    
-    NSError *error = nil;
-    if (![[self fetchedResultsController] performFetch:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-         */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-    
-    [_tableView reloadData];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark search bar implement
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+    searchResults = [files filteredArrayUsingPredicate:resultPredicate];
+}
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
 #pragma mark UITableViewDatasource
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
-
 {
-//    NSInteger count = self.fetchedResultsController.sections.count;
-//    if (count == 0) {
-//        count = 1;
-//    }
-//    return count;
-    
     return 1;
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    NSInteger numberOfRows = 0;
-//    if (self.fetchedResultsController.sections.count > 0) {
-//        id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-//        numberOfRows = [sectionInfo numberOfObjects];
-//    }
-//    return numberOfRows;
-    
-    return files.count;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [searchResults count];
+    } else {
+        return files.count;
+    }
 }
 -(CGFloat) tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -129,20 +117,27 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"DownloadManageTableViewCell" owner:self options:nil] firstObject];
     }
     
-    [self configureCell:cell atIndexPath:indexPath];
+    File *file = nil;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        file = [searchResults objectAtIndex:indexPath.row];
+    } else {
+        file = [files objectAtIndex:indexPath.row];
+    }
+    
+    cell.file = file;
+    
     return cell;
 }
 
-- (void)configureCell:(DownloadManageTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    // Configure the cell
-//    File *file = (File *)[self.fetchedResultsController objectAtIndexPath:indexPath];
-    File *file = [files objectAtIndex:indexPath.row];
-    cell.file = file;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    File *recipe = (File *)[self.fetchedResultsController objectAtIndexPath:indexPath];
-    File *recipe = [files objectAtIndex:indexPath.row];
+    
+    File *recipe = nil;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        recipe = [searchResults objectAtIndex:indexPath.row];
+    } else {
+        recipe = [files objectAtIndex:indexPath.row];
+    }
+    
     switch (recipe.stateValue) {
         case DownloadStateCompleted:
         {
@@ -176,73 +171,6 @@
         [files removeObjectAtIndex:indexPath.row];
         [tableView reloadData];
     }
-}
-
-#pragma mark -
-#pragma mark Fetched results controller
-
-- (NSFetchedResultsController *)fetchedResultsController {
-    // Set up the fetched results controller if needed.
-    if (_fetchedResultsController == nil) {
-        self.fetchedResultsController = [File MR_fetchAllSortedBy:@"createdAt" ascending:NO withPredicate:nil groupBy:nil delegate:self];
-    }
-    
-    return _fetchedResultsController;
-}
-
-/**
- Delegate methods of NSFetchedResultsController to respond to additions, removals and so on.
- */
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
-    [_tableView beginUpdates];
-}
-
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-    UITableView *tableView = _tableView;
-    
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            [self configureCell:(DownloadManageTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [_tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [_tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        default:
-            break;
-    }
-}
-
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-    [_tableView endUpdates];
 }
 
 -(void) dealloc

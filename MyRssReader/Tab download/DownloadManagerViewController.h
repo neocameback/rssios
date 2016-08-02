@@ -13,6 +13,8 @@
 @interface DownloadManagerViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 {
     __weak IBOutlet UITableView *_tableView;
+    
+    NSArray *searchResults;
 }
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
