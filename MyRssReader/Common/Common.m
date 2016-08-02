@@ -108,6 +108,7 @@
     NSString *md5String = [uidString MD5String];
     [request setValue:md5String forHTTPHeaderField:@"UID"];
     [request setValue:@"2.0" forHTTPHeaderField:@"VERSION"];
+    [request setValue:ipAddres forHTTPHeaderField:@"IPADDRESS"];
     [request setHTTPMethod:method];
     [request setURL:url];
     

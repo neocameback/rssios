@@ -213,11 +213,6 @@
                     newRss.rssTitle = rssModel.rssTitle;
                 }
 
-//                NSURL *rssUrl = [NSURL URLWithString:rssModel.rssLink];
-//                NSString *strippedString = [rssUrl absoluteString];
-//                NSUInteger queryLength = [[rssUrl query] length];
-//                strippedString = (queryLength ? [strippedString substringToIndex:[strippedString length] - (queryLength + 1)] : strippedString);
-//                newRss.rssLink = strippedString;
                 newRss.rssLink = rssModel.rssLink;
                 
                 /**

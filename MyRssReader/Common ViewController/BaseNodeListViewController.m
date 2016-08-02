@@ -175,7 +175,7 @@
             /**
              *  retrieve the cached RSS
              */
-            Rss *cachedRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:currentNode.nodeUrl];
+            __block Rss *cachedRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:currentNode.nodeUrl];
             /*
              *  check auto refresh time to fetch new data
              */
@@ -195,13 +195,40 @@
                 manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:currentNode.nodeUrl]];
                 [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
                     
-                    [cachedRss setUpdatedAt:[NSDate date]];
+                    if (rssModel.shouldCache) {
+                        if (!cachedRss) {
+                            cachedRss = [Rss MR_createEntity];
+                            [cachedRss setCreatedAt:[NSDate date]];
+                        }else {
+                            [[cachedRss nodeListSet] removeAllObjects];
+                        }
+                        if (!cachedRss.isBookmarkRssValue) {
+                            [cachedRss setIsBookmarkRssValue:NO];
+                        }
+                        [cachedRss initFromTempRss:rssModel];
+                    }
                     
-                    NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
-                    [viewcontroller setNodeList:nodeList];
-                    [viewcontroller setRssURL:currentNode.nodeUrl];
-                    [viewcontroller setTitle:currentNode.nodeTitle];
-                    [self.navigationController pushViewController:viewcontroller animated:YES];
+                    /**
+                     *  if this rss should be cache so create new RssNode entity
+                     */
+                    if (cachedRss && cachedRss.shouldCacheValue) {
+                        for (RssNodeModel *nodeModel in nodeList) {
+                            RssNode *node = [RssNode MR_createEntity];
+                            [node initFromTempNode:nodeModel];
+                            [node setCreatedAt:[NSDate date]];
+                            [node setRss:cachedRss];
+                        }
+                    }
+                    
+                    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
+                        if (contextDidSave) {
+                            NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
+                            [viewcontroller setNodeList:nodeList];
+                            [viewcontroller setRssURL:currentNode.nodeUrl];
+                            [viewcontroller setTitle:currentNode.nodeTitle];
+                            [self.navigationController pushViewController:viewcontroller animated:YES];
+                        }
+                    }];
                     
                 } failure:^(NSError *error) {
                     
