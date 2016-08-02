@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "Subtitle.h"
-
+#import "MWFeedItemSubTitle.h"
 @interface SubtitleModel : NSObject
 
-@property (nonatomic, strong) NSString *name, *languageCode, *languageName, *filePath;
+@property (nonatomic, strong) NSString *name, *languageCode, *languageName, *filePath, *link;
 @property (nonatomic) BOOL isSelected;
 
 -(id) initWithSubtitle:(Subtitle *) sub;
+-(id) initWithMWFeedItemSubtitle:(MWFeedItemSubTitle *) sub;
 @end

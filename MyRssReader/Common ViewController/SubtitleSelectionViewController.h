@@ -12,7 +12,8 @@
 @class SubtitleSelectionViewController;
 @protocol SubtitleSelectionViewControllerDelegate <NSObject>
 
--(void) subtitleSelectionViewController:(SubtitleSelectionViewController*) viewcontroller didSelectSubWithUrl:(NSString *) url;
+-(void) subtitleSelectionViewController:(SubtitleSelectionViewController*) viewcontroller didSelectSubWithFileURL:(NSString *) url;
+-(void) subtitleSelectionViewController:(SubtitleSelectionViewController*) viewcontroller didSelectSubWithStringURL:(NSString *) url;
 
 @end
 
@@ -23,7 +24,7 @@
  *  play video from node list
  */
 @property (nonatomic, strong) RssNodeModel *currentNode;
-
+@property (nonatomic, strong) NSString *currentSubtitleURL;
 /**
  *  play video from downloaded list
  */

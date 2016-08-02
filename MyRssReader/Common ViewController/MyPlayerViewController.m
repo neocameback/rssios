@@ -94,10 +94,8 @@
         [self.myPlayer hideDownloadButton:YES];
         
         if (_downloadedFile.subtitlesSet.count > 0) {
-            /**
-             *  add example subtitle
-             */
             NSURL *subtitlesURL = [NSURL fileURLWithPath:[_downloadedFile.subtitlesSet.firstObject getFilePath]];
+            _currentSubtitleURL = [_downloadedFile.subtitlesSet.firstObject getFilePath];
             NSError *error = nil;
             self.subtitling.player = [self.myPlayer player];
             [self.subtitling loadSubtitlesAtURL:subtitlesURL error:&error];
@@ -108,6 +106,19 @@
             [self.myPlayer hideCaptionButton:YES];
         }
     }else{
+        if (_currentNode.subtitles.count > 0) {
+            NSURL *subtitlesURL = [NSURL URLWithString:[_currentNode.subtitles.firstObject link]];
+            _currentSubtitleURL = [_currentNode.subtitles.firstObject link];
+            NSError *error = nil;
+            self.subtitling.player = [self.myPlayer player];
+            [self.subtitling loadSubtitlesAtURL:subtitlesURL error:&error];
+            self.subtitling.containerView.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.5].CGColor;
+            
+            [self.myPlayer hideCaptionButton:NO];
+        }else{
+            [self.myPlayer hideCaptionButton:YES];
+        }
+        
         [self.myPlayer hideDownloadButton:NO];
     }
 }
@@ -153,6 +164,8 @@
     SubtitleSelectionViewController *viewcontroller = [[SubtitleSelectionViewController alloc] initWithNibName:NSStringFromClass([SubtitleSelectionViewController class]) bundle:nil];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewcontroller];
     [viewcontroller setDownloadedFile:_downloadedFile];
+    [viewcontroller setCurrentNode:_currentNode];
+    [viewcontroller setCurrentSubtitleURL:_currentSubtitleURL];
     [viewcontroller setDelegate:self];
     [self presentViewController:nav animated:YES completion:nil];
 }
@@ -223,10 +236,13 @@
 }
 
 #pragma mark SubtitleSelectionViewControllerDelegate
--(void) subtitleSelectionViewController:(SubtitleSelectionViewController *)viewcontroller didSelectSubWithUrl:(NSString *)url
+-(void) subtitleSelectionViewController:(SubtitleSelectionViewController *)viewcontroller didSelectSubWithFileURL:(NSString *)url
 {
+    _currentSubtitleURL = url;
     if (!url) {
         [self.subtitling removeSubtitles];
+        
+        [self.myPlayer play];
     }else{
         NSError *error = nil;
         [self.subtitling loadSubtitlesAtURL:[NSURL fileURLWithPath:url] error:&error];
@@ -238,6 +254,26 @@
         }
     }
 }
+
+-(void) subtitleSelectionViewController:(SubtitleSelectionViewController *)viewcontroller didSelectSubWithStringURL:(NSString *)url
+{
+    _currentSubtitleURL = url;
+    if (!url) {
+        [self.subtitling removeSubtitles];
+        
+        [self.myPlayer play];
+    }else{
+        NSError *error = nil;
+        [self.subtitling loadSubtitlesAtURL:[NSURL URLWithString:url] error:&error];
+        if (error) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        }else{
+            [self.myPlayer play];
+        }
+    }
+}
+
 
 -(void) dealloc
 {

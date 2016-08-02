@@ -28,16 +28,29 @@
     SubtitleModel *cancelModel = [[SubtitleModel alloc] init];
     [cancelModel setName:@"None"];
     [cancelModel setLanguageName:@"None"];
-    cancelModel.isSelected = NO;
+    cancelModel.isSelected = _currentSubtitleURL ? NO : YES;
+    
     [_data addObject:cancelModel];
-    for (Subtitle *sub in _downloadedFile.subtitlesSet) {
-        SubtitleModel *model = [[SubtitleModel alloc] initWithSubtitle:sub];
-        if (sub == [_downloadedFile.subtitles firstObject]) {
-            model.isSelected = YES;
-        }else{
-            model.isSelected = NO;
+    if (_downloadedFile) {
+        for (Subtitle *sub in _downloadedFile.subtitlesSet) {
+            SubtitleModel *model = [[SubtitleModel alloc] initWithSubtitle:sub];
+            if (_currentSubtitleURL && [_currentSubtitleURL isEqualToString:model.filePath]) {
+                model.isSelected = YES;
+            }else{
+                model.isSelected = NO;
+            }
+            [_data addObject:model];
         }
-        [_data addObject:model];
+    }else{
+        for (MWFeedItemSubTitle *subtitle in _currentNode.subtitles) {
+            SubtitleModel *model = [[SubtitleModel alloc] initWithMWFeedItemSubtitle:subtitle];
+            if (_currentSubtitleURL && [_currentSubtitleURL isEqualToString:model.link]) {
+                model.isSelected = YES;
+            }else{
+                model.isSelected = NO;
+            }
+            [_data addObject:model];
+        }
     }
     [_tableView reloadData];
     
@@ -81,10 +94,16 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [tableView reloadData];
     SubtitleModel *model = _data[indexPath.row];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(subtitleSelectionViewController:didSelectSubWithUrl:)]) {
-        [self.delegate subtitleSelectionViewController:self didSelectSubWithUrl:model.filePath];        
-        [self dismissViewControllerAnimated:YES completion:^{
-        }];
+    if (_downloadedFile) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(subtitleSelectionViewController:didSelectSubWithFileURL:)]) {
+            [self.delegate subtitleSelectionViewController:self didSelectSubWithFileURL:model.filePath];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }else{
+        if (self.delegate && [self.delegate respondsToSelector:@selector(subtitleSelectionViewController:didSelectSubWithStringURL:)]) {
+            [self.delegate subtitleSelectionViewController:self didSelectSubWithStringURL:model.link];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
     }
 }
 
