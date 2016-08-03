@@ -57,6 +57,38 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
     [self.view setUserInteractionEnabled:YES];
     [self.view addGestureRecognizer:tap];
     
+    UISwipeGestureRecognizer *swipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeUp:)];
+    [swipeUpGesture setDirection:UISwipeGestureRecognizerDirectionUp];
+    [self.view addGestureRecognizer:swipeUpGesture];
+    UISwipeGestureRecognizer *swipeDownGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeDown:)];
+    [swipeDownGesture setDirection:UISwipeGestureRecognizerDirectionDown];
+    [self.view addGestureRecognizer:swipeDownGesture];
+    
+    UISwipeGestureRecognizer *swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeLeft:)];
+    [swipeLeftGesture setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self.view addGestureRecognizer:swipeLeftGesture];
+    UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeRight:)];
+    [swipeRightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self.view addGestureRecognizer:swipeRightGesture];
+    
+    volumeView = [[MPVolumeView alloc] initForAutoLayout];
+    [volumeView setShowsVolumeSlider:YES];
+    [volumeView setShowsRouteButton:YES];
+    [volumeView sizeToFit];
+    [self.view addSubview:volumeView];
+    [volumeView willMoveToSuperview:self.view];
+    [volumeView didMoveToSuperview];
+    [volumeView autoCenterInSuperview];
+    [volumeView autoSetDimension:ALDimensionWidth toSize:100];
+    [volumeView autoSetDimension:ALDimensionHeight toSize:100];
+    
+    for (UIView *view in [volumeView subviews]){
+        if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
+            volumeViewSlider = (UISlider*)view;
+            break;
+        }
+    }
+    
     _player = [[AVPlayer alloc] init];
     [self addPlayerObservers];
     [self addTimeObserver];
@@ -375,6 +407,67 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
     }
 }
 
+-(void) onSwipeUp:(UISwipeGestureRecognizer *) swipe
+{
+    volumeView.hidden = NO;
+    [volumeViewSlider setValue:1.0f animated:YES];
+    [volumeViewSlider sendActionsForControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void) onSwipeDown:(UISwipeGestureRecognizer *) swipe
+{
+    volumeView.hidden = YES;
+    [volumeViewSlider setValue:0.0f animated:YES];
+    [volumeViewSlider sendActionsForControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void) onSwipeLeft:(UISwipeGestureRecognizer *) swipe
+{
+    /**
+     *  fastward
+     */
+    float rate = _player.rate;
+    if (rate >= 2.0) {
+        [_player setRate:1.0];
+    }else{
+        rate += 0.5;
+        [_player setRate:rate];
+    }
+    [self animateShowPlayerRate:_player.rate];
+}
+
+-(void) onSwipeRight:(UISwipeGestureRecognizer *) swipe
+{
+    /**
+     *  forward
+     */
+    float rate = _player.rate;
+    if (rate == 1.0) {        
+    }else{
+        rate -= 0.5;
+        [_player setRate:rate];
+    }
+    [self animateShowPlayerRate:_player.rate];
+}
+
+-(void) animateShowPlayerRate:(float) rate
+{
+    if (rate == 1) {
+        lbPlayerRate.text = @"Standard";
+    }else{
+        lbPlayerRate.text = [NSString stringWithFormat:@"%.1fx",rate];
+    }
+    
+    [UIView animateWithDuration:1.5 animations:^{
+        lbPlayerRate.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:1.5 animations:^{
+            lbPlayerRate.alpha = 0.0f;
+        } completion:^(BOOL finished) {
+        }];
+    }];
+}
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
     if ([touch.view isKindOfClass:[UISlider class]]){
@@ -382,6 +475,11 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
     }else{
         return YES;
     }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
 }
 
 - (void)syncPlayPauseButtons

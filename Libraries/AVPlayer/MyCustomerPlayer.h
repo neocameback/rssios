@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @class MyCustomerPlayer;
 @protocol MyCustomerPlayerDelegate <NSObject>
@@ -45,6 +46,7 @@
     __weak IBOutlet UIView *viewHeader;
     __weak IBOutlet UIView *viewFooter;
     __weak IBOutlet UIActivityIndicatorView *loadingIndicator;
+    __weak IBOutlet UILabel *lbPlayerRate;
     
     __weak IBOutlet UIButton *btPlay;
     
@@ -52,6 +54,8 @@
     __weak IBOutlet UILabel *lbDuration;
     __weak IBOutlet UISlider *seekSlider;
     
+    MPVolumeView* volumeView;
+    UISlider *volumeViewSlider;
 }
 - (void)setURL:(NSURL *)URL;
 - (void)setPlayerItem:(AVPlayerItem *)playerItem;
