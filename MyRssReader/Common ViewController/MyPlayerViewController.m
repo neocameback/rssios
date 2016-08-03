@@ -35,10 +35,23 @@
             [self.myPlayer setURL:[NSURL URLWithString:self.currentNode.nodeUrl]];
             [self.myPlayer play];
         }
+        /**
+         *  hide download button
+         */
+        if ([Common typeOfNode:self.currentNode.nodeType] == NODE_TYPE_MP4 && !_downloadedFile) {
+            [self.myPlayer hideDownloadButton:NO];
+        }else{
+            [self.myPlayer hideDownloadButton:YES];
+        }
+        
     }else{
         NSString *path = [_downloadedFile getFilePath];
         [self.myPlayer setURL:[NSURL fileURLWithPath:path]];
         [self.myPlayer play];
+        /**
+         *  hide download button
+         */
+        [self.myPlayer hideDownloadButton:YES];
     }
     [self loadSubtitle];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
@@ -91,7 +104,6 @@
 -(void) loadSubtitle
 {
     if (_downloadedFile) {
-        [self.myPlayer hideDownloadButton:YES];
         
         if (_downloadedFile.subtitlesSet.count > 0) {
             NSURL *subtitlesURL = [NSURL fileURLWithPath:[_downloadedFile.subtitlesSet.firstObject getFilePath]];
@@ -118,8 +130,6 @@
         }else{
             [self.myPlayer hideCaptionButton:YES];
         }
-        
-        [self.myPlayer hideDownloadButton:NO];
     }
 }
 

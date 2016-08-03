@@ -120,9 +120,8 @@
         }
         
         [self.refreshControl endRefreshing];
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
-            [self.tableView reloadData];
-        }];
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
+        [self.tableView reloadData];
     } failure:^(NSError *error) {
         [self.refreshControl endRefreshing];
     }];

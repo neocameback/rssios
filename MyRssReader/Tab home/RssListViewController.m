@@ -73,10 +73,9 @@
                 [node setRss:defaultRss];
             }
             
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-                rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES]];
-                [_tableView reloadData];
-            }];
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
+            rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES]];
+            [_tableView reloadData];
             
         } failure:^(NSError *error) {
             
@@ -131,6 +130,7 @@
         [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
             
             [currentRss setUpdatedAt:[NSDate date]];
+            [[currentRss nodeListSet] removeAllObjects];
             if (currentRss && currentRss.shouldCacheValue) {
                 for (RssNodeModel *nodeModel in nodeList) {
                     RssNode *node = [RssNode MR_createEntity];

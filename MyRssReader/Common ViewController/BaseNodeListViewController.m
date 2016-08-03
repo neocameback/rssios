@@ -27,7 +27,7 @@
 
 @interface BaseNodeListViewController ()<UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, NodeListCustomCellDelegate>
 {
-    MPMoviePlayerViewController *moviePlayer;
+//    MPMoviePlayerViewController *moviePlayer;
     NSInteger willDownloadAtIndex;
     RssManager *manager;
 }
@@ -199,9 +199,10 @@
                         if (!cachedRss) {
                             cachedRss = [Rss MR_createEntity];
                             [cachedRss setCreatedAt:[NSDate date]];
-                        }else {
-                            [[cachedRss nodeListSet] removeAllObjects];
                         }
+                        
+                        [[cachedRss nodeListSet] removeAllObjects];
+                        
                         if (!cachedRss.isBookmarkRssValue) {
                             [cachedRss setIsBookmarkRssValue:NO];
                         }
@@ -220,15 +221,13 @@
                         }
                     }
                     
-                    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
-                        if (contextDidSave) {
-                            NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
-                            [viewcontroller setNodeList:nodeList];
-                            [viewcontroller setRssURL:currentNode.nodeUrl];
-                            [viewcontroller setTitle:currentNode.nodeTitle];
-                            [self.navigationController pushViewController:viewcontroller animated:YES];
-                        }
-                    }];
+                    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
+                    
+                    NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
+                    [viewcontroller setNodeList:nodeList];
+                    [viewcontroller setRssURL:currentNode.nodeUrl];
+                    [viewcontroller setTitle:currentNode.nodeTitle];
+                    [self.navigationController pushViewController:viewcontroller animated:YES];
                     
                 } failure:^(NSError *error) {
                     
@@ -251,8 +250,9 @@
             break;
         case NODE_TYPE_VIDEO:
         {
-            moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:currentNode.nodeUrl]];
-            [self presentMoviePlayerViewControllerAnimated:moviePlayer];
+            MyPlayerViewController *viewcontroller = [[MyPlayerViewController alloc] init];
+            [viewcontroller setCurrentNode:currentNode];
+            [self presentViewController:viewcontroller animated:YES completion:nil];
             
         }
             break;

@@ -196,9 +196,8 @@
                 newRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:rssModel.rssLink];
                 if (!newRss) {
                     newRss = [Rss MR_createEntity];
-                }else{
-                    [[newRss nodeListSet] removeAllObjects];
                 }
+                [[newRss nodeListSet] removeAllObjects];
                 if (rssModel.shouldCache) {
                     newRss.shouldCacheValue = YES;
                 }else{
@@ -231,9 +230,8 @@
                  *  reload the rss list
                  */
                 [rssList addObject:newRss];
-                [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
-                    [_tableView reloadData];
-                }];
+                [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
+                [_tableView reloadData];
                 
             } failure:^(NSError *error) {
                 
