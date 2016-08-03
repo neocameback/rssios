@@ -6,4 +6,5 @@
 
 -(void) initFromSubtitleItem:(MWFeedItemSubTitle *) subtitleItem;
 -(NSString *) getFilePath;
+-(NSString *) getFilePathWithName:(NSString *) name;
 @end

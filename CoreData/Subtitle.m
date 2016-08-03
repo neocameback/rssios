@@ -26,4 +26,10 @@
 {
     return [Common getPathOfFile:[NSString stringWithFormat:@"%@_%@",self.languageCode, self.name] extension:self.extension];
 }
+
+-(NSString *) getFilePathWithName:(NSString *) name
+{
+    return [Common getPathOfFile:[NSString stringWithFormat:@"%@_%@",self.languageCode, name] extension:self.extension];
+}
+
 @end

@@ -7,4 +7,5 @@
 // Custom logic goes here.
 
 -(NSString *) getFilePath;
+-(BOOL) rename:(NSString *) newName;
 @end

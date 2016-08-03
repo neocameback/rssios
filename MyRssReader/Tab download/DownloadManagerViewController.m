@@ -192,16 +192,9 @@
                 ALERT_WITH_TITLE(@"", @"You entered a file that already exist. Please choose an other file name.");
             }else{
                 File *file = [files objectAtIndex:indexPath.row];
-                [file setName:newName];
-                for (Subtitle *sub in file.subtitlesSet) {
-                    [sub setName:newName];
-                }
-                
-                [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
-                    if (contextDidSave) {
-                        [_tableView reloadData];
-                    }
-                }];
+                [file rename:newName];
+                                
+                [_tableView reloadData];
             }
         }
     }];
