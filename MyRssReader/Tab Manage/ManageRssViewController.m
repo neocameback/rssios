@@ -39,6 +39,8 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(onAdd)];
     self.navigationItem.rightBarButtonItem = addButton;
     
+    [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    
     editingIndex = -1;
 }
 -(void) onEdit

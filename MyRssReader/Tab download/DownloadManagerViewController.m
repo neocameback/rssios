@@ -18,6 +18,8 @@
     NSTimer *_timer;
     
     UITextField *_tfName;
+    
+    File *selectedFile;
 }
 @property (nonatomic, strong) MPMoviePlayerViewController *player;
 @end
@@ -30,7 +32,7 @@
     
     self.navigationItem.title = @"Download";
     [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [_tableView setSeparatorInset:UIEdgeInsetsMake(0, 15, 0, 0)];
+    _interstitial = [self createAndLoadInterstital];
     
     [self.searchDisplayController.searchResultsTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
@@ -116,6 +118,7 @@
     DownloadManageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"DownloadManageTableViewCell" owner:self options:nil] firstObject];
+        [cell setSeparatorInset:UIEdgeInsetsMake(0, 8, 0, 0)];
     }
     
     File *file = nil;
@@ -158,17 +161,8 @@
     switch (file.stateValue) {
         case DownloadStateCompleted:
         {
-            NSString *path = [file getFilePath];
-            
-            NSLog(@"open video at path: %@",path);
-            if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-                NSLog(@"file is exist");
-            }
-            if ([[NSFileManager defaultManager] isReadableFileAtPath:path]) {
-                MyPlayerViewController *playerVC = [[MyPlayerViewController alloc] initWithNibName:NSStringFromClass([MyPlayerViewController class]) bundle:nil];
-                [playerVC setDownloadedFile:file];
-                [self presentViewController:playerVC animated:YES completion:nil];
-            }
+            selectedFile = file;
+            [self preLoadInterstitial];
         }
             break;
         default:
@@ -177,6 +171,67 @@
             break;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark continueAtCurrentPath after present interstital ads
+-(void) continueAtCurrentPath
+{
+    NSString *path = [selectedFile getFilePath];
+    if ([[NSFileManager defaultManager] isReadableFileAtPath:path]) {
+        MyPlayerViewController *playerVC = [[MyPlayerViewController alloc] initWithNibName:NSStringFromClass([MyPlayerViewController class]) bundle:nil];
+        [playerVC setDownloadedFile:selectedFile];
+        [self presentViewController:playerVC animated:YES completion:nil];
+    }
+}
+#pragma mark Admob
+#pragma mark Admob
+#pragma mark Interstitial delegate
+- (void)preLoadInterstitial
+{
+    //Call this method as soon as you can - loadRequest will run in the background and your interstitial will be ready when you need to show it
+    
+    NSDate *lastOpenDate = [[NSUserDefaults standardUserDefaults] objectForKey:kLastOpenFullScreen];
+    NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:lastOpenDate];
+    
+    if (interval <= kSecondsToPresentInterstitial) {
+        [self continueAtCurrentPath];
+        return;
+    }
+    if (_interstitial.isReady) {
+        [_interstitial presentFromRootViewController:self];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastOpenFullScreen];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }else{
+        [self continueAtCurrentPath];
+    }
+}
+
+-(GADInterstitial*) createAndLoadInterstital
+{
+    GADRequest *request = [GADRequest request];
+    //    request.testDevices = @[ kGADSimulatorID ];
+    GADInterstitial *interstitial = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
+    interstitial.delegate = self;
+    [interstitial loadRequest:request];
+    
+    return interstitial;
+}
+
+#pragma mark GADInterstitialDelegate
+- (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial
+{
+}
+- (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    //If an error occurs and the interstitial is not received you might want to retry automatically after a certain interval
+    _interstitial = [self createAndLoadInterstital];
+}
+
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
+{
+    _interstitial = [self createAndLoadInterstital];
+    [self continueAtCurrentPath];
 }
 
 -(void) onEditDownloadededFileAtIndex:(NSIndexPath *) indexPath

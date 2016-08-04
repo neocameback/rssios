@@ -319,7 +319,6 @@
 #pragma mark Admob
 #pragma mark Admob
 #pragma mark Interstitial delegate
-
 - (void)preLoadInterstitial
 {
     //Call this method as soon as you can - loadRequest will run in the background and your interstitial will be ready when you need to show it
@@ -344,7 +343,6 @@
 -(GADInterstitial*) createAndLoadInterstital
 {
     GADRequest *request = [GADRequest request];
-//    request.testDevices = @[ kGADSimulatorID ];
     GADInterstitial *interstitial = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
     interstitial.delegate = self;
     [interstitial loadRequest:request];

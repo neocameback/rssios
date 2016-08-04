@@ -35,7 +35,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.    
+    // Do any additional setup after loading the view from its nib.
+    [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 -(void) showBanner
 {

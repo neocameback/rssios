@@ -9,8 +9,9 @@
 #import "BaseViewController.h"
 #import "File.h"
 #import "DownloadManageTableViewCell.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
-@interface DownloadManagerViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
+@interface DownloadManagerViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, GADInterstitialDelegate>
 {
     __weak IBOutlet UITableView *_tableView;
     
@@ -18,6 +19,7 @@
 }
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) GADInterstitial *interstitial;
 
 - (void)configureCell:(DownloadManageTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
