@@ -72,7 +72,7 @@
         NSString *text;
         
         text = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&localError];
-        if (localError == nil)
+        if (localError == nil && text.length > 0)
         {
             DLog(@"");
             [self loadSRTContent:text error:&localError];
