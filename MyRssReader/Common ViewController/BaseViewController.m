@@ -37,7 +37,7 @@
     
     // Specify the ad unit ID.
     [_bannerView_ setAdSize:kGADAdSizeBanner];
-    _bannerView_.adUnitID = @"ca-app-pub-8422191650855912/2270603386";
+    _bannerView_.adUnitID = kBannerAdUnitID;
     // Let the runtime know which UIViewController to restore after taking
     // the user wherever the ad goes and add it to the view hierarchy.
     _bannerView_.rootViewController = self;
@@ -49,7 +49,6 @@
 {
     [super viewWillAppear:animated];
     GADRequest *request = [GADRequest request];
-//    request.testDevices = @[ kGADSimulatorID ];
     [_bannerView_ loadRequest:request];
 }
 - (void)didReceiveMemoryWarning

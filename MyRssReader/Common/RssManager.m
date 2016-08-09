@@ -21,6 +21,7 @@
 
 -(void) startParseCompletion:(ParseCompletionBlock) completionBlock failure:(ParseFailedBlock) failedBlock
 {
+    NSLog(@"parsing URL: %@",_rssUrl);
     if ([Singleton shareInstance].currentIpAddress) {
         
         [SVProgressHUD showWithStatus:kStringLoading maskType:SVProgressHUDMaskTypeGradient];

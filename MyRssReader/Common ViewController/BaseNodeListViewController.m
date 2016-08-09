@@ -24,6 +24,10 @@
 #import "FileListViewController.h"
 #import "NodeListViewController.h"
 #import "MyPlayerViewController.h"
+#import "NodeListAdsTableViewCell.h"
+
+#define kSecondAdsPosition  8
+#define kThirdAdsPosition   15
 
 @interface BaseNodeListViewController ()<UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, NodeListCustomCellDelegate>
 {
@@ -50,6 +54,19 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:kNotificationDownloadOperationStarted object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:kNotificationDownloadOperationCompleted object:nil];
+    
+    [self insertAds];
+}
+
+-(void) insertAds
+{
+    if (_nodeList.count >= kSecondAdsPosition - 1) {
+        [_nodeList insertObject:kBannerAdUnitID2 atIndex:kSecondAdsPosition];
+    }
+    if (_nodeList.count >= kThirdAdsPosition - 1) {
+        [_nodeList insertObject:kBannerAdUnitID3 atIndex:kThirdAdsPosition];
+    }
+    [_tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,6 +102,12 @@
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == kSecondAdsPosition) {
+        return 133;
+    }
+    else if (indexPath.row == kThirdAdsPosition){
+        return 251;
+    }
     return UITableViewAutomaticDimension;
 }
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -105,24 +128,40 @@
     } else {
         node = _nodeList[indexPath.row];
     }
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[self cellIdentifier] forIndexPath:indexPath];
-    if ([self configureCellBlock]) {
-        ConfigureTableViewCellBlock configureCellBlock = [self configureCellBlock];
-        configureCellBlock(cell, node);
+    if ([node isKindOfClass:[RssNodeModel class]]) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[self cellIdentifier] forIndexPath:indexPath];
+        if ([self configureCellBlock]) {
+            ConfigureTableViewCellBlock configureCellBlock = [self configureCellBlock];
+            configureCellBlock(cell, node);
+        }
+        if ([cell respondsToSelector:@selector(setDelegate:)]) {
+            [(NodeListCustomCell *)cell setDelegate:self];
+        }
+        return cell;
+    }else{
+        NodeListAdsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NodeListAdsTableViewCell"];
+        if (!cell) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"NodeListAdsTableViewCell" owner:self options:nil] firstObject];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        }
+        [cell setParentVC:self];
+        [cell setAdUnit:(NSString*)node];
+        return cell;
     }
-    if ([cell respondsToSelector:@selector(setDelegate:)]) {
-        [(NodeListCustomCell *)cell setDelegate:self];
-    }
-    return cell;
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    currentNode = nil;
+    if (indexPath.row == kSecondAdsPosition) {
+        return ;
+    }
+    else if (indexPath.row == kThirdAdsPosition){
+        return ;
+    }
     
+    currentNode = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         currentNode = searchResults[indexPath.row];
     } else {

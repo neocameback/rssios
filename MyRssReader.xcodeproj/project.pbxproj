@@ -176,6 +176,8 @@
 		E5D3B9931D11ABA100F3E400 /* download-arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D3B9901D11ABA100F3E400 /* download-arrow@2x.png */; };
 		E5D3B9941D11ABA100F3E400 /* download-arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D3B9911D11ABA100F3E400 /* download-arrow@3x.png */; };
 		E5D3B9951D11ABA100F3E400 /* download-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D3B9921D11ABA100F3E400 /* download-arrow.png */; };
+		E5E822CF1D5A264B00FB048D /* NodeListAdsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E822CD1D5A264B00FB048D /* NodeListAdsTableViewCell.m */; };
+		E5E822D01D5A264B00FB048D /* NodeListAdsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5E822CE1D5A264B00FB048D /* NodeListAdsTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -398,6 +400,9 @@
 		E5D3B9901D11ABA100F3E400 /* download-arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download-arrow@2x.png"; sourceTree = "<group>"; };
 		E5D3B9911D11ABA100F3E400 /* download-arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download-arrow@3x.png"; sourceTree = "<group>"; };
 		E5D3B9921D11ABA100F3E400 /* download-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download-arrow.png"; sourceTree = "<group>"; };
+		E5E822CC1D5A264B00FB048D /* NodeListAdsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeListAdsTableViewCell.h; sourceTree = "<group>"; };
+		E5E822CD1D5A264B00FB048D /* NodeListAdsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeListAdsTableViewCell.m; sourceTree = "<group>"; };
+		E5E822CE1D5A264B00FB048D /* NodeListAdsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeListAdsTableViewCell.xib; sourceTree = "<group>"; };
 		F3CAE5CC33CD02D3970373AB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -539,6 +544,9 @@
 				DE1AE5361B8DA40B008C44F8 /* NodeListCustomCell.h */,
 				DE1AE5371B8DA40B008C44F8 /* NodeListCustomCell.m */,
 				DE1AE5381B8DA40B008C44F8 /* NodeListCustomCell.xib */,
+				E5E822CC1D5A264B00FB048D /* NodeListAdsTableViewCell.h */,
+				E5E822CD1D5A264B00FB048D /* NodeListAdsTableViewCell.m */,
+				E5E822CE1D5A264B00FB048D /* NodeListAdsTableViewCell.xib */,
 				DE1AE53C1B8DA40B008C44F8 /* RPNodeDescriptionViewController.h */,
 				DE1AE53D1B8DA40B008C44F8 /* RPNodeDescriptionViewController.m */,
 				DE1AE5411B8DA40B008C44F8 /* WebViewViewController.h */,
@@ -962,6 +970,7 @@
 				B6B4A3911D140C800000DD02 /* ic_player_play.png in Resources */,
 				B6B4A3721D13E20D0000DD02 /* icon_tick.png in Resources */,
 				DE17B2C41B7C7C2800905EEE /* icon_check_status@3x.png in Resources */,
+				E5E822D01D5A264B00FB048D /* NodeListAdsTableViewCell.xib in Resources */,
 				B6B4A38D1D140C670000DD02 /* ic_close@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1056,6 +1065,7 @@
 				DE233F861B70AA1B00C02DD6 /* _Node.m in Sources */,
 				DE1AE55D1B8DA40B008C44F8 /* RPNodeDescriptionViewController.m in Sources */,
 				DE1AE54A1B8DA40B008C44F8 /* BaseViewController.m in Sources */,
+				E5E822CF1D5A264B00FB048D /* NodeListAdsTableViewCell.m in Sources */,
 				B6B4A3801D140B4B0000DD02 /* MyPlayerViewController.m in Sources */,
 				DE7F39AB1935E27700C7C143 /* NSMutableURLRequest+Helper.m in Sources */,
 				DE1AE5491B8DA40B008C44F8 /* DownloadManager.m in Sources */,

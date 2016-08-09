@@ -27,8 +27,11 @@
 
 #define kGoogleAnalyticId   @"UA-51537954-1"
 
-#define kSmallAdUnitId  @"ca-app-pub-8422191650855912/1857715781"
 #define kLargeAdUnitId  @"ca-app-pub-8422191650855912/4957456186"
+
+#define kBannerAdUnitID     @"ca-app-pub-8422191650855912/2270603386"
+#define kBannerAdUnitID2    @"ca-app-pub-8422191650855912/3747336585"
+#define kBannerAdUnitID3    @"ca-app-pub-8422191650855912/5084468982"
 
 #define kStringLoading  @"Loading"
 #define kMessageInternetConnectionLost  @"Internet connection was lost!"

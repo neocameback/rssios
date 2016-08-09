@@ -52,10 +52,7 @@
     
     __weak IBOutlet UILabel *lbElapsedTime;
     __weak IBOutlet UILabel *lbDuration;
-    __weak IBOutlet UISlider *seekSlider;
-    
-    MPVolumeView* volumeView;
-    UISlider *volumeViewSlider;
+    __weak IBOutlet UISlider *seekSlider;    
 }
 - (void)setURL:(NSURL *)URL;
 - (void)setPlayerItem:(AVPlayerItem *)playerItem;
