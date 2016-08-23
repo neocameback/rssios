@@ -105,7 +105,8 @@
             cell.textLabel.text = @"Version";
             NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
             NSString *version = [info objectForKey:@"CFBundleShortVersionString"];
-            cell.detailTextLabel.text = version;
+            NSString *buildVersion = [info objectForKey:@"CFBundleVersion"];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@)",version,buildVersion];
             cell.accessoryType = UITableViewCellAccessoryNone;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }

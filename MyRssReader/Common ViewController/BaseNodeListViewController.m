@@ -55,15 +55,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:kNotificationDownloadOperationStarted object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:kNotificationDownloadOperationCompleted object:nil];
     
-    [self insertAds];
+//    [self insertAds];
 }
 
 -(void) insertAds
 {
-    if (_nodeList.count >= kSecondAdsPosition - 1) {
+    if (_nodeList.count >= kSecondAdsPosition ) {
         [_nodeList insertObject:kBannerAdUnitID2 atIndex:kSecondAdsPosition];
     }
-    if (_nodeList.count >= kThirdAdsPosition - 1) {
+    if (_nodeList.count >= kThirdAdsPosition ) {
         [_nodeList insertObject:kBannerAdUnitID3 atIndex:kThirdAdsPosition];
     }
     [_tableView reloadData];

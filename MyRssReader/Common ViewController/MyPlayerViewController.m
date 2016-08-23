@@ -114,8 +114,10 @@
             self.subtitling.containerView.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.5].CGColor;
             
             [self.myPlayer hideCaptionButton:NO];
+            viewSubtitle.hidden = NO;
         }else{
             [self.myPlayer hideCaptionButton:YES];
+            viewSubtitle.hidden = YES;
         }
     }else{
         if (_currentNode.subtitles.count > 0) {
@@ -127,8 +129,10 @@
             self.subtitling.containerView.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.5].CGColor;
             
             [self.myPlayer hideCaptionButton:NO];
+            viewSubtitle.hidden = NO;
         }else{
             [self.myPlayer hideCaptionButton:YES];
+            viewSubtitle.hidden = YES;
         }
     }
 }
