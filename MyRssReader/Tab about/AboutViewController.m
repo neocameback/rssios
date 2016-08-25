@@ -197,8 +197,7 @@
         {
             if (buttonIndex != [actionSheet cancelButtonIndex]) {
                 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isBookmarkRss == 0"];
-                NSArray *cachedRss = [Rss MR_findAllSortedBy:@"rssTitle" ascending:YES withPredicate:predicate];
-                
+                NSArray *cachedRss = [Rss MR_findAllSortedBy:@"rssTitle" ascending:YES withPredicate:predicate inContext:[NSManagedObjectContext MR_defaultContext]];
                 for (Rss *rss in cachedRss) {
                     [rss MR_deleteEntity];
                 }

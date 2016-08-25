@@ -26,8 +26,8 @@
 #import "MyPlayerViewController.h"
 #import "NodeListAdsTableViewCell.h"
 
-#define kSecondAdsPosition  8
-#define kThirdAdsPosition   15
+//#define kSecondAdsPosition  8
+//#define kThirdAdsPosition   15
 
 @interface BaseNodeListViewController ()<UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, NodeListCustomCellDelegate>
 {
@@ -55,18 +55,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:kNotificationDownloadOperationStarted object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:kNotificationDownloadOperationCompleted object:nil];
     
-//    [self insertAds];
 }
 
--(void) insertAds
+-(void) viewWillAppear:(BOOL)animated
 {
-    if (_nodeList.count >= kSecondAdsPosition ) {
-        [_nodeList insertObject:kBannerAdUnitID2 atIndex:kSecondAdsPosition];
-    }
-    if (_nodeList.count >= kThirdAdsPosition ) {
-        [_nodeList insertObject:kBannerAdUnitID3 atIndex:kThirdAdsPosition];
-    }
-    [_tableView reloadData];
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,12 +95,6 @@
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == kSecondAdsPosition) {
-        return 133;
-    }
-    else if (indexPath.row == kThirdAdsPosition){
-        return 251;
-    }
     return UITableViewAutomaticDimension;
 }
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -153,13 +140,6 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if (indexPath.row == kSecondAdsPosition) {
-        return ;
-    }
-    else if (indexPath.row == kThirdAdsPosition){
-        return ;
-    }
     
     currentNode = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
