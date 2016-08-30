@@ -19,12 +19,20 @@
     return self;
 }
 
+-(void) hudTapped:(NSNotification *) notification
+{
+    DLog(@"");
+    [_feedParser stopParsing];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SVProgressHUDDidReceiveTouchEventNotification object:nil];
+
+}
 -(void) startParseCompletion:(ParseCompletionBlock) completionBlock failure:(ParseFailedBlock) failedBlock
 {
     NSLog(@"parsing URL: %@",_rssUrl);
     if ([Singleton shareInstance].currentIpAddress) {
         
-        [SVProgressHUD showWithStatus:kStringLoading maskType:SVProgressHUDMaskTypeGradient];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hudTapped:) name:SVProgressHUDDidReceiveTouchEventNotification object:nil];
+        [SVProgressHUD showWithStatus:kStringLoadingTapToCancel maskType:SVProgressHUDMaskTypeGradient];
         _completionBlock = completionBlock;
         _failureBlock = failedBlock;
         
@@ -50,7 +58,8 @@
             [alert show];
         }
     }else{
-        [SVProgressHUD showWithStatus:kStringLoading maskType:SVProgressHUDMaskTypeGradient];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hudTapped:) name:SVProgressHUDDidReceiveTouchEventNotification object:nil];
+        [SVProgressHUD showWithStatus:kStringLoadingTapToCancel maskType:SVProgressHUDMaskTypeGradient];
         [Common getUserIpAddress:^(NSDictionary *update) {
             if (update) {
                 
@@ -95,20 +104,23 @@
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info
 {
-//    NSLog(@"didParseFeedInfo: %@",[NSDate date]);
     _rssModel = [[RssModel alloc] initWithFeedInfo:info];
 }
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item
 {
-//    NSLog(@"didParseFeedItem: %@",[NSDate date]);
     RssNodeModel *tempNode = [[RssNodeModel alloc] initWithFeedItem:item];
     [_nodeList addObject:tempNode];
 }
 - (void)feedParserDidFinish:(MWFeedParser *)parser
 {
-//    NSLog(@"feedParserDidFinish: %@",[NSDate date]);
-    if (_completionBlock) {
-        _completionBlock(_rssModel, _nodeList);
+    if (parser.isStopped) {
+        /**
+         *  if parser is told to be stopped so just dismiss the progresshud
+         */
+    }else{
+        if (_completionBlock) {
+            _completionBlock(_rssModel, _nodeList);
+        }
     }
     [SVProgressHUD popActivity];
 }
@@ -131,6 +143,10 @@
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
     NetworkStatus networkStatus = [reachability currentReachabilityStatus];
     return networkStatus != NotReachable;
+}
+
+-(void) dealloc
+{
 }
 
 @end

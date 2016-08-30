@@ -49,7 +49,9 @@
 {
     [super viewWillAppear:animated];
     GADRequest *request = [GADRequest request];
-    [_bannerView_ loadRequest:request];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_bannerView_ loadRequest:request];
+    });
 }
 - (void)didReceiveMemoryWarning
 {

@@ -10,7 +10,7 @@
 
 #define kAnimationDuration  0.3
 #define kDurationToHideContol 5
-
+#define kMinimumRangeForPan 50
 
 //static const float DefaultPlayableBufferLength = 2.0f;
 //static const float DefaultVolumeFadeDuration = 1.0f;
@@ -30,6 +30,8 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
      *  used this property to seek to correct time after change the source type of streaming video
      */
     CMTime shouldSeekToTime;
+    
+    CGPoint startLocation;
 }
 @property (nonatomic, strong) NSString *nibNameOrNil;
 @end
@@ -64,12 +66,15 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
 //    [swipeDownGesture setDirection:UISwipeGestureRecognizerDirectionDown];
 //    [self.view addGestureRecognizer:swipeDownGesture];
     
-    UISwipeGestureRecognizer *swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeLeft:)];
-    [swipeLeftGesture setDirection:UISwipeGestureRecognizerDirectionLeft];
-    [self.view addGestureRecognizer:swipeLeftGesture];
-    UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeRight:)];
-    [swipeRightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
-    [self.view addGestureRecognizer:swipeRightGesture];
+//    UISwipeGestureRecognizer *swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeLeft:)];
+//    [swipeLeftGesture setDirection:UISwipeGestureRecognizerDirectionLeft];
+//    [self.view addGestureRecognizer:swipeLeftGesture];
+//    UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeRight:)];
+//    [swipeRightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
+//    [self.view addGestureRecognizer:swipeRightGesture];
+    
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPanGesture:)];
+    [self.view addGestureRecognizer:pan];
     
     _player = [[AVPlayer alloc] init];
     [self addPlayerObservers];
@@ -170,7 +175,7 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
     }
     @catch (NSException *exception)
     {
-        NSLog(@"Exception removing observer: %@", exception);
+        DLog(@"Exception removing observer: %@", exception);
     }
     
     @try
@@ -181,7 +186,7 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
     }
     @catch (NSException *exception)
     {
-        NSLog(@"Exception removing observer: %@", exception);
+        DLog(@"Exception removing observer: %@", exception);
     }
     
     @try
@@ -192,7 +197,7 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
     }
     @catch (NSException *exception)
     {
-        NSLog(@"Exception removing observer: %@", exception);
+        DLog(@"Exception removing observer: %@", exception);
     }
 }
 
@@ -223,7 +228,7 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
     }
     @catch (NSException *exception)
     {
-        NSLog(@"Exception removing observer: %@", exception);
+        DLog(@"Exception removing observer: %@", exception);
     }
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:playerItem];
@@ -285,7 +290,7 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
     else if (context == VideoPlayer_PlayerItemPlaybackLikelyToKeepUp) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (_player.currentItem.isPlaybackLikelyToKeepUp) {
-                NSLog(@"VideoPlayer_PlayerItemPlaybackLikelyToKeepUp");
+                DLog(@"VideoPlayer_PlayerItemPlaybackLikelyToKeepUp");
                 [loadingIndicator stopAnimating];
                 /**
                  *  play button's alpha value is the same with view header
@@ -310,11 +315,11 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
         {
             switch (_player.currentItem.status) {
                 case AVPlayerItemStatusUnknown:
-                    NSLog(@"AVPlayerItemStatusUnknown: %@",[[_player.currentItem error] localizedDescription]);
+                    DLog(@"AVPlayerItemStatusUnknown: %@",[[_player.currentItem error] localizedDescription]);
                     [self reportUnableToCreatePlayerItem];
                     break;
                 case AVPlayerItemStatusFailed:
-                    NSLog(@"AVPlayerItemStatusFailed: %@",[[_player.currentItem error] localizedDescription]);
+                    DLog(@"AVPlayerItemStatusFailed: %@",[[_player.currentItem error] localizedDescription]);
                     [self reportUnableToCreatePlayerItem];
                     break;
                 case AVPlayerItemStatusReadyToPlay:
@@ -403,21 +408,24 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
 //    [volumeViewSlider sendActionsForControlEvents:UIControlEventTouchUpInside];
 //}
 
--(void) onSwipeLeft:(UISwipeGestureRecognizer *) swipe
-{
-    /**
-     *  forward
-     */
-    float rate = _player.rate;
-    if (rate == 1.0) {
-    }else{
-        rate -= 0.5;
-        [_player setRate:rate];
+- (void)onPanGesture:(UIPanGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        startLocation = [sender locationInView:self.view];
     }
-    [self animateShowPlayerRate:_player.rate];
+    else if (sender.state == UIGestureRecognizerStateEnded) {
+        CGPoint stopLocation = [sender locationInView:self.view];
+        CGFloat dx = stopLocation.x - startLocation.x;
+        CGFloat dy = stopLocation.y - startLocation.y;
+        CGFloat distance = sqrt(dx*dx + dy*dy );
+        if (dx < 0 && distance >= kMinimumRangeForPan) {
+            [self onSwipeLeft];
+        }
+        else if (dx > 0 && distance > kMinimumRangeForPan){
+            [self onSwipeRight];
+        }
+    }
 }
-
--(void) onSwipeRight:(UISwipeGestureRecognizer *) swipe
+-(void) onSwipeLeft
 {
     /**
      *  fastward
@@ -427,6 +435,20 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
         [_player setRate:1.0];
     }else{
         rate += 0.5;
+        [_player setRate:rate];
+    }
+    [self animateShowPlayerRate:_player.rate];
+}
+
+-(void) onSwipeRight
+{
+    /**
+     *  forward
+     */
+    float rate = _player.rate;
+    if (rate == 1.0) {
+    }else{
+        rate -= 0.5;
         [_player setRate:rate];
     }
     [self animateShowPlayerRate:_player.rate];

@@ -53,7 +53,7 @@
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.requestSerializer = [AFgzipRequestSerializer serializerWithSerializer:[AFJSONRequestSerializer serializer]];
         [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
-        NSDictionary *parameters = @{@"url": self.webPageUrl, @"file": content};
+        NSDictionary *parameters = @{@"url": self.webPageUrl, @"file": content ?: @""};
         
         [manager POST:POST_HANDLE_URL
            parameters:parameters
