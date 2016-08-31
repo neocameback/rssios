@@ -1,6 +1,7 @@
 platform :ios, '8.0'
 inhibit_all_warnings!
 
+target 'MyRssReader' do
 pod 'Google-Mobile-Ads-SDK', '~> 7.4'
 pod 'SVProgressHUD', '~> 1.1.3'
 pod 'MagicalRecord', '~> 2.3.0'
@@ -22,3 +23,4 @@ pod 'Crashlytics'
 
 pod 'Firebase/Core'
 pod 'Firebase/AdMob'
+end

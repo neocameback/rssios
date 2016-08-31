@@ -25,26 +25,26 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Crashlytics (3.7.2):
+  - Crashlytics (3.8.0):
     - Fabric (~> 1.6.3)
   - dailymotion-player-objc (2.9.3)
-  - Fabric (1.6.7)
-  - Firebase/AdMob (3.4.0):
+  - Fabric (1.6.8)
+  - Firebase/AdMob (3.5.2):
     - Firebase/Analytics
-    - Google-Mobile-Ads-SDK (= 7.9.1)
-  - Firebase/Analytics (3.4.0):
+    - Google-Mobile-Ads-SDK (= 7.10.1)
+  - Firebase/Analytics (3.5.2):
     - FirebaseAnalytics (~> 3.3)
-  - Firebase/Core (3.4.0):
+  - Firebase/Core (3.5.2):
     - Firebase/Analytics
-  - FirebaseAnalytics (3.3.0):
+  - FirebaseAnalytics (3.3.1):
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
     - GoogleUtilities (~> 1.2)
   - FirebaseInstanceID (1.0.8)
   - Godzippa (1.1.0)
-  - Google-Mobile-Ads-SDK (7.9.1)
-  - GoogleAnalytics (3.14.0)
+  - Google-Mobile-Ads-SDK (7.10.1)
+  - GoogleAnalytics (3.16.0)
   - GoogleInterchangeUtilities (1.2.1):
     - GoogleSymbolUtilities (~> 1.0)
   - GoogleSymbolUtilities (1.1.1)
@@ -87,15 +87,15 @@ SPEC CHECKSUMS:
   AFDownloadRequestOperation: 748a1643423e1ddb23f2178f778087d4f0ae8ac7
   AFgzipRequestSerializer: 329638fc8ed023a15188dc03dd2f1a930da30ea4
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
-  Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
+  Crashlytics: 8601d9c74a4c4d28f3e7f408bf4c0e490c70e8b4
   dailymotion-player-objc: f7edac9fc199ac944f35bb1561f8f4488fe25ec8
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  Firebase: 754562547af419cc2f4b15247fee419081924bc2
-  FirebaseAnalytics: 228be2991cb28efb96cdafc4d62f64680e615c69
+  Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
+  Firebase: 94e63112efcad75226c0356a8f3032397b8547c9
+  FirebaseAnalytics: d968d4d5f6aeb795cd64144337bcd233e530efc6
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   Godzippa: 21621e8ddc2f1521db473a72b48148c3f0e79d76
-  Google-Mobile-Ads-SDK: 575583d7eae25793bb81ad8673737d1b4ecbedc5
-  GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
+  Google-Mobile-Ads-SDK: c8da9e592fe43d9b47ef86b018cadb71af53f6b3
+  GoogleAnalytics: 3de986b2fa29012c69fa415566006a9c9cf25320
   GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
@@ -109,4 +109,6 @@ SPEC CHECKSUMS:
   UIView+AnimationExtensions: f9ae95fa3064be09cf2fcaac1fb1948ee22397ec
   XCDYouTubeKit: 90690f9e3523735dc93b8024269d991b0cfffe78
 
-COCOAPODS: 0.37.2
+PODFILE CHECKSUM: a65e0fa4c78c6fa08c2021b40d32d13cb0283dee
+
+COCOAPODS: 1.0.1
