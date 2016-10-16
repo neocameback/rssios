@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		064A9E15F0A1D9B5F602F5B4 /* Pods_MyRssReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EBF595744363B68EF79E3FF /* Pods_MyRssReader.framework */; };
+		22FB26371DB39A79008831D2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22FB26361DB39A79008831D2 /* Settings.bundle */; };
 		42AE1B28194B8FB600F2CC2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AE1B27194B8FB600F2CC2A /* Security.framework */; };
 		42C70C0E193CBE3500736BCF /* icon -114.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70BFF193CBE3500736BCF /* icon -114.png */; };
 		42C70C0F193CBE3500736BCF /* icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70C00193CBE3500736BCF /* icon-29.png */; };
@@ -42,7 +44,6 @@
 		8465650E1B7B9A9000C9E99E /* icon_download.png in Resources */ = {isa = PBXBuildFile; fileRef = 8465650B1B7B9A9000C9E99E /* icon_download.png */; };
 		846565131B7BA57700C9E99E /* _File.m in Sources */ = {isa = PBXBuildFile; fileRef = 846565101B7BA57700C9E99E /* _File.m */; };
 		846565141B7BA57700C9E99E /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 846565121B7BA57700C9E99E /* File.m */; };
-		A6E7DB77BAC9A881565D4B3C /* libPods-MyRssReader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91945E6D3FC1B7AC7F8FE882 /* libPods-MyRssReader.a */; };
 		B648CF081D1102C40030FE69 /* BaseNodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B648CF061D1102C40030FE69 /* BaseNodeListViewController.m */; };
 		B648CF091D1102C40030FE69 /* BaseNodeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B648CF071D1102C40030FE69 /* BaseNodeListViewController.xib */; };
 		B65A72FB1D19196500504151 /* _Subtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = B65A72F81D19196400504151 /* _Subtitle.m */; };
@@ -183,6 +184,8 @@
 /* Begin PBXFileReference section */
 		0E6D42693370FDC9A6552E5C /* Pods-MyRssReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyRssReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyRssReader/Pods-MyRssReader.release.xcconfig"; sourceTree = "<group>"; };
 		132BC3B1C3545C57DF415C1F /* Pods-MyRssReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyRssReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyRssReader/Pods-MyRssReader.debug.xcconfig"; sourceTree = "<group>"; };
+		22FB26361DB39A79008831D2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		2EBF595744363B68EF79E3FF /* Pods_MyRssReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyRssReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42AE1B27194B8FB600F2CC2A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		42C70BFF193CBE3500736BCF /* icon -114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon -114.png"; sourceTree = "<group>"; };
 		42C70C00193CBE3500736BCF /* icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-29.png"; sourceTree = "<group>"; };
@@ -206,7 +209,6 @@
 		846565101B7BA57700C9E99E /* _File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _File.m; sourceTree = "<group>"; };
 		846565111B7BA57700C9E99E /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
 		846565121B7BA57700C9E99E /* File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = File.m; sourceTree = "<group>"; };
-		91945E6D3FC1B7AC7F8FE882 /* libPods-MyRssReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyRssReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B648CF051D1102C40030FE69 /* BaseNodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNodeListViewController.h; sourceTree = "<group>"; };
 		B648CF061D1102C40030FE69 /* BaseNodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNodeListViewController.m; sourceTree = "<group>"; };
 		B648CF071D1102C40030FE69 /* BaseNodeListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseNodeListViewController.xib; sourceTree = "<group>"; };
@@ -419,7 +421,7 @@
 				DEB54D8719333CB200EC589E /* MediaPlayer.framework in Frameworks */,
 				DE22E7BB192F54180005E685 /* CoreGraphics.framework in Frameworks */,
 				DE22E7B9192F54180005E685 /* Foundation.framework in Frameworks */,
-				A6E7DB77BAC9A881565D4B3C /* libPods-MyRssReader.a in Frameworks */,
+				064A9E15F0A1D9B5F602F5B4 /* Pods_MyRssReader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +431,7 @@
 		B6A1CC2D1D17F1C10026430B /* Singleton */ = {
 			isa = PBXGroup;
 			children = (
+				22FB26361DB39A79008831D2 /* Settings.bundle */,
 				B6A1CC2E1D17F1C90026430B /* Singleton.h */,
 				B6A1CC2F1D17F1C90026430B /* Singleton.m */,
 			);
@@ -616,7 +619,7 @@
 				DE22E7BA192F54180005E685 /* CoreGraphics.framework */,
 				DE22E7BC192F54180005E685 /* UIKit.framework */,
 				DE22E7D1192F54180005E685 /* XCTest.framework */,
-				91945E6D3FC1B7AC7F8FE882 /* libPods-MyRssReader.a */,
+				2EBF595744363B68EF79E3FF /* Pods_MyRssReader.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -852,7 +855,7 @@
 		DE22E7AD192F54180005E685 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Huyns;
 				TargetAttributes = {
 					DE233F7C1B70A9C600C02DD6 = {
@@ -924,6 +927,7 @@
 				42C70C13193CBE3500736BCF /* icon-58.png in Resources */,
 				DEC5DD2E19357EDC0088A62F /* ic_about_normal.png in Resources */,
 				42C70C1C193CBE3500736BCF /* iTunesArtwork@2x.png in Resources */,
+				22FB26371DB39A79008831D2 /* Settings.bundle in Resources */,
 				B6B4A3731D13E20D0000DD02 /* icon_tick@2x.png in Resources */,
 				B6931A031D223FA500F37718 /* GoogleService-Info.plist in Resources */,
 				DEC5DD2C19357EDC0088A62F /* ic_about_press.png in Resources */,
@@ -1145,14 +1149,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1165,7 +1174,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1184,20 +1193,25 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

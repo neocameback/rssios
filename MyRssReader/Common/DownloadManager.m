@@ -7,8 +7,8 @@
 //
 
 #import "DownloadManager.h"
-#import <AFDownloadRequestOperation.h>
-#import <JDStatusBarNotification.h>
+#import "AFDownloadRequestOperation.h"
+#import "JDStatusBarNotification.h"
 
 @interface DownloadManager()
 {

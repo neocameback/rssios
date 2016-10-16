@@ -12,19 +12,36 @@
 #import "Node.h"
 #import "MWFeedParser.h"
 #import "NSString+HTML.h"
-#import <SVProgressHUD.h>
+#import "SVProgressHUD.h"
 #import "Reachability.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-#import <JDStatusBarNotification.h>
+#import "JDStatusBarNotification.h"
 #import "DownloadManager.h"
 #import <Firebase.h>
+#import <GoogleCast/GoogleCast.h>
 
-@interface AppDelegate() 
-{    
+@interface AppDelegate() <GCKLoggerDelegate, GCKSessionManagerListener,
+GCKUIImagePicker> {
+    BOOL _enableSDKLogging;
+    BOOL _mediaNotificationsEnabled;
+    BOOL _firstUserDefaultsSync;
+    BOOL _useCastContainerViewController;
 }
 @end
+NSString *const kPrefPreloadTime = @"preload_time_sec";
 
+static NSString *const kPrefEnableAnalyticsLogging =
+@"enable_analytics_logging";
+static NSString *const kPrefEnableSDKLogging = @"enable_sdk_logging";
+static NSString *const kPrefAppVersion = @"app_version";
+static NSString *const kPrefSDKVersion = @"sdk_version";
+static NSString *const kPrefReceiverAppID = @"receiver_app_id";
+static NSString *const kPrefCustomReceiverSelectedValue =
+@"use_custom_receiver_app_id";
+static NSString *const kPrefCustomReceiverAppID = @"custom_receiver_app_id";
+static NSString *const kPrefEnableMediaNotifications =
+@"enable_media_notifications";
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -47,10 +64,16 @@
     // Initialize tracker. Replace with your tracking ID.
     [[GAI sharedInstance] trackerWithTrackingId:kGoogleAnalyticId];
     
+    [self populateRegistrationDomain];
     
-    // FFEngine: register engine!
-//    RegisterFFEngine(@"yQ2oiBQRbXoo35veDico9ggF4ARFxRdjq3yiIvBltwIPe/SgphrthjEVCzt6mtAfejcyM1fkbDdY+wE8j7oeJLK+u1KEO7IgfEDQ+KrnsNc=");
-
+    NSString *applicationID = [self applicationIDFromUserDefaults];
+    // Google Cast
+    GCKCastOptions *options =
+    [[GCKCastOptions alloc] initWithReceiverApplicationID:applicationID];
+    [GCKCastContext setSharedInstanceWithOptions:options];
+    
+    [GCKLogger sharedInstance].delegate = self;
+    
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSInteger autoRefreshTime = [userDefault integerForKey:kAutoRefreshNewsTime];
     if (!autoRefreshTime || autoRefreshTime <= 0) {
@@ -105,5 +128,80 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     [[DownloadManager shareManager] cancelDownloadingTasks];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+}
+#pragma mark GCKLoggerDelegate 
+- (void)logMessage:(NSString *)message fromFunction:(NSString *)function {
+    if (_enableSDKLogging) {
+        NSLog(@"%@  %@", function, message);
+    }
+}
+
+- (void)populateRegistrationDomain {
+    NSURL *settingsBundleURL = [[NSBundle mainBundle] URLForResource:@"Settings"
+                                                       withExtension:@"bundle"];
+    NSString *appVersion = [[NSBundle mainBundle]
+                            objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    
+    NSMutableDictionary *appDefaults = [NSMutableDictionary dictionary];
+    [self loadDefaults:appDefaults
+      fromSettingsPage:@"Root"
+ inSettingsBundleAtURL:settingsBundleURL];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults registerDefaults:appDefaults];
+    [userDefaults setValue:appVersion forKey:kPrefAppVersion];
+    [userDefaults setValue:kGCKFrameworkVersion forKey:kPrefSDKVersion];
+    [userDefaults synchronize];
+}
+
+- (void)loadDefaults:(NSMutableDictionary *)appDefaults
+    fromSettingsPage:(NSString *)plistName
+inSettingsBundleAtURL:(NSURL *)settingsBundleURL {
+    NSString *plistFileName = [plistName stringByAppendingPathExtension:@"plist"];
+    NSDictionary *settingsDict = [NSDictionary
+                                  dictionaryWithContentsOfURL:
+                                  [settingsBundleURL URLByAppendingPathComponent:plistFileName]];
+    NSArray *prefSpecifierArray =
+    [settingsDict objectForKey:@"PreferenceSpecifiers"];
+    
+    for (NSDictionary *prefItem in prefSpecifierArray) {
+        NSString *prefItemType = prefItem[@"Type"];
+        NSString *prefItemKey = prefItem[@"Key"];
+        NSString *prefItemDefaultValue = prefItem[@"DefaultValue"];
+        
+        if ([prefItemType isEqualToString:@"PSChildPaneSpecifier"]) {
+            NSString *prefItemFile = prefItem[@"File"];
+            [self loadDefaults:appDefaults
+              fromSettingsPage:prefItemFile
+         inSettingsBundleAtURL:settingsBundleURL];
+        } else if (prefItemKey && prefItemDefaultValue) {
+            [appDefaults setObject:prefItemDefaultValue forKey:prefItemKey];
+        }
+    }
+}
+
+- (NSString *)applicationIDFromUserDefaults {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *prefApplicationID = [userDefaults stringForKey:kPrefReceiverAppID];
+    if ([prefApplicationID isEqualToString:kPrefCustomReceiverSelectedValue]) {
+        prefApplicationID = [userDefaults stringForKey:kPrefCustomReceiverAppID];
+    }
+    NSRegularExpression *appIdRegex =
+    [NSRegularExpression regularExpressionWithPattern:@"\\b[0-9A-F]{8}\\b"
+                                              options:0
+                                                error:nil];
+    NSUInteger numberOfMatches = [appIdRegex
+                                  numberOfMatchesInString:prefApplicationID
+                                  options:0
+                                  range:NSMakeRange(0, [prefApplicationID length])];
+    if (!numberOfMatches) {
+        NSString *message = [NSString
+                             stringWithFormat:
+                             @"\"%@\" is not a valid application ID\n"
+                             @"Please fix the app settings (should be 8 hex digits, in CAPS)",
+                             prefApplicationID];
+        ALERT_WITH_TITLE(@"Invalid Receiver Application ID", message)
+        return nil;
+    }
+    return prefApplicationID;
 }
 @end

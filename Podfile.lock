@@ -1,9 +1,6 @@
 PODS:
   - AFDownloadRequestOperation (2.0.1):
     - AFNetworking (~> 2.0)
-  - AFgzipRequestSerializer (0.0.2):
-    - AFNetworking (~> 2.0)
-    - Godzippa (~> 1.0)
   - AFNetworking (2.5.4):
     - AFNetworking/NSURLConnection (= 2.5.4)
     - AFNetworking/NSURLSession (= 2.5.4)
@@ -44,7 +41,9 @@ PODS:
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleUtilities (~> 1.2)
   - FirebaseInstanceID (1.0.8)
-  - Godzippa (1.1.0)
+  - google-cast-sdk (3.2.0):
+    - google-cast-sdk/Core (= 3.2.0)
+  - google-cast-sdk/Core (3.2.0)
   - Google-Mobile-Ads-SDK (7.12.1)
   - GoogleAnalytics (3.17.0)
   - GoogleInterchangeUtilities (1.2.2):
@@ -66,13 +65,13 @@ PODS:
 
 DEPENDENCIES:
   - AFDownloadRequestOperation (~> 2.0.1)
-  - AFgzipRequestSerializer (~> 0.0.2)
   - AFNetworking (~> 2.5.4)
   - Crashlytics
   - dailymotion-player-objc (~> 2.9)
   - Fabric
   - Firebase/AdMob
   - Firebase/Core
+  - google-cast-sdk (~> 3.2)
   - Google-Mobile-Ads-SDK (~> 7.4)
   - GoogleAnalytics (~> 3.13)
   - JDStatusBarNotification
@@ -87,7 +86,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFDownloadRequestOperation: 748a1643423e1ddb23f2178f778087d4f0ae8ac7
-  AFgzipRequestSerializer: 329638fc8ed023a15188dc03dd2f1a930da30ea4
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
   dailymotion-player-objc: 3b394a0ebfad4b15edf3c136265d7e434a901472
@@ -96,7 +94,7 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: 0533a00b681e08fd0b2cd0444b7ddf0ef9fd7a1a
   FirebaseCore: 5a885548bbc5f0c410b04f8e9ac9d73ff1221907
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  Godzippa: 21621e8ddc2f1521db473a72b48148c3f0e79d76
+  google-cast-sdk: f4c2a14214ad486cc26a8f8837e8481c906a0ea8
   Google-Mobile-Ads-SDK: 542eb24c1ce6c8fd5084ee9572fd9dcd2d06065a
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
@@ -112,6 +110,6 @@ SPEC CHECKSUMS:
   UIView+AnimationExtensions: f9ae95fa3064be09cf2fcaac1fb1948ee22397ec
   XCDYouTubeKit: 90690f9e3523735dc93b8024269d991b0cfffe78
 
-PODFILE CHECKSUM: a65e0fa4c78c6fa08c2021b40d32d13cb0283dee
+PODFILE CHECKSUM: 33b871ad87fe8195d28dcb27fda61b6aea891cbd
 
 COCOAPODS: 1.0.1

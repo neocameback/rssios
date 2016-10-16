@@ -7,7 +7,7 @@
 //
 
 #import "BookmarkCustomCell.h"
-#import <UIImageView+AFNetworking.h>
+#import "UIImageView+AFNetworking.h"
 
 @implementation BookmarkCustomCell
 

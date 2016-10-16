@@ -12,11 +12,10 @@
 #import "RPNodeDescriptionViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "NodeListViewController.h"
-#import <DMPlayerViewController.h>
+#import "DMPlayerViewController.h"
 #import "WebViewViewController.h"
-#import <XCDYouTubeKit.h>
-#import <AFNetworking.h>
-#import <AFgzipRequestSerializer.h>
+#import "XCDYouTubeKit.h"
+#import "AFNetworking.h"
 
 @interface FileListViewController ()
 {
@@ -46,12 +45,13 @@
     [SVProgressHUD showWithStatus:kStringLoading maskType:SVProgressHUDMaskTypeGradient];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.webPageUrl]];
     [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];    
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *content = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        manager.requestSerializer = [AFgzipRequestSerializer serializerWithSerializer:[AFJSONRequestSerializer serializer]];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
         [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
         NSDictionary *parameters = @{@"url": self.webPageUrl, @"file": content ?: @""};
         

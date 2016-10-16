@@ -7,11 +7,11 @@
 //
 
 #import "NodeListCustomCell.h"
-#import <UIImageView+AFNetworking.h>
+#import "UIImageView+AFNetworking.h"
 #import "Node.h"
-#import <UIView+AnimationExtensions.h>
+#import "UIView+AnimationExtensions.h"
 #import "File.h"
-#import <SCSkypeActivityIndicatorView.h>
+#import "SCSkypeActivityIndicatorView.h"
 
 @implementation NodeListCustomCell
 

@@ -7,7 +7,7 @@
 //
 
 #import "DownloadManageTableViewCell.h"
-#import <UIImageView+AFNetworking.h>
+#import "UIImageView+AFNetworking.h"
 
 #define MB2B    1000000
 

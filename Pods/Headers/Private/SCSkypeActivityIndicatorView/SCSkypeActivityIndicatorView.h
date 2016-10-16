@@ -1,1 +1,0 @@
-../../../SCSkypeActivityIndicatorView/SCSkypeActivityIndicatorView/SCSkypeActivityIndicatorView.h
