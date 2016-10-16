@@ -11,6 +11,7 @@
 #import "NSString+MD5.h"
 #import "NSMutableURLRequest+Helper.h"
 #import "NSString+Helper.h"
+#import "NSDictionary+Helper.h"
 
 @interface Categories : NSObject
 

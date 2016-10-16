@@ -6,10 +6,13 @@
 //  Copyright (c) 2014 Huyns. All rights reserved.
 //
 
+#import "RssNodeModel.h"
 #import "_Node.h"
-#import "TempNode.h"
 
+/**
+ Favorited Node model
+ */
 @interface Node : _Node
 
--(void) initFromTempNode:(TempNode*) temp;
+-(void) initFromTempNode:(RssNodeModel*) temp;
 @end

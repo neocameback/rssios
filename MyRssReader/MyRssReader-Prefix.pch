@@ -4,6 +4,25 @@
 //  The contents of this file are implicitly included at the beginning of every source file.
 //
 
+#import <Availability.h>
+#import "Categories.h"
+#import <MagicalRecord/MagicalRecord.h>
+#import "Constant.h"
+#import "SVProgressHUD.h"
+#import "PureLayout.h"
+#import "BaseViewController.h"
+#import "AppDelegate.h"
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAITrackedViewController.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
+#import "GAILogger.h"
+#import "Common.h"
+#import "RssManager.h"
+#import "Singleton.h"
+#import "Subtitle.h"
+
 #ifndef __IPHONE_3_0
 #warning "This project uses features only available in iOS SDK 3.0 and later."
 #endif
@@ -11,15 +30,9 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
-    #import <Availability.h>
-    #import "Categories.h"
-    #import <MagicalRecord.h>
-    #import "Constant.h"
-    #import <SVProgressHUD.h>
-    #import "BaseViewController.h"
-    #import <GAI.h>
-
 #endif
+
+#define APPDELEGATE             (AppDelegate*)[[UIApplication sharedApplication] delegate]
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 #define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
@@ -27,3 +40,15 @@
 #define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
+#define Storyboard  [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil]
+
+#define ALERT_WITH_TITLE(title, msg) UIAlertView * alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];\
+[alert show];\
+alert = nil;\
+
+
+#ifdef DEBUG
+# define DLog(fmt, ...) NSLog((@"\n%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ## __VA_ARGS__);
+#else
+# define DLog(...)
+#endif

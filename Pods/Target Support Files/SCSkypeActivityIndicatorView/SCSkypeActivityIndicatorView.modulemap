@@ -1,0 +1,6 @@
+framework module SCSkypeActivityIndicatorView {
+  umbrella header "SCSkypeActivityIndicatorView-umbrella.h"
+
+  export *
+  module * { export * }
+}

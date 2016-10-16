@@ -33,7 +33,7 @@
 
 @implementation MWFeedItem
 
-@synthesize identifier, title, link, date, updated, summary, content, author, bookmarkStatus, enclosures;
+@synthesize identifier, title, link, date, updated, summary, content, author, bookmarkStatus, enclosures, medias, subTitles;
 
 
 #pragma mark NSObject
@@ -77,4 +77,8 @@
 	if (enclosures) [encoder encodeObject:enclosures forKey:@"enclosures"];
 }
 
+-(void) setSubTitles:(NSMutableArray *)array
+{
+    subTitles = [array mutableCopy];
+}
 @end

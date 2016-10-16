@@ -14,7 +14,7 @@
     if (!self) {
         self = [super init];
     }
-    NSString *ipAddres = [Constant getIpAddress];
+    NSString *ipAddres = [Common getIpAddress];
     NSString *md5String = [[NSString stringWithFormat:@"%@%@",kDefaultMd5Prefix,ipAddres] MD5String];
     [self setHTTPMethod:method];
     [self setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?Auth=%@",url,md5String]]];

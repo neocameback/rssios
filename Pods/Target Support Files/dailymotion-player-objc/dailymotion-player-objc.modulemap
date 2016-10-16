@@ -1,0 +1,6 @@
+framework module dailymotion_player_objc {
+  umbrella header "dailymotion-player-objc-umbrella.h"
+
+  export *
+  module * { export * }
+}
