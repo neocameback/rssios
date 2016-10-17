@@ -139,4 +139,19 @@
         return NODE_TYPE_WEB;
     }
 }
+
++(GCKMediaInformation *)mediaInformationFromNode:(RssNodeModel *)node {
+    GCKMediaMetadata *metadata =
+    [[GCKMediaMetadata alloc] initWithMetadataType:GCKMediaMetadataTypeMovie];
+    [metadata setString:node.nodeTitle forKey:kGCKMetadataKeyTitle];
+    [metadata setString:node.nodeDesc forKey:@"description"];
+    
+    [metadata addImage:[[GCKImage alloc] initWithURL:[NSURL URLWithString:node.nodeImage]
+                                               width:480
+                                              height:720]];
+    
+    GCKMediaInformation *mediaInfo = [[GCKMediaInformation alloc] initWithContentID:node.nodeUrl streamType:GCKMediaStreamTypeBuffered contentType:@"video/mp4" metadata:metadata streamDuration:0 customData:0];
+    return mediaInfo;
+}
+
 @end

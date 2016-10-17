@@ -21,8 +21,7 @@
 #import <Firebase.h>
 #import <GoogleCast/GoogleCast.h>
 
-@interface AppDelegate() <GCKLoggerDelegate, GCKSessionManagerListener,
-GCKUIImagePicker> {
+@interface AppDelegate() <GCKLoggerDelegate> {
     BOOL _enableSDKLogging;
     BOOL _mediaNotificationsEnabled;
     BOOL _firstUserDefaultsSync;

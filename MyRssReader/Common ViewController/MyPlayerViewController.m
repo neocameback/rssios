@@ -11,6 +11,7 @@
 #import "MyCustomerPlayer.h"
 #import "ASBPlayerSubtitling.h"
 #import "SubtitleSelectionViewController.h"
+#import <GoogleCast/GoogleCast.h>
 
 @interface MyPlayerViewController () <MyCustomerPlayerDelegate, SubtitleSelectionViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet ASBPlayerSubtitling *subtitling;
@@ -200,6 +201,16 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+- (BOOL)continueAfterPlayButtonClicked {
+    BOOL hasConnectedCastSession =
+    [GCKCastContext sharedInstance].sessionManager.hasConnectedCastSession;
+    if (hasConnectedCastSession) {
+        [self castMediaInfo:[Common mediaInformationFromNode:self.currentNode]];
+        return NO;
+    } else {
+        return YES;
+    }
+}
 
 -(void) showAlertEnterFileName
 {

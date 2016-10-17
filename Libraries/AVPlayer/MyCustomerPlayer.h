@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <GoogleCast/GoogleCast.h>
 
 @class MyCustomerPlayer;
 @protocol MyCustomerPlayerDelegate <NSObject>
@@ -18,11 +19,13 @@
 -(void) myCustomPlayer:(MyCustomerPlayer *) playerView didTapOnClose:(id) sender;
 -(void) myCustomPlayer:(MyCustomerPlayer *) playerView didTapOnDownload:(id) sender;
 -(void) myCustomPlayer:(MyCustomerPlayer *) playerView didTapOnClosedCaption:(id) sender;
-
+-(void) myCustomPlayer:(MyCustomerPlayer *) playerView didTapOnCastButton:(id) sender;
 
 -(void) myCustomPlayerprepareToPlay:(MyCustomerPlayer *) playerView;
 -(void) myCustomPlayerReadyToPlay:(MyCustomerPlayer *) playerView;
 -(void) myCustomPlayer:(MyCustomerPlayer *) playerView didFailWithError:(NSError *) error;
+
+- (BOOL)continueAfterPlayButtonClicked;
 @end
 
 @interface MyCustomerPlayer : UIViewController <UIGestureRecognizerDelegate>
@@ -40,6 +43,7 @@
     __weak IBOutlet UIButton *btClose;
     __weak IBOutlet UIButton *btDownload;
     __weak IBOutlet UIButton *btClosedCaption;
+    __weak IBOutlet GCKUICastButton *castButton;
     
     /// view over lay
     __weak IBOutlet UIView *viewOverlay;
@@ -59,7 +63,9 @@
 - (void)setAsset:(AVAsset *)asset;
 
 - (void) hideDownloadButton:(BOOL) hidden;
--(void) hideCaptionButton:(BOOL) hidden;
+- (void) hideCaptionButton:(BOOL) hidden;
+- (void)setCastButtonHidden:(BOOL)hidden;
+
 // Playback
 - (void)play;
 - (void)pause;

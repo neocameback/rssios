@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		064A9E15F0A1D9B5F602F5B4 /* Pods_MyRssReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EBF595744363B68EF79E3FF /* Pods_MyRssReader.framework */; };
+		229F25661DB3C9A9001A741C /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 229F25651DB3C9A9001A741C /* Toast.m */; };
 		22FB26371DB39A79008831D2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22FB26361DB39A79008831D2 /* Settings.bundle */; };
 		42AE1B28194B8FB600F2CC2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AE1B27194B8FB600F2CC2A /* Security.framework */; };
 		42C70C0E193CBE3500736BCF /* icon -114.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70BFF193CBE3500736BCF /* icon -114.png */; };
@@ -184,6 +185,8 @@
 /* Begin PBXFileReference section */
 		0E6D42693370FDC9A6552E5C /* Pods-MyRssReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyRssReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyRssReader/Pods-MyRssReader.release.xcconfig"; sourceTree = "<group>"; };
 		132BC3B1C3545C57DF415C1F /* Pods-MyRssReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyRssReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyRssReader/Pods-MyRssReader.debug.xcconfig"; sourceTree = "<group>"; };
+		229F25641DB3C9A9001A741C /* Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toast.h; sourceTree = "<group>"; };
+		229F25651DB3C9A9001A741C /* Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toast.m; sourceTree = "<group>"; };
 		22FB26361DB39A79008831D2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2EBF595744363B68EF79E3FF /* Pods_MyRssReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyRssReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42AE1B27194B8FB600F2CC2A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -428,6 +431,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		229F25631DB3C9A4001A741C /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				229F25641DB3C9A9001A741C /* Toast.h */,
+				229F25651DB3C9A9001A741C /* Toast.m */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
 		B6A1CC2D1D17F1C10026430B /* Singleton */ = {
 			isa = PBXGroup;
 			children = (
@@ -809,6 +821,7 @@
 		DEF496121934339F00DD482D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				229F25631DB3C9A4001A741C /* Toast */,
 				B6B4A3821D140BDF0000DD02 /* AVPlayer */,
 				DE233F5B1B70A89F00C02DD6 /* MWFeedParser */,
 				DEF496131934349F00DD482D /* Reachability */,
@@ -1062,6 +1075,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6A1CC301D17F1C90026430B /* Singleton.m in Sources */,
+				229F25661DB3C9A9001A741C /* Toast.m in Sources */,
 				B65A72FC1D19196500504151 /* Subtitle.m in Sources */,
 				DE233F871B70AA1B00C02DD6 /* _Rss.m in Sources */,
 				DE1AE55E1B8DA40B008C44F8 /* RssListViewController.m in Sources */,
