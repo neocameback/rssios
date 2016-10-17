@@ -26,6 +26,9 @@
 		22FB26371DB39A79008831D2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22FB26361DB39A79008831D2 /* Settings.bundle */; };
 		423A39371DB5160C00B646AD /* LocalPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 423A39351DB5160C00B646AD /* LocalPlayerViewController.m */; };
 		423A39381DB5160C00B646AD /* LocalPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 423A39361DB5160C00B646AD /* LocalPlayerViewController.xib */; };
+		423A393C1DB5257C00B646AD /* icon_dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 423A39391DB5257C00B646AD /* icon_dot@2x.png */; };
+		423A393D1DB5257C00B646AD /* icon_dot@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 423A393A1DB5257C00B646AD /* icon_dot@3x.png */; };
+		423A393E1DB5257C00B646AD /* icon_dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 423A393B1DB5257C00B646AD /* icon_dot.png */; };
 		42AE1B28194B8FB600F2CC2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AE1B27194B8FB600F2CC2A /* Security.framework */; };
 		42C70C0E193CBE3500736BCF /* icon -114.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70BFF193CBE3500736BCF /* icon -114.png */; };
 		42C70C0F193CBE3500736BCF /* icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70C00193CBE3500736BCF /* icon-29.png */; };
@@ -194,6 +197,9 @@
 		423A39341DB5160C00B646AD /* LocalPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalPlayerViewController.h; sourceTree = "<group>"; };
 		423A39351DB5160C00B646AD /* LocalPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalPlayerViewController.m; sourceTree = "<group>"; };
 		423A39361DB5160C00B646AD /* LocalPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalPlayerViewController.xib; sourceTree = "<group>"; };
+		423A39391DB5257C00B646AD /* icon_dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_dot@2x.png"; sourceTree = "<group>"; };
+		423A393A1DB5257C00B646AD /* icon_dot@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_dot@3x.png"; sourceTree = "<group>"; };
+		423A393B1DB5257C00B646AD /* icon_dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_dot.png; sourceTree = "<group>"; };
 		42AE1B27194B8FB600F2CC2A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		42C70BFF193CBE3500736BCF /* icon -114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon -114.png"; sourceTree = "<group>"; };
 		42C70C00193CBE3500736BCF /* icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-29.png"; sourceTree = "<group>"; };
@@ -732,6 +738,9 @@
 		DEB54D731933344800EC589E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				423A39391DB5257C00B646AD /* icon_dot@2x.png */,
+				423A393A1DB5257C00B646AD /* icon_dot@3x.png */,
+				423A393B1DB5257C00B646AD /* icon_dot.png */,
 				B65A72FD1D19542900504151 /* closed-caption.png */,
 				B65A72FE1D19542900504151 /* closed-caption@2x.png */,
 				B65A72FF1D19542900504151 /* closed-caption@3x.png */,
@@ -923,9 +932,11 @@
 				DEC5DD2919357EDC0088A62F /* ic_channel_normal@2x.png in Resources */,
 				B648CF091D1102C40030FE69 /* BaseNodeListViewController.xib in Resources */,
 				DEC5DD2819357EDC0088A62F /* ic_channel_press.png in Resources */,
+				423A393E1DB5257C00B646AD /* icon_dot.png in Resources */,
 				E5BCE8501D1455EB00580653 /* welcome.srt in Resources */,
 				42C70C18193CBE3500736BCF /* icon-120.png in Resources */,
 				E5D3B9931D11ABA100F3E400 /* download-arrow@2x.png in Resources */,
+				423A393C1DB5257C00B646AD /* icon_dot@2x.png in Resources */,
 				42C70C1A193CBE3500736BCF /* icon-152.png in Resources */,
 				42C70C10193CBE3500736BCF /* icon-40.png in Resources */,
 				B6B4A38C1D140C670000DD02 /* ic_close@2x.png in Resources */,
@@ -982,6 +993,7 @@
 				B6B4A3921D140C800000DD02 /* ic_player_play@2x.png in Resources */,
 				DEB54D771933345000EC589E /* default_rss_img@2x.png in Resources */,
 				B6B4A3871D140BE60000DD02 /* MyCustomerPlayer.xib in Resources */,
+				423A393D1DB5257C00B646AD /* icon_dot@3x.png in Resources */,
 				DE1AE54D1B8DA40B008C44F8 /* HomeViewController.xib in Resources */,
 				DEC5DD2019357EDC0088A62F /* ic_home_press.png in Resources */,
 				DE1AE5501B8DA40B008C44F8 /* AboutViewController.xib in Resources */,

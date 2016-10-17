@@ -74,6 +74,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setCastButtonVisible:(BOOL)visible {
+    // should be implemented inside sub viewcontroller
+    [self.tableView reloadData];
+}
+
 /**
  *  should override methods
  *
@@ -131,6 +136,7 @@
         if ([cell respondsToSelector:@selector(setDelegate:)]) {
             [(NodeListCustomCell *)cell setDelegate:self];
         }
+        [(NodeListCustomCell *)cell setParentVC:self];
         return cell;
     }else{
         NodeListAdsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NodeListAdsTableViewCell"];

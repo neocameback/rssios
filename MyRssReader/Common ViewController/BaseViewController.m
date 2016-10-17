@@ -63,6 +63,7 @@
             // You can present the instructions on how to use Google Cast on
             // the first time the user uses you app
             [[GCKCastContext sharedInstance] presentCastInstructionsViewControllerOnce];
+            [[GCKCastContext sharedInstance] clearCastInstructionsShownFlag];
         }
     }
 }
