@@ -719,9 +719,6 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
     [btClosedCaption setHidden:hidden];
 }
 
-- (void)setCastButtonHidden:(BOOL)hidden {
-    castButton.hidden = hidden;
-}
 #pragma mark - Playback
 
 - (void)play

@@ -150,8 +150,26 @@
                                                width:480
                                               height:720]];
     
-    GCKMediaInformation *mediaInfo = [[GCKMediaInformation alloc] initWithContentID:node.nodeUrl streamType:GCKMediaStreamTypeBuffered contentType:@"video/mp4" metadata:metadata streamDuration:0 customData:0];
-    return mediaInfo;
+    GCKMediaInformation *mediaInfo = nil;
+    if ([Common typeOfNode:node.nodeType] == NODE_TYPE_MP4) {
+        mediaInfo = [[GCKMediaInformation alloc] initWithContentID:node.nodeUrl streamType:GCKMediaStreamTypeBuffered contentType:@"video/mp4" metadata:metadata streamDuration:0 customData:0];
+        return mediaInfo;
+    } else {
+        return nil;
+    }
 }
 
++(GCKMediaInformation *)mediaInformationFromFile:(File *)file {
+    GCKMediaMetadata *metadata =
+    [[GCKMediaMetadata alloc] initWithMetadataType:GCKMediaMetadataTypeMovie];
+    [metadata setString:file.name forKey:kGCKMetadataKeyTitle];
+    [metadata setString:file.desc forKey:@"description"];
+    
+    [metadata addImage:[[GCKImage alloc] initWithURL:[NSURL URLWithString:file.thumbnail]
+                                               width:480
+                                              height:720]];
+    
+    GCKMediaInformation *mediaInfo = [[GCKMediaInformation alloc] initWithContentID:file.url streamType:GCKMediaStreamTypeBuffered contentType:@"video/mp4" metadata:metadata streamDuration:0 customData:0];
+    return mediaInfo;
+}
 @end

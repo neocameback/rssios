@@ -67,7 +67,7 @@
     UITabBarItem *tabBarItem5 = [[UITabBarItem alloc] initWithTitle:@"Download" image:[UIImage imageNamed:@"icon_download"] selectedImage:[UIImage imageNamed:@"icon_download"]];
     [downloadNav setTabBarItem:tabBarItem5];
     
-    self.viewControllers = @[homeNav, manageNav, favoriteNav, aboutNav, downloadNav];
+    self.viewControllers = @[homeNav, manageNav, favoriteNav,downloadNav, aboutNav];
     
     
     UIColor *titleHighlightedColor = [UIColor colorWithRed:82/255.0 green:203/255.0 blue:149/255.0 alpha:1.0];

@@ -64,7 +64,6 @@
 
 - (void) hideDownloadButton:(BOOL) hidden;
 - (void) hideCaptionButton:(BOOL) hidden;
-- (void)setCastButtonHidden:(BOOL)hidden;
 
 // Playback
 - (void)play;

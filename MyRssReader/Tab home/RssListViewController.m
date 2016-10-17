@@ -37,6 +37,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    
+    self.enableCastFunction = YES;
+    CGRect frame = CGRectMake(0, 0, 24, 24);
+    GCKUICastButton *castButton = [[GCKUICastButton alloc] initWithFrame:frame];
+    castButton.tintColor = kGreenColor;
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:castButton];
+    self.navigationItem.rightBarButtonItem = item;
+
 }
 -(void) showBanner
 {
