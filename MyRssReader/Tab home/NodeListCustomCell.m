@@ -117,7 +117,7 @@
         // iOS8
         alertController.popoverPresentationController.sourceView = sender;
     }
-    UIAlertAction *castAction = [UIAlertAction actionWithTitle:@"Cast" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *castAction = [UIAlertAction actionWithTitle:@"Cast now" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [(BaseViewController *)self.parentVC castMediaInfo:[Common mediaInformationFromNode:_node]];
     }];
     UIAlertAction *downloadAction = [UIAlertAction actionWithTitle:@"Download" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
