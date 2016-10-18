@@ -41,7 +41,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-        
+    
     RssListViewController *rssVC = [RssListViewController initWithNibName];
     UINavigationController *homeNav = [[UINavigationController alloc] initWithRootViewController:rssVC];
     UITabBarItem *tabBarItem1 = [[UITabBarItem alloc] initWithTitle:@"Home" image:[UIImage imageNamed:@"ic_home_normal"] selectedImage:[UIImage imageNamed:@"ic_home_press"]];

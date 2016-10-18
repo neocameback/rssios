@@ -91,11 +91,33 @@ static NSString *const kPrefEnableMediaNotifications =
     self.window.backgroundColor = [UIColor whiteColor];
     HomeViewController *viewcontroller = [HomeViewController initWithNibName];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewcontroller];
+    
+    GCKUICastContainerViewController *castContainerVC;
+    castContainerVC = [[GCKCastContext sharedInstance]
+                       createCastContainerControllerForViewController:nav];
+    castContainerVC.miniMediaControlsItemEnabled = YES;
+    
     nav.navigationBar.translucent = NO;
-    self.window.rootViewController = nav;    
+    self.window.rootViewController = castContainerVC;
     [self.window makeKeyAndVisible];
         
     return YES;
+}
+
+#pragma mark Add these methods to control the visibility of the mini controller:
+
+- (void)setCastControlBarsEnabled:(BOOL)notificationsEnabled {
+    GCKUICastContainerViewController *castContainerVC;
+    castContainerVC =
+    (GCKUICastContainerViewController *)self.window.rootViewController;
+    castContainerVC.miniMediaControlsItemEnabled = notificationsEnabled;
+}
+
+- (BOOL)castControlBarsEnabled {
+    GCKUICastContainerViewController *castContainerVC;
+    castContainerVC =
+    (GCKUICastContainerViewController *)self.window.rootViewController;
+    return castContainerVC.miniMediaControlsItemEnabled;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
