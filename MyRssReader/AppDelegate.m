@@ -70,7 +70,7 @@ static NSString *const kPrefEnableMediaNotifications =
     GCKCastOptions *options =
     [[GCKCastOptions alloc] initWithReceiverApplicationID:applicationID];
     [GCKCastContext setSharedInstanceWithOptions:options];
-    
+    [GCKCastContext sharedInstance].useDefaultExpandedMediaControls = YES;
     [GCKLogger sharedInstance].delegate = self;
     
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];

@@ -1316,7 +1316,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rssvideoplayer.Rss-Video-Player";
 				PRODUCT_NAME = "Rss Player";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "fa3fc711-6e8c-4e2f-8a47-f6bcec1e6d0f";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1385,7 +1385,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rssvideoplayer.Rss-Video-Player";
 				PRODUCT_NAME = "Rss Player";
-				PROVISIONING_PROFILE = "a99d65da-71a9-4cca-87f8-81936ec537c5";
+				PROVISIONING_PROFILE = "b524fcb8-52ba-4263-8849-ff82bc2696bc";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

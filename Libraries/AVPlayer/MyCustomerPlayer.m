@@ -73,8 +73,8 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
 //    [swipeRightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
 //    [self.view addGestureRecognizer:swipeRightGesture];
     
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPanGesture:)];
-    [self.view addGestureRecognizer:pan];
+//    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPanGesture:)];
+//    [self.view addGestureRecognizer:pan];
     
     _player = [[AVPlayer alloc] init];
     [self addPlayerObservers];
