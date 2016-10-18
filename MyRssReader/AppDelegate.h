@@ -18,3 +18,6 @@ extern NSString *const kPrefPreloadTime;
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic) BOOL castControlBarsEnabled;
 @end
+
+#define appDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
+

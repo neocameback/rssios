@@ -157,7 +157,6 @@ didFailToResumeSession:(GCKSession *)session
         [session.remoteMediaClient loadMedia:mediaInfo
                                     autoplay:YES];
     }
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (appDelegate.castControlBarsEnabled) {
         appDelegate.castControlBarsEnabled = NO;
     }

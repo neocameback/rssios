@@ -63,16 +63,6 @@ static NSString *const kPrefEnableMediaNotifications =
     // Initialize tracker. Replace with your tracking ID.
     [[GAI sharedInstance] trackerWithTrackingId:kGoogleAnalyticId];
     
-    [self populateRegistrationDomain];
-    
-    NSString *applicationID = [self applicationIDFromUserDefaults];
-    // Google Cast
-    GCKCastOptions *options =
-    [[GCKCastOptions alloc] initWithReceiverApplicationID:applicationID];
-    [GCKCastContext setSharedInstanceWithOptions:options];
-    [GCKCastContext sharedInstance].useDefaultExpandedMediaControls = YES;
-    [GCKLogger sharedInstance].delegate = self;
-    
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSInteger autoRefreshTime = [userDefault integerForKey:kAutoRefreshNewsTime];
     if (!autoRefreshTime || autoRefreshTime <= 0) {
@@ -92,10 +82,25 @@ static NSString *const kPrefEnableMediaNotifications =
     HomeViewController *viewcontroller = [HomeViewController initWithNibName];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewcontroller];
     
+    [self populateRegistrationDomain];
+    NSString *applicationID = [self applicationIDFromUserDefaults];
+    // Google Cast
+    GCKCastOptions *options =
+    [[GCKCastOptions alloc] initWithReceiverApplicationID:applicationID];
+    [GCKCastContext setSharedInstanceWithOptions:options];
+    [GCKCastContext sharedInstance].useDefaultExpandedMediaControls = YES;
+    [GCKLogger sharedInstance].delegate = self;
+    
     GCKUICastContainerViewController *castContainerVC;
     castContainerVC = [[GCKCastContext sharedInstance]
                        createCastContainerControllerForViewController:nav];
     castContainerVC.miniMediaControlsItemEnabled = YES;
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(presentExpandedMediaControls)
+     name:kGCKExpandedMediaControlsTriggeredNotification
+     object:nil];
     
     nav.navigationBar.translucent = NO;
     self.window.rootViewController = castContainerVC;
@@ -118,6 +123,27 @@ static NSString *const kPrefEnableMediaNotifications =
     castContainerVC =
     (GCKUICastContainerViewController *)self.window.rootViewController;
     return castContainerVC.miniMediaControlsItemEnabled;
+}
+
+- (void)presentExpandedMediaControls {
+    NSLog(@"present expanded media controls");
+    // Segue directly to the ExpandedViewController.
+    UINavigationController *navigationController;
+    GCKUICastContainerViewController *castContainerVC;
+    castContainerVC =
+    (GCKUICastContainerViewController *)self.window.rootViewController;
+    navigationController =
+    (UINavigationController *)castContainerVC.contentViewController;
+    
+    navigationController.navigationItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@""
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil
+                                    action:nil];
+    if (appDelegate.castControlBarsEnabled) {
+        appDelegate.castControlBarsEnabled = NO;
+    }
+    [[GCKCastContext sharedInstance] presentDefaultExpandedMediaControls];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
