@@ -83,9 +83,6 @@ static NSString *const kPrefEnableMediaNotifications =
     HomeViewController *viewcontroller = [HomeViewController initWithNibName];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewcontroller];
     
-//    RssListViewController *rssVC = [RssListViewController initWithNibName];
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rssVC];
-    
     [self populateRegistrationDomain];
     NSString *applicationID = [self applicationIDFromUserDefaults];
     // Google Cast
