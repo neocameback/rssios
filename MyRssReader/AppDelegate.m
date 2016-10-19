@@ -94,7 +94,6 @@ static NSString *const kPrefEnableMediaNotifications =
     GCKUICastContainerViewController *castContainerVC;
     castContainerVC = [[GCKCastContext sharedInstance]
                        createCastContainerControllerForViewController:nav];
-    castContainerVC.miniMediaControlsItemEnabled = YES;
     
     [[NSNotificationCenter defaultCenter]
      addObserver:self

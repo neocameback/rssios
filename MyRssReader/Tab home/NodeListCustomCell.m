@@ -12,19 +12,12 @@
 #import "UIView+AnimationExtensions.h"
 #import "File.h"
 #import "SCSkypeActivityIndicatorView.h"
-#import "BaseViewController.h"
-
-@interface NodeListCustomCell()
-
-@property (nonatomic) int fileState;
-@end
 
 @implementation NodeListCustomCell
 
 - (void)awakeFromNib
 {
     // Initialization code
-    [super awakeFromNib];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -58,25 +51,27 @@
     
     if ([Common typeOfNode:_node.nodeType] == NODE_TYPE_MP4) {
         
-        BOOL hasConnectedCastSession =
-        [GCKCastContext sharedInstance].sessionManager.hasConnectedCastSession;
         File *file = [File MR_findFirstByAttribute:@"url" withValue:_node.nodeUrl];
-        if (file) {
-            _fileState = file.stateValue;
-        } else {
-            _fileState = -1;
-        }
-        
-        if (!file || hasConnectedCastSession) {
-            
-            UIButton *actionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            UIImage *actionImage = [UIImage imageNamed:@"icon_dot"];
-            [actionButton setImage:actionImage forState:UIControlStateNormal];
-            [actionButton setFrame:CGRectMake(0, 0, actionImage.size.width, actionImage.size.height)];
-            [actionButton addTarget:self action:@selector(onAction:) forControlEvents:UIControlEventTouchUpInside];
-            [self setAccessoryView:actionButton];
-        } else {
-            [self setAccessoryView:nil];
+        if (!file) {
+            UIButton *btnDownload = [UIButton buttonWithType:UIButtonTypeCustom];
+            UIImage *downloadIcon = [UIImage imageNamed:@"download-arrow"];
+            [btnDownload setImage:downloadIcon forState:UIControlStateNormal];
+            [btnDownload setImage:[UIImage imageNamed:@"icon_tick"] forState:UIControlStateDisabled];
+            [btnDownload setFrame:CGRectMake(0, 0, downloadIcon.size.width, downloadIcon.size.height)];
+            [btnDownload addTarget:self action:@selector(onDownload:) forControlEvents:UIControlEventTouchUpInside];
+            [self setAccessoryView:btnDownload];
+        }else{
+            if (file.stateValue == DownloadStateCompleted) {
+                UIImageView *tickImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+                [tickImageView setImage:[UIImage imageNamed:@"icon_tick"]];
+                [self setAccessoryView:tickImageView];
+            }else{
+                SCSkypeActivityIndicatorView *indicatorView = [[SCSkypeActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+                [indicatorView setBubbleColor:kGreenColor];
+                [indicatorView setBubbleSize:CGSizeMake(4, 4)];
+                [indicatorView startAnimating];
+                [self setAccessoryView:indicatorView];
+            }
         }
     }else{
         [self setAccessoryView:nil];
@@ -109,32 +104,5 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(NodeListCustomCell:didTapOnDownload:)]) {
         [self.delegate NodeListCustomCell:self didTapOnDownload:sender];
     }
-}
-
-- (void)onAction:(id)sender {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    if ( [alertController respondsToSelector:@selector(popoverPresentationController)] ) {
-        // iOS8
-        alertController.popoverPresentationController.sourceView = sender;
-    }
-    UIAlertAction *castAction = [UIAlertAction actionWithTitle:@"Cast now" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [(BaseViewController *)self.parentVC castMediaInfo:[Common mediaInformationFromNode:_node]];
-    }];
-    UIAlertAction *downloadAction = [UIAlertAction actionWithTitle:@"Download" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self onDownload:sender];
-    }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    BOOL hasConnectedCastSession =
-    [GCKCastContext sharedInstance].sessionManager.hasConnectedCastSession;
-    if (hasConnectedCastSession) {
-        [alertController addAction:castAction];
-    }
-    if (self.fileState == -1) {
-        [alertController addAction:downloadAction];
-    }
-    [alertController addAction:cancelAction];
-    [self.parentVC presentViewController:alertController animated:YES completion:nil];
 }
 @end

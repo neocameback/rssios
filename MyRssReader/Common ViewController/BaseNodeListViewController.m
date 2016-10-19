@@ -289,10 +289,16 @@
         }
             break;
         case NODE_TYPE_MP4:
-        {           
-            AirPlayerViewController *viewcontroller = [[AirPlayerViewController alloc] init];
-            [viewcontroller setCurrentNode:currentNode];
-            [self presentViewController:viewcontroller animated:YES completion:nil];
+        {
+            BOOL hasConnectedCastSession =
+            [GCKCastContext sharedInstance].sessionManager.hasConnectedCastSession;
+            if (hasConnectedCastSession) {
+                [self castMediaInfo:[Common mediaInformationFromNode:currentNode]];
+            } else {
+                AirPlayerViewController *viewcontroller = [[AirPlayerViewController alloc] init];
+                [viewcontroller setCurrentNode:currentNode];
+                [self presentViewController:viewcontroller animated:YES completion:nil];
+            }
         }
             break;
         case NODE_TYPE_YOUTUBE:
