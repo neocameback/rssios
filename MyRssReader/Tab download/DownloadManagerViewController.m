@@ -10,7 +10,7 @@
 #import "File.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "DownloadManager.h"
-#import "MyPlayerViewController.h"
+#import "LocalPlayerViewController.h"
 
 @interface DownloadManagerViewController ()<NSFetchedResultsControllerDelegate, MGSwipeTableCellDelegate>
 {
@@ -35,6 +35,14 @@
     _interstitial = [self createAndLoadInterstital];
     
     [self.searchDisplayController.searchResultsTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    
+    self.enableCastFunction = YES;
+    CGRect frame = CGRectMake(0, 0, 24, 24);
+    GCKUICastButton *castButton = [[GCKUICastButton alloc] initWithFrame:frame];
+    castButton.tintColor = kGreenColor;
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:castButton];
+    self.navigationItem.rightBarButtonItem = item;
+
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -178,9 +186,15 @@
 {
     NSString *path = [selectedFile getFilePath];
     if ([[NSFileManager defaultManager] isReadableFileAtPath:path]) {
-        MyPlayerViewController *playerVC = [[MyPlayerViewController alloc] initWithNibName:NSStringFromClass([MyPlayerViewController class]) bundle:nil];
-        [playerVC setDownloadedFile:selectedFile];
-        [self presentViewController:playerVC animated:YES completion:nil];
+        BOOL hasConnectedCastSession =
+        [GCKCastContext sharedInstance].sessionManager.hasConnectedCastSession;
+        if (hasConnectedCastSession) {
+            [self castMediaInfo:[Common mediaInformationFromFile:selectedFile]];
+        } else {
+            LocalPlayerViewController *playerVC = [[LocalPlayerViewController alloc] initWithNibName:NSStringFromClass([LocalPlayerViewController class]) bundle:nil];
+            [playerVC setDownloadedFile:selectedFile];
+            [self presentViewController:playerVC animated:YES completion:nil];
+        }
     }
 }
 #pragma mark Admob

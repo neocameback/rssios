@@ -1,23 +1,27 @@
 //
-//  MyPlayerViewController.m
+//  AirPlayerViewController.m
 //  MyRssReader
 //
 //  Created by GEM on 6/17/16.
 //  Copyright © 2016 Huyns. All rights reserved.
 //
 
-#import "MyPlayerViewController.h"
+#import "AirPlayerViewController.h"
 #import "DownloadManager.h"
 #import "MyCustomerPlayer.h"
 #import "ASBPlayerSubtitling.h"
 #import "SubtitleSelectionViewController.h"
+#import <GoogleCast/GoogleCast.h>
+#import "Toast.h"
 
-@interface MyPlayerViewController () <MyCustomerPlayerDelegate, SubtitleSelectionViewControllerDelegate>
+@interface AirPlayerViewController () <MyCustomerPlayerDelegate, SubtitleSelectionViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet ASBPlayerSubtitling *subtitling;
 @property (nonatomic, strong) MyCustomerPlayer *myPlayer;
+
+@property (nonatomic, strong) File *localFile;
 @end
 
-@implementation MyPlayerViewController
+@implementation AirPlayerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,9 +30,9 @@
     [self initVideoPlayer];
     
     if (self.currentNode) {
-        _downloadedFile = [File MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"url == %@ AND progress == 100", self.currentNode.nodeUrl] sortedBy:@"url" ascending:YES];
-        if (_downloadedFile) {
-            NSString *path = [_downloadedFile getFilePath];
+        _localFile = [File MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"url == %@ AND progress == 100", self.currentNode.nodeUrl] sortedBy:@"url" ascending:YES];
+        if (_localFile) {
+            NSString *path = [_localFile getFilePath];
             [self.myPlayer setURL:[NSURL fileURLWithPath:path]];
             [self.myPlayer play];
         }else{
@@ -38,20 +42,12 @@
         /**
          *  hide download button
          */
-        if ([Common typeOfNode:self.currentNode.nodeType] == NODE_TYPE_MP4 && !_downloadedFile) {
+        if ([Common typeOfNode:self.currentNode.nodeType] == NODE_TYPE_MP4 && !_localFile) {
             [self.myPlayer hideDownloadButton:NO];
         }else{
             [self.myPlayer hideDownloadButton:YES];
         }
         
-    }else{
-        NSString *path = [_downloadedFile getFilePath];
-        [self.myPlayer setURL:[NSURL fileURLWithPath:path]];
-        [self.myPlayer play];
-        /**
-         *  hide download button
-         */
-        [self.myPlayer hideDownloadButton:YES];
     }
     [self loadSubtitle];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
@@ -103,11 +99,11 @@
 
 -(void) loadSubtitle
 {
-    if (_downloadedFile) {
+    if (_localFile) {
         
-        if (_downloadedFile.subtitlesSet.count > 0) {
-            NSURL *subtitlesURL = [NSURL fileURLWithPath:[_downloadedFile.subtitlesSet.firstObject getFilePath]];
-            _currentSubtitleURL = [_downloadedFile.subtitlesSet.firstObject getFilePath];
+        if (_localFile.subtitlesSet.count > 0) {
+            NSURL *subtitlesURL = [NSURL fileURLWithPath:[_localFile.subtitlesSet.firstObject getFilePath]];
+            _currentSubtitleURL = [_localFile.subtitlesSet.firstObject getFilePath];
             NSError *error = nil;
             self.subtitling.player = [self.myPlayer player];
             [self.subtitling loadSubtitlesAtURL:subtitlesURL error:&error];
@@ -177,7 +173,7 @@
 {
     SubtitleSelectionViewController *viewcontroller = [[SubtitleSelectionViewController alloc] initWithNibName:NSStringFromClass([SubtitleSelectionViewController class]) bundle:nil];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewcontroller];
-    [viewcontroller setDownloadedFile:_downloadedFile];
+    [viewcontroller setDownloadedFile:_localFile];
     [viewcontroller setCurrentNode:_currentNode];
     [viewcontroller setCurrentSubtitleURL:_currentSubtitleURL];
     [viewcontroller setDelegate:self];
@@ -200,6 +196,25 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+- (BOOL)continueAfterPlayButtonClicked {
+    BOOL hasConnectedCastSession =
+    [GCKCastContext sharedInstance].sessionManager.hasConnectedCastSession;
+    
+    if (hasConnectedCastSession && [Common typeOfNode:self.currentNode.nodeType] == NODE_TYPE_MP4) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Chrome Cast" message:@"Cast your video to Chrome Cast" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Cast now" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self castMediaInfo:[Common mediaInformationFromNode:self.currentNode]];
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        [alertController addAction:okAction];
+        [alertController addAction:cancelAction];
+        return NO;
+    } else {
+        [Toast displayToastMessage:@"Unable to cast this type of video" forTimeInterval:1.5 inView:self.view];
+        return YES;
+    }
+}
 
 -(void) showAlertEnterFileName
 {
@@ -287,7 +302,6 @@
         }
     }
 }
-
 
 -(void) dealloc
 {

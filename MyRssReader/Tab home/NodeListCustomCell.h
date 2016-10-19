@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *iv_image;
 @property (weak, nonatomic) IBOutlet UILabel *lb_title;
 @property (weak, nonatomic) IBOutlet UIButton *btn_addToFav;
+@property (weak, nonatomic) UIViewController *parentVC;
 @property (weak, nonatomic) id<NodeListCustomCellDelegate> delegate;
 -(void) configWithNode:(RssNodeModel*) node;
 @end

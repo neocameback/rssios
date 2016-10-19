@@ -73,8 +73,8 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
 //    [swipeRightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
 //    [self.view addGestureRecognizer:swipeRightGesture];
     
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPanGesture:)];
-    [self.view addGestureRecognizer:pan];
+//    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPanGesture:)];
+//    [self.view addGestureRecognizer:pan];
     
     _player = [[AVPlayer alloc] init];
     [self addPlayerObservers];
@@ -86,6 +86,7 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
 
     [self.view.layer insertSublayer:_playerLayer atIndex:0];
     
+    castButton.tintColor = kGreenColor;
     /**
      *  add seek observer
      */
@@ -812,6 +813,13 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
 #pragma mark IBAction
 
 - (IBAction)onPlay:(id)sender {
+    
+    if (self.player.status == AVPlayerStatusReadyToPlay && self.delegate && [self.delegate respondsToSelector:@selector(continueAfterPlayButtonClicked)]) {
+        if (![self.delegate continueAfterPlayButtonClicked]) {
+            return;
+        }
+    }
+    
     BOOL isPlaying = [self isPlaying];
     if (isPlaying) {
         [self pause];
@@ -838,6 +846,11 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
     }
 }
 
+- (IBAction)onCast:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(myCustomPlayer:didTapOnCastButton:)]) {
+        [self.delegate myCustomPlayer:self didTapOnCastButton:sender];
+    }
+}
 #pragma mark dealloc
 -(void) dealloc
 {

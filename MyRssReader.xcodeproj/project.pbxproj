@@ -22,7 +22,13 @@
 
 /* Begin PBXBuildFile section */
 		064A9E15F0A1D9B5F602F5B4 /* Pods_MyRssReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EBF595744363B68EF79E3FF /* Pods_MyRssReader.framework */; };
+		229F25661DB3C9A9001A741C /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 229F25651DB3C9A9001A741C /* Toast.m */; };
 		22FB26371DB39A79008831D2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22FB26361DB39A79008831D2 /* Settings.bundle */; };
+		423A39371DB5160C00B646AD /* LocalPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 423A39351DB5160C00B646AD /* LocalPlayerViewController.m */; };
+		423A39381DB5160C00B646AD /* LocalPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 423A39361DB5160C00B646AD /* LocalPlayerViewController.xib */; };
+		423A393C1DB5257C00B646AD /* icon_dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 423A39391DB5257C00B646AD /* icon_dot@2x.png */; };
+		423A393D1DB5257C00B646AD /* icon_dot@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 423A393A1DB5257C00B646AD /* icon_dot@3x.png */; };
+		423A393E1DB5257C00B646AD /* icon_dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 423A393B1DB5257C00B646AD /* icon_dot.png */; };
 		42AE1B28194B8FB600F2CC2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AE1B27194B8FB600F2CC2A /* Security.framework */; };
 		42C70C0E193CBE3500736BCF /* icon -114.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70BFF193CBE3500736BCF /* icon -114.png */; };
 		42C70C0F193CBE3500736BCF /* icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70C00193CBE3500736BCF /* icon-29.png */; };
@@ -58,8 +64,8 @@
 		B6B4A3721D13E20D0000DD02 /* icon_tick.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B4A36F1D13E20D0000DD02 /* icon_tick.png */; };
 		B6B4A3731D13E20D0000DD02 /* icon_tick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B4A3701D13E20D0000DD02 /* icon_tick@2x.png */; };
 		B6B4A3741D13E20D0000DD02 /* icon_tick@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B4A3711D13E20D0000DD02 /* icon_tick@3x.png */; };
-		B6B4A3801D140B4B0000DD02 /* MyPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B4A37E1D140B4B0000DD02 /* MyPlayerViewController.m */; };
-		B6B4A3811D140B4B0000DD02 /* MyPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6B4A37F1D140B4B0000DD02 /* MyPlayerViewController.xib */; };
+		B6B4A3801D140B4B0000DD02 /* AirPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B4A37E1D140B4B0000DD02 /* AirPlayerViewController.m */; };
+		B6B4A3811D140B4B0000DD02 /* AirPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6B4A37F1D140B4B0000DD02 /* AirPlayerViewController.xib */; };
 		B6B4A3861D140BE60000DD02 /* MyCustomerPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B4A3841D140BE60000DD02 /* MyCustomerPlayer.m */; };
 		B6B4A3871D140BE60000DD02 /* MyCustomerPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6B4A3851D140BE60000DD02 /* MyCustomerPlayer.xib */; };
 		B6B4A38B1D140C670000DD02 /* ic_close.png in Resources */ = {isa = PBXBuildFile; fileRef = B6B4A3881D140C670000DD02 /* ic_close.png */; };
@@ -184,8 +190,16 @@
 /* Begin PBXFileReference section */
 		0E6D42693370FDC9A6552E5C /* Pods-MyRssReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyRssReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyRssReader/Pods-MyRssReader.release.xcconfig"; sourceTree = "<group>"; };
 		132BC3B1C3545C57DF415C1F /* Pods-MyRssReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyRssReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyRssReader/Pods-MyRssReader.debug.xcconfig"; sourceTree = "<group>"; };
+		229F25641DB3C9A9001A741C /* Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toast.h; sourceTree = "<group>"; };
+		229F25651DB3C9A9001A741C /* Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toast.m; sourceTree = "<group>"; };
 		22FB26361DB39A79008831D2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2EBF595744363B68EF79E3FF /* Pods_MyRssReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyRssReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423A39341DB5160C00B646AD /* LocalPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalPlayerViewController.h; sourceTree = "<group>"; };
+		423A39351DB5160C00B646AD /* LocalPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalPlayerViewController.m; sourceTree = "<group>"; };
+		423A39361DB5160C00B646AD /* LocalPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalPlayerViewController.xib; sourceTree = "<group>"; };
+		423A39391DB5257C00B646AD /* icon_dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_dot@2x.png"; sourceTree = "<group>"; };
+		423A393A1DB5257C00B646AD /* icon_dot@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_dot@3x.png"; sourceTree = "<group>"; };
+		423A393B1DB5257C00B646AD /* icon_dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_dot.png; sourceTree = "<group>"; };
 		42AE1B27194B8FB600F2CC2A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		42C70BFF193CBE3500736BCF /* icon -114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon -114.png"; sourceTree = "<group>"; };
 		42C70C00193CBE3500736BCF /* icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-29.png"; sourceTree = "<group>"; };
@@ -230,9 +244,9 @@
 		B6B4A36F1D13E20D0000DD02 /* icon_tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tick.png; sourceTree = "<group>"; };
 		B6B4A3701D13E20D0000DD02 /* icon_tick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_tick@2x.png"; sourceTree = "<group>"; };
 		B6B4A3711D13E20D0000DD02 /* icon_tick@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_tick@3x.png"; sourceTree = "<group>"; };
-		B6B4A37D1D140B4B0000DD02 /* MyPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPlayerViewController.h; sourceTree = "<group>"; };
-		B6B4A37E1D140B4B0000DD02 /* MyPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPlayerViewController.m; sourceTree = "<group>"; };
-		B6B4A37F1D140B4B0000DD02 /* MyPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPlayerViewController.xib; sourceTree = "<group>"; };
+		B6B4A37D1D140B4B0000DD02 /* AirPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPlayerViewController.h; sourceTree = "<group>"; };
+		B6B4A37E1D140B4B0000DD02 /* AirPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirPlayerViewController.m; sourceTree = "<group>"; };
+		B6B4A37F1D140B4B0000DD02 /* AirPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AirPlayerViewController.xib; sourceTree = "<group>"; };
 		B6B4A3831D140BE60000DD02 /* MyCustomerPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCustomerPlayer.h; sourceTree = "<group>"; };
 		B6B4A3841D140BE60000DD02 /* MyCustomerPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCustomerPlayer.m; sourceTree = "<group>"; };
 		B6B4A3851D140BE60000DD02 /* MyCustomerPlayer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCustomerPlayer.xib; sourceTree = "<group>"; };
@@ -428,6 +442,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		229F25631DB3C9A4001A741C /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				229F25641DB3C9A9001A741C /* Toast.h */,
+				229F25651DB3C9A9001A741C /* Toast.m */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
 		B6A1CC2D1D17F1C10026430B /* Singleton */ = {
 			isa = PBXGroup;
 			children = (
@@ -487,9 +510,12 @@
 				B648CF051D1102C40030FE69 /* BaseNodeListViewController.h */,
 				B648CF061D1102C40030FE69 /* BaseNodeListViewController.m */,
 				B648CF071D1102C40030FE69 /* BaseNodeListViewController.xib */,
-				B6B4A37D1D140B4B0000DD02 /* MyPlayerViewController.h */,
-				B6B4A37E1D140B4B0000DD02 /* MyPlayerViewController.m */,
-				B6B4A37F1D140B4B0000DD02 /* MyPlayerViewController.xib */,
+				B6B4A37D1D140B4B0000DD02 /* AirPlayerViewController.h */,
+				B6B4A37E1D140B4B0000DD02 /* AirPlayerViewController.m */,
+				B6B4A37F1D140B4B0000DD02 /* AirPlayerViewController.xib */,
+				423A39341DB5160C00B646AD /* LocalPlayerViewController.h */,
+				423A39351DB5160C00B646AD /* LocalPlayerViewController.m */,
+				423A39361DB5160C00B646AD /* LocalPlayerViewController.xib */,
 				E5AA3F911D1FDE91000B7B37 /* SubtitleSelectionViewController.h */,
 				E5AA3F921D1FDE91000B7B37 /* SubtitleSelectionViewController.m */,
 				E5AA3F931D1FDE91000B7B37 /* SubtitleSelectionViewController.xib */,
@@ -712,6 +738,9 @@
 		DEB54D731933344800EC589E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				423A39391DB5257C00B646AD /* icon_dot@2x.png */,
+				423A393A1DB5257C00B646AD /* icon_dot@3x.png */,
+				423A393B1DB5257C00B646AD /* icon_dot.png */,
 				B65A72FD1D19542900504151 /* closed-caption.png */,
 				B65A72FE1D19542900504151 /* closed-caption@2x.png */,
 				B65A72FF1D19542900504151 /* closed-caption@3x.png */,
@@ -809,6 +838,7 @@
 		DEF496121934339F00DD482D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				229F25631DB3C9A4001A741C /* Toast */,
 				B6B4A3821D140BDF0000DD02 /* AVPlayer */,
 				DE233F5B1B70A89F00C02DD6 /* MWFeedParser */,
 				DEF496131934349F00DD482D /* Reachability */,
@@ -858,6 +888,10 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Huyns;
 				TargetAttributes = {
+					DE22E7B4192F54180005E685 = {
+						DevelopmentTeam = Q6P4VX76SF;
+						ProvisioningStyle = Manual;
+					};
 					DE233F7C1B70A9C600C02DD6 = {
 						CreatedOnToolsVersion = 6.4;
 					};
@@ -902,16 +936,18 @@
 				DEC5DD2919357EDC0088A62F /* ic_channel_normal@2x.png in Resources */,
 				B648CF091D1102C40030FE69 /* BaseNodeListViewController.xib in Resources */,
 				DEC5DD2819357EDC0088A62F /* ic_channel_press.png in Resources */,
+				423A393E1DB5257C00B646AD /* icon_dot.png in Resources */,
 				E5BCE8501D1455EB00580653 /* welcome.srt in Resources */,
 				42C70C18193CBE3500736BCF /* icon-120.png in Resources */,
 				E5D3B9931D11ABA100F3E400 /* download-arrow@2x.png in Resources */,
+				423A393C1DB5257C00B646AD /* icon_dot@2x.png in Resources */,
 				42C70C1A193CBE3500736BCF /* icon-152.png in Resources */,
 				42C70C10193CBE3500736BCF /* icon-40.png in Resources */,
 				B6B4A38C1D140C670000DD02 /* ic_close@2x.png in Resources */,
 				DEC5DD2A19357EDC0088A62F /* ic_channel_normal.png in Resources */,
 				DE22E7C3192F54180005E685 /* InfoPlist.strings in Resources */,
 				DE1AE55C1B8DA40B008C44F8 /* NodeListViewController.xib in Resources */,
-				B6B4A3811D140B4B0000DD02 /* MyPlayerViewController.xib in Resources */,
+				B6B4A3811D140B4B0000DD02 /* AirPlayerViewController.xib in Resources */,
 				B6B4A3741D13E20D0000DD02 /* icon_tick@3x.png in Resources */,
 				DE1AE5631B8DA40B008C44F8 /* ManageRssViewController.xib in Resources */,
 				DEB54D7D193336BE00EC589E /* rate_star_0@2x.png in Resources */,
@@ -961,6 +997,7 @@
 				B6B4A3921D140C800000DD02 /* ic_player_play@2x.png in Resources */,
 				DEB54D771933345000EC589E /* default_rss_img@2x.png in Resources */,
 				B6B4A3871D140BE60000DD02 /* MyCustomerPlayer.xib in Resources */,
+				423A393D1DB5257C00B646AD /* icon_dot@3x.png in Resources */,
 				DE1AE54D1B8DA40B008C44F8 /* HomeViewController.xib in Resources */,
 				DEC5DD2019357EDC0088A62F /* ic_home_press.png in Resources */,
 				DE1AE5501B8DA40B008C44F8 /* AboutViewController.xib in Resources */,
@@ -975,6 +1012,7 @@
 				B6B4A3911D140C800000DD02 /* ic_player_play.png in Resources */,
 				B6B4A3721D13E20D0000DD02 /* icon_tick.png in Resources */,
 				DE17B2C41B7C7C2800905EEE /* icon_check_status@3x.png in Resources */,
+				423A39381DB5160C00B646AD /* LocalPlayerViewController.xib in Resources */,
 				E5E822D01D5A264B00FB048D /* NodeListAdsTableViewCell.xib in Resources */,
 				B6B4A38D1D140C670000DD02 /* ic_close@3x.png in Resources */,
 			);
@@ -1062,6 +1100,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6A1CC301D17F1C90026430B /* Singleton.m in Sources */,
+				229F25661DB3C9A9001A741C /* Toast.m in Sources */,
 				B65A72FC1D19196500504151 /* Subtitle.m in Sources */,
 				DE233F871B70AA1B00C02DD6 /* _Rss.m in Sources */,
 				DE1AE55E1B8DA40B008C44F8 /* RssListViewController.m in Sources */,
@@ -1077,6 +1116,7 @@
 				E5AA3F981D1FE188000B7B37 /* SubtitleModel.m in Sources */,
 				DE233F7A1B70A9AD00C02DD6 /* Node.m in Sources */,
 				DEE77B561B9007E800F1C352 /* FileListViewController.m in Sources */,
+				423A39371DB5160C00B646AD /* LocalPlayerViewController.m in Sources */,
 				846565141B7BA57700C9E99E /* File.m in Sources */,
 				DE233F6D1B70A89F00C02DD6 /* MWFeedItem.m in Sources */,
 				DE22E7C9192F54180005E685 /* AppDelegate.m in Sources */,
@@ -1086,7 +1126,7 @@
 				DE1AE55D1B8DA40B008C44F8 /* RPNodeDescriptionViewController.m in Sources */,
 				DE1AE54A1B8DA40B008C44F8 /* BaseViewController.m in Sources */,
 				E5E822CF1D5A264B00FB048D /* NodeListAdsTableViewCell.m in Sources */,
-				B6B4A3801D140B4B0000DD02 /* MyPlayerViewController.m in Sources */,
+				B6B4A3801D140B4B0000DD02 /* AirPlayerViewController.m in Sources */,
 				DE7F39AB1935E27700C7C143 /* NSMutableURLRequest+Helper.m in Sources */,
 				DE1AE5491B8DA40B008C44F8 /* DownloadManager.m in Sources */,
 				DE1AE5511B8DA40B008C44F8 /* DownloadManagerViewController.m in Sources */,
@@ -1224,7 +1264,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Q6P4VX76SF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Libraries",
@@ -1280,7 +1321,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rssvideoplayer.Rss-Video-Player";
 				PRODUCT_NAME = "Rss Player";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "fa3fc711-6e8c-4e2f-8a47-f6bcec1e6d0f";
+				PROVISIONING_PROFILE_SPECIFIER = rss_dev_provisioning;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1294,7 +1336,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Phi Long (Q6P4VX76SF)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Phi Long (Q6P4VX76SF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = Q6P4VX76SF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Libraries",
@@ -1350,6 +1393,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rssvideoplayer.Rss-Video-Player";
 				PRODUCT_NAME = "Rss Player";
 				PROVISIONING_PROFILE = "a99d65da-71a9-4cca-87f8-81936ec537c5";
+				PROVISIONING_PROFILE_SPECIFIER = rss_submit_distribution_provisioning;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

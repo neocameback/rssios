@@ -16,5 +16,8 @@ extern NSString *const kPrefPreloadTime;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (nonatomic) BOOL castControlBarsEnabled;
 @end
+
+#define appDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
+

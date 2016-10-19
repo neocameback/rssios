@@ -23,7 +23,7 @@
 #import "RPNodeDescriptionViewController.h"
 #import "FileListViewController.h"
 #import "NodeListViewController.h"
-#import "MyPlayerViewController.h"
+#import "AirPlayerViewController.h"
 #import "NodeListAdsTableViewCell.h"
 
 //#define kSecondAdsPosition  8
@@ -55,6 +55,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:kNotificationDownloadOperationStarted object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:kNotificationDownloadOperationCompleted object:nil];
     
+    self.enableCastFunction = YES;
+    CGRect frame = CGRectMake(0, 0, 24, 24);
+    GCKUICastButton *castButton = [[GCKUICastButton alloc] initWithFrame:frame];
+    castButton.tintColor = kGreenColor;
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:castButton];
+    self.navigationItem.rightBarButtonItem = item;
+
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -65,6 +72,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setCastButtonVisible:(BOOL)visible {
+    // should be implemented inside sub viewcontroller
+    [self.tableView reloadData];
 }
 
 /**
@@ -124,6 +136,7 @@
         if ([cell respondsToSelector:@selector(setDelegate:)]) {
             [(NodeListCustomCell *)cell setDelegate:self];
         }
+        [(NodeListCustomCell *)cell setParentVC:self];
         return cell;
     }else{
         NodeListAdsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NodeListAdsTableViewCell"];
@@ -269,17 +282,23 @@
             break;
         case NODE_TYPE_VIDEO:
         {
-            MyPlayerViewController *viewcontroller = [[MyPlayerViewController alloc] init];
+            AirPlayerViewController *viewcontroller = [[AirPlayerViewController alloc] init];
             [viewcontroller setCurrentNode:currentNode];
             [self presentViewController:viewcontroller animated:YES completion:nil];
             
         }
             break;
         case NODE_TYPE_MP4:
-        {           
-            MyPlayerViewController *viewcontroller = [[MyPlayerViewController alloc] init];
-            [viewcontroller setCurrentNode:currentNode];
-            [self presentViewController:viewcontroller animated:YES completion:nil];
+        {
+            BOOL hasConnectedCastSession =
+            [GCKCastContext sharedInstance].sessionManager.hasConnectedCastSession;
+            if (hasConnectedCastSession) {
+                [self castMediaInfo:[Common mediaInformationFromNode:currentNode]];
+            } else {
+                AirPlayerViewController *viewcontroller = [[AirPlayerViewController alloc] init];
+                [viewcontroller setCurrentNode:currentNode];
+                [self presentViewController:viewcontroller animated:YES completion:nil];
+            }
         }
             break;
         case NODE_TYPE_YOUTUBE:

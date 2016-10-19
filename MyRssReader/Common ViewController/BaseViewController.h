@@ -9,11 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <GAITrackedViewController.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
+#import <GoogleCast/GoogleCast.h>
 
-@interface BaseViewController : GAITrackedViewController
+@interface BaseViewController : GAITrackedViewController <GCKSessionManagerListener, GCKRequestDelegate>
 {
 }
 //@property (nonatomic, strong) IBOutlet GADBannerView *bannerView_;
 @property(nonatomic, weak) IBOutlet GADNativeExpressAdView *bannerView_;
+// specifi if this viewcontroller is allowed to cast video
+@property (nonatomic) BOOL enableCastFunction;
 
+@property (nonatomic, strong) GCKSessionManager *sessionManager;
+@property (nonatomic, strong) GCKCastSession *castSession;
+- (void)castMediaInfo:(GCKMediaInformation *) mediaInfo;
 @end

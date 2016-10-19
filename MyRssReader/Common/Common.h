@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RssNodeModel.h"
+#import "File.h"
 
 @interface Common : NSObject
 
@@ -15,5 +17,7 @@
 +(NSMutableURLRequest*) requestWithMethod:(NSString *) method ipAddress:(NSString*) ipAddres Url:(NSURL *) url;
 
 +(enum NODE_TYPE) typeOfNode:(NSString *) nodeType;
++(GCKMediaInformation *)mediaInformationFromNode:(RssNodeModel *)node;
++(GCKMediaInformation *)mediaInformationFromFile:(File *)file;
 +(void) getUserIpAddress:(void (^) (id)) success failureBlock:(void (^) (id)) fail;
 @end
