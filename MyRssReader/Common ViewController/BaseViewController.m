@@ -75,6 +75,9 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [_bannerView_ loadRequest:request];
     });
+    
+    // make mini player visible
+    appDelegate.castControlBarsEnabled = YES;
 }
 - (void)didReceiveMemoryWarning
 {

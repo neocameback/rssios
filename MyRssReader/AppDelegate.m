@@ -20,6 +20,7 @@
 #import "DownloadManager.h"
 #import <Firebase.h>
 #import <GoogleCast/GoogleCast.h>
+#import "RssListViewController.h"
 
 @interface AppDelegate() <GCKLoggerDelegate> {
     BOOL _enableSDKLogging;
@@ -81,6 +82,9 @@ static NSString *const kPrefEnableMediaNotifications =
     self.window.backgroundColor = [UIColor whiteColor];
     HomeViewController *viewcontroller = [HomeViewController initWithNibName];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewcontroller];
+    
+//    RssListViewController *rssVC = [RssListViewController initWithNibName];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rssVC];
     
     [self populateRegistrationDomain];
     NSString *applicationID = [self applicationIDFromUserDefaults];
