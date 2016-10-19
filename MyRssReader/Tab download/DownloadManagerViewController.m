@@ -186,9 +186,15 @@
 {
     NSString *path = [selectedFile getFilePath];
     if ([[NSFileManager defaultManager] isReadableFileAtPath:path]) {
-        LocalPlayerViewController *playerVC = [[LocalPlayerViewController alloc] initWithNibName:NSStringFromClass([LocalPlayerViewController class]) bundle:nil];
-        [playerVC setDownloadedFile:selectedFile];
-        [self presentViewController:playerVC animated:YES completion:nil];
+        BOOL hasConnectedCastSession =
+        [GCKCastContext sharedInstance].sessionManager.hasConnectedCastSession;
+        if (hasConnectedCastSession) {
+            [self castMediaInfo:[Common mediaInformationFromFile:selectedFile]];
+        } else {
+            LocalPlayerViewController *playerVC = [[LocalPlayerViewController alloc] initWithNibName:NSStringFromClass([LocalPlayerViewController class]) bundle:nil];
+            [playerVC setDownloadedFile:selectedFile];
+            [self presentViewController:playerVC animated:YES completion:nil];
+        }
     }
 }
 #pragma mark Admob

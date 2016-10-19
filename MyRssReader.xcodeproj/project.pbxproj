@@ -888,6 +888,10 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Huyns;
 				TargetAttributes = {
+					DE22E7B4192F54180005E685 = {
+						DevelopmentTeam = Q6P4VX76SF;
+						ProvisioningStyle = Manual;
+					};
 					DE233F7C1B70A9C600C02DD6 = {
 						CreatedOnToolsVersion = 6.4;
 					};
@@ -1260,7 +1264,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Q6P4VX76SF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Libraries",
@@ -1317,6 +1322,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rssvideoplayer.Rss-Video-Player";
 				PRODUCT_NAME = "Rss Player";
 				PROVISIONING_PROFILE = "fa3fc711-6e8c-4e2f-8a47-f6bcec1e6d0f";
+				PROVISIONING_PROFILE_SPECIFIER = rss_dev_provisioning;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1330,7 +1336,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Phi Long (Q6P4VX76SF)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Phi Long (Q6P4VX76SF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = Q6P4VX76SF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Libraries",
@@ -1385,7 +1392,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rssvideoplayer.Rss-Video-Player";
 				PRODUCT_NAME = "Rss Player";
-				PROVISIONING_PROFILE = "b524fcb8-52ba-4263-8849-ff82bc2696bc";
+				PROVISIONING_PROFILE = "a99d65da-71a9-4cca-87f8-81936ec537c5";
+				PROVISIONING_PROFILE_SPECIFIER = rss_submit_distribution_provisioning;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
