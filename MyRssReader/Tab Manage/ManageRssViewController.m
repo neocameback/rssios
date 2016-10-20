@@ -75,13 +75,13 @@
 {
     [super viewWillAppear:animated];
     self.screenName = @"Manage Channels View";
-    if (!rssList) {
-        rssList = [[NSMutableArray alloc] init];
+    if (!self.rssList) {
+        self.rssList = [[NSMutableArray alloc] init];
     }else{
-        [rssList removeAllObjects];
+        [self.rssList removeAllObjects];
     }
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isBookmarkRss == 1"];
-    rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES withPredicate:predicate]];
+    self.rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES withPredicate:predicate]];
     [_tableView reloadData];
 }
 -(void) viewWillDisappear:(BOOL)animated
@@ -98,7 +98,7 @@
 #pragma mark uitableview datasource and delegate
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return rssList.count;
+    return self.rssList.count;
 }
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -107,14 +107,14 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    Rss *aRss = rssList[indexPath.row];
+    Rss *aRss = self.rssList[indexPath.row];
     cell.textLabel.text = [aRss rssTitle];
     return cell;
 }
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    Rss *rss = rssList[indexPath.row];
+    Rss *rss = self.rssList[indexPath.row];
     
     editingIndex = indexPath.row;
     
@@ -147,10 +147,10 @@
 }
 -(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Rss *aRss = rssList[indexPath.row];
+    Rss *aRss = self.rssList[indexPath.row];
     [aRss MR_deleteEntity];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
-    [rssList removeObjectAtIndex:indexPath.row];
+    [self.rssList removeObjectAtIndex:indexPath.row];
 
     [_tableView reloadData];
 }
@@ -177,13 +177,13 @@
              *   check if user are on editing mode
              */
             if (editingIndex >= 0) {
-                Rss *rss = rssList[editingIndex];
+                Rss *rss = self.rssList[editingIndex];
                 [rss MR_deleteEntity];
-                [rssList removeObjectAtIndex:editingIndex];
+                [self.rssList removeObjectAtIndex:editingIndex];
                 editingIndex = -1;
             }
             
-            newRssName = [[alertView textFieldAtIndex:0] text];
+            self.aNewRssName = [[alertView textFieldAtIndex:0] text];
             NSString *urlString = [[alertView textFieldAtIndex:1] text];            
             BOOL result = [[urlString lowercaseString] hasPrefix:@"http://"];
             if (!result) {
@@ -191,49 +191,50 @@
             }
             
             manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:urlString]];
+            __weak typeof(self) wself = self;
             [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
                 /**
                  *  save the new RSS
                  */
-                newRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:rssModel.rssLink];
-                if (!newRss) {
-                    newRss = [Rss MR_createEntity];
+                wself.aNewRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:rssModel.rssLink];
+                if (!wself.aNewRss) {
+                    wself.aNewRss = [Rss MR_createEntity];
                 }
-                [[newRss nodeListSet] removeAllObjects];
+                [[wself.aNewRss nodeListSet] removeAllObjects];
                 if (rssModel.shouldCache) {
-                    newRss.shouldCacheValue = YES;
+                    wself.aNewRss.shouldCacheValue = YES;
                 }else{
-                    newRss.shouldCacheValue = NO;
+                    wself.aNewRss.shouldCacheValue = NO;
                 }
-                [newRss setIsBookmarkRssValue:YES];
-                [newRss setCreatedAt:[NSDate date]];
-                [newRss setUpdatedAt:[NSDate date]];
-                if (newRssName && newRssName.length > 0) {
-                    newRss.rssTitle = newRssName;
+                [wself.aNewRss setIsBookmarkRssValue:YES];
+                [wself.aNewRss setCreatedAt:[NSDate date]];
+                [wself.aNewRss setUpdatedAt:[NSDate date]];
+                if (wself.aNewRssName && wself.aNewRssName.length > 0) {
+                    wself.aNewRss.rssTitle = wself.aNewRssName;
                 }else{
-                    newRss.rssTitle = rssModel.rssTitle;
+                    wself.aNewRss.rssTitle = rssModel.rssTitle;
                 }
 
-                newRss.rssLink = rssModel.rssLink;
+                wself.aNewRss.rssLink = rssModel.rssLink;
                 
                 /**
                  *  if this rss should be cache so create new RssNode entity
                  */
-                if (newRss && newRss.shouldCacheValue) {
+                if (wself.aNewRss && wself.aNewRss.shouldCacheValue) {
                     for (RssNodeModel *nodeModel in nodeList) {
                         RssNode *node = [RssNode MR_createEntity];
                         [node initFromTempNode:nodeModel];
                         [node setCreatedAt:[NSDate date]];
-                        [node setRss:newRss];
+                        [node setRss:wself.aNewRss];
                     }
                 }
                 
                 /**
                  *  reload the rss list
                  */
-                [rssList addObject:newRss];
+                [wself.rssList addObject:wself.aNewRss];
                 [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
-                [_tableView reloadData];
+                [wself.tableView reloadData];
                 
             } failure:^(NSError *error) {
                 

@@ -13,12 +13,13 @@
 
 @interface ManageRssViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, MWFeedParserDelegate>
 {
-    NSMutableArray *rssList;
-    Rss *newRss;
-    NSString *newRssName;
+    
     
     NSInteger editingIndex;
 }
+@property (nonatomic, strong) NSMutableArray *rssList;
+@property (nonatomic, strong) Rss *aNewRss;
+@property (nonatomic, strong) NSString *aNewRssName;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

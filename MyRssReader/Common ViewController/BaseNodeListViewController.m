@@ -35,6 +35,11 @@
     NSInteger willDownloadAtIndex;
     RssManager *manager;
 }
+/**
+ *  mark the current node
+ *  after present interstitial, this node's content will be process
+ */
+@property (nonatomic, strong) RssNodeModel *currentNode;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
@@ -154,14 +159,14 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    currentNode = nil;
+    self.currentNode = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        currentNode = searchResults[indexPath.row];
+        self.currentNode = searchResults[indexPath.row];
     } else {
-        currentNode = _nodeList[indexPath.row];
+        self.currentNode = _nodeList[indexPath.row];
     }
     
-    switch ([Common typeOfNode:currentNode.nodeType]) {
+    switch ([Common typeOfNode:self.currentNode.nodeType]) {
         case NODE_TYPE_RSS:
         {
             /**
@@ -189,25 +194,25 @@
     /**
      *  check if node url is empty or not
      */
-    if (!currentNode.nodeUrl || currentNode.nodeUrl.length <= 0) {
+    if (!self.currentNode.nodeUrl || self.currentNode.nodeUrl.length <= 0) {
         
         RPNodeDescriptionViewController *viewcontroller = [Storyboard instantiateViewControllerWithIdentifier:@"RPNodeDescriptionViewController"];
-        [viewcontroller setTitle:currentNode.nodeTitle];
-        [viewcontroller setDesc:currentNode.nodeDesc];
-        [viewcontroller setUrl:currentNode.nodeLink];
+        [viewcontroller setTitle:self.currentNode.nodeTitle];
+        [viewcontroller setDesc:self.currentNode.nodeDesc];
+        [viewcontroller setUrl:self.currentNode.nodeLink];
         [self.navigationController pushViewController:viewcontroller animated:YES];
         return;
     }
     /**
      *  otherwise
      */
-    switch ([Common typeOfNode:currentNode.nodeType]) {
+    switch ([Common typeOfNode:self.currentNode.nodeType]) {
         case NODE_TYPE_RSS:
         {
             /**
              *  retrieve the cached RSS
              */
-            __block Rss *cachedRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:currentNode.nodeUrl];
+            __block Rss *cachedRss = [Rss MR_findFirstByAttribute:@"rssLink" withValue:self.currentNode.nodeUrl];
             /*
              *  check auto refresh time to fetch new data
              */
@@ -224,7 +229,8 @@
             }
             if (!cachedRss || cachedRss.shouldCacheValue == NO || cachedRss.nodeList.count <= 0 || needRefresh) {
                 
-                manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:currentNode.nodeUrl]];
+                manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:self.currentNode.nodeUrl]];
+                __weak typeof(self) wself = self;
                 [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
                     
                     if (rssModel.shouldCache) {
@@ -257,9 +263,9 @@
                     
                     NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
                     [viewcontroller setNodeList:nodeList];
-                    [viewcontroller setRssURL:currentNode.nodeUrl];
-                    [viewcontroller setTitle:currentNode.nodeTitle];
-                    [self.navigationController pushViewController:viewcontroller animated:YES];
+                    [viewcontroller setRssURL:wself.currentNode.nodeUrl];
+                    [viewcontroller setTitle:wself.currentNode.nodeTitle];
+                    [wself.navigationController pushViewController:viewcontroller animated:YES];
                     
                 } failure:^(NSError *error) {
                     
@@ -274,8 +280,8 @@
                 
                 NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
                 [viewcontroller setNodeList:nodeList];
-                [viewcontroller setRssURL:currentNode.nodeUrl];
-                [viewcontroller setTitle:currentNode.nodeTitle];
+                [viewcontroller setRssURL:self.currentNode.nodeUrl];
+                [viewcontroller setTitle:self.currentNode.nodeTitle];
                 [self.navigationController pushViewController:viewcontroller animated:YES];
             }
         }
@@ -283,7 +289,7 @@
         case NODE_TYPE_VIDEO:
         {
             AirPlayerViewController *viewcontroller = [[AirPlayerViewController alloc] init];
-            [viewcontroller setCurrentNode:currentNode];
+            [viewcontroller setCurrentNode:self.currentNode];
             [self presentViewController:viewcontroller animated:YES completion:nil];
             
         }
@@ -293,27 +299,27 @@
             BOOL hasConnectedCastSession =
             [GCKCastContext sharedInstance].sessionManager.hasConnectedCastSession;
             if (hasConnectedCastSession) {
-                [self castMediaInfo:[Common mediaInformationFromNode:currentNode]];
+                [self castMediaInfo:[Common mediaInformationFromNode:self.currentNode]];
             } else {
                 AirPlayerViewController *viewcontroller = [[AirPlayerViewController alloc] init];
-                [viewcontroller setCurrentNode:currentNode];
+                [viewcontroller setCurrentNode:self.currentNode];
                 [self presentViewController:viewcontroller animated:YES completion:nil];
             }
         }
             break;
         case NODE_TYPE_YOUTUBE:
         {
-            XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:[currentNode.nodeUrl extractYoutubeId]];
+            XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:[self.currentNode.nodeUrl extractYoutubeId]];
             [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
         }
             break;
         case NODE_TYPE_DAILYMOTION:
         {
-            NSString *url = currentNode.nodeUrl;
+            NSString *url = self.currentNode.nodeUrl;
             NSString *videoIdentifer = [url lastPathComponent];
             
             DMPlayerViewController *playerViewcontroller = [[DMPlayerViewController alloc] initWithVideo:videoIdentifer];
-            [playerViewcontroller setTitle:currentNode.nodeTitle];
+            [playerViewcontroller setTitle:self.currentNode.nodeTitle];
             [playerViewcontroller setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:playerViewcontroller animated:YES];
         }
@@ -321,16 +327,16 @@
         case NODE_TYPE_WEB_CONTENT:
         {
             FileListViewController *viewcontroller = [Storyboard instantiateViewControllerWithIdentifier:@"FileListViewController"];
-            [viewcontroller setTitle:currentNode.nodeTitle];
-            [viewcontroller setWebPageUrl:currentNode.nodeUrl];
+            [viewcontroller setTitle:self.currentNode.nodeTitle];
+            [viewcontroller setWebPageUrl:self.currentNode.nodeUrl];
             [self.navigationController pushViewController:viewcontroller animated:YES];
         }
             break;
         default:
         {
             WebViewViewController *viewcontroller = [WebViewViewController initWithNibName];
-            [viewcontroller setTitle:currentNode.nodeTitle];
-            [viewcontroller setWebUrl:currentNode.nodeUrl];
+            [viewcontroller setTitle:self.currentNode.nodeTitle];
+            [viewcontroller setWebUrl:self.currentNode.nodeUrl];
             [self.navigationController pushViewController:viewcontroller animated:YES];
         }
             break;

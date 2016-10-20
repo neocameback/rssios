@@ -19,12 +19,6 @@ typedef void (^ ConfigureTableViewCellBlock) (id cell, id item);
 
 @interface BaseNodeListViewController : BaseViewController <GADInterstitialDelegate>
 {
-    /**
-     *  mark the current node
-     *  after present interstitial, this node's content will be process
-     */
-    RssNodeModel *currentNode;
-    
     NSArray *searchResults;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
