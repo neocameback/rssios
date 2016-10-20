@@ -64,6 +64,8 @@ static NSString *const kPrefEnableMediaNotifications =
     // Initialize tracker. Replace with your tracking ID.
     [[GAI sharedInstance] trackerWithTrackingId:kGoogleAnalyticId];
     
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+    
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSInteger autoRefreshTime = [userDefault integerForKey:kAutoRefreshNewsTime];
     if (!autoRefreshTime || autoRefreshTime <= 0) {

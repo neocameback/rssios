@@ -42,7 +42,7 @@
 
 -(void) getWebContent
 {
-    [SVProgressHUD showWithStatus:kStringLoading maskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD showWithStatus:kStringLoading];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.webPageUrl]];
     [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
     [request setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];

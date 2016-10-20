@@ -23,6 +23,7 @@
 {
     DLog(@"");
     [_feedParser stopParsing];
+    [SVProgressHUD dismiss];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:SVProgressHUDDidReceiveTouchEventNotification object:nil];
 
 }
@@ -32,7 +33,7 @@
     if ([Singleton shareInstance].currentIpAddress) {
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hudTapped:) name:SVProgressHUDDidReceiveTouchEventNotification object:nil];
-        [SVProgressHUD showWithStatus:kStringLoadingTapToCancel maskType:SVProgressHUDMaskTypeGradient];
+        [SVProgressHUD showWithStatus:kStringLoadingTapToCancel];
         _completionBlock = completionBlock;
         _failureBlock = failedBlock;
         
@@ -59,7 +60,7 @@
         }
     }else{
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hudTapped:) name:SVProgressHUDDidReceiveTouchEventNotification object:nil];
-        [SVProgressHUD showWithStatus:kStringLoadingTapToCancel maskType:SVProgressHUDMaskTypeGradient];
+        [SVProgressHUD showWithStatus:kStringLoadingTapToCancel];
         [Common getUserIpAddress:^(NSDictionary *update) {
             if (update) {
                 

@@ -149,7 +149,7 @@
 {
     Rss *aRss = rssList[indexPath.row];
     [aRss MR_deleteEntity];
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
     [rssList removeObjectAtIndex:indexPath.row];
 
     [_tableView reloadData];
