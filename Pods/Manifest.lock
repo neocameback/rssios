@@ -59,7 +59,7 @@ PODS:
   - MGSwipeTableCell (1.5.6)
   - PureLayout (2.0.6)
   - SCSkypeActivityIndicatorView (1.0.0)
-  - SVProgressHUD (1.1.3)
+  - SVProgressHUD (2.0.3)
   - UIView+AnimationExtensions (1.0.0)
   - XCDYouTubeKit (2.5.3)
 
@@ -80,7 +80,7 @@ DEPENDENCIES:
   - MGSwipeTableCell (~> 1.5)
   - PureLayout (~> 2.0)
   - SCSkypeActivityIndicatorView (~> 1.0)
-  - SVProgressHUD (~> 1.1.3)
+  - SVProgressHUD
   - UIView+AnimationExtensions (~> 1.0)
   - XCDYouTubeKit (~> 2.2)
 
@@ -106,10 +106,10 @@ SPEC CHECKSUMS:
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   SCSkypeActivityIndicatorView: 4e98ca2ba8f092786c3b1e79168df228b4ce27ba
-  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   UIView+AnimationExtensions: f9ae95fa3064be09cf2fcaac1fb1948ee22397ec
   XCDYouTubeKit: 90690f9e3523735dc93b8024269d991b0cfffe78
 
-PODFILE CHECKSUM: 33b871ad87fe8195d28dcb27fda61b6aea891cbd
+PODFILE CHECKSUM: f29152a194e443e0a4e624720be919c7bae3eb89
 
 COCOAPODS: 1.0.1

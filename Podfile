@@ -5,7 +5,7 @@ use_frameworks!
 
 target 'MyRssReader' do
 pod 'Google-Mobile-Ads-SDK', '~> 7.4'
-pod 'SVProgressHUD', '~> 1.1.3'
+pod 'SVProgressHUD'
 pod 'MagicalRecord', '~> 2.3.0'
 pod 'AFNetworking', '~> 2.5.4'
 pod 'XCDYouTubeKit', '~> 2.2'
