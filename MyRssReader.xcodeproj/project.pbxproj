@@ -891,6 +891,11 @@
 					DE22E7B4192F54180005E685 = {
 						DevelopmentTeam = Q6P4VX76SF;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					DE233F7C1B70A9C600C02DD6 = {
 						CreatedOnToolsVersion = 6.4;
