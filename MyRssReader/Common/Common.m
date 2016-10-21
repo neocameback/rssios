@@ -147,12 +147,37 @@
     [metadata setString:node.nodeDesc forKey:@"description"];
     
     [metadata addImage:[[GCKImage alloc] initWithURL:[NSURL URLWithString:node.nodeImage]
-                                               width:480
-                                              height:720]];
-    
+                                               width:320
+                                              height:568]];
+//    NSMutableArray *tracks = [NSMutableArray array];
+//    NSInteger count = node.subtitles.count;
+//    for (NSInteger i = 0 ; i < count; i ++) {
+//        MWFeedItemSubTitle *sub = node.subtitles[i];
+//        GCKMediaTrack *captionsTrack =
+//        [[GCKMediaTrack alloc] initWithIdentifier:i
+//                                contentIdentifier:sub.link
+//                                      contentType:@"text/srt"
+//                                             type:GCKMediaTrackTypeText
+//                                      textSubtype:GCKMediaTextTrackSubtypeSubtitles
+//                                             name:sub.languageCode
+//                                     languageCode:sub.languageCode
+//                                       customData:nil];
+//        [tracks addObject:captionsTrack];
+//    }
+//    if (count == 0) {
+//        tracks = nil;
+//    }
+//    GCKMediaTextTrackStyle *trackStyle = [GCKMediaTextTrackStyle createDefault];
     GCKMediaInformation *mediaInfo = nil;
     if ([Common typeOfNode:node.nodeType] == NODE_TYPE_MP4) {
-        mediaInfo = [[GCKMediaInformation alloc] initWithContentID:node.nodeUrl streamType:GCKMediaStreamTypeBuffered contentType:@"video/mp4" metadata:metadata streamDuration:0 customData:0];
+        mediaInfo = [[GCKMediaInformation alloc] initWithContentID:node.nodeUrl
+                                                        streamType:GCKMediaStreamTypeBuffered
+                                                       contentType:@"video/mp4"
+                                                          metadata:metadata
+                                                    streamDuration:0
+                                                       mediaTracks:nil
+                                                    textTrackStyle:nil
+                                                        customData:nil];
         return mediaInfo;
     } else {
         return nil;
@@ -166,10 +191,15 @@
     [metadata setString:file.desc forKey:@"description"];
     
     [metadata addImage:[[GCKImage alloc] initWithURL:[NSURL URLWithString:file.thumbnail]
-                                               width:480
-                                              height:720]];
+                                               width:320
+                                              height:568]];
     
-    GCKMediaInformation *mediaInfo = [[GCKMediaInformation alloc] initWithContentID:file.url streamType:GCKMediaStreamTypeBuffered contentType:@"video/mp4" metadata:metadata streamDuration:0 customData:0];
+    GCKMediaInformation *mediaInfo = [[GCKMediaInformation alloc] initWithContentID:file.url
+                                                                         streamType:GCKMediaStreamTypeBuffered
+                                                                        contentType:@"video/mp4"
+                                                                           metadata:metadata
+                                                                     streamDuration:0
+                                                                         customData:0];
     return mediaInfo;
 }
 @end

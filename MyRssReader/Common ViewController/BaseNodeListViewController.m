@@ -69,7 +69,6 @@
     NSMutableArray *rightBarButtons = [NSMutableArray arrayWithArray:barButtonItems];
     [rightBarButtons addObject:castBarButton];
     self.navigationItem.rightBarButtonItems = rightBarButtons;
-
 }
 
 -(void) viewWillAppear:(BOOL)animated

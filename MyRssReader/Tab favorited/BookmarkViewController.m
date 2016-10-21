@@ -44,7 +44,12 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_menu"] style:UIBarButtonItemStylePlain target:self action:@selector(onShowSideMenu:)];
     
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(onEdit)];
-    self.navigationItem.rightBarButtonItem = editButton;
+    
+    NSArray *barButtonItems = self.navigationItem.rightBarButtonItems;
+    NSMutableArray *rightBarButtons = [NSMutableArray arrayWithArray:barButtonItems];
+    [rightBarButtons insertObject:editButton atIndex:0];
+    self.navigationItem.rightBarButtonItems = rightBarButtons;
+    
     
 }
 -(void) viewWillAppear:(BOOL)animated
