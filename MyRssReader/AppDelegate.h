@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RSSDrawerController.h"
 
 extern NSString *const kApplicationID;
 
@@ -16,6 +17,7 @@ extern NSString *const kPrefPreloadTime;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) RSSDrawerController *drawerController;
 @property (nonatomic) BOOL castControlBarsEnabled;
 @end
 

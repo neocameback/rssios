@@ -18,7 +18,7 @@ pod 'UIView+AnimationExtensions', '~> 1.0'
 pod 'SCSkypeActivityIndicatorView', '~> 1.0'
 pod 'JDStatusBarNotification'
 pod 'MGSwipeTableCell', '~> 1.5'
-
+pod 'MMDrawerController', '~> 0.6'
 pod 'Fabric'
 pod 'Crashlytics'
 

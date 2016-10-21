@@ -41,8 +41,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_menu"] style:UIBarButtonItemStylePlain target:self action:@selector(onShowSideMenu:)];
+    
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(onEdit)];
-    self.navigationItem.leftBarButtonItem = editButton;
+    self.navigationItem.rightBarButtonItem = editButton;
     
 }
 -(void) viewWillAppear:(BOOL)animated
@@ -64,6 +66,29 @@
     [super viewWillDisappear:animated];
     // Save ManagedObjectContext using MagicalRecord
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+}
+
+- (void)onShowSideMenu:(id)sender {
+    switch ([self.mm_drawerController openSide]) {
+        case MMDrawerSideLeft:
+        {
+            [self.mm_drawerController closeDrawerAnimated:YES completion:^(BOOL finished) {
+                
+            }];
+        }
+            break;
+        case MMDrawerSideRight:
+            
+            break;
+            
+        default:
+        {
+            [self.mm_drawerController openDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
+                
+            }];
+        }
+            break;
+    }
 }
 
 -(void) onEdit

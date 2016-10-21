@@ -44,12 +44,10 @@
     castButton.tintColor = kGreenColor;
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:castButton];
     self.navigationItem.rightBarButtonItem = item;
-
-}
--(void) showBanner
-{
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_menu"] style:UIBarButtonItemStylePlain target:self action:@selector(onShowSideMenu:)];
 }
+
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -91,6 +89,31 @@
         }];
     }
 }
+
+- (void)onShowSideMenu:(id)sender {
+    switch ([self.mm_drawerController openSide]) {
+        case MMDrawerSideLeft:
+        {
+            [self.mm_drawerController closeDrawerAnimated:YES completion:^(BOOL finished) {
+                
+            }];
+        }
+            break;
+        case MMDrawerSideRight:
+            
+            break;
+            
+        default:
+        {
+            [self.mm_drawerController openDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
+                
+            }];
+        }
+            break;
+    }
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -36,12 +36,38 @@
     // Do any additional setup after loading the view from its nib.
     
     times = @[@5, @10, @15, @20, @25, @30];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_menu"] style:UIBarButtonItemStylePlain target:self action:@selector(onShowSideMenu:)];
 }
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.screenName = @"About View";
 }
+
+- (void)onShowSideMenu:(id)sender {
+    switch ([self.mm_drawerController openSide]) {
+        case MMDrawerSideLeft:
+        {
+            [self.mm_drawerController closeDrawerAnimated:YES completion:^(BOOL finished) {
+                
+            }];
+        }
+            break;
+        case MMDrawerSideRight:
+            
+            break;
+            
+        default:
+        {
+            [self.mm_drawerController openDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
+                
+            }];
+        }
+            break;
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -120,7 +146,7 @@
     switch (indexPath.section) {
         case 0:
             if (indexPath.row == 0 ) {
-                UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Auto refresh RSS after" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles: nil];
+                UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Auto refresh RSS after" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles: nil];
                 [actionsheet setTag:1];
                 for (NSNumber *number in times) {
                     [actionsheet addButtonWithTitle:[NSString stringWithFormat:@"%ld minutes",(long)[number integerValue]]];
@@ -185,7 +211,7 @@
         case 1:
         {
             if (buttonIndex != [actionSheet cancelButtonIndex]) {
-                NSNumber *selectedNumber = times[buttonIndex];
+                NSNumber *selectedNumber = times[buttonIndex - 1];
                 [[NSUserDefaults standardUserDefaults] setInteger:[selectedNumber integerValue]*minuteToSecond forKey:kAutoRefreshNewsTime];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 [_tableView reloadData];

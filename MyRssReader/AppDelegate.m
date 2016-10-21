@@ -21,6 +21,8 @@
 #import <Firebase.h>
 #import <GoogleCast/GoogleCast.h>
 #import "RssListViewController.h"
+#import "RSSDrawerController.h"
+#import "RSSLeftMenuViewController.h"
 
 @interface AppDelegate() <GCKLoggerDelegate> {
     BOOL _enableSDKLogging;
@@ -82,8 +84,6 @@ static NSString *const kPrefEnableMediaNotifications =
     
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    HomeViewController *viewcontroller = [HomeViewController initWithNibName];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewcontroller];
     
     [self populateRegistrationDomain];
     NSString *applicationID = [self applicationIDFromUserDefaults];
@@ -94,21 +94,29 @@ static NSString *const kPrefEnableMediaNotifications =
     [GCKCastContext sharedInstance].useDefaultExpandedMediaControls = YES;
     [GCKLogger sharedInstance].delegate = self;
     
-    GCKUICastContainerViewController *castContainerVC;
-    castContainerVC = [[GCKCastContext sharedInstance]
-                       createCastContainerControllerForViewController:nav];
-    
     [[NSNotificationCenter defaultCenter]
      addObserver:self
      selector:@selector(presentExpandedMediaControls)
      name:kGCKExpandedMediaControlsTriggeredNotification
      object:nil];
-    
-    nav.navigationBar.translucent = NO;
-    self.window.rootViewController = castContainerVC;
+    [self setupRootViewController];
     [self.window makeKeyAndVisible];
         
     return YES;
+}
+
+- (void)setupRootViewController {
+    RSSLeftMenuViewController *leftMenuViewController = [RSSLeftMenuViewController initWithNibName];
+    _drawerController = [[RSSDrawerController alloc] initWithCenterViewController:leftMenuViewController.centerViewController leftDrawerViewController:leftMenuViewController];
+    [_drawerController setMaximumLeftDrawerWidth:300.0f];
+    [_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [_drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    
+    GCKUICastContainerViewController *castContainerVC;
+    castContainerVC = [[GCKCastContext sharedInstance]
+                       createCastContainerControllerForViewController:_drawerController];
+    self.window.rootViewController = castContainerVC;
+    
 }
 
 #pragma mark Add these methods to control the visibility of the mini controller:

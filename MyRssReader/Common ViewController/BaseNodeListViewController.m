@@ -64,8 +64,11 @@
     CGRect frame = CGRectMake(0, 0, 24, 24);
     GCKUICastButton *castButton = [[GCKUICastButton alloc] initWithFrame:frame];
     castButton.tintColor = kGreenColor;
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:castButton];
-    self.navigationItem.rightBarButtonItem = item;
+    UIBarButtonItem *castBarButton = [[UIBarButtonItem alloc] initWithCustomView:castButton];
+    NSArray *barButtonItems = self.navigationItem.rightBarButtonItems;
+    NSMutableArray *rightBarButtons = [NSMutableArray arrayWithArray:barButtonItems];
+    [rightBarButtons addObject:castBarButton];
+    self.navigationItem.rightBarButtonItems = rightBarButtons;
 
 }
 
