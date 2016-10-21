@@ -143,7 +143,6 @@
         if ([cell respondsToSelector:@selector(setDelegate:)]) {
             [(NodeListCustomCell *)cell setDelegate:self];
         }
-        [(NodeListCustomCell *)cell setParentVC:self];
         return cell;
     }else{
         NodeListAdsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NodeListAdsTableViewCell"];
