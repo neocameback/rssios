@@ -18,7 +18,8 @@
 
 @interface NodeListViewController : BaseNodeListViewController
 {
-    Rss *cachedRss;
+    
 }
 @property (nonatomic, strong) NSString *rssURL;
+@property (nonatomic, strong) Rss *cachedRss;
 @end

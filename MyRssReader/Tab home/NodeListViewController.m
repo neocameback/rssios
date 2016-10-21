@@ -83,47 +83,48 @@
 -(void) parseRssFromURL:(NSString *) url
 {
     manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:url]];
+    __weak typeof(self) wself = self;
     [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
         /**
          *  the saved RSS can have an other name that's enter on manage RSS view
          */
-        if (cachedRss && cachedRss.rssTitle.length > 0) {
-            [rssModel setRssTitle:cachedRss.rssTitle];
+        if (wself.cachedRss && wself.cachedRss.rssTitle.length > 0) {
+            [rssModel setRssTitle:wself.cachedRss.rssTitle];
         }
         /**
          *  check if this rss should be cache or not
          */
         if (rssModel.shouldCache) {
-            if (!cachedRss) {
-                cachedRss = [Rss MR_createEntity];
-                [cachedRss setCreatedAt:[NSDate date]];
+            if (!wself.cachedRss) {
+                wself.cachedRss = [Rss MR_createEntity];
+                [wself.cachedRss setCreatedAt:[NSDate date]];
             }else {
-                [[cachedRss nodeListSet] removeAllObjects];
+                [[wself.cachedRss nodeListSet] removeAllObjects];
             }
-            if (!cachedRss.isBookmarkRssValue) {
-                [cachedRss setIsBookmarkRssValue:NO];
+            if (!wself.cachedRss.isBookmarkRssValue) {
+                [wself.cachedRss setIsBookmarkRssValue:NO];
             }
-            [cachedRss initFromTempRss:rssModel];
+            [wself.cachedRss initFromTempRss:rssModel];
         }
         
-        self.nodeList = nodeList;
+        wself.nodeList = nodeList;
         /**
          *  if this rss should be cache so create new RssNode entity
          */
-        if (cachedRss && cachedRss.shouldCacheValue) {
+        if (wself.cachedRss && wself.cachedRss.shouldCacheValue) {
             for (RssNodeModel *nodeModel in nodeList) {
                 RssNode *node = [RssNode MR_createEntity];
                 [node initFromTempNode:nodeModel];
                 [node setCreatedAt:[NSDate date]];
-                [node setRss:cachedRss];
+                [node setRss:wself.cachedRss];
             }
         }
         
-        [self.refreshControl endRefreshing];
+        [wself.refreshControl endRefreshing];
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
-        [self.tableView reloadData];
+        [wself.tableView reloadData];
     } failure:^(NSError *error) {
-        [self.refreshControl endRefreshing];
+        [wself.refreshControl endRefreshing];
     }];
 }
 

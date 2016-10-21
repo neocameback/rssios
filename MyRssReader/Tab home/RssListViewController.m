@@ -15,9 +15,10 @@
 
 @interface RssListViewController ()
 {
-    NSMutableArray *rssList;
+    
     RssManager *manager;
 }
+@property (nonatomic, strong) NSMutableArray *rssList;
 @end
 
 @implementation RssListViewController
@@ -57,7 +58,7 @@
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
     {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isBookmarkRss == 1"];
-        rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES withPredicate:predicate]];
+        self.rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES withPredicate:predicate]];
 
         [_tableView reloadData];
     }
@@ -67,6 +68,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
 
         manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:kDefaultRssUrl]];
+        __weak typeof(self) wself = self;
         [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
             Rss *defaultRss = [Rss MR_createEntity];
             [defaultRss setIsBookmarkRssValue:YES];
@@ -81,8 +83,8 @@
             }
             
             [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
-            rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES]];
-            [_tableView reloadData];
+            wself.rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES]];
+            [wself.tableView reloadData];
             
         } failure:^(NSError *error) {
             
@@ -131,7 +133,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    cell.textLabel.text = [rssList[indexPath.row] rssTitle];
+    cell.textLabel.text = [self.rssList[indexPath.row] rssTitle];
     return cell;
 }
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -141,7 +143,7 @@
     /**
      *  retrieve the cached RSS
      */
-    Rss *currentRss = rssList[indexPath.row];
+    Rss *currentRss = self.rssList[indexPath.row];
     /*
      *  check auto refresh time to fetch new data
      */
@@ -159,6 +161,7 @@
     if (!currentRss || currentRss.shouldCacheValue == NO || currentRss.nodeList.count <= 0 || needRefresh) {
         
         manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:currentRss.rssLink]];
+        __weak typeof(self) wself = self;
         [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
             
             [currentRss setUpdatedAt:[NSDate date]];
@@ -177,7 +180,7 @@
             [viewcontroller setNodeList:nodeList];
             [viewcontroller setRssURL:currentRss.rssLink];
             [viewcontroller setTitle:currentRss.rssTitle];
-            [self.navigationController pushViewController:viewcontroller animated:YES];
+            [wself.navigationController pushViewController:viewcontroller animated:YES];
             
         } failure:^(NSError *error) {
             
