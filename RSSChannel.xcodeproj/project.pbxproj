@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		064A9E15F0A1D9B5F602F5B4 /* Pods_MyRssReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EBF595744363B68EF79E3FF /* Pods_MyRssReader.framework */; };
+		143BADA97AF781695644E696 /* Pods_RSSChannel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E58C8EFA6999551FDA2C2BF8 /* Pods_RSSChannel.framework */; };
 		229F25661DB3C9A9001A741C /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 229F25651DB3C9A9001A741C /* Toast.m */; };
 		22FB26371DB39A79008831D2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22FB26361DB39A79008831D2 /* Settings.bundle */; };
 		422D00611DC2578900964DC5 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 422D00601DC2578900964DC5 /* UIColor+Helper.m */; };
@@ -219,10 +220,12 @@
 		42C70C0B193CBE3500736BCF /* icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-152.png"; sourceTree = "<group>"; };
 		42C70C0C193CBE3500736BCF /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		42C70C0D193CBE3500736BCF /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		6077CAF59ECA4760B5460EE1 /* Pods-RSSChannel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSChannel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RSSChannel/Pods-RSSChannel.debug.xcconfig"; sourceTree = "<group>"; };
 		8465650F1B7BA57700C9E99E /* _File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _File.h; sourceTree = "<group>"; };
 		846565101B7BA57700C9E99E /* _File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _File.m; sourceTree = "<group>"; };
 		846565111B7BA57700C9E99E /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
 		846565121B7BA57700C9E99E /* File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = File.m; sourceTree = "<group>"; };
+		95FAD851CA58F5F84D5BEC00 /* Pods-RSSChannel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSChannel.release.xcconfig"; path = "Pods/Target Support Files/Pods-RSSChannel/Pods-RSSChannel.release.xcconfig"; sourceTree = "<group>"; };
 		B648CF051D1102C40030FE69 /* BaseNodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNodeListViewController.h; sourceTree = "<group>"; };
 		B648CF061D1102C40030FE69 /* BaseNodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNodeListViewController.m; sourceTree = "<group>"; };
 		B648CF071D1102C40030FE69 /* BaseNodeListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseNodeListViewController.xib; sourceTree = "<group>"; };
@@ -384,6 +387,7 @@
 		DEF49618193435FD00DD482D /* NSUserDefaults+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Helper.m"; sourceTree = "<group>"; };
 		DEF4961A1934376700DD482D /* UIAlertView+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Helper.h"; sourceTree = "<group>"; };
 		DEF4961B1934376700DD482D /* UIAlertView+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Helper.m"; sourceTree = "<group>"; };
+		E58C8EFA6999551FDA2C2BF8 /* Pods_RSSChannel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSSChannel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5AA3F911D1FDE91000B7B37 /* SubtitleSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubtitleSelectionViewController.h; sourceTree = "<group>"; };
 		E5AA3F921D1FDE91000B7B37 /* SubtitleSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubtitleSelectionViewController.m; sourceTree = "<group>"; };
 		E5AA3F931D1FDE91000B7B37 /* SubtitleSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubtitleSelectionViewController.xib; sourceTree = "<group>"; };
@@ -416,6 +420,7 @@
 				DE22E7BB192F54180005E685 /* CoreGraphics.framework in Frameworks */,
 				DE22E7B9192F54180005E685 /* Foundation.framework in Frameworks */,
 				064A9E15F0A1D9B5F602F5B4 /* Pods_MyRssReader.framework in Frameworks */,
+				143BADA97AF781695644E696 /* Pods_RSSChannel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +475,8 @@
 			children = (
 				132BC3B1C3545C57DF415C1F /* Pods-MyRssReader.debug.xcconfig */,
 				0E6D42693370FDC9A6552E5C /* Pods-MyRssReader.release.xcconfig */,
+				6077CAF59ECA4760B5460EE1 /* Pods-RSSChannel.debug.xcconfig */,
+				95FAD851CA58F5F84D5BEC00 /* Pods-RSSChannel.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -638,6 +645,7 @@
 				DE22E7BC192F54180005E685 /* UIKit.framework */,
 				DE22E7D1192F54180005E685 /* XCTest.framework */,
 				2EBF595744363B68EF79E3FF /* Pods_MyRssReader.framework */,
+				E58C8EFA6999551FDA2C2BF8 /* Pods_RSSChannel.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1030,7 +1038,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyRssReader/Pods-MyRssReader-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RSSChannel/Pods-RSSChannel-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DE233F801B70A9CD00C02DD6 /* ShellScript */ = {
@@ -1058,7 +1066,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyRssReader/Pods-MyRssReader-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RSSChannel/Pods-RSSChannel-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1232,7 +1240,7 @@
 		};
 		DE22E7E2192F54180005E685 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 132BC3B1C3545C57DF415C1F /* Pods-MyRssReader.debug.xcconfig */;
+			baseConfigurationReference = 6077CAF59ECA4760B5460EE1 /* Pods-RSSChannel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1303,7 +1311,7 @@
 		};
 		DE22E7E3192F54180005E685 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E6D42693370FDC9A6552E5C /* Pods-MyRssReader.release.xcconfig */;
+			baseConfigurationReference = 95FAD851CA58F5F84D5BEC00 /* Pods-RSSChannel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

@@ -3,7 +3,7 @@ platform :ios, '8.0'
 inhibit_all_warnings!
 use_frameworks!
 
-target 'MyRssReader' do
+target 'RSSChannel' do
 pod 'Google-Mobile-Ads-SDK', '~> 7.4'
 pod 'SVProgressHUD'
 pod 'MagicalRecord', '~> 2.3.0'
