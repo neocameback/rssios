@@ -17,13 +17,13 @@
 #define kAutoRefreshNewsTime                 @"auto_refresh_news_time"
 #define kLastOpenFullScreen @"last_open_full_screen"
 
-#define GET_IP_ADDRESS      @"http://rssvideoplayer.com/ip"
-#define kDefaultRssUrl      @"http://rssvideoplayer.com/sample.xml"
-#define kDefaultMd5Prefix   @"RssVideoPlayer-Hanoi052014-"
+#define GET_IP_ADDRESS      @"http://ip-api.com/json"
+#define kDefaultRssUrl      @"http://rssvideochannel.com/sample.xml"
+#define kDefaultMd5Prefix   @"RssVideoChannel-Hanoi102016-"
 
-#define kDefaultShareTitle  @"Rss video player\nhttp://rssvideoplayer.com"
-#define kAboutUrl           @"http://rssvideoplayer.com/about.html"
-#define POST_HANDLE_URL     @"http://rssvideoplayer.com/handle/index.php"
+#define kDefaultShareTitle  @"Rss video channel\nhttp://rssvideochannel.com/"
+#define kAboutUrl           @"http://rssvideochannel.com/about.html"
+#define POST_HANDLE_URL     @"http://rssvideochannel.com/api/crawl.php"
 
 #define kGoogleAnalyticId   @"UA-51537954-1"
 
@@ -39,6 +39,7 @@
 #define kUserAgent      @"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36"
 
 #define kGreenColor [UIColor colorWithRed:0/255 green:204.0/255 blue:151.0/255 alpha:1]
+#define kNavigationColor    [UIColor colorWithHexString:@"31708f"]
 enum NODE_TYPE {
     NODE_TYPE_RSS = 0,
     NODE_TYPE_VIDEO = 1,

@@ -39,7 +39,7 @@
     self.enableCastFunction = YES;
     CGRect frame = CGRectMake(0, 0, 24, 24);
     GCKUICastButton *castButton = [[GCKUICastButton alloc] initWithFrame:frame];
-    castButton.tintColor = kGreenColor;
+    castButton.tintColor = [UIColor whiteColor];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:castButton];
     self.navigationItem.rightBarButtonItem = item;
 

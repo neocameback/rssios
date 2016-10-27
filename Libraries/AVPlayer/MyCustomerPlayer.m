@@ -86,7 +86,7 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
 
     [self.view.layer insertSublayer:_playerLayer atIndex:0];
     
-    castButton.tintColor = kGreenColor;
+    castButton.tintColor = [UIColor whiteColor];
     /**
      *  add seek observer
      */

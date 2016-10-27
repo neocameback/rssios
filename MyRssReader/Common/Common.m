@@ -74,7 +74,7 @@
     AFHTTPRequestOperationManager *operation = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:GET_IP_ADDRESS]];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     operation.requestSerializer = [AFHTTPRequestSerializer serializer];
-    [operation.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"text/html", nil]];
+    [operation.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"text/html", @"application/json", nil]];
     [operation GET:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success(responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

@@ -10,7 +10,7 @@
 
 typedef enum : NSUInteger {
     RSSSideMenuHome,
-    RSSSideMenuManage,
+//    RSSSideMenuManage,
     RSSSideMenuFavorite,
     RSSSideMenuDownload,
     RSSSideMenuAbout

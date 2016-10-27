@@ -21,7 +21,6 @@
 @property (nonatomic) NSInteger selectedCellIndex;
 @property (nonatomic, strong) NSMutableArray *data;
 @property (nonatomic, strong) UINavigationController *homeNav;
-@property (nonatomic, strong) UINavigationController *manageNav;
 @property (nonatomic, strong) UINavigationController *favoriteNav;
 @property (nonatomic, strong) UINavigationController *downloadNav;
 @property (nonatomic, strong) UINavigationController *settingsNav;
@@ -33,7 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.data = [NSMutableArray arrayWithArray:@[@"Home", @"Channels", @"Favorite", @"Download", @"Settings"]];
+    self.data = [NSMutableArray arrayWithArray:@[@"Channels", @"Favorite", @"Download", @"Settings"]];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
@@ -53,16 +52,6 @@
         RssListViewController *rssVC = [RssListViewController initWithNibName];
         _homeNav = [[RssBaseNavigationViewController alloc] initWithRootViewController:rssVC];
         return _homeNav;
-    }
-}
-
-- (UINavigationController *)manageNav {
-    if (_manageNav) {
-        return _manageNav;
-    } else {
-        ManageRssViewController *viewcontroller = [ManageRssViewController initWithNibName];
-        _manageNav = [[RssBaseNavigationViewController alloc] initWithRootViewController:viewcontroller];
-        return _manageNav;
     }
 }
 
@@ -127,15 +116,7 @@
             }
 
         }
-            break;
-        case RSSSideMenuManage: {
-            if (indexPath.row == self.selectedCellIndex) {
-                [self.manageNav popToRootViewControllerAnimated:YES];
-            } else {
-                self.mm_drawerController.centerViewController = self.manageNav;
-            }
-        }
-            break;
+            break;        
         case RSSSideMenuFavorite: {
             if (indexPath.row == self.selectedCellIndex) {
                 [self.favoriteNav popToRootViewControllerAnimated:YES];

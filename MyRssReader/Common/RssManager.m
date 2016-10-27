@@ -67,7 +67,7 @@
                 _completionBlock = completionBlock;
                 _failureBlock = failedBlock;
                 
-                NSString *ipAddress = update[@"ip"];
+                NSString *ipAddress = update[@"query"];
                 [[Singleton shareInstance] setCurrentIpAddress:ipAddress];
                 DLog(@"%@",ipAddress);
                 NSMutableURLRequest *request = [Common requestWithMethod:@"GET" ipAddress:ipAddress Url:_rssUrl];

@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "HomeViewController.h"
 #import "Rss.h"
 #import "Node.h"
 #import "MWFeedParser.h"
@@ -100,9 +99,18 @@ static NSString *const kPrefEnableMediaNotifications =
      name:kGCKExpandedMediaControlsTriggeredNotification
      object:nil];
     [self setupRootViewController];
+    
+    [self setupAppearance];
     [self.window makeKeyAndVisible];
         
     return YES;
+}
+
+- (void)setupAppearance {
+    [[UINavigationBar appearance] setBarTintColor:kNavigationColor];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
 }
 
 - (void)setupRootViewController {

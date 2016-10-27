@@ -28,11 +28,12 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = @"Home";
+        self.title = @"Channels";
     }
     return self;
 }
 
+#pragma mark View lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -42,7 +43,7 @@
     self.enableCastFunction = YES;
     CGRect frame = CGRectMake(0, 0, 24, 24);
     GCKUICastButton *castButton = [[GCKUICastButton alloc] initWithFrame:frame];
-    castButton.tintColor = kGreenColor;
+    castButton.tintColor = [UIColor whiteColor];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:castButton];
     self.navigationItem.rightBarButtonItem = item;
     
@@ -53,7 +54,7 @@
 {
     [super viewWillAppear:animated];
     
-    self.screenName = @"Home View";
+    self.screenName = @"Channels View";
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
     {
@@ -92,6 +93,8 @@
     }
 }
 
+
+#pragma mark IBActions
 - (void)onShowSideMenu:(id)sender {
     switch ([self.mm_drawerController openSide]) {
         case MMDrawerSideLeft:
@@ -115,11 +118,26 @@
     }
 }
 
+- (IBAction)onAddNewChannel:(id)sender {
+}
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark UITableView DataSource
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 70;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
