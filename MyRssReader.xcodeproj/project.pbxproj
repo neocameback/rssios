@@ -37,6 +37,7 @@
 		427FB9D71DB9B1F4002A30E6 /* ic_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 427FB9D41DB9B1F4002A30E6 /* ic_menu@2x.png */; };
 		427FB9D81DB9B1F4002A30E6 /* ic_menu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 427FB9D51DB9B1F4002A30E6 /* ic_menu@3x.png */; };
 		42A9A0971DC1A0A700DAA241 /* blow-breeze-ep18.vtt in Resources */ = {isa = PBXBuildFile; fileRef = 42A9A0961DC1A0A700DAA241 /* blow-breeze-ep18.vtt */; };
+		42A9A09C1DC1C5AE00DAA241 /* NSDate+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A9A09B1DC1C5AE00DAA241 /* NSDate+helper.m */; };
 		42AE1B28194B8FB600F2CC2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AE1B27194B8FB600F2CC2A /* Security.framework */; };
 		42C70C0E193CBE3500736BCF /* icon -114.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70BFF193CBE3500736BCF /* icon -114.png */; };
 		42C70C0F193CBE3500736BCF /* icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70C00193CBE3500736BCF /* icon-29.png */; };
@@ -219,6 +220,8 @@
 		427FB9D41DB9B1F4002A30E6 /* ic_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_menu@2x.png"; sourceTree = "<group>"; };
 		427FB9D51DB9B1F4002A30E6 /* ic_menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_menu@3x.png"; sourceTree = "<group>"; };
 		42A9A0961DC1A0A700DAA241 /* blow-breeze-ep18.vtt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "blow-breeze-ep18.vtt"; sourceTree = "<group>"; };
+		42A9A09A1DC1C5AE00DAA241 /* NSDate+helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+helper.h"; sourceTree = "<group>"; };
+		42A9A09B1DC1C5AE00DAA241 /* NSDate+helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+helper.m"; sourceTree = "<group>"; };
 		42AE1B27194B8FB600F2CC2A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		42C70BFF193CBE3500736BCF /* icon -114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon -114.png"; sourceTree = "<group>"; };
 		42C70C00193CBE3500736BCF /* icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-29.png"; sourceTree = "<group>"; };
@@ -853,12 +856,12 @@
 		DEB5F0D71932D7B7008922E5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				DEB5F0DB1932D854008922E5 /* Categories.h */,
+				DEB5F0DC1932D854008922E5 /* Categories.m */,
 				B6A1CC341D17FA2C0026430B /* NSDictionary+Helper.h */,
 				B6A1CC351D17FA2C0026430B /* NSDictionary+Helper.m */,
 				DEB5F0D81932D7DA008922E5 /* UIViewController+Helper.h */,
 				DEB5F0D91932D7DA008922E5 /* UIViewController+Helper.m */,
-				DEB5F0DB1932D854008922E5 /* Categories.h */,
-				DEB5F0DC1932D854008922E5 /* Categories.m */,
 				DEF49617193435FD00DD482D /* NSUserDefaults+Helper.h */,
 				DEF49618193435FD00DD482D /* NSUserDefaults+Helper.m */,
 				DEF4961A1934376700DD482D /* UIAlertView+Helper.h */,
@@ -869,6 +872,8 @@
 				DE7F39AA1935E27700C7C143 /* NSMutableURLRequest+Helper.m */,
 				DEB7BF2A19458DE700BF350D /* NSString+Helper.h */,
 				DEB7BF2B19458DE700BF350D /* NSString+Helper.m */,
+				42A9A09A1DC1C5AE00DAA241 /* NSDate+helper.h */,
+				42A9A09B1DC1C5AE00DAA241 /* NSDate+helper.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1199,6 +1204,7 @@
 				B6B4A3861D140BE60000DD02 /* MyCustomerPlayer.m in Sources */,
 				DE1AE5601B8DA40B008C44F8 /* WebViewViewController.m in Sources */,
 				DEF496161934349F00DD482D /* Reachability.m in Sources */,
+				42A9A09C1DC1C5AE00DAA241 /* NSDate+helper.m in Sources */,
 				E5AA3F941D1FDE91000B7B37 /* SubtitleSelectionViewController.m in Sources */,
 				B648CF081D1102C40030FE69 /* BaseNodeListViewController.m in Sources */,
 				DE1AE56D1B8DA567008C44F8 /* RssModel.m in Sources */,

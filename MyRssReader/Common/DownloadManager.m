@@ -34,7 +34,7 @@ static NSOperationQueue *operationQueue;
 
 -(void) downloadNode:(RssNodeModel *)node withName:(NSString *) name fromView:(id) viewcontroller
 {
-    NSString *fileName = name ?: node.nodeTitle;
+    NSString *fileName = name ?: [NSString stringWithFormat:@"%@-%.0f",node.nodeTitle, [[NSDate date] timeIntervalSince1970]];
     if ([DownloadManager isFileNameExist:fileName]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"You entered a file that already exist. Please choose an other file name." delegate:viewcontroller cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
         [alert setTag:ALERT_NAME_EXIST];
@@ -56,7 +56,7 @@ static NSOperationQueue *operationQueue;
         [savedFile setUrl:node.nodeUrl];
         [savedFile setType:@"mp4"];
     }
-    [savedFile setName:name ?: node.nodeTitle];
+    [savedFile setName:fileName];
     [savedFile setThumbnail:node.nodeImage];
     [savedFile setUpdatedAt:[NSDate date]];
     
@@ -68,7 +68,7 @@ static NSOperationQueue *operationQueue;
         Subtitle *subtitle = [Subtitle MR_createEntity];
         subtitle.createdAt = [NSDate date];
         [subtitle initFromSubtitleItem:subItem];
-        [subtitle setName:name ?: node.nodeTitle];
+        [subtitle setName:fileName];
         [subtitle setFile:savedFile];
         
         [savedFile.subtitlesSet addObject:subtitle];
