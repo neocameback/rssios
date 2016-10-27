@@ -202,4 +202,14 @@
                                                                          customData:0];
     return mediaInfo;
 }
+
++ (SubTitleType)subtitleTypeFromString:(NSString *)typeString {
+    SubTitleType type = 0;
+    if ([typeString isEqualToString:@"text/srt"]) {
+        type = SubtitleTypeSrt;
+    }else if ([typeString isEqualToString:@"text/vtt"]){
+        type = SubTitleTypVTT;
+    }
+    return type;
+}
 @end

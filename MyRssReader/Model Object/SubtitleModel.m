@@ -17,6 +17,7 @@
     _languageCode = sub.languageCode;
     _filePath = [sub getFilePath];
     _name = [_filePath lastPathComponent];
+    _type = [Common subtitleTypeFromString:sub.type];
     return self;
 }
 -(id) initWithMWFeedItemSubtitle:(MWFeedItemSubTitle *) sub
@@ -26,7 +27,7 @@
     _languageCode = sub.languageCode;
     _link = sub.link;
     _name = _languageCode;
-    
+    _type = sub.type;
     return self;
 }
 -(NSString *) languageName

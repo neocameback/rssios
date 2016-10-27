@@ -95,13 +95,13 @@
     [tableView reloadData];
     SubtitleModel *model = _data[indexPath.row];
     if (_downloadedFile) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(subtitleSelectionViewController:didSelectSubWithFileURL:)]) {
-            [self.delegate subtitleSelectionViewController:self didSelectSubWithFileURL:model.filePath];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(subtitleSelectionViewController:didSelectSubWithFileURL:type:)]) {
+            [self.delegate subtitleSelectionViewController:self didSelectSubWithFileURL:model.filePath type:model.type];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     }else{
-        if (self.delegate && [self.delegate respondsToSelector:@selector(subtitleSelectionViewController:didSelectSubWithStringURL:)]) {
-            [self.delegate subtitleSelectionViewController:self didSelectSubWithStringURL:model.link];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(subtitleSelectionViewController:didSelectSubWithStringURL:type:)]) {
+            [self.delegate subtitleSelectionViewController:self didSelectSubWithStringURL:model.link type:model.type];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     }

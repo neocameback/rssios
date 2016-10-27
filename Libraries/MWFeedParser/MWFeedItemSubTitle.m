@@ -22,10 +22,6 @@
 }
 -(void) setSubTitleType:(NSString *) type
 {
-    if ([type isEqualToString:@"text/srt"]) {
-        _type = SubtitleTypeSrt;
-    }else if ([type isEqualToString:@"text/vtt"]){
-        _type = SubTitleTypVTT;
-    }
+    _type = [Common subtitleTypeFromString:type];    
 }
 @end

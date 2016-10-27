@@ -17,8 +17,9 @@
     if (subtitleItem.type == SubtitleTypeSrt) {
         self.extension = @"srt";
     }else if (subtitleItem.type == SubTitleTypVTT){
-        self.extension = @"srt";
+        self.extension = @"vtt";
     }
+    self.type = subtitleItem.typeString;
     self.updatedAt = [NSDate date];
 }
 

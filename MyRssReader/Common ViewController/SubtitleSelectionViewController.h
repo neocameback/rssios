@@ -12,8 +12,8 @@
 @class SubtitleSelectionViewController;
 @protocol SubtitleSelectionViewControllerDelegate <NSObject>
 
--(void) subtitleSelectionViewController:(SubtitleSelectionViewController*) viewcontroller didSelectSubWithFileURL:(NSString *) url;
--(void) subtitleSelectionViewController:(SubtitleSelectionViewController*) viewcontroller didSelectSubWithStringURL:(NSString *) url;
+-(void) subtitleSelectionViewController:(SubtitleSelectionViewController*) viewcontroller didSelectSubWithFileURL:(NSString *) url type:(SubTitleType)type;
+-(void) subtitleSelectionViewController:(SubtitleSelectionViewController*) viewcontroller didSelectSubWithStringURL:(NSString *) url type:(SubTitleType)type;
 
 @end
 

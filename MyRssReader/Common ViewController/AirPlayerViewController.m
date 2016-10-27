@@ -102,11 +102,12 @@
     if (_localFile) {
         
         if (_localFile.subtitlesSet.count > 0) {
-            NSURL *subtitlesURL = [NSURL fileURLWithPath:[_localFile.subtitlesSet.firstObject getFilePath]];
-            _currentSubtitleURL = [_localFile.subtitlesSet.firstObject getFilePath];
+            Subtitle *defaultSubtitle = _localFile.subtitlesSet.firstObject;
+            NSURL *subtitlesURL = [NSURL fileURLWithPath:[defaultSubtitle getFilePath]];
+            _currentSubtitleURL = [defaultSubtitle getFilePath];
             NSError *error = nil;
             self.subtitling.player = [self.myPlayer player];
-            [self.subtitling loadSubtitlesAtURL:subtitlesURL error:&error];
+            [self.subtitling loadSubtitlesType:[Common subtitleTypeFromString:defaultSubtitle.type] atURL:subtitlesURL error:&error];
             self.subtitling.containerView.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.5].CGColor;
             
             [self.myPlayer hideCaptionButton:NO];
@@ -117,11 +118,13 @@
         }
     }else{
         if (_currentNode.subtitles.count > 0) {
-            NSURL *subtitlesURL = [NSURL URLWithString:[_currentNode.subtitles.firstObject link]];
-            _currentSubtitleURL = [_currentNode.subtitles.firstObject link];
+            
+            MWFeedItemSubTitle *defaultSubtitle = _currentNode.subtitles.firstObject;
+            NSURL *subtitlesURL = [NSURL URLWithString:[defaultSubtitle link]];
+            _currentSubtitleURL = [defaultSubtitle link];
             NSError *error = nil;
             self.subtitling.player = [self.myPlayer player];
-            [self.subtitling loadSubtitlesAtURL:subtitlesURL error:&error];
+            [self.subtitling loadSubtitlesType:defaultSubtitle.type atURL:subtitlesURL error:&error];
             self.subtitling.containerView.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.5].CGColor;
             
             [self.myPlayer hideCaptionButton:NO];
@@ -264,7 +267,7 @@
 }
 
 #pragma mark SubtitleSelectionViewControllerDelegate
--(void) subtitleSelectionViewController:(SubtitleSelectionViewController *)viewcontroller didSelectSubWithFileURL:(NSString *)url
+-(void) subtitleSelectionViewController:(SubtitleSelectionViewController *)viewcontroller didSelectSubWithFileURL:(NSString *)url type:(SubTitleType)type
 {
     _currentSubtitleURL = url;
     if (!url) {
@@ -273,7 +276,7 @@
         [self.myPlayer play];
     }else{
         NSError *error = nil;
-        [self.subtitling loadSubtitlesAtURL:[NSURL fileURLWithPath:url] error:&error];
+        [self.subtitling loadSubtitlesType:type atURL:[NSURL fileURLWithPath:url] error:&error];
         if (error) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alert show];
@@ -283,7 +286,7 @@
     }
 }
 
--(void) subtitleSelectionViewController:(SubtitleSelectionViewController *)viewcontroller didSelectSubWithStringURL:(NSString *)url
+-(void) subtitleSelectionViewController:(SubtitleSelectionViewController *)viewcontroller didSelectSubWithStringURL:(NSString *)url type:(SubTitleType)type
 {
     _currentSubtitleURL = url;
     if (!url) {
@@ -292,7 +295,7 @@
         [self.myPlayer play];
     }else{
         NSError *error = nil;
-        [self.subtitling loadSubtitlesAtURL:[NSURL URLWithString:url] error:&error];
+        [self.subtitling loadSubtitlesType:type atURL:[NSURL URLWithString:url] error:&error];
         if (error) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alert show];

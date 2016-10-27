@@ -60,7 +60,7 @@
     [self computeStyle];
 }
 
-- (void)loadSubtitlesAtURL:(NSURL *)url error:(NSError **)error
+- (void)loadSubtitlesType:(SubTitleType) type atURL:(NSURL *)url error:(NSError **)error
 {
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -70,7 +70,11 @@
         text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         if (localError == nil && text.length > 0)
         {
-            [self loadSRTContent:text error:&localError];
+            if (type == SubTitleTypVTT) {
+                [self loadVTTContent:text error:&localError];
+            } else if (type == SubtitleTypeSrt) {
+                [self loadSRTContent:text error:&localError];
+            }
         }
     }];
 }
@@ -218,6 +222,55 @@
     [self setupTimeObserver];
 }
 
+- (void)loadVTTContent:(NSString *)string error:(NSError **)error
+{
+    NSScanner *scanner;
+    
+    scanner = [NSScanner scannerWithString:string];
+    self.subtitles = [NSMutableArray new];
+    
+    while (!scanner.isAtEnd)
+    {
+        ASBSubtitle *subtitle;
+        NSString *startString;
+        NSString *endString;
+        NSString *text = @"";
+        NSString *line;
+        BOOL endScanningText;
+        
+        scanner.charactersToBeSkipped = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+        [scanner scanUpToString:@"-->" intoString:&startString];
+        [scanner scanString:@"-->" intoString:NULL];
+        [scanner scanUpToCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:&endString];
+        scanner.charactersToBeSkipped = nil;
+        [scanner scanCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:NULL];
+        do {
+            endScanningText = ![scanner scanUpToCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:&line];
+            if(!endScanningText)
+            {
+                line = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                text = [text stringByAppendingFormat:@"%@%@", (text.length > 0?@"\n":@""), line];
+                [scanner scanUpToString:@"\n" intoString:NULL];
+                [scanner scanString:@"\n" intoString:NULL];
+            }
+        } while (!endScanningText);
+        
+        subtitle = [ASBSubtitle new];
+        subtitle.text = text;
+        subtitle.startTime = [self timeFromVTTString:startString];
+        subtitle.stopTime = [self timeFromVTTString:endString];
+        subtitle.index += 1;
+        
+        [self.subtitles addObject:subtitle];
+    }
+    
+    if(error != NULL)
+    {
+        *error = nil;
+    }
+    [self setupTimeObserver];
+}
+
 - (NSTimeInterval)timeFromString:(NSString *)timeString
 {
     NSScanner *scanner;
@@ -241,6 +294,30 @@
     
     return time;
 }
+
+- (NSTimeInterval)timeFromVTTString:(NSString *)timeString {
+    NSScanner *scanner;
+    NSInteger hours;
+    NSInteger minutes;
+    NSInteger seconds;
+    NSInteger milliseconds;
+    NSTimeInterval time;
+    
+    scanner = [NSScanner scannerWithString:timeString];
+    
+    [scanner scanInteger:&hours];
+    [scanner scanString:@":" intoString:NULL];
+    [scanner scanInteger:&minutes];
+    [scanner scanString:@":" intoString:NULL];
+    [scanner scanInteger:&seconds];
+    [scanner scanString:@"." intoString:NULL];
+    [scanner scanInteger:&milliseconds];
+    
+    time = hours*3600 + minutes*60 + seconds + milliseconds/1000.0;
+    
+    return time;
+}
+
 
 - (BOOL)isHTML:(NSString *)text
 {
@@ -342,7 +419,8 @@
     weakSelf = self;
     if(self.nbFramesPerSecond > 0)
     {
-        self.timeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(MAX(1/self.nbFramesPerSecond, 0.25), NSEC_PER_SEC)
+        CMTime interval = CMTimeMakeWithSeconds(MAX(1/self.nbFramesPerSecond, 0.25), NSEC_PER_SEC);
+        self.timeObserver = [self.player addPeriodicTimeObserverForInterval:interval
                                                                       queue:self.queue
                                                                  usingBlock:^(CMTime time) {
                                                                      [weakSelf playerTimeChanged];

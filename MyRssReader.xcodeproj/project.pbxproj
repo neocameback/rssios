@@ -36,6 +36,7 @@
 		427FB9D61DB9B1F4002A30E6 /* ic_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 427FB9D31DB9B1F4002A30E6 /* ic_menu.png */; };
 		427FB9D71DB9B1F4002A30E6 /* ic_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 427FB9D41DB9B1F4002A30E6 /* ic_menu@2x.png */; };
 		427FB9D81DB9B1F4002A30E6 /* ic_menu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 427FB9D51DB9B1F4002A30E6 /* ic_menu@3x.png */; };
+		42A9A0971DC1A0A700DAA241 /* blow-breeze-ep18.vtt in Resources */ = {isa = PBXBuildFile; fileRef = 42A9A0961DC1A0A700DAA241 /* blow-breeze-ep18.vtt */; };
 		42AE1B28194B8FB600F2CC2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AE1B27194B8FB600F2CC2A /* Security.framework */; };
 		42C70C0E193CBE3500736BCF /* icon -114.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70BFF193CBE3500736BCF /* icon -114.png */; };
 		42C70C0F193CBE3500736BCF /* icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70C00193CBE3500736BCF /* icon-29.png */; };
@@ -217,6 +218,7 @@
 		427FB9D31DB9B1F4002A30E6 /* ic_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_menu.png; sourceTree = "<group>"; };
 		427FB9D41DB9B1F4002A30E6 /* ic_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_menu@2x.png"; sourceTree = "<group>"; };
 		427FB9D51DB9B1F4002A30E6 /* ic_menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_menu@3x.png"; sourceTree = "<group>"; };
+		42A9A0961DC1A0A700DAA241 /* blow-breeze-ep18.vtt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "blow-breeze-ep18.vtt"; sourceTree = "<group>"; };
 		42AE1B27194B8FB600F2CC2A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		42C70BFF193CBE3500736BCF /* icon -114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon -114.png"; sourceTree = "<group>"; };
 		42C70C00193CBE3500736BCF /* icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-29.png"; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 				E5BCE8521D1460AC00580653 /* ASBPlayerSubtitling.h */,
 				E5BCE8511D1460AC00580653 /* ASBPlayerSubtitling.m */,
 				E5BCE84F1D1455EB00580653 /* welcome.srt */,
+				42A9A0961DC1A0A700DAA241 /* blow-breeze-ep18.vtt */,
 				B6B4A3831D140BE60000DD02 /* MyCustomerPlayer.h */,
 				B6B4A3841D140BE60000DD02 /* MyCustomerPlayer.m */,
 				B6B4A3851D140BE60000DD02 /* MyCustomerPlayer.xib */,
@@ -1021,6 +1024,7 @@
 				DE1AE5581B8DA40B008C44F8 /* BookmarkViewController.xib in Resources */,
 				42C70C0E193CBE3500736BCF /* icon -114.png in Resources */,
 				DEC5DD2719357EDC0088A62F /* ic_channel_press@2x.png in Resources */,
+				42A9A0971DC1A0A700DAA241 /* blow-breeze-ep18.vtt in Resources */,
 				DEC5DD2119357EDC0088A62F /* ic_home_normal@2x.png in Resources */,
 				DE1B5B42194B0EA000A4B5D9 /* icon_default@2x.png in Resources */,
 				DE9D4554193C57000006047E /* Default.png in Resources */,

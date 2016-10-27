@@ -20,4 +20,5 @@
 +(GCKMediaInformation *)mediaInformationFromNode:(RssNodeModel *)node;
 +(GCKMediaInformation *)mediaInformationFromFile:(File *)file;
 +(void) getUserIpAddress:(void (^) (id)) success failureBlock:(void (^) (id)) fail;
++ (NSInteger)subtitleTypeFromString:(NSString *)typeString;
 @end

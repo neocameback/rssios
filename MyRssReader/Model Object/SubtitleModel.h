@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) NSString *name, *languageCode, *languageName, *filePath, *link;
 @property (nonatomic) BOOL isSelected;
+@property (nonatomic) SubTitleType type;
 
 -(id) initWithSubtitle:(Subtitle *) sub;
 -(id) initWithMWFeedItemSubtitle:(MWFeedItemSubTitle *) sub;
