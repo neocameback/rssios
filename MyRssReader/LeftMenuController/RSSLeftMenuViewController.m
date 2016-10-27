@@ -118,34 +118,50 @@
 #pragma mark UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.selectedCellIndex = indexPath.row;
     switch (indexPath.row) {
         case RSSSideMenuHome: {
-            self.mm_drawerController.centerViewController = self.homeNav;
+            if (indexPath.row == self.selectedCellIndex) {
+                [self.homeNav popToRootViewControllerAnimated:YES];
+            } else {
+                self.mm_drawerController.centerViewController = self.homeNav;
+            }
 
         }
             break;
         case RSSSideMenuManage: {
-            self.mm_drawerController.centerViewController = self.manageNav;
-
+            if (indexPath.row == self.selectedCellIndex) {
+                [self.manageNav popToRootViewControllerAnimated:YES];
+            } else {
+                self.mm_drawerController.centerViewController = self.manageNav;
+            }
         }
             break;
         case RSSSideMenuFavorite: {
-            self.mm_drawerController.centerViewController = self.favoriteNav;
-
+            if (indexPath.row == self.selectedCellIndex) {
+                [self.favoriteNav popToRootViewControllerAnimated:YES];
+            } else {
+                self.mm_drawerController.centerViewController = self.favoriteNav;
+            }
         }
             break;
         case RSSSideMenuDownload: {
-            self.mm_drawerController.centerViewController = self.downloadNav;
-
+            if (indexPath.row == self.selectedCellIndex) {
+                [self.downloadNav popToRootViewControllerAnimated:YES];
+            } else {
+                self.mm_drawerController.centerViewController = self.downloadNav;
+            }
         }
             break;
         case RSSSideMenuAbout: {
-            self.mm_drawerController.centerViewController = self.settingsNav;
-
+            if (indexPath.row == self.selectedCellIndex) {
+                [self.settingsNav popToRootViewControllerAnimated:YES];
+            } else {
+                self.mm_drawerController.centerViewController = self.settingsNav;
+            }
         }
             break;
     }
+    self.selectedCellIndex = indexPath.row;
     [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
 }
 @end

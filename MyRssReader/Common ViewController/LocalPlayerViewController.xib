@@ -8,10 +8,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocalPlayerViewController">
             <connections>
+                <outlet property="subtitling" destination="IFs-Le-o16" id="FkC-CS-9J5"/>
                 <outlet property="view" destination="fRO-2k-50V" id="lVM-wO-fza"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <customObject id="IFs-Le-o16" customClass="ASBPlayerSubtitling">
+            <connections>
+                <outlet property="containerView" destination="J1v-SZ-e4L" id="r29-BV-CFU"/>
+                <outlet property="label" destination="Zbv-Fr-Dos" id="2qN-sz-6gz"/>
+            </connections>
+        </customObject>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="fRO-2k-50V">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
