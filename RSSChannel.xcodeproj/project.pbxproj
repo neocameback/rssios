@@ -322,10 +322,10 @@
 		DE22E7B8192F54180005E685 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DE22E7BA192F54180005E685 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DE22E7BC192F54180005E685 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		DE22E7C0192F54180005E685 /* MyRssReader-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyRssReader-Info.plist"; sourceTree = "<group>"; };
+		DE22E7C0192F54180005E685 /* RSSChannel-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RSSChannel-Info.plist"; sourceTree = "<group>"; };
 		DE22E7C2192F54180005E685 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DE22E7C4192F54180005E685 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DE22E7C6192F54180005E685 /* MyRssReader-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyRssReader-Prefix.pch"; sourceTree = "<group>"; };
+		DE22E7C6192F54180005E685 /* RSSChannel-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSSChannel-Prefix.pch"; sourceTree = "<group>"; };
 		DE22E7C7192F54180005E685 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DE22E7C8192F54180005E685 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DE22E7CA192F54180005E685 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -667,10 +667,10 @@
 			isa = PBXGroup;
 			children = (
 				B6931A021D223FA500F37718 /* GoogleService-Info.plist */,
-				DE22E7C0192F54180005E685 /* MyRssReader-Info.plist */,
+				DE22E7C0192F54180005E685 /* RSSChannel-Info.plist */,
 				DE22E7C1192F54180005E685 /* InfoPlist.strings */,
 				DE22E7C4192F54180005E685 /* main.m */,
-				DE22E7C6192F54180005E685 /* MyRssReader-Prefix.pch */,
+				DE22E7C6192F54180005E685 /* RSSChannel-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			path = MyRssReader;
@@ -838,9 +838,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DE22E7B4192F54180005E685 /* MyRssReader */ = {
+		DE22E7B4192F54180005E685 /* RSSChannel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DE22E7E1192F54180005E685 /* Build configuration list for PBXNativeTarget "MyRssReader" */;
+			buildConfigurationList = DE22E7E1192F54180005E685 /* Build configuration list for PBXNativeTarget "RSSChannel" */;
 			buildPhases = (
 				3307B1DDAF982BAED7BBF443 /* [CP] Check Pods Manifest.lock */,
 				DE22E7B1192F54180005E685 /* Sources */,
@@ -854,7 +854,7 @@
 			);
 			dependencies = (
 			);
-			name = MyRssReader;
+			name = RSSChannel;
 			productName = MyRssReader;
 			productReference = DE22E7B5192F54180005E685 /* Rss Channel.app */;
 			productType = "com.apple.product-type.application";
@@ -882,7 +882,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DE22E7B0192F54180005E685 /* Build configuration list for PBXProject "MyRssReader" */;
+			buildConfigurationList = DE22E7B0192F54180005E685 /* Build configuration list for PBXProject "RSSChannel" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -894,7 +894,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DE22E7B4192F54180005E685 /* MyRssReader */,
+				DE22E7B4192F54180005E685 /* RSSChannel */,
 				DE233F7C1B70A9C600C02DD6 /* Mogenerator */,
 			);
 		};
@@ -1245,8 +1245,8 @@
 					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MyRssReader/MyRssReader-Prefix.pch";
-				INFOPLIST_FILE = "MyRssReader/MyRssReader-Info.plist";
+				GCC_PREFIX_HEADER = "MyRssReader/RSSChannel-Prefix.pch";
+				INFOPLIST_FILE = "MyRssReader/RSSChannel-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1317,8 +1317,8 @@
 					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MyRssReader/MyRssReader-Prefix.pch";
-				INFOPLIST_FILE = "MyRssReader/MyRssReader-Info.plist";
+				GCC_PREFIX_HEADER = "MyRssReader/RSSChannel-Prefix.pch";
+				INFOPLIST_FILE = "MyRssReader/RSSChannel-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1389,7 +1389,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DE22E7B0192F54180005E685 /* Build configuration list for PBXProject "MyRssReader" */ = {
+		DE22E7B0192F54180005E685 /* Build configuration list for PBXProject "RSSChannel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DE22E7DF192F54180005E685 /* Debug */,
@@ -1398,7 +1398,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DE22E7E1192F54180005E685 /* Build configuration list for PBXNativeTarget "MyRssReader" */ = {
+		DE22E7E1192F54180005E685 /* Build configuration list for PBXNativeTarget "RSSChannel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DE22E7E2192F54180005E685 /* Debug */,
