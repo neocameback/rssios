@@ -21,7 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		064A9E15F0A1D9B5F602F5B4 /* Pods_MyRssReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EBF595744363B68EF79E3FF /* Pods_MyRssReader.framework */; };
 		143BADA97AF781695644E696 /* Pods_RSSChannel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E58C8EFA6999551FDA2C2BF8 /* Pods_RSSChannel.framework */; };
 		229F25661DB3C9A9001A741C /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 229F25651DB3C9A9001A741C /* Toast.m */; };
 		22FB26371DB39A79008831D2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22FB26361DB39A79008831D2 /* Settings.bundle */; };
@@ -419,7 +418,6 @@
 				DEB54D8719333CB200EC589E /* MediaPlayer.framework in Frameworks */,
 				DE22E7BB192F54180005E685 /* CoreGraphics.framework in Frameworks */,
 				DE22E7B9192F54180005E685 /* Foundation.framework in Frameworks */,
-				064A9E15F0A1D9B5F602F5B4 /* Pods_MyRssReader.framework in Frameworks */,
 				143BADA97AF781695644E696 /* Pods_RSSChannel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
