@@ -37,6 +37,7 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     [self setup];
 }
 
@@ -51,10 +52,7 @@
     [self.player pause];
     [self removeTimeObserver];
     _player = player;
-    DLog(@"");
-//    self.nbFramesPerSecond = [ASBPlayerSubtitling nominalFrameRateForPlayer:self.player];
     self.nbFramesPerSecond = 24;
-    DLog(@"frames per second: %f",self.nbFramesPerSecond);
     self.frameDuration = 1/self.nbFramesPerSecond;
     self.label.text = @"";
     self.containerView.hidden = YES;
@@ -64,19 +62,15 @@
 
 - (void)loadSubtitlesAtURL:(NSURL *)url error:(NSError **)error
 {
-    DLog(@"")
-    
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         NSError *localError;
         NSString *text;
         
-        text = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&localError];
+        text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         if (localError == nil && text.length > 0)
         {
-            DLog(@"");
             [self loadSRTContent:text error:&localError];
-            DLog(@"");
         }
     }];
 }

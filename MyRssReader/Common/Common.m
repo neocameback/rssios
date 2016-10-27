@@ -149,25 +149,25 @@
     [metadata addImage:[[GCKImage alloc] initWithURL:[NSURL URLWithString:node.nodeImage]
                                                width:320
                                               height:568]];
-//    NSMutableArray *tracks = [NSMutableArray array];
-//    NSInteger count = node.subtitles.count;
-//    for (NSInteger i = 0 ; i < count; i ++) {
-//        MWFeedItemSubTitle *sub = node.subtitles[i];
-//        GCKMediaTrack *captionsTrack =
-//        [[GCKMediaTrack alloc] initWithIdentifier:i
-//                                contentIdentifier:sub.link
-//                                      contentType:@"text/srt"
-//                                             type:GCKMediaTrackTypeText
-//                                      textSubtype:GCKMediaTextTrackSubtypeSubtitles
-//                                             name:sub.languageCode
-//                                     languageCode:sub.languageCode
-//                                       customData:nil];
-//        [tracks addObject:captionsTrack];
-//    }
-//    if (count == 0) {
-//        tracks = nil;
-//    }
-//    GCKMediaTextTrackStyle *trackStyle = [GCKMediaTextTrackStyle createDefault];
+    NSMutableArray *tracks = [NSMutableArray array];
+    NSInteger count = node.subtitles.count;
+    for (NSInteger i = 0 ; i < count; i ++) {
+        MWFeedItemSubTitle *sub = node.subtitles[i];
+        GCKMediaTrack *captionsTrack =
+        [[GCKMediaTrack alloc] initWithIdentifier:i
+                                contentIdentifier:sub.link
+                                      contentType:sub.typeString
+                                             type:GCKMediaTrackTypeText
+                                      textSubtype:GCKMediaTextTrackSubtypeSubtitles
+                                             name:sub.languageCode
+                                     languageCode:sub.languageCode
+                                       customData:nil];
+        [tracks addObject:captionsTrack];
+    }
+    if (count == 0) {
+        tracks = nil;
+    }
+    GCKMediaTextTrackStyle *trackStyle = [GCKMediaTextTrackStyle createDefault];
     GCKMediaInformation *mediaInfo = nil;
     if ([Common typeOfNode:node.nodeType] == NODE_TYPE_MP4) {
         mediaInfo = [[GCKMediaInformation alloc] initWithContentID:node.nodeUrl
@@ -175,8 +175,8 @@
                                                        contentType:@"video/mp4"
                                                           metadata:metadata
                                                     streamDuration:0
-                                                       mediaTracks:nil
-                                                    textTrackStyle:nil
+                                                       mediaTracks:tracks
+                                                    textTrackStyle:trackStyle
                                                         customData:nil];
         return mediaInfo;
     } else {

@@ -17,7 +17,7 @@
     _link = [dict stringForKey:@"href"];
     _languageCode = [dict stringForKey:@"lang"];
     [self setSubTitleType:[dict stringForKey:@"type"]];
-    
+    _typeString = [dict stringForKey:@"type"];
     return self;
 }
 -(void) setSubTitleType:(NSString *) type

@@ -211,7 +211,6 @@
         [alertController addAction:cancelAction];
         return NO;
     } else {
-        [Toast displayToastMessage:@"Unable to cast this type of video" forTimeInterval:1.5 inView:self.view];
         return YES;
     }
 }
