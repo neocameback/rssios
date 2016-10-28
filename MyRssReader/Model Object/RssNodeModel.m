@@ -72,7 +72,8 @@
         MWFeedItemSubTitle *subItem = [[MWFeedItemSubTitle alloc] init];
         subItem.languageCode = subtitle.languageCode;
         subItem.link = subtitle.link;
-        [subtitle setType:subtitle.type];
+        subItem.type = [Common subtitleTypeFromString:subtitle.type];
+        subItem.typeString = subtitle.type;
         [tempArray addObject:subItem];
     }
     self.subtitles = [NSArray arrayWithArray:tempArray];
@@ -95,7 +96,8 @@
         MWFeedItemSubTitle *subItem = [[MWFeedItemSubTitle alloc] init];
         subItem.languageCode = subtitle.languageCode;
         subItem.link = subtitle.link;
-        [subtitle setType:subtitle.type];
+        [subItem setTypeString:subtitle.type];
+        subItem.type = [Common subtitleTypeFromString:subtitle.type];
         [tempArray addObject:subItem];
     }
     self.subtitles = [NSArray arrayWithArray:tempArray];
