@@ -11,11 +11,15 @@
 #import "MyCustomerPlayer.h"
 #import "ASBPlayerSubtitling.h"
 #import "SubtitleSelectionViewController.h"
+#import "SubtitleModel.h"
 #import <GoogleCast/GoogleCast.h>
 
 @interface LocalPlayerViewController () <MyCustomerPlayerDelegate, SubtitleSelectionViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet ASBPlayerSubtitling *subtitling;
 @property (nonatomic, strong) MyCustomerPlayer *myPlayer;
+@property (nonatomic, strong) NSMutableArray *subtitleModels; // list all of sutitle of the video
+@property (nonatomic) NSInteger selectedSubtitleIndex;
+
 
 @end
 
@@ -34,7 +38,7 @@
      *  hide download button
      */
     [self.myPlayer hideDownloadButton:YES];
-    [self loadSubtitle];
+    [self loadDefaultSubtitle];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
 }
 
@@ -81,22 +85,46 @@
     [self.myPlayer setDelegate:self];
 }
 
--(void) loadSubtitle
+-(void) loadDefaultSubtitle
 {
-    if (_downloadedFile.subtitlesSet.count > 0) {
-        Subtitle *defaultSub = _downloadedFile.subtitlesSet.firstObject;
-        NSURL *subtitlesURL = [NSURL fileURLWithPath:[defaultSub getFilePath]];
-        _currentSubtitleURL = [defaultSub getFilePath];
+    _subtitleModels = [NSMutableArray array];
+    if (_downloadedFile) {
+        for (Subtitle *subtitle in _downloadedFile.subtitlesSet) {
+            SubtitleModel *subModel = [[SubtitleModel alloc] initWithSubtitle:subtitle];
+            [_subtitleModels addObject:subModel];
+        }
+    }
+    [self loadSubtitleAtIndex:0];
+}
+
+- (void)loadSubtitleAtIndex:(NSInteger)index {
+    if (_subtitleModels.count > 0) {
+        // mark the loading sub index
+        _selectedSubtitleIndex = index;
+        // load subtitle to player
+        SubtitleModel *subModel = self.subtitleModels[_selectedSubtitleIndex];
         NSError *error = nil;
-        self.subtitling.player = [self.myPlayer player];
-        [self.subtitling loadSubtitlesType:[Common subtitleTypeFromString:defaultSub.type]
-                                     atURL:subtitlesURL
-                                     error:&error];
-        self.subtitling.containerView.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.5].CGColor;
+        NSURL *subUrl = nil;
+        if (subModel.link && subModel.link.length > 0) {
+            subUrl = [NSURL URLWithString:subModel.link];
+        } else if (subModel.filePath && subModel.filePath.length > 0) {
+            subUrl = [NSURL fileURLWithPath:subModel.filePath];
+        }
+        if (subUrl) {
+            [self.subtitling loadSubtitlesType:subModel.type atURL:subUrl error:&error];
+            if (error) {
+                ALERT_WITH_TITLE(@"Error", error.localizedDescription);
+            }else{
+                [self.myPlayer play];
+            }
+        } else {
+            ALERT_WITH_TITLE(@"Error", @"Subtitle is not available!");
+        }
         
+        self.subtitling.containerView.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.5].CGColor;
         [self.myPlayer hideCaptionButton:NO];
         viewSubtitle.hidden = NO;
-    }else{
+    } else {
         [self.myPlayer hideCaptionButton:YES];
         viewSubtitle.hidden = YES;
     }
@@ -121,9 +149,8 @@
 {
     SubtitleSelectionViewController *viewcontroller = [[SubtitleSelectionViewController alloc] initWithNibName:NSStringFromClass([SubtitleSelectionViewController class]) bundle:nil];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewcontroller];
-    [viewcontroller setDownloadedFile:_downloadedFile];
-    [viewcontroller setCurrentNode:nil];
-    [viewcontroller setCurrentSubtitleURL:_currentSubtitleURL];
+    [viewcontroller setSubtitleModels:_subtitleModels];
+    [viewcontroller setSelectedSubtitleIndex:_selectedSubtitleIndex];
     [viewcontroller setDelegate:self];
     [self presentViewController:nav animated:YES completion:nil];
 }
@@ -182,41 +209,14 @@
 }
 
 #pragma mark SubtitleSelectionViewControllerDelegate
--(void) subtitleSelectionViewController:(SubtitleSelectionViewController *)viewcontroller didSelectSubWithFileURL:(NSString *)url type:(SubTitleType)type
-{
-    _currentSubtitleURL = url;
-    if (!url) {
+-(void) subtitleSelectionViewController:(SubtitleSelectionViewController *)viewcontroller
+               didSelectSubtitleAtIndex:(NSInteger)index {
+    if (index == SubtitleIndexNone) {
+        _selectedSubtitleIndex = index;
         [self.subtitling removeSubtitles];
-        
         [self.myPlayer play];
-    }else{
-        NSError *error = nil;
-        [self.subtitling loadSubtitlesType:type atURL:[NSURL fileURLWithPath:url] error:&error];
-        if (error) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            [alert show];
-        }else{
-            [self.myPlayer play];
-        }
-    }
-}
-
--(void) subtitleSelectionViewController:(SubtitleSelectionViewController *)viewcontroller didSelectSubWithStringURL:(NSString *)url type:(SubTitleType)type
-{
-    _currentSubtitleURL = url;
-    if (!url) {
-        [self.subtitling removeSubtitles];
-        
-        [self.myPlayer play];
-    }else{
-        NSError *error = nil;
-        [self.subtitling loadSubtitlesType:type atURL:[NSURL URLWithString:url] error:&error];
-        if (error) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            [alert show];
-        }else{
-            [self.myPlayer play];
-        }
+    } else {
+        [self loadSubtitleAtIndex:index];
     }
 }
 

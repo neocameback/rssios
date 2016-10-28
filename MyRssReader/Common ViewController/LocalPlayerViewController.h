@@ -20,5 +20,4 @@
  *  play video from downloaded list
  */
 @property (nonatomic, strong) File *downloadedFile;
-@property (nonatomic, strong) NSString *currentSubtitleURL;
 @end

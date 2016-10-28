@@ -34,7 +34,7 @@ static NSOperationQueue *operationQueue;
 
 -(void) downloadNode:(RssNodeModel *)node withName:(NSString *) name fromView:(id) viewcontroller
 {
-    NSString *fileName = name ?: [NSString stringWithFormat:@"%@-%.0f",node.nodeTitle, [[NSDate date] timeIntervalSince1970]];
+    NSString *fileName = name ?: [NSString stringWithFormat:@"%@-%.0f",@"video", [[NSDate date] timeIntervalSince1970]];
     if ([DownloadManager isFileNameExist:fileName]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"You entered a file that already exist. Please choose an other file name." delegate:viewcontroller cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
         [alert setTag:ALERT_NAME_EXIST];

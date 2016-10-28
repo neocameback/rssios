@@ -132,7 +132,7 @@
     }
     [SVProgressHUD popActivity];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Parsing Incomplete"
-                                                    message:@"There was an error during the parsing of this feed. Not all of the feed items could parsed."
+                                                    message:@"There was an error during the parsing of this feed. Not all of the feed items could be parsed."
                                                    delegate:nil
                                           cancelButtonTitle:@"Dismiss"
                                           otherButtonTitles:nil];
