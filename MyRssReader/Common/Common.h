@@ -15,6 +15,7 @@
 +(NSString *) getPathOfFile:(NSString*) name extension:(NSString*) ext;
 +(NSString *) getIpAddress;
 +(NSMutableURLRequest*) requestWithMethod:(NSString *) method ipAddress:(NSString*) ipAddres Url:(NSURL *) url;
++ (NSString *)getDefaultUserAgent;
 
 +(enum NODE_TYPE) typeOfNode:(NSString *) nodeType;
 +(GCKMediaInformation *)mediaInformationFromNode:(RssNodeModel *)node;

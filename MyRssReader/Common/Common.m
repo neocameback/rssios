@@ -84,7 +84,25 @@
 +(NSMutableURLRequest*) requestWithMethod:(NSString *) method ipAddress:(NSString*) ipAddres Url:(NSURL *) url
 {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    NSString *userAgent = nil;
+    NSString *userAgent = [Common getDefaultUserAgent];
+
+    
+    [request setValue:userAgent forHTTPHeaderField:@"User-Agent"];
+    [request setTimeoutInterval:kRequestTimeOut];
+    NSString *uidString = [NSString stringWithFormat:@"RSSPLAYER2016-%@-%@",url,ipAddres];
+    NSString *md5String = [uidString MD5String];
+    [request setValue:md5String forHTTPHeaderField:@"UID"];
+    [request setValue:@"2.0" forHTTPHeaderField:@"VERSION"];
+    [request setValue:ipAddres forHTTPHeaderField:@"IPADDRESS"];
+    [request setHTTPMethod:method];
+    [request setURL:url];
+    
+    return request;
+}
+
++ (NSString *)getDefaultUserAgent {
+    
+    NSString *userAgent;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wgnu"
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
@@ -101,18 +119,8 @@
                 userAgent = mutableUserAgent;
             }
         }
-        [request setValue:userAgent forHTTPHeaderField:@"User-Agent"];
     }
-    [request setTimeoutInterval:kRequestTimeOut];
-    NSString *uidString = [NSString stringWithFormat:@"RSSPLAYER2016-%@-%@",url,ipAddres];
-    NSString *md5String = [uidString MD5String];
-    [request setValue:md5String forHTTPHeaderField:@"UID"];
-    [request setValue:@"2.0" forHTTPHeaderField:@"VERSION"];
-    [request setValue:ipAddres forHTTPHeaderField:@"IPADDRESS"];
-    [request setHTTPMethod:method];
-    [request setURL:url];
-    
-    return request;
+    return userAgent;
 }
 
 +(enum NODE_TYPE) typeOfNode:(NSString *) nodeType

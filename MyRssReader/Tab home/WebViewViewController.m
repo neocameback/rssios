@@ -28,8 +28,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:_webUrl]];
+    NSString *userAgent = [Common getDefaultUserAgent];
+    NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+    NSString *version = [info objectForKey:@"CFBundleShortVersionString"];
+    userAgent = [userAgent stringByAppendingString:[NSString stringWithFormat:@" RSSPlayer/%@",version]];
+    [request setValue:userAgent forHTTPHeaderField:@"User-Agent"];
     [_webView setScalesPageToFit:YES];
-    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_webUrl]]];
+    [_webView loadRequest:request];
 }
 -(void) viewWillAppear:(BOOL)animated
 {
