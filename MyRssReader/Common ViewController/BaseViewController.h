@@ -11,8 +11,7 @@
 #import <GoogleMobileAds/GoogleMobileAds.h>
 #import <GoogleCast/GoogleCast.h>
 
-@interface BaseViewController : GAITrackedViewController <GCKSessionManagerListener, GCKRequestDelegate>
-{
+@interface BaseViewController : GAITrackedViewController <GCKSessionManagerListener, GCKRequestDelegate> {
 }
 //@property (nonatomic, strong) IBOutlet GADBannerView *bannerView_;
 @property(nonatomic, weak) IBOutlet GADNativeExpressAdView *bannerView_;

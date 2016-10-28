@@ -61,6 +61,9 @@ typedef enum : NSUInteger {
     DownloadStateFailed,
 } DownloadState;
 
+typedef enum : NSUInteger {
+    SubtitleIndexNone = -1,
+} SubtitleIndex;
 @interface Constant : NSObject
 
 @end

@@ -17,11 +17,10 @@
 
 typedef void (^ ConfigureTableViewCellBlock) (id cell, id item);
 
-@interface BaseNodeListViewController : BaseViewController <GADInterstitialDelegate>
-{
+@interface BaseNodeListViewController : BaseViewController <GADInterstitialDelegate> {
     NSArray *searchResults;
 }
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *nodeList;
 @property (nonatomic, strong) GADInterstitial *interstitial;
 @end

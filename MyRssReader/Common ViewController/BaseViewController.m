@@ -14,8 +14,7 @@
 @end
 
 @implementation BaseViewController
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -23,8 +22,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
@@ -58,18 +56,9 @@
 }
 
 - (void)castDeviceDidChange:(NSNotification *)notification {
-//    if (self.enableCastFunction) {
-//        if ([GCKCastContext sharedInstance].castState != GCKCastStateNoDevicesAvailable) {
-//            // You can present the instructions on how to use Google Cast on
-//            // the first time the user uses you app
-//            [[GCKCastContext sharedInstance] presentCastInstructionsViewControllerOnce];
-//            [[GCKCastContext sharedInstance] clearCastInstructionsShownFlag];
-//        }
-//    }
 }
 
--(void) viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     GADRequest *request = [GADRequest request];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -79,8 +68,7 @@
     // make mini player visible
     appDelegate.castControlBarsEnabled = YES;
 }
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
