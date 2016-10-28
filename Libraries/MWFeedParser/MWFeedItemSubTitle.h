@@ -19,7 +19,7 @@ typedef enum : NSUInteger {
 @interface MWFeedItemSubTitle : NSObject
 
 @property (nonatomic, strong) NSString *link, *languageCode;
-@property (nonatomic, readonly) SubTitleType type;
+@property (nonatomic) SubTitleType type;
 @property (nonatomic, strong) NSString *typeString;
 -(id) initWithDictionary:(NSDictionary *) dict;
 @end
