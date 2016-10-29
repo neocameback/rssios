@@ -345,8 +345,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
 #pragma mark search bar implement
 -(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
-    NSString *predicate = [NSString stringWithFormat:@"nodeTitle contains[c] %@", searchText];
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:predicate];
+    NSPredicate *resultPredicate = [NSPredicate
+                                    predicateWithFormat:@"nodeTitle contains[c] %@", searchText];
     searchResults = [_nodeList filteredArrayUsingPredicate:resultPredicate];
 }
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller
