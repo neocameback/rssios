@@ -100,6 +100,8 @@ static NSString *const kPrefEnableMediaNotifications =
      name:kGCKExpandedMediaControlsTriggeredNotification
      object:nil];
     [self setupRootViewController];
+    [self setCustomUserAgent];
+    
     [self.window makeKeyAndVisible];
         
     return YES;
@@ -116,7 +118,12 @@ static NSString *const kPrefEnableMediaNotifications =
     castContainerVC = [[GCKCastContext sharedInstance]
                        createCastContainerControllerForViewController:_drawerController];
     self.window.rootViewController = castContainerVC;
-    
+}
+
+- (void)setCustomUserAgent {
+    NSString *userAgent = [Common getDefaultUserAgent];
+    NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:userAgent, @"UserAgent", nil];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
 }
 
 #pragma mark Add these methods to control the visibility of the mini controller:

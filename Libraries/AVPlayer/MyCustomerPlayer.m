@@ -663,12 +663,15 @@ static void *VideoPlayer_PlayerItemPlaybackLikelyToKeepUp    = &VideoPlayer_Play
     {
         return;
     }
-    
     [self resetPlayerItemIfNecessary];
     
-    AVPlayerItem *playerItem = [[AVPlayerItem alloc] initWithURL:URL];
-    if (!playerItem)
-    {
+    NSMutableDictionary * headers = [NSMutableDictionary dictionary];
+    NSString *userAgent = [Common getDefaultUserAgent];
+    [headers setObject:userAgent forKey:@"User-Agent"];
+    AVURLAsset * asset = [AVURLAsset URLAssetWithURL:URL options:@{@"AVURLAssetHTTPHeaderFieldsKey" : headers}];
+    AVPlayerItem * playerItem = [AVPlayerItem playerItemWithAsset:asset];
+    
+    if (!playerItem)    {
         [self reportUnableToCreatePlayerItem];
         
         return;
