@@ -101,20 +101,21 @@
 {
     [super viewWillAppear:animated];
     self.screenName = @"Manage Channels View";
-    if (!self.rssList) {
-        self.rssList = [[NSMutableArray alloc] init];
-    }else{
-        [self.rssList removeAllObjects];
-    }
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isBookmarkRss == 1"];
-    self.rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES withPredicate:predicate]];
-    [_tableView reloadData];
+    
+    [self reloadRssList];
 }
 -(void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     // Save ManagedObjectContext using MagicalRecord
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+}
+
+- (void)reloadRssList {
+    self.rssList = [[NSMutableArray alloc] init];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isBookmarkRss == 1"];
+    self.rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES withPredicate:predicate]];
+    [_tableView reloadData];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -258,9 +259,8 @@
                 /**
                  *  reload the rss list
                  */
-                [wself.rssList addObject:wself.aNewRss];
                 [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
-                [wself.tableView reloadData];
+                [wself reloadRssList];
                 
             } failure:^(NSError *error) {
                 
