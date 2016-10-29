@@ -10,26 +10,24 @@
 
 // Custom logic goes here.
 
--(void) initFromSubtitleItem:(MWFeedItemSubTitle *) subtitleItem
-{
+- (void)initFromSubtitleItem:(MWFeedItemSubTitle *)subtitleItem {
     self.link = subtitleItem.link;
     self.languageCode = subtitleItem.languageCode;
     if (subtitleItem.type == SubtitleTypeSrt) {
         self.extension = @"srt";
-    }else if (subtitleItem.type == SubTitleTypVTT){
+    } else if (subtitleItem.type == SubTitleTypVTT){
         self.extension = @"vtt";
     }
     self.type = subtitleItem.typeString;
     self.updatedAt = [NSDate date];
+    self.castableValue = subtitleItem.castable;
 }
 
--(NSString *) getFilePath
-{
+- (NSString *)getFilePath {
     return [Common getPathOfFile:[NSString stringWithFormat:@"%@_%@",self.languageCode, self.name] extension:self.extension];
 }
 
--(NSString *) getFilePathWithName:(NSString *) name
-{
+- (NSString *)getFilePathWithName:(NSString *)name {
     return [Common getPathOfFile:[NSString stringWithFormat:@"%@_%@",self.languageCode, name] extension:self.extension];
 }
 

@@ -74,6 +74,7 @@
         subItem.link = subtitle.link;
         subItem.type = [Common subtitleTypeFromString:subtitle.type];
         subItem.typeString = subtitle.type;
+        subItem.castable = subtitle.castableValue;
         [tempArray addObject:subItem];
     }
     self.subtitles = [NSArray arrayWithArray:tempArray];
@@ -97,6 +98,7 @@
         subItem.languageCode = subtitle.languageCode;
         subItem.link = subtitle.link;
         [subItem setTypeString:subtitle.type];
+        subItem.castable = subtitle.castableValue;
         subItem.type = [Common subtitleTypeFromString:subtitle.type];
         [tempArray addObject:subItem];
     }

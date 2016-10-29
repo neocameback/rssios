@@ -20,6 +20,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) NSString *link, *languageCode;
 @property (nonatomic) SubTitleType type;
+@property (nonatomic) BOOL castable;
 @property (nonatomic, strong) NSString *typeString;
 -(id) initWithDictionary:(NSDictionary *) dict;
 @end

@@ -29,10 +29,36 @@
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"castableValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"castable"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+
 	return keyPaths;
 }
 
 @dynamic absoluteUrl;
+
+@dynamic castable;
+
+- (BOOL)castableValue {
+	NSNumber *result = [self castable];
+	return [result boolValue];
+}
+
+- (void)setCastableValue:(BOOL)value_ {
+	[self setCastable:@(value_)];
+}
+
+- (BOOL)primitiveCastableValue {
+	NSNumber *result = [self primitiveCastable];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveCastableValue:(BOOL)value_ {
+	[self setPrimitiveCastable:@(value_)];
+}
 
 @dynamic createdAt;
 
@@ -59,6 +85,9 @@
 @implementation SubtitleAttributes 
 + (NSString *)absoluteUrl {
 	return @"absoluteUrl";
+}
++ (NSString *)castable {
+	return @"castable";
 }
 + (NSString *)createdAt {
 	return @"createdAt";

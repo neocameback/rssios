@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "RssNodeModel.h"
 #import "File.h"
+#import "MWFeedItemSubTitle.h"
 
 @interface Common : NSObject
 
@@ -21,5 +22,5 @@
 +(GCKMediaInformation *)mediaInformationFromNode:(RssNodeModel *)node;
 +(GCKMediaInformation *)mediaInformationFromFile:(File *)file;
 +(void) getUserIpAddress:(void (^) (id)) success failureBlock:(void (^) (id)) fail;
-+ (NSInteger)subtitleTypeFromString:(NSString *)typeString;
++ (SubTitleType)subtitleTypeFromString:(NSString *)typeString;
 @end

@@ -18,6 +18,7 @@
     _languageCode = [dict stringForKey:@"lang"];
     [self setSubTitleType:[dict stringForKey:@"type"]];
     _typeString = [dict stringForKey:@"type"];
+    _castable = [[dict stringForKey:@"castable"] isEqualToString:@"true"];
     return self;
 }
 -(void) setSubTitleType:(NSString *) type

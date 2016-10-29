@@ -18,6 +18,7 @@
     _filePath = [sub getFilePath];
     _name = [_filePath lastPathComponent];
     _type = [Common subtitleTypeFromString:sub.type];
+    _castable = sub.castableValue;
     return self;
 }
 -(id) initWithMWFeedItemSubtitle:(MWFeedItemSubTitle *) sub
@@ -27,6 +28,7 @@
     _languageCode = sub.languageCode;
     _link = sub.link;
     _name = _languageCode;
+    _castable = sub.castable;
     _type = sub.type;
     return self;
 }

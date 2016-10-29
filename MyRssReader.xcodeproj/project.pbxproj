@@ -203,6 +203,7 @@
 		229F25651DB3C9A9001A741C /* Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toast.m; sourceTree = "<group>"; };
 		22FB26361DB39A79008831D2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2EBF595744363B68EF79E3FF /* Pods_MyRssReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyRssReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		420162891DC47E780021F951 /* Model2.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.3.xcdatamodel; sourceTree = "<group>"; };
 		423A39341DB5160C00B646AD /* LocalPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalPlayerViewController.h; sourceTree = "<group>"; };
 		423A39351DB5160C00B646AD /* LocalPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalPlayerViewController.m; sourceTree = "<group>"; };
 		423A39361DB5160C00B646AD /* LocalPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalPlayerViewController.xib; sourceTree = "<group>"; };
@@ -1128,7 +1129,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mogenerator -m \"CoreData/Model.xcdatamodeld/Model2.1.xcdatamodel\" -O CoreData/ --template-var arc=true\n";
+			shellScript = "mogenerator -m \"CoreData/Model.xcdatamodeld/Model2.3.xcdatamodel\" -O CoreData/ --template-var arc=true\n";
 		};
 		F639BCA0838BB662B6EA628A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1506,11 +1507,12 @@
 		DE233F731B70A9AD00C02DD6 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				420162891DC47E780021F951 /* Model2.3.xcdatamodel */,
 				B648CF0A1D1136170030FE69 /* Model2.1.xcdatamodel */,
 				DE233F811B70A9E400C02DD6 /* Model2.0.xcdatamodel */,
 				DE233F741B70A9AD00C02DD6 /* Model.xcdatamodel */,
 			);
-			currentVersion = B648CF0A1D1136170030FE69 /* Model2.1.xcdatamodel */;
+			currentVersion = 420162891DC47E780021F951 /* Model2.3.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

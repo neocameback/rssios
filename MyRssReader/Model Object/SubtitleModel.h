@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) NSString *name, *languageCode, *languageName, *filePath, *link;
 @property (nonatomic) SubTitleType type;
+@property (nonatomic) BOOL castable;
 
 -(id) initWithSubtitle:(Subtitle *) sub;
 -(id) initWithMWFeedItemSubtitle:(MWFeedItemSubTitle *) sub;

@@ -146,18 +146,20 @@
     NSInteger count = node.subtitles.count;
     for (NSInteger i = 0 ; i < count; i ++) {
         MWFeedItemSubTitle *sub = node.subtitles[i];
-        GCKMediaTrack *captionsTrack =
-        [[GCKMediaTrack alloc] initWithIdentifier:i
-                                contentIdentifier:sub.link
-                                      contentType:sub.typeString
-                                             type:GCKMediaTrackTypeText
-                                      textSubtype:GCKMediaTextTrackSubtypeSubtitles
-                                             name:sub.languageCode
-                                     languageCode:sub.languageCode
-                                       customData:nil];
-        [tracks addObject:captionsTrack];
+        if (sub.castable) {
+            GCKMediaTrack *captionsTrack =
+            [[GCKMediaTrack alloc] initWithIdentifier:i
+                                    contentIdentifier:sub.link
+                                          contentType:sub.typeString
+                                                 type:GCKMediaTrackTypeText
+                                          textSubtype:GCKMediaTextTrackSubtypeSubtitles
+                                                 name:sub.languageCode
+                                         languageCode:sub.languageCode
+                                           customData:nil];
+            [tracks addObject:captionsTrack];
+        }
     }
-    if (count == 0) {
+    if (tracks.count == 0) {
         tracks = nil;
     }
     GCKMediaTextTrackStyle *trackStyle = [GCKMediaTextTrackStyle createDefault];
@@ -165,7 +167,7 @@
     if ([Common typeOfNode:node.nodeType] == NODE_TYPE_MP4) {
         mediaInfo = [[GCKMediaInformation alloc] initWithContentID:node.nodeUrl
                                                         streamType:GCKMediaStreamTypeBuffered
-                                                       contentType:@"video/mp4"
+                                                       contentType:node.nodeType
                                                           metadata:metadata
                                                     streamDuration:0
                                                        mediaTracks:tracks
@@ -186,13 +188,35 @@
     [metadata addImage:[[GCKImage alloc] initWithURL:[NSURL URLWithString:file.thumbnail]
                                                width:320
                                               height:568]];
-    
+    NSMutableArray *tracks = [NSMutableArray array];
+    NSInteger count = file.subtitles.count;
+    for (NSInteger i = 0 ; i < count; i ++) {
+        Subtitle *sub = file.subtitlesSet[i];
+        if (sub.castableValue) {
+            GCKMediaTrack *captionsTrack =
+            [[GCKMediaTrack alloc] initWithIdentifier:i
+                                    contentIdentifier:sub.link
+                                          contentType:sub.type
+                                                 type:GCKMediaTrackTypeText
+                                          textSubtype:GCKMediaTextTrackSubtypeSubtitles
+                                                 name:sub.languageCode
+                                         languageCode:sub.languageCode
+                                           customData:nil];
+            [tracks addObject:captionsTrack];
+        }
+    }
+    if (tracks.count == 0) {
+        tracks = nil;
+    }
+    GCKMediaTextTrackStyle *trackStyle = [GCKMediaTextTrackStyle createDefault];
     GCKMediaInformation *mediaInfo = [[GCKMediaInformation alloc] initWithContentID:file.url
                                                                          streamType:GCKMediaStreamTypeBuffered
-                                                                        contentType:@"video/mp4"
+                                                                        contentType:file.type
                                                                            metadata:metadata
                                                                      streamDuration:0
-                                                                         customData:0];
+                                                                        mediaTracks:tracks
+                                                                     textTrackStyle:trackStyle
+                                                                         customData:nil];
     return mediaInfo;
 }
 
