@@ -389,7 +389,7 @@
     
     nbSecondsElapsed = CMTimeGetSeconds(self.player.currentItem.currentTime);
     subtitle = [self lastSubtitleAtTime:nbSecondsElapsed];
-    if(([subtitle.text isEqualToString:self.currentText]) || (subtitle.text == self.currentText))
+    if(!subtitle || ([subtitle.text isEqualToString:self.currentText]) || (subtitle.text == self.currentText))
         return;
     
     self.currentText = subtitle.text;
