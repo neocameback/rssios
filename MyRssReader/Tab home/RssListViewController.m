@@ -13,19 +13,16 @@
 #import "NodeListViewController.h"
 #import "MWFeedParser.h"
 
-@interface RssListViewController ()
-{
+@interface RssListViewController () {
     RssManager *manager;
     NSInteger editingIndex;
 }
 @property (nonatomic, strong) NSMutableArray *rssList;
-
 @end
 
 @implementation RssListViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -35,8 +32,7 @@
 }
 
 #pragma mark View lifecycle
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
@@ -55,21 +51,15 @@
     editingIndex = -1;
 }
 
--(void) viewWillAppear:(BOOL)animated
-{
+-(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     self.screenName = @"Channels View";
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
     {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isBookmarkRss == 1"];
-        self.rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES withPredicate:predicate]];
-
-        [_tableView reloadData];
-    }
-    else // first time lauche application, we'll save a sample RSS url
-    {
+        [self reloadRssList];
+    } else {// first time lauche application, we'll save a sample RSS url
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
         [[NSUserDefaults standardUserDefaults] synchronize];
 
@@ -97,6 +87,14 @@
         }];
     }
 }
+
+- (void)reloadRssList {
+    self.rssList = [[NSMutableArray alloc] init];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isBookmarkRss == 1"];
+    self.rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES withPredicate:predicate]];
+    [_tableView reloadData];
+}
+
 
 
 #pragma mark IBActions
@@ -376,9 +374,8 @@
                 /**
                  *  reload the rss list
                  */
-                [wself.rssList addObject:aNewRss];
                 [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
-                [wself.tableView reloadData];
+                [wself reloadRssList];
                 
             } failure:^(NSError *error) {
                 
