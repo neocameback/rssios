@@ -21,5 +21,4 @@
     
 }
 @property (nonatomic, strong) NSString *rssURL;
-@property (nonatomic, strong) Rss *cachedRss;
 @end
