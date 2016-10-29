@@ -75,8 +75,7 @@
     self.navigationItem.rightBarButtonItems = rightBarButtons;
 }
 
--(void) viewWillAppear:(BOOL)animated
-{
+-(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }
 
@@ -259,10 +258,11 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
                             [node setRss:cachedRss];
                         }
                     }
+                    NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
+                    [context MR_saveToPersistentStoreWithCompletion:nil];
                     
-                    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
-                    
-                    NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
+                    NodeListViewController *viewcontroller =
+                                                    [NodeListViewController initWithNibName];
                     [viewcontroller setNodeList:nodeList];
                     [viewcontroller setRssURL:wself.currentNode.nodeUrl];
                     [viewcontroller setTitle:wself.currentNode.nodeTitle];
@@ -350,8 +350,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     searchResults = [_nodeList filteredArrayUsingPredicate:resultPredicate];
 }
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller
-shouldReloadTableForSearchString:(NSString *)searchString
-{
+shouldReloadTableForSearchString:(NSString *)searchString {
     [self filterContentForSearchText:searchString
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
                                       objectAtIndex:[self.searchDisplayController.searchBar
@@ -386,7 +385,8 @@ shouldReloadTableForSearchString:(NSString *)searchString
 
 -(GADInterstitial*)createAndLoadInterstital {
     GADRequest *request = [GADRequest request];
-    GADInterstitial *interstitial = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
+    GADInterstitial *interstitial = nil;
+    interstitial = [[GADInterstitial alloc] initWithAdUnitID:kLargeAdUnitId];
     interstitial.delegate = self;
     [interstitial loadRequest:request];
     
