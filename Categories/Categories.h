@@ -13,6 +13,7 @@
 #import "NSString+Helper.h"
 #import "NSDictionary+Helper.h"
 #import "NSDate+helper.h"
+#import "UIColor+Helper.h"
 
 @interface Categories : NSObject
 

@@ -29,6 +29,11 @@
 		423A393C1DB5257C00B646AD /* icon_dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 423A39391DB5257C00B646AD /* icon_dot@2x.png */; };
 		423A393D1DB5257C00B646AD /* icon_dot@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 423A393A1DB5257C00B646AD /* icon_dot@3x.png */; };
 		423A393E1DB5257C00B646AD /* icon_dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 423A393B1DB5257C00B646AD /* icon_dot.png */; };
+		427AA0D51DCA2B76007010FC /* SubtitleSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427AA0D31DCA2B76007010FC /* SubtitleSettingsViewController.m */; };
+		427AA0D61DCA2B76007010FC /* SubtitleSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 427AA0D41DCA2B76007010FC /* SubtitleSettingsViewController.xib */; };
+		427AA0D81DCA2BDD007010FC /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 427AA0D71DCA2BDD007010FC /* background.png */; };
+		427AA0DB1DCA361D007010FC /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 427AA0DA1DCA361D007010FC /* UIColor+Helper.m */; };
+		427AA0DE1DCA4280007010FC /* UIPaddingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 427AA0DD1DCA4280007010FC /* UIPaddingTextField.m */; };
 		427FB9C91DB9A770002A30E6 /* RSSDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427FB9C81DB9A770002A30E6 /* RSSDrawerController.m */; };
 		427FB9CE1DB9A7F8002A30E6 /* RSSLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427FB9CC1DB9A7F8002A30E6 /* RSSLeftMenuViewController.m */; };
 		427FB9CF1DB9A7F8002A30E6 /* RSSLeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 427FB9CD1DB9A7F8002A30E6 /* RSSLeftMenuViewController.xib */; };
@@ -210,6 +215,14 @@
 		423A39391DB5257C00B646AD /* icon_dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_dot@2x.png"; sourceTree = "<group>"; };
 		423A393A1DB5257C00B646AD /* icon_dot@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_dot@3x.png"; sourceTree = "<group>"; };
 		423A393B1DB5257C00B646AD /* icon_dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_dot.png; sourceTree = "<group>"; };
+		427AA0D21DCA2B76007010FC /* SubtitleSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubtitleSettingsViewController.h; sourceTree = "<group>"; };
+		427AA0D31DCA2B76007010FC /* SubtitleSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubtitleSettingsViewController.m; sourceTree = "<group>"; };
+		427AA0D41DCA2B76007010FC /* SubtitleSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubtitleSettingsViewController.xib; sourceTree = "<group>"; };
+		427AA0D71DCA2BDD007010FC /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		427AA0D91DCA361D007010FC /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
+		427AA0DA1DCA361D007010FC /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
+		427AA0DC1DCA4280007010FC /* UIPaddingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPaddingTextField.h; sourceTree = "<group>"; };
+		427AA0DD1DCA4280007010FC /* UIPaddingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPaddingTextField.m; sourceTree = "<group>"; };
 		427FB9C71DB9A770002A30E6 /* RSSDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSDrawerController.h; sourceTree = "<group>"; };
 		427FB9C81DB9A770002A30E6 /* RSSDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSDrawerController.m; sourceTree = "<group>"; };
 		427FB9CB1DB9A7F8002A30E6 /* RSSLeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSLeftMenuViewController.h; sourceTree = "<group>"; };
@@ -567,6 +580,9 @@
 				DE1AE5241B8DA40B008C44F8 /* AboutViewController.h */,
 				DE1AE5251B8DA40B008C44F8 /* AboutViewController.m */,
 				DE1AE5261B8DA40B008C44F8 /* AboutViewController.xib */,
+				427AA0D21DCA2B76007010FC /* SubtitleSettingsViewController.h */,
+				427AA0D31DCA2B76007010FC /* SubtitleSettingsViewController.m */,
+				427AA0D41DCA2B76007010FC /* SubtitleSettingsViewController.xib */,
 			);
 			path = "Tab about";
 			sourceTree = "<group>";
@@ -777,6 +793,7 @@
 		DEB54D731933344800EC589E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				427AA0D71DCA2BDD007010FC /* background.png */,
 				427FB9D31DB9B1F4002A30E6 /* ic_menu.png */,
 				427FB9D41DB9B1F4002A30E6 /* ic_menu@2x.png */,
 				427FB9D51DB9B1F4002A30E6 /* ic_menu@3x.png */,
@@ -875,6 +892,8 @@
 				DEB7BF2B19458DE700BF350D /* NSString+Helper.m */,
 				42A9A09A1DC1C5AE00DAA241 /* NSDate+helper.h */,
 				42A9A09B1DC1C5AE00DAA241 /* NSDate+helper.m */,
+				427AA0D91DCA361D007010FC /* UIColor+Helper.h */,
+				427AA0DA1DCA361D007010FC /* UIColor+Helper.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -886,6 +905,8 @@
 				B6B4A3821D140BDF0000DD02 /* AVPlayer */,
 				DE233F5B1B70A89F00C02DD6 /* MWFeedParser */,
 				DEF496131934349F00DD482D /* Reachability */,
+				427AA0DC1DCA4280007010FC /* UIPaddingTextField.h */,
+				427AA0DD1DCA4280007010FC /* UIPaddingTextField.m */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -983,10 +1004,12 @@
 				B6B4A3971D140CCF0000DD02 /* ic_player_pause.png in Resources */,
 				42C70C0F193CBE3500736BCF /* icon-29.png in Resources */,
 				DE1AE55A1B8DA40B008C44F8 /* NodeListCustomCell.xib in Resources */,
+				427AA0D61DCA2B76007010FC /* SubtitleSettingsViewController.xib in Resources */,
 				DEC5DD2D19357EDC0088A62F /* ic_about_normal@2x.png in Resources */,
 				DEC5DD2919357EDC0088A62F /* ic_channel_normal@2x.png in Resources */,
 				B648CF091D1102C40030FE69 /* BaseNodeListViewController.xib in Resources */,
 				DEC5DD2819357EDC0088A62F /* ic_channel_press.png in Resources */,
+				427AA0D81DCA2BDD007010FC /* background.png in Resources */,
 				423A393E1DB5257C00B646AD /* icon_dot.png in Resources */,
 				E5BCE8501D1455EB00580653 /* welcome.srt in Resources */,
 				42C70C18193CBE3500736BCF /* icon-120.png in Resources */,
@@ -1164,6 +1187,7 @@
 				DE1AE5591B8DA40B008C44F8 /* NodeListCustomCell.m in Sources */,
 				DE233F701B70A89F00C02DD6 /* NSString+HTML.m in Sources */,
 				DE233F6E1B70A89F00C02DD6 /* MWFeedParser.m in Sources */,
+				427AA0DE1DCA4280007010FC /* UIPaddingTextField.m in Sources */,
 				DE233F6B1B70A89F00C02DD6 /* GTMNSString+HTML.m in Sources */,
 				DE1AE5481B8DA40B008C44F8 /* Constant.m in Sources */,
 				DE233F711B70A89F00C02DD6 /* NSString+XMLEntities.m in Sources */,
@@ -1173,6 +1197,7 @@
 				423A39371DB5160C00B646AD /* LocalPlayerViewController.m in Sources */,
 				846565141B7BA57700C9E99E /* File.m in Sources */,
 				DE233F6D1B70A89F00C02DD6 /* MWFeedItem.m in Sources */,
+				427AA0D51DCA2B76007010FC /* SubtitleSettingsViewController.m in Sources */,
 				DE22E7C9192F54180005E685 /* AppDelegate.m in Sources */,
 				DE7F39A81935DCC900C7C143 /* NSString+MD5.m in Sources */,
 				DE1AE5721B8DC92F008C44F8 /* _RssNode.m in Sources */,
@@ -1211,6 +1236,7 @@
 				DE1AE56D1B8DA567008C44F8 /* RssModel.m in Sources */,
 				DE22E7C5192F54180005E685 /* main.m in Sources */,
 				427FB9C91DB9A770002A30E6 /* RSSDrawerController.m in Sources */,
+				427AA0DB1DCA361D007010FC /* UIColor+Helper.m in Sources */,
 				DE233F6C1B70A89F00C02DD6 /* MWFeedInfo.m in Sources */,
 				DEB5F0DD1932D854008922E5 /* Categories.m in Sources */,
 				DE1AE56C1B8DA567008C44F8 /* RssNodeModel.m in Sources */,

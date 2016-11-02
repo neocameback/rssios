@@ -8,6 +8,7 @@
 
 #import "AboutViewController.h"
 #import "WebViewViewController.h"
+#import "SubtitleSettingsViewController.h"
 #import "Rss.h"
 
 #define minuteToSecond 60
@@ -81,7 +82,7 @@
 {
     switch (section) {
         case 0:
-            return 2;
+            return 3;
         case 1:
             return 2;
         default:
@@ -97,17 +98,29 @@
     switch (indexPath.section) {
         case 0:
         {
-            if (indexPath.row == 0) {
-                cell.textLabel.text = @"Auto refresh RSS time:";
-                NSInteger autoRefreshTime = [[NSUserDefaults standardUserDefaults] integerForKey:kAutoRefreshNewsTime];
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld minutes",autoRefreshTime/minuteToSecond];
-                [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-                [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
-            }else{
-                cell.textLabel.text = @"Clear cache";
-                cell.detailTextLabel.text = @"";
-                [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-                [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
+            switch (indexPath.row) {
+                case 0: {
+                    cell.textLabel.text = @"Auto refresh RSS time:";
+                    NSInteger autoRefreshTime = [[NSUserDefaults standardUserDefaults] integerForKey:kAutoRefreshNewsTime];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld minutes",autoRefreshTime/minuteToSecond];
+                    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+                    [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
+                }
+                    break;
+                case  1: {
+                    cell.textLabel.text = @"Clear cache";
+                    cell.detailTextLabel.text = @"";
+                    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+                    [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
+                }
+                    break;
+                default: { // open subtitle setting view
+                    cell.textLabel.text = @"Subtitle appearance";
+                    cell.detailTextLabel.text = @"";
+                    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+                    [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
+                }
+                    break;
             }
         }
             break;
@@ -145,17 +158,27 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.section) {
         case 0:
-            if (indexPath.row == 0 ) {
-                UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Auto refresh RSS after" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles: nil];
-                [actionsheet setTag:1];
-                for (NSNumber *number in times) {
-                    [actionsheet addButtonWithTitle:[NSString stringWithFormat:@"%ld minutes",(long)[number integerValue]]];
+            switch (indexPath.row) {
+                case 0: {
+                    UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Auto refresh RSS after" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles: nil];
+                    [actionsheet setTag:1];
+                    for (NSNumber *number in times) {
+                        [actionsheet addButtonWithTitle:[NSString stringWithFormat:@"%ld minutes",(long)[number integerValue]]];
+                    }
+                    [actionsheet showInView:self.view];
                 }
-                [actionsheet showInView:self.view];
-            }else{
-                UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure you want to clear cache?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Clear" otherButtonTitles: nil];
-                [actionsheet setTag:2];
-                [actionsheet showInView:self.view];
+                    break;
+                case 1: {
+                    UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure you want to clear cache?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Clear" otherButtonTitles: nil];
+                    [actionsheet setTag:2];
+                    [actionsheet showInView:self.view];
+                }
+                    break;
+                default: {
+                    SubtitleSettingsViewController *viewcontroller = [SubtitleSettingsViewController initWithNibName];
+                    [self.navigationController pushViewController:viewcontroller animated:YES];
+                }
+                    break;
             }
             break;
         case 1:
