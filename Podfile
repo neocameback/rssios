@@ -19,6 +19,9 @@ pod 'SCSkypeActivityIndicatorView', '~> 1.0'
 pod 'JDStatusBarNotification'
 pod 'MGSwipeTableCell', '~> 1.5'
 pod 'MMDrawerController', '~> 0.6'
+pod 'WYPopoverController', '~> 0.3'
+pod 'TPKeyboardAvoiding', '~> 1.3'
+
 pod 'Fabric'
 pod 'Crashlytics'
 

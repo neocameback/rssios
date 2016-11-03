@@ -39,6 +39,7 @@
 #define kUserAgent      @"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36"
 
 #define kGreenColor [UIColor colorWithRed:0/255 green:204.0/255 blue:151.0/255 alpha:1]
+#define kBorderColor    @"b3b3b3"
 enum NODE_TYPE {
     NODE_TYPE_RSS = 0,
     NODE_TYPE_VIDEO = 1,

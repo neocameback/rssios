@@ -44,6 +44,10 @@
 		42A9A0971DC1A0A700DAA241 /* blow-breeze-ep18.vtt in Resources */ = {isa = PBXBuildFile; fileRef = 42A9A0961DC1A0A700DAA241 /* blow-breeze-ep18.vtt */; };
 		42A9A09C1DC1C5AE00DAA241 /* NSDate+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A9A09B1DC1C5AE00DAA241 /* NSDate+helper.m */; };
 		42AE1B28194B8FB600F2CC2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AE1B27194B8FB600F2CC2A /* Security.framework */; };
+		42C2E9101DCBA08C00D0DF70 /* HODropdownPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C2E90F1DCBA08C00D0DF70 /* HODropdownPopoverView.m */; };
+		42C2E9121DCBA53600D0DF70 /* ColorPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42C2E9111DCBA53600D0DF70 /* ColorPickerViewController.xib */; };
+		42C2E9161DCBA60900D0DF70 /* ColorPickerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C2E9141DCBA60900D0DF70 /* ColorPickerCollectionViewCell.m */; };
+		42C2E9171DCBA60900D0DF70 /* ColorPickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42C2E9151DCBA60900D0DF70 /* ColorPickerCollectionViewCell.xib */; };
 		42C70C0E193CBE3500736BCF /* icon -114.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70BFF193CBE3500736BCF /* icon -114.png */; };
 		42C70C0F193CBE3500736BCF /* icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70C00193CBE3500736BCF /* icon-29.png */; };
 		42C70C10193CBE3500736BCF /* icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70C01193CBE3500736BCF /* icon-40.png */; };
@@ -59,6 +63,7 @@
 		42C70C1A193CBE3500736BCF /* icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70C0B193CBE3500736BCF /* icon-152.png */; };
 		42C70C1B193CBE3500736BCF /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70C0C193CBE3500736BCF /* iTunesArtwork.png */; };
 		42C70C1C193CBE3500736BCF /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C70C0D193CBE3500736BCF /* iTunesArtwork@2x.png */; };
+		42FA56DC1DCB9E5B008BDE62 /* ColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA56DB1DCB9E5B008BDE62 /* ColorPickerViewController.m */; };
 		8465650C1B7B9A9000C9E99E /* icon_download@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846565091B7B9A9000C9E99E /* icon_download@3x.png */; };
 		8465650D1B7B9A9000C9E99E /* icon_download@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8465650A1B7B9A9000C9E99E /* icon_download@2x.png */; };
 		8465650E1B7B9A9000C9E99E /* icon_download.png in Resources */ = {isa = PBXBuildFile; fileRef = 8465650B1B7B9A9000C9E99E /* icon_download.png */; };
@@ -237,6 +242,12 @@
 		42A9A09A1DC1C5AE00DAA241 /* NSDate+helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+helper.h"; sourceTree = "<group>"; };
 		42A9A09B1DC1C5AE00DAA241 /* NSDate+helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+helper.m"; sourceTree = "<group>"; };
 		42AE1B27194B8FB600F2CC2A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		42C2E90E1DCBA08C00D0DF70 /* HODropdownPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HODropdownPopoverView.h; sourceTree = "<group>"; };
+		42C2E90F1DCBA08C00D0DF70 /* HODropdownPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HODropdownPopoverView.m; sourceTree = "<group>"; };
+		42C2E9111DCBA53600D0DF70 /* ColorPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorPickerViewController.xib; sourceTree = "<group>"; };
+		42C2E9131DCBA60900D0DF70 /* ColorPickerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerCollectionViewCell.h; sourceTree = "<group>"; };
+		42C2E9141DCBA60900D0DF70 /* ColorPickerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickerCollectionViewCell.m; sourceTree = "<group>"; };
+		42C2E9151DCBA60900D0DF70 /* ColorPickerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorPickerCollectionViewCell.xib; sourceTree = "<group>"; };
 		42C70BFF193CBE3500736BCF /* icon -114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon -114.png"; sourceTree = "<group>"; };
 		42C70C00193CBE3500736BCF /* icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-29.png"; sourceTree = "<group>"; };
 		42C70C01193CBE3500736BCF /* icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40.png"; sourceTree = "<group>"; };
@@ -252,6 +263,8 @@
 		42C70C0B193CBE3500736BCF /* icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-152.png"; sourceTree = "<group>"; };
 		42C70C0C193CBE3500736BCF /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		42C70C0D193CBE3500736BCF /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		42FA56DA1DCB9E5B008BDE62 /* ColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerViewController.h; sourceTree = "<group>"; };
+		42FA56DB1DCB9E5B008BDE62 /* ColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickerViewController.m; sourceTree = "<group>"; };
 		846565091B7B9A9000C9E99E /* icon_download@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_download@3x.png"; sourceTree = "<group>"; };
 		8465650A1B7B9A9000C9E99E /* icon_download@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_download@2x.png"; sourceTree = "<group>"; };
 		8465650B1B7B9A9000C9E99E /* icon_download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_download.png; sourceTree = "<group>"; };
@@ -583,6 +596,14 @@
 				427AA0D21DCA2B76007010FC /* SubtitleSettingsViewController.h */,
 				427AA0D31DCA2B76007010FC /* SubtitleSettingsViewController.m */,
 				427AA0D41DCA2B76007010FC /* SubtitleSettingsViewController.xib */,
+				42FA56DA1DCB9E5B008BDE62 /* ColorPickerViewController.h */,
+				42FA56DB1DCB9E5B008BDE62 /* ColorPickerViewController.m */,
+				42C2E9111DCBA53600D0DF70 /* ColorPickerViewController.xib */,
+				42C2E9131DCBA60900D0DF70 /* ColorPickerCollectionViewCell.h */,
+				42C2E9141DCBA60900D0DF70 /* ColorPickerCollectionViewCell.m */,
+				42C2E9151DCBA60900D0DF70 /* ColorPickerCollectionViewCell.xib */,
+				42C2E90E1DCBA08C00D0DF70 /* HODropdownPopoverView.h */,
+				42C2E90F1DCBA08C00D0DF70 /* HODropdownPopoverView.m */,
 			);
 			path = "Tab about";
 			sourceTree = "<group>";
@@ -1053,6 +1074,7 @@
 				DE1AE5581B8DA40B008C44F8 /* BookmarkViewController.xib in Resources */,
 				42C70C0E193CBE3500736BCF /* icon -114.png in Resources */,
 				DEC5DD2719357EDC0088A62F /* ic_channel_press@2x.png in Resources */,
+				42C2E9121DCBA53600D0DF70 /* ColorPickerViewController.xib in Resources */,
 				42A9A0971DC1A0A700DAA241 /* blow-breeze-ep18.vtt in Resources */,
 				DEC5DD2119357EDC0088A62F /* ic_home_normal@2x.png in Resources */,
 				DE1B5B42194B0EA000A4B5D9 /* icon_default@2x.png in Resources */,
@@ -1087,6 +1109,7 @@
 				DEC5DD2319357EDC0088A62F /* ic_favorites_press@2x.png in Resources */,
 				DEB54D7E193336BE00EC589E /* rate_star_1.png in Resources */,
 				B6B4A3911D140C800000DD02 /* ic_player_play.png in Resources */,
+				42C2E9171DCBA60900D0DF70 /* ColorPickerCollectionViewCell.xib in Resources */,
 				B6B4A3721D13E20D0000DD02 /* icon_tick.png in Resources */,
 				DE17B2C41B7C7C2800905EEE /* icon_check_status@3x.png in Resources */,
 				423A39381DB5160C00B646AD /* LocalPlayerViewController.xib in Resources */,
@@ -1110,7 +1133,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		849538F21B90AAED008E6B2A /* ShellScript */ = {
@@ -1176,6 +1199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42C2E9101DCBA08C00D0DF70 /* HODropdownPopoverView.m in Sources */,
 				B6A1CC301D17F1C90026430B /* Singleton.m in Sources */,
 				229F25661DB3C9A9001A741C /* Toast.m in Sources */,
 				B65A72FC1D19196500504151 /* Subtitle.m in Sources */,
@@ -1206,6 +1230,7 @@
 				DE1AE55D1B8DA40B008C44F8 /* RPNodeDescriptionViewController.m in Sources */,
 				DE1AE54A1B8DA40B008C44F8 /* BaseViewController.m in Sources */,
 				E5E822CF1D5A264B00FB048D /* NodeListAdsTableViewCell.m in Sources */,
+				42FA56DC1DCB9E5B008BDE62 /* ColorPickerViewController.m in Sources */,
 				B6B4A3801D140B4B0000DD02 /* AirPlayerViewController.m in Sources */,
 				DE7F39AB1935E27700C7C143 /* NSMutableURLRequest+Helper.m in Sources */,
 				DE1AE5491B8DA40B008C44F8 /* DownloadManager.m in Sources */,
@@ -1218,6 +1243,7 @@
 				E5B7BAB91D10700900B7CC03 /* RssManager.m in Sources */,
 				E5BCE8531D1460AC00580653 /* ASBPlayerSubtitling.m in Sources */,
 				DE233F791B70A9AD00C02DD6 /* Model.xcdatamodeld in Sources */,
+				42C2E9161DCBA60900D0DF70 /* ColorPickerCollectionViewCell.m in Sources */,
 				DE1AE55B1B8DA40B008C44F8 /* NodeListViewController.m in Sources */,
 				B65A72FB1D19196500504151 /* _Subtitle.m in Sources */,
 				DE1AE5661B8DA42F008C44F8 /* Common.m in Sources */,
