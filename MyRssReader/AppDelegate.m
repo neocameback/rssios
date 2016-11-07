@@ -123,7 +123,7 @@ static NSString *const kPrefEnableMediaNotifications =
 
 - (void)setCustomUserAgent {
     NSString *userAgent = [Common getDefaultUserAgent];
-    NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:userAgent, @"UserAgent", nil];
+    NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:userAgent, @"User-Agent", nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
 }
 
