@@ -40,6 +40,15 @@
 
 #define kGreenColor [UIColor colorWithRed:0/255 green:204.0/255 blue:151.0/255 alpha:1]
 #define kBorderColor    @"b3b3b3"
+
+#pragma mark NSUserDefault keys
+
+static NSString *kSubtitleFont = @"SubtitleFontName";
+static NSString *kSubtitleTextColor = @"SubtitleTextColor";
+static NSString *kSubtitleTextSize = @"SubtitleTextSize";
+static NSString *kSubtitleBackgroundColor = @"SubtitleBackgroundColor";
+static NSString *kSubtitleOpacity = @"SubtitleOpacity";
+
 enum NODE_TYPE {
     NODE_TYPE_RSS = 0,
     NODE_TYPE_VIDEO = 1,

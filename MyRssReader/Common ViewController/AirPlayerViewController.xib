@@ -22,31 +22,24 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lct-1f-i7Z" userLabel="Subtitle View">
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZC-xZ-g1l" userLabel="Subtitle Label">
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="vZC-xZ-g1l" firstAttribute="top" secondItem="Lct-1f-i7Z" secondAttribute="top" constant="10" id="Cxj-Hg-e5c"/>
                         <constraint firstAttribute="bottom" secondItem="vZC-xZ-g1l" secondAttribute="bottom" constant="10" id="NfR-IQ-0dJ"/>
                         <constraint firstItem="vZC-xZ-g1l" firstAttribute="leading" secondItem="Lct-1f-i7Z" secondAttribute="leading" constant="10" id="XKG-Kr-wbI"/>
                         <constraint firstAttribute="trailing" secondItem="vZC-xZ-g1l" secondAttribute="trailing" constant="10" id="wec-A8-ZMa"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                            <integer key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="4"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Lct-1f-i7Z" secondAttribute="bottom" constant="45" id="Fto-5o-JUl"/>
+                <constraint firstItem="Lct-1f-i7Z" firstAttribute="top" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="45" id="Oqu-aT-f4Q"/>
                 <constraint firstItem="Lct-1f-i7Z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="j7C-bX-ctd"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Lct-1f-i7Z" secondAttribute="trailing" constant="15" id="lKp-tK-ejo"/>
                 <constraint firstItem="Lct-1f-i7Z" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mnf-w5-1Vh"/>

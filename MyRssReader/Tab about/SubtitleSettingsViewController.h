@@ -22,6 +22,5 @@
 - (IBAction)onSelectTextColor:(id)sender;
 - (IBAction)onSelectBackgroundColor:(id)sender;
 
-- (IBAction)onSave:(id)sender;
 - (IBAction)onResetDefault:(id)sender;
 @end

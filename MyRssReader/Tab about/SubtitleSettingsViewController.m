@@ -11,7 +11,7 @@
 #import "ColorPickerViewController.h"
 #import "HODropdownPopoverView.h"
 
-@interface SubtitleSettingsViewController ()
+@interface SubtitleSettingsViewController () <UITextFieldDelegate>
 @property (nonatomic, strong) WYPopoverController *popover;
 @end
 
@@ -39,7 +39,39 @@
     self.opacityTextField.layer.borderColor = borderColor.CGColor;
     
     self.backgroundColorButton.layer.borderWidth = 1;
-    self.backgroundColorButton.layer.borderColor = borderColor.CGColor;    
+    self.backgroundColorButton.layer.borderColor = borderColor.CGColor;
+    
+    [self updateFontAppearance];
+}
+
+- (void) updateFontAppearance {
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *fontName = [userDefault objectForKey:kSubtitleFont];
+    NSString *textColor = [userDefault objectForKey:kSubtitleTextColor];
+    NSInteger fontSize = [userDefault integerForKey:kSubtitleTextSize];
+    NSString *backgroundColor = [userDefault objectForKey:kSubtitleBackgroundColor];
+    CGFloat opacity = [userDefault floatForKey:kSubtitleOpacity];
+    [self.fontButton setTitle:fontName forState:UIControlStateNormal];
+    [self.fontButton.titleLabel setFont:[UIFont fontWithName:fontName size:15]];
+    [self.textColorButton setBackgroundColor:[UIColor colorWithHexString:textColor]];
+    [self.textSizeTextField setText:[NSString stringWithFormat:@"%d",(int)fontSize]];
+    [self.backgroundColorButton setBackgroundColor:[UIColor colorWithHexString:backgroundColor]];
+    [self.opacityTextField setText:[NSString stringWithFormat:@"%.1f",opacity]];
+    
+    [self updateSubtitleLabel];
+}
+
+- (void)updateSubtitleLabel {
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *fontName = [userDefault objectForKey:kSubtitleFont];
+    NSString *textColor = [userDefault objectForKey:kSubtitleTextColor];
+    NSInteger fontSize = [userDefault integerForKey:kSubtitleTextSize];
+    NSString *backgroundColor = [userDefault objectForKey:kSubtitleBackgroundColor];
+    CGFloat opacity = [userDefault floatForKey:kSubtitleOpacity];
+    
+    self.subtitleLabel.font = [UIFont fontWithName:fontName size:fontSize];
+    self.subtitleLabel.textColor = [UIColor colorWithHexString:textColor];
+    self.subtitleLabel.backgroundColor = [UIColor colorWithHexString:backgroundColor opacity:opacity/100];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,7 +89,12 @@
     [arrayListFont addObject:@"Palatino"];
     [arrayListFont addObject:@"Verdana"];
     __weak typeof(self) wself = self;
-    HODropdownPopoverView *dropdowm = [[HODropdownPopoverView alloc] initWithStrings:arrayListFont selectedString:@"Arial" preferSize:CGSizeZero completion:^(id item, NSInteger index) {
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *fontName = [userDefault objectForKey:kSubtitleFont];
+    HODropdownPopoverView *dropdowm = [[HODropdownPopoverView alloc] initWithStrings:arrayListFont selectedString:fontName preferSize:CGSizeZero completion:^(id item, NSInteger index) {
+        [userDefault setObject:item forKey:kSubtitleFont];
+        [userDefault synchronize];
+        [wself updateSubtitleLabel];
         [[wself popover] dismissPopoverAnimated:YES];
     }];
     _popover = [[WYPopoverController alloc] initWithContentViewController:dropdowm];
@@ -68,33 +105,59 @@
     ColorPickerViewController *colorPickerView = [[ColorPickerViewController alloc] init];
     [colorPickerView setColor:[UIColor whiteColor]];
     __weak typeof(self) wself = self;
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     [colorPickerView setColorPickedBlock:^(id sender, NSString *hexa) {
         NSLog(@"hexa");
+        [userDefault setObject:hexa forKey:kSubtitleTextColor];
+        [userDefault synchronize];
+        [wself updateSubtitleLabel];
         [[wself popover] dismissPopoverAnimated:YES];
     }];
     _popover = [[WYPopoverController alloc] initWithContentViewController:colorPickerView];
     [_popover presentPopoverFromRect:[sender bounds] inView:sender permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES options:WYPopoverAnimationOptionFade];
 }
 
-- (IBAction)onSelectFontSmall:(id)sender {
-}
-
-- (IBAction)onSelectFontMedium:(id)sender {
-}
-
-- (IBAction)onSelectFontLarge:(id)sender {
-}
-
 - (IBAction)onSelectBackgroundColor:(id)sender {
-}
-
-- (IBAction)onSelectWindowColor:(id)sender {
-}
-
-- (IBAction)onSave:(id)sender {
+    ColorPickerViewController *colorPickerView = [[ColorPickerViewController alloc] init];
+    [colorPickerView setColor:[UIColor whiteColor]];
+    __weak typeof(self) wself = self;
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [colorPickerView setColorPickedBlock:^(id sender, NSString *hexa) {
+        NSLog(@"hexa");
+        [userDefault setObject:hexa forKey:kSubtitleBackgroundColor];
+        [userDefault synchronize];
+        [wself updateSubtitleLabel];
+        [[wself popover] dismissPopoverAnimated:YES];
+    }];
+    _popover = [[WYPopoverController alloc] initWithContentViewController:colorPickerView];
+    [_popover presentPopoverFromRect:[sender bounds] inView:sender permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES options:WYPopoverAnimationOptionFade];
 }
 
 - (IBAction)onResetDefault:(id)sender {
+    [APPDELEGATE resetToDefaultValues];
+    [self updateFontAppearance];
+}
+
+#pragma mark UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    @try {
+        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+        if (textField == self.textSizeTextField) {
+            NSInteger textsize = [textField.text integerValue];
+            [userDefault setInteger:textsize forKey:kSubtitleTextSize];
+            [userDefault synchronize];
+            [self updateSubtitleLabel];
+        } else if (textField == self.opacityTextField) {
+            CGFloat opacity = [textField.text floatValue];
+            [userDefault setFloat:opacity forKey:kSubtitleOpacity];
+            [userDefault synchronize];
+            [self updateSubtitleLabel];
+        }
+    } @catch (NSException *exception) {
+        
+    } @finally {
+        return YES;
+    }
 }
 
 @end

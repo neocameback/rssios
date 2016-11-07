@@ -40,6 +40,8 @@
     [self.myPlayer hideDownloadButton:YES];
     [self loadDefaultSubtitle];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
+    
+    [self updateSubtitleLabel];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -56,6 +58,19 @@
     if (self.myPlayer) {
         [self.myPlayer pause];
     }
+}
+
+- (void)updateSubtitleLabel {
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *fontName = [userDefault objectForKey:kSubtitleFont];
+    NSString *textColor = [userDefault objectForKey:kSubtitleTextColor];
+    NSInteger fontSize = [userDefault integerForKey:kSubtitleTextSize];
+    NSString *backgroundColor = [userDefault objectForKey:kSubtitleBackgroundColor];
+    CGFloat opacity = [userDefault floatForKey:kSubtitleOpacity];
+    
+    self.subtitling.label.font = [UIFont fontWithName:fontName size:fontSize];
+    self.subtitling.label.textColor = [UIColor colorWithHexString:textColor];
+    self.subtitling.label.backgroundColor = [UIColor colorWithHexString:backgroundColor opacity:opacity/100];
 }
 
 -(void)appWillResignActive:(NSNotification*)note
@@ -121,7 +136,6 @@
             ALERT_WITH_TITLE(@"Error", @"Subtitle is not available!");
         }
         
-        self.subtitling.containerView.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.5].CGColor;
         [self.myPlayer hideCaptionButton:NO];
         viewSubtitle.hidden = NO;
     } else {

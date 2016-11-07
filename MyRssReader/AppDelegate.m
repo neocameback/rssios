@@ -101,6 +101,7 @@ static NSString *const kPrefEnableMediaNotifications =
      object:nil];
     [self setupRootViewController];
     [self setCustomUserAgent];
+    [self setupDefaultValues];
     
     [self.window makeKeyAndVisible];
         
@@ -124,6 +125,29 @@ static NSString *const kPrefEnableMediaNotifications =
     NSString *userAgent = [Common getDefaultUserAgent];
     NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:userAgent, @"UserAgent", nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
+}
+
+- (void)setupDefaultValues {
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    
+    /// check if default values have been set or not
+    if (![userDefault objectForKey:kSubtitleFont]) {
+        [self resetToDefaultValues];
+    }
+}
+
+- (void)resetToDefaultValues {
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setObject:@"Verdana" forKey:kSubtitleFont];
+    [userDefault setObject:@"ffffff" forKey:kSubtitleTextColor];
+    if (isPhone) {
+        [userDefault setInteger:17 forKey:kSubtitleTextSize];
+    } else {
+        [userDefault setInteger:19 forKey:kSubtitleTextSize];
+    }
+    [userDefault setObject:@"000000" forKey:kSubtitleBackgroundColor];
+    [userDefault setFloat:50.0 forKey:kSubtitleOpacity];
+    [userDefault synchronize];
 }
 
 #pragma mark Add these methods to control the visibility of the mini controller:

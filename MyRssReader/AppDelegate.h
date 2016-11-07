@@ -19,6 +19,7 @@ extern NSString *const kPrefPreloadTime;
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) RSSDrawerController *drawerController;
 @property (nonatomic) BOOL castControlBarsEnabled;
+- (void)resetToDefaultValues;
 @end
 
 #define appDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)

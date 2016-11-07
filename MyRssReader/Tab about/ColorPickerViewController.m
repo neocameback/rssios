@@ -22,7 +22,7 @@ static NSString *identifier = @"ColorPickerCollectionViewCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _colors = @[@"ffffff", @"000000", @"c80000", @"00c800", @"0000c8", @"eedc00", @"d60080", @"009fda"];
+    _colors = @[@"ffffff", @"000000", @"BA0C34", @"00c800", @"0000c8", @"eedc00", @"d60080", @"009fda"];
     [_collectionView registerNib:[UINib nibWithNibName:identifier bundle:nil]
       forCellWithReuseIdentifier:identifier];
 }
