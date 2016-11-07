@@ -24,6 +24,7 @@
     self.nodeLink = temp.nodeLink;
     self.nodeType = temp.nodeType;
     self.isDeletedFlag = temp.isDeletedFlag;
+    self.castable = [NSNumber numberWithBool:temp.castable];
     
     NSMutableArray *tempArray = [NSMutableArray array];
     for (MWFeedItemSubTitle *sub in temp.subtitles) {

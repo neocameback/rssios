@@ -167,7 +167,7 @@
     if ([Common typeOfNode:node.nodeType] == NODE_TYPE_MP4) {
         mediaInfo = [[GCKMediaInformation alloc] initWithContentID:node.nodeUrl
                                                         streamType:GCKMediaStreamTypeBuffered
-                                                       contentType:node.nodeType
+                                                       contentType:@"video/mp4"
                                                           metadata:metadata
                                                     streamDuration:0
                                                        mediaTracks:tracks

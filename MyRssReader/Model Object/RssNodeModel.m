@@ -13,7 +13,7 @@
 #import "Node.h"
 
 @implementation RssNodeModel
-@synthesize bookmarkStatus, isAddedToBoomark, nodeImage, nodeSource, nodeTitle, nodeDesc, nodeType, nodeUrl;
+@synthesize bookmarkStatus, isAddedToBoomark, castable, nodeImage, nodeSource, nodeTitle, nodeDesc, nodeType, nodeUrl;
 -(id) initWithFeedItem:(MWFeedItem*) item
 {
     self = [super init];
@@ -22,9 +22,16 @@
     self.nodeTitle = item.title;
     self.nodeDesc = item.summary; //[item.summary stringByConvertingHTMLToPlainText];
     self.nodeLink = item.link;
+    
     if (item.enclosures.count > 0) {
         self.nodeType = item.enclosures[0][@"type"];
         self.nodeUrl = item.enclosures[0][@"url"];
+        NSString *canCast = item.enclosures[0][@"castable"];
+        if (canCast && [canCast isEqualToString:@"true"]) {
+            self.castable = TRUE;
+        } else {
+            self.castable = FALSE;
+        }
     }
     /**
      *  get node thumbnail from media:thumbnail
@@ -60,6 +67,7 @@
 {
     self = [super init];
     self.bookmarkStatus = rssNode.bookmarkStatus;
+    self.castable = rssNode.castableValue;
     self.nodeTitle = rssNode.nodeTitle;
     self.nodeDesc = rssNode.nodeDesc;
     self.nodeLink = rssNode.nodeLink;
@@ -85,6 +93,7 @@
 {
     self = [super init];
     self.bookmarkStatus = rssNode.bookmarkStatus;
+    self.castable = rssNode.castableValue;
     self.nodeTitle = rssNode.nodeTitle;
     self.nodeDesc = rssNode.nodeDesc;
     self.nodeLink = rssNode.nodeLink;

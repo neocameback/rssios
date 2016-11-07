@@ -288,9 +288,15 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
         }
             break;
         case NODE_TYPE_VIDEO: {
-            AirPlayerViewController *viewcontroller = [[AirPlayerViewController alloc] init];
-            [viewcontroller setCurrentNode:self.currentNode];
-            [self presentViewController:viewcontroller animated:YES completion:nil];
+            BOOL hasConnectedCastSession =
+            [GCKCastContext sharedInstance].sessionManager.hasConnectedCastSession;
+            if (hasConnectedCastSession && self.currentNode.castable) {
+                [self castMediaInfo:[Common mediaInformationFromNode:self.currentNode]];
+            } else {
+                AirPlayerViewController *viewcontroller = [[AirPlayerViewController alloc] init];
+                [viewcontroller setCurrentNode:self.currentNode];
+                [self presentViewController:viewcontroller animated:YES completion:nil];
+            }
             
         }
             break;

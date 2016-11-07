@@ -877,7 +877,7 @@
 	
 	// Create enclosure
 	NSDictionary *enclosure = nil;
-	NSString *encURL = nil, *encType = nil;
+	NSString *encURL = nil, *encType = nil, *castable = @"";
 	NSNumber *encLength = nil;
 	if (attributes) {
 		switch (feedType) {
@@ -885,6 +885,7 @@
 				// <enclosure>
 				encURL = [attributes objectForKey:@"url"];
 				encType = [attributes objectForKey:@"type"];
+                castable = [attributes objectForKey:@"castable"];
 				encLength = [NSNumber numberWithLongLong:[((NSString *)[attributes objectForKey:@"length"]) longLongValue]];
 				break;
 			}
@@ -908,10 +909,13 @@
 		}
 	}
 	if (encURL) {
-		NSMutableDictionary *e = [[NSMutableDictionary alloc] initWithCapacity:3];
+		NSMutableDictionary *e = [[NSMutableDictionary alloc] init];
 		[e setObject:encURL forKey:@"url"];
 		if (encType) [e setObject:encType forKey:@"type"];
 		if (encLength) [e setObject:encLength forKey:@"length"];
+        if (castable) {
+            [e setObject:castable forKey:@"castable"];
+        }
 		enclosure = [NSDictionary dictionaryWithDictionary:e];
 	}
 					 

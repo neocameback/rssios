@@ -24,7 +24,7 @@
     self.nodeUrl = temp.nodeUrl;
     self.nodeType = temp.nodeType;
     self.isDeletedFlag = temp.isDeletedFlag;
-    
+    self.castable = [NSNumber numberWithBool:temp.castable];
     NSMutableArray *tempArray = [NSMutableArray array];
     for (MWFeedItemSubTitle *sub in temp.subtitles) {
         Subtitle *subtitle = [Subtitle MR_createEntity];

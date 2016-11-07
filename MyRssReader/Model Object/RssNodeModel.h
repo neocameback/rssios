@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString * nodeType;
 @property (nonatomic, retain) NSString * nodeUrl;
 @property (nonatomic, retain) NSNumber * isAddedToBoomark;
+@property (nonatomic) BOOL castable;
 @property (nonatomic, retain) NSNumber * isDeletedFlag;
 @property (nonatomic, retain) NSArray * subtitles;
 

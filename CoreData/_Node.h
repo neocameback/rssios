@@ -24,6 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSString* bookmarkStatus;
 
+@property (nonatomic, strong, nullable) NSNumber* castable;
+
+@property (atomic) BOOL castableValue;
+- (BOOL)castableValue;
+- (void)setCastableValue:(BOOL)value_;
+
 @property (nonatomic, strong, nullable) NSDate* createdAt;
 
 @property (nonatomic, strong, nullable) NSNumber* isAddedToBoomark;
@@ -79,6 +85,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString*)primitiveBookmarkStatus;
 - (void)setPrimitiveBookmarkStatus:(nullable NSString*)value;
 
+- (nullable NSNumber*)primitiveCastable;
+- (void)setPrimitiveCastable:(nullable NSNumber*)value;
+
+- (BOOL)primitiveCastableValue;
+- (void)setPrimitiveCastableValue:(BOOL)value_;
+
 - (nullable NSDate*)primitiveCreatedAt;
 - (void)setPrimitiveCreatedAt:(nullable NSDate*)value;
 
@@ -125,6 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NodeAttributes: NSObject 
 + (NSString *)bookmarkStatus;
++ (NSString *)castable;
 + (NSString *)createdAt;
 + (NSString *)isAddedToBoomark;
 + (NSString *)isDeletedFlag;

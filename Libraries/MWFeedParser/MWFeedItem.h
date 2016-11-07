@@ -41,7 +41,6 @@
 	NSString *content; // More detailed content (if available)
 	NSString *author; // Item author
     NSString* bookmarkStatus;
-
 	// Enclosures: Holds 1 or more item enclosures (i.e. podcasts, mp3. pdf, etc)
 	//  - NSArray of NSDictionaries with the following keys:
 	//     url: where the enclosure is located (NSString)

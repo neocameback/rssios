@@ -228,7 +228,9 @@
 -(void) myCustomPlayer:(MyCustomerPlayer *) playerView didFailWithError:(NSError *) error
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
     [alertController addAction:cancelAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
@@ -237,18 +239,38 @@
     BOOL hasConnectedCastSession =
     [GCKCastContext sharedInstance].sessionManager.hasConnectedCastSession;
     
-    if (hasConnectedCastSession && [Common typeOfNode:self.currentNode.nodeType] == NODE_TYPE_MP4) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Chrome Cast" message:@"Cast your video to Chrome Cast" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Cast now" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self castMediaInfo:[Common mediaInformationFromNode:self.currentNode]];
-        }];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        }];
-        [alertController addAction:okAction];
-        [alertController addAction:cancelAction];
-        return NO;
-    } else {
-        return YES;
+    switch ([Common typeOfNode:self.currentNode.nodeType]) {
+        case NODE_TYPE_MP4:
+            if (hasConnectedCastSession) {
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Chrome Cast" message:@"Cast your video to Chrome Cast" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Cast now" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self castMediaInfo:[Common mediaInformationFromNode:self.currentNode]];
+                }];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                }];
+                [alertController addAction:okAction];
+                [alertController addAction:cancelAction];
+                return NO;
+            } else {
+                return YES;
+            }
+        case NODE_TYPE_VIDEO:
+            if (hasConnectedCastSession && self.currentNode.castable) {
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Chrome Cast" message:@"Cast your video to Chrome Cast" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Cast now" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self castMediaInfo:[Common mediaInformationFromNode:self.currentNode]];
+                }];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                }];
+                [alertController addAction:okAction];
+                [alertController addAction:cancelAction];
+                return NO;
+            } else {
+                return YES;
+            }
+            break;
+        default:
+            return YES;
     }
 }
 
