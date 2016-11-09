@@ -21,17 +21,14 @@
 #define kDefaultRssUrl      @"http://rssvideochannel.com/sample.xml"
 #define kDefaultMd5Prefix   @"RssVideoChannel-Hanoi102016-"
 
-#define kDefaultShareTitle  @"Rss video channel\nhttp://rssvideochannel.com/"
-#define kAboutUrl           @"http://rssvideochannel.com/about.html"
+#define kRssVideoChannelLink @"http://rssvideochannel.com/"
+#define kDefaultShareTitle  @"Rss Channel"
+#define kAboutUrl           @"http://rssvideochannel.com/"
 #define POST_HANDLE_URL     @"http://rssvideochannel.com/api/crawl.php"
 
-#define kGoogleAnalyticId   @"UA-51537954-1"
-
-#define kLargeAdUnitId  @"ca-app-pub-8422191650855912/4957456186"
-
-#define kBannerAdUnitID     @"ca-app-pub-8422191650855912/2270603386"
-#define kBannerAdUnitID2    @"ca-app-pub-8422191650855912/3747336585"
-#define kBannerAdUnitID3    @"ca-app-pub-8422191650855912/5084468982"
+#define kGoogleAnalyticId   @"UA-86671215-1"
+#define kLargeAdUnitId  @"ca-app-pub-1068799720384462/6100940637"
+#define kBannerAdUnitID     @"ca-app-pub-1068799720384462/3147474235"
 
 #define kStringLoading  @"Loading"
 #define kStringLoadingTapToCancel  @"Loading...\n(Tap to cancel)"

@@ -177,7 +177,8 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)onShare:(id)sender {
-    UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[kDefaultShareTitle] applicationActivities:nil];
+    NSURL *shareUrl = [NSURL URLWithString:kRssVideoChannelLink];
+    UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[kDefaultShareTitle, shareUrl] applicationActivities:nil];
     
     NSArray *excludedActivities = nil;
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {

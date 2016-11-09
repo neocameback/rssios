@@ -104,11 +104,9 @@
         [request setValue:userAgent forHTTPHeaderField:@"User-Agent"];
     }
     [request setTimeoutInterval:kRequestTimeOut];
-    NSString *uidString = [NSString stringWithFormat:@"RSSPLAYER2016-%@-%@",url,ipAddres];
+    NSString *uidString = [NSString stringWithFormat:@"w#Q6Ytzg9^2htklrUQufpKOEv3*9N_%@_RssChannel",ipAddres];
     NSString *md5String = [uidString MD5String];
     [request setValue:md5String forHTTPHeaderField:@"UID"];
-    [request setValue:@"2.0" forHTTPHeaderField:@"VERSION"];
-    [request setValue:ipAddres forHTTPHeaderField:@"IPADDRESS"];
     [request setHTTPMethod:method];
     [request setURL:url];
     

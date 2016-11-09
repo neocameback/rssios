@@ -32,7 +32,10 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ixf-KI-iCQ">
-                    <state key="normal" image="plus.png"/>
+                    <size key="titleShadowOffset" width="5" height="5"/>
+                    <state key="normal" image="plus.png">
+                        <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
                         <action selector="onAddNewChannel:" destination="-1" eventType="touchUpInside" id="zMn-F9-FMu"/>
                     </connections>
@@ -43,10 +46,10 @@
                 <constraint firstAttribute="centerX" secondItem="vAL-Fv-uEp" secondAttribute="centerX" id="3Nt-Dg-ofL"/>
                 <constraint firstAttribute="trailing" secondItem="Itg-3l-bau" secondAttribute="trailing" id="D9L-ns-A9T"/>
                 <constraint firstAttribute="trailing" secondItem="vAL-Fv-uEp" secondAttribute="trailing" id="LKQ-Sf-rze"/>
+                <constraint firstAttribute="trailing" secondItem="Ixf-KI-iCQ" secondAttribute="trailing" constant="20" id="NdE-ND-3YA"/>
                 <constraint firstAttribute="bottom" secondItem="vAL-Fv-uEp" secondAttribute="bottom" id="ZC8-nS-mpR"/>
-                <constraint firstItem="Ixf-KI-iCQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aKw-lt-Z78"/>
                 <constraint firstItem="vAL-Fv-uEp" firstAttribute="top" secondItem="Itg-3l-bau" secondAttribute="bottom" id="bFc-vo-3D3"/>
-                <constraint firstAttribute="bottom" secondItem="Ixf-KI-iCQ" secondAttribute="bottom" constant="15" id="hcD-ke-7Xd"/>
+                <constraint firstAttribute="bottom" secondItem="Ixf-KI-iCQ" secondAttribute="bottom" constant="20" id="hcD-ke-7Xd"/>
                 <constraint firstItem="Itg-3l-bau" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kvu-kf-V6o"/>
                 <constraint firstItem="Itg-3l-bau" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wI4-gz-vsc"/>
                 <constraint firstItem="vAL-Fv-uEp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="x78-iI-Wtl"/>
@@ -54,7 +57,7 @@
         </view>
     </objects>
     <resources>
-        <image name="plus.png" width="50" height="50"/>
+        <image name="plus.png" width="44" height="44"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -43,44 +43,31 @@
 -(void) getWebContent
 {
     [SVProgressHUD showWithStatus:kStringLoading];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.webPageUrl]];
-    [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
-    [request setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *content = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        
-        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
-        NSDictionary *parameters = @{@"url": self.webPageUrl, @"file": content ?: @""};
-        
-        [manager POST:POST_HANDLE_URL
-           parameters:parameters
-              success:^(NSURLSessionDataTask *task, id responseObject) {
-                  if (!self.nodeList) {
-                      self.nodeList = [NSMutableArray array];
-                  }
-                  for (NSDictionary *item in responseObject[@"files"]) {
-                      RssNodeModel *tempNode = [[RssNodeModel alloc] initWithFile:item];
-                      [self.nodeList addObject:tempNode];
-                  }
-                  [self.tableView reloadData];
-                  [SVProgressHUD dismiss];
-              }
-              failure:^(NSURLSessionDataTask *task, NSError *error) {
-                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-                  [alert show];
-                  [self.navigationController popViewControllerAnimated:YES];
-                  [SVProgressHUD dismiss];
-              }];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        [self.navigationController popViewControllerAnimated:YES];
-        [SVProgressHUD dismiss];
-    }];
-    [operation start];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+    NSDictionary *parameters = @{@"url": self.webPageUrl};
+    
+    [manager GET:POST_HANDLE_URL
+      parameters:parameters
+         success:^(NSURLSessionDataTask *task, id responseObject) {
+             if (!self.nodeList) {
+                 self.nodeList = [NSMutableArray array];
+             }
+             for (NSDictionary *item in responseObject[@"files"]) {
+                 RssNodeModel *tempNode = [[RssNodeModel alloc] initWithFile:item];
+                 [self.nodeList addObject:tempNode];
+             }
+             [self.tableView reloadData];
+             [SVProgressHUD dismiss];
+         }
+         failure:^(NSURLSessionDataTask *task, NSError *error) {
+             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+             [alert show];
+             [self.navigationController popViewControllerAnimated:YES];
+             [SVProgressHUD dismiss];
+         }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -17,7 +17,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import "JDStatusBarNotification.h"
 #import "DownloadManager.h"
-#import <Firebase.h>
+//#import <Firebase.h>
 #import <GoogleCast/GoogleCast.h>
 #import "RssListViewController.h"
 #import "RSSDrawerController.h"
@@ -49,7 +49,7 @@ static NSString *const kPrefEnableMediaNotifications =
 {
     
     // Use Firebase library to configure APIs
-    [FIRApp configure];
+//    [FIRApp configure];
     
     [Fabric with:@[[Crashlytics class]]];
 
