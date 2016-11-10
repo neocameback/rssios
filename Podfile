@@ -22,7 +22,5 @@ pod 'MMDrawerController', '~> 0.6'
 pod 'Fabric'
 pod 'Crashlytics'
 
-pod 'Firebase/Core'
-pod 'Firebase/AdMob'
 pod 'google-cast-sdk', '~> 3.2'
 end
