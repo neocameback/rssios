@@ -25,7 +25,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -50,7 +50,7 @@
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>We would like to connect to ChromeCast</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>We would like to use your Microphone for better user's experience</string>
+	<string>We would like to use your Microphone for better user&apos;s experience</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIRequiredDeviceCapabilities</key>

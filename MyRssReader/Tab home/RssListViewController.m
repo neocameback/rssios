@@ -224,6 +224,7 @@
      *  if tableView isEditing, so display Promt for user to edit the RSS Channel
      */
     if (tableView.isEditing) {
+        editingIndex = indexPath.row;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Edit Channel" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
         [alert setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
         [[alert textFieldAtIndex:0] setPlaceholder:@"Put rss name here."];
