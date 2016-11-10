@@ -43,7 +43,7 @@
     GCKUICastButton *castButton = [[GCKUICastButton alloc] initWithFrame:frame];
     castButton.tintColor = [UIColor whiteColor];
     
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_pencil"] style:UIBarButtonItemStylePlain target:self action:@selector(onEdit)];
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_edit"] style:UIBarButtonItemStylePlain target:self action:@selector(onEdit)];
     UIBarButtonItem *castBarButton = [[UIBarButtonItem alloc] initWithCustomView:castButton];
     self.navigationItem.rightBarButtonItems = @[editButton, castBarButton];
     
@@ -160,7 +160,11 @@
 #pragma mark UITableViewDataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 70;
+    if (section == 0) {
+        return 20;
+    } else {
+        return 70;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -169,9 +173,17 @@
     return view;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.rssList.count;
+    if (section == 0) {
+        return self.rssList.count;
+    } else {
+        return 1;
+    }
 }
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -180,7 +192,15 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    cell.textLabel.text = [self.rssList[indexPath.row] rssTitle];
+    if (indexPath.section == 0) {
+        cell.textLabel.text = [self.rssList[indexPath.row] rssTitle];
+        cell.textLabel.textAlignment = NSTextAlignmentLeft;
+        cell.textLabel.textColor = [UIColor blackColor];
+    } else {
+        cell.textLabel.text = @"Add new rss";
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.textLabel.textColor = kNavigationColor;
+    }
     return cell;
 }
 
@@ -188,6 +208,12 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == 1) {
+        // add new rss
+        [self onAddNewChannel:nil];
+        return;
+    }
     
     /**
      *  retrieve the cached RSS
@@ -277,7 +303,10 @@
 
 -(BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
+    if (indexPath.section == 0) {
+        return YES;
+    }
+    return NO;
 }
 -(UITableViewCellEditingStyle) tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {

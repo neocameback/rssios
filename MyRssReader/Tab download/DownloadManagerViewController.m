@@ -37,11 +37,14 @@
     [self.searchDisplayController.searchResultsTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     self.enableCastFunction = YES;
+    
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_edit"] style:UIBarButtonItemStylePlain target:self action:@selector(onEdit)];
+    
     CGRect frame = CGRectMake(0, 0, 24, 24);
     GCKUICastButton *castButton = [[GCKUICastButton alloc] initWithFrame:frame];
     castButton.tintColor = [UIColor whiteColor];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:castButton];
-    self.navigationItem.rightBarButtonItem = item;
+    UIBarButtonItem *castBarButton = [[UIBarButtonItem alloc] initWithCustomView:castButton];
+    self.navigationItem.rightBarButtonItems = @[editButton, castBarButton];
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_menu"] style:UIBarButtonItemStylePlain target:self action:@selector(onShowSideMenu:)];
     
@@ -85,6 +88,14 @@
             }];
         }
             break;
+    }
+}
+
+- (void)onEdit {
+    if (_tableView.isEditing) {
+        [_tableView setEditing:NO];
+    } else {
+        [_tableView setEditing:YES];
     }
 }
 
@@ -164,18 +175,16 @@
     if (file.stateValue == DownloadStateCompleted) {
         cell.delegate = self;
         __weak typeof(self) wself = self;
-        cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"Delete" backgroundColor:[UIColor redColor] callback:^BOOL(MGSwipeTableCell *sender) {
-            [wself onDeleteDownloadededFileAtIndex:indexPath];
-            return YES;
-        }],
-                              [MGSwipeButton buttonWithTitle:@"Rename" backgroundColor:[UIColor lightGrayColor] callback:^BOOL(MGSwipeTableCell *sender) {
+        cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"Rename"
+                                             backgroundColor:[UIColor lightGrayColor]
+                                                    callback:^BOOL(MGSwipeTableCell *sender) {
                                   [wself onEditDownloadededFileAtIndex:indexPath];
                                   return YES;
                               }]];
         cell.rightSwipeSettings.transition = MGSwipeTransitionStatic;
     }else{
         cell.delegate = nil;
-        cell.rightButtons = nil;
+        cell.rightButtons = @[];
     }
     
     return cell;
@@ -205,6 +214,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self onDeleteDownloadededFileAtIndex:indexPath];
+}
 #pragma mark continueAtCurrentPath after present interstital ads
 -(void) continueAtCurrentPath
 {
