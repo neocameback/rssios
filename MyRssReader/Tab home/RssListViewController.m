@@ -43,7 +43,7 @@
     GCKUICastButton *castButton = [[GCKUICastButton alloc] initWithFrame:frame];
     castButton.tintColor = [UIColor whiteColor];
     
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(onEdit)];
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_pencil"] style:UIBarButtonItemStylePlain target:self action:@selector(onEdit)];
     UIBarButtonItem *castBarButton = [[UIBarButtonItem alloc] initWithCustomView:castButton];
     self.navigationItem.rightBarButtonItems = @[editButton, castBarButton];
     

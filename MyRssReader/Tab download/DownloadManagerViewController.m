@@ -151,7 +151,6 @@
     DownloadManageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"DownloadManageTableViewCell" owner:self options:nil] firstObject];
-        [cell setSeparatorInset:UIEdgeInsetsMake(0, 8, 0, 0)];
     }
     
     File *file = nil;

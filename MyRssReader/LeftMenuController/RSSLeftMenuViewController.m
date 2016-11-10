@@ -32,7 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.data = [NSMutableArray arrayWithArray:@[@"Channels", @"Favorite", @"Download", @"Settings"]];
+    self.data = [NSMutableArray arrayWithArray:@[@"Channel", @"Favorite", @"Download", @"Setting"]];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 

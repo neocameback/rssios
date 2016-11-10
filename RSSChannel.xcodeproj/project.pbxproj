@@ -28,6 +28,13 @@
 		422D00651DC25CF600964DC5 /* plus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 422D00621DC25CF600964DC5 /* plus@3x.png */; };
 		422D00661DC25CF600964DC5 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 422D00631DC25CF600964DC5 /* plus.png */; };
 		422D00671DC25CF600964DC5 /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 422D00641DC25CF600964DC5 /* plus@2x.png */; };
+		422E3E511DD43AF00074B750 /* icon_pencil@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 422E3E4E1DD43AF00074B750 /* icon_pencil@2x.png */; };
+		422E3E521DD43AF00074B750 /* icon_pencil@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 422E3E4F1DD43AF00074B750 /* icon_pencil@3x.png */; };
+		422E3E531DD43AF00074B750 /* icon_pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = 422E3E501DD43AF00074B750 /* icon_pencil.png */; };
+		422E3E571DD43B2A0074B750 /* icon_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 422E3E541DD43B2A0074B750 /* icon_back.png */; };
+		422E3E581DD43B2A0074B750 /* icon_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 422E3E551DD43B2A0074B750 /* icon_back@2x.png */; };
+		422E3E591DD43B2A0074B750 /* icon_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 422E3E561DD43B2A0074B750 /* icon_back@3x.png */; };
+		422E3E5C1DD43D180074B750 /* UIViewController+EmptyBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 422E3E5B1DD43D180074B750 /* UIViewController+EmptyBackButton.m */; };
 		423A39371DB5160C00B646AD /* LocalPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 423A39351DB5160C00B646AD /* LocalPlayerViewController.m */; };
 		423A39381DB5160C00B646AD /* LocalPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 423A39361DB5160C00B646AD /* LocalPlayerViewController.xib */; };
 		427FB9C91DB9A770002A30E6 /* RSSDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427FB9C81DB9A770002A30E6 /* RSSDrawerController.m */; };
@@ -174,6 +181,14 @@
 		422D00621DC25CF600964DC5 /* plus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus@3x.png"; sourceTree = "<group>"; };
 		422D00631DC25CF600964DC5 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
 		422D00641DC25CF600964DC5 /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus@2x.png"; sourceTree = "<group>"; };
+		422E3E4E1DD43AF00074B750 /* icon_pencil@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pencil@2x.png"; sourceTree = "<group>"; };
+		422E3E4F1DD43AF00074B750 /* icon_pencil@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pencil@3x.png"; sourceTree = "<group>"; };
+		422E3E501DD43AF00074B750 /* icon_pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_pencil.png; sourceTree = "<group>"; };
+		422E3E541DD43B2A0074B750 /* icon_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_back.png; sourceTree = "<group>"; };
+		422E3E551DD43B2A0074B750 /* icon_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_back@2x.png"; sourceTree = "<group>"; };
+		422E3E561DD43B2A0074B750 /* icon_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_back@3x.png"; sourceTree = "<group>"; };
+		422E3E5A1DD43D180074B750 /* UIViewController+EmptyBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+EmptyBackButton.h"; sourceTree = "<group>"; };
+		422E3E5B1DD43D180074B750 /* UIViewController+EmptyBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+EmptyBackButton.m"; sourceTree = "<group>"; };
 		423A39341DB5160C00B646AD /* LocalPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalPlayerViewController.h; sourceTree = "<group>"; };
 		423A39351DB5160C00B646AD /* LocalPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalPlayerViewController.m; sourceTree = "<group>"; };
 		423A39361DB5160C00B646AD /* LocalPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalPlayerViewController.xib; sourceTree = "<group>"; };
@@ -710,6 +725,12 @@
 		DEB54D731933344800EC589E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				422E3E541DD43B2A0074B750 /* icon_back.png */,
+				422E3E551DD43B2A0074B750 /* icon_back@2x.png */,
+				422E3E561DD43B2A0074B750 /* icon_back@3x.png */,
+				422E3E4E1DD43AF00074B750 /* icon_pencil@2x.png */,
+				422E3E4F1DD43AF00074B750 /* icon_pencil@3x.png */,
+				422E3E501DD43AF00074B750 /* icon_pencil.png */,
 				422D00621DC25CF600964DC5 /* plus@3x.png */,
 				422D00631DC25CF600964DC5 /* plus.png */,
 				422D00641DC25CF600964DC5 /* plus@2x.png */,
@@ -758,6 +779,8 @@
 		DEB5F0D71932D7B7008922E5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				422E3E5A1DD43D180074B750 /* UIViewController+EmptyBackButton.h */,
+				422E3E5B1DD43D180074B750 /* UIViewController+EmptyBackButton.m */,
 				DEB5F0DB1932D854008922E5 /* Categories.h */,
 				DEB5F0DC1932D854008922E5 /* Categories.m */,
 				B6A1CC341D17FA2C0026430B /* NSDictionary+Helper.h */,
@@ -892,6 +915,7 @@
 				DE22E7C3192F54180005E685 /* InfoPlist.strings in Resources */,
 				DE1AE55C1B8DA40B008C44F8 /* NodeListViewController.xib in Resources */,
 				B6B4A3811D140B4B0000DD02 /* AirPlayerViewController.xib in Resources */,
+				422E3E531DD43AF00074B750 /* icon_pencil.png in Resources */,
 				B6B4A3741D13E20D0000DD02 /* icon_tick@3x.png in Resources */,
 				DE1AE5631B8DA40B008C44F8 /* ManageRssViewController.xib in Resources */,
 				DEB54D7D193336BE00EC589E /* rate_star_0@2x.png in Resources */,
@@ -907,6 +931,7 @@
 				DE1AE55F1B8DA40B008C44F8 /* RssListViewController.xib in Resources */,
 				DE9D4555193C57000006047E /* Default@2x.png in Resources */,
 				DE1AE5581B8DA40B008C44F8 /* BookmarkViewController.xib in Resources */,
+				422E3E521DD43AF00074B750 /* icon_pencil@3x.png in Resources */,
 				42A9A0971DC1A0A700DAA241 /* blow-breeze-ep18.vtt in Resources */,
 				DE1B5B42194B0EA000A4B5D9 /* icon_default@2x.png in Resources */,
 				DE9D4554193C57000006047E /* Default.png in Resources */,
@@ -916,6 +941,8 @@
 				DEB54D7F193336BE00EC589E /* rate_star_1@2x.png in Resources */,
 				E5D3B9941D11ABA100F3E400 /* download-arrow@3x.png in Resources */,
 				DE1AE54B1B8DA40B008C44F8 /* BaseViewController.xib in Resources */,
+				422E3E581DD43B2A0074B750 /* icon_back@2x.png in Resources */,
+				422E3E591DD43B2A0074B750 /* icon_back@3x.png in Resources */,
 				DE1F7E001B73064900C53E95 /* Launch Screen.xib in Resources */,
 				DE17B2C31B7C7C2800905EEE /* icon_check_status@2x.png in Resources */,
 				E5AA3F951D1FDE91000B7B37 /* SubtitleSelectionViewController.xib in Resources */,
@@ -928,10 +955,12 @@
 				B65A73001D19542900504151 /* closed-caption.png in Resources */,
 				DE22E7CB192F54180005E685 /* Images.xcassets in Resources */,
 				422D00651DC25CF600964DC5 /* plus@3x.png in Resources */,
+				422E3E511DD43AF00074B750 /* icon_pencil@2x.png in Resources */,
 				DEB54D7C193336BE00EC589E /* rate_star_0.png in Resources */,
 				B65A73021D19542900504151 /* closed-caption@3x.png in Resources */,
 				DEB54D7E193336BE00EC589E /* rate_star_1.png in Resources */,
 				422D00661DC25CF600964DC5 /* plus.png in Resources */,
+				422E3E571DD43B2A0074B750 /* icon_back.png in Resources */,
 				B6B4A3911D140C800000DD02 /* ic_player_play.png in Resources */,
 				B6B4A3721D13E20D0000DD02 /* icon_tick.png in Resources */,
 				DE17B2C41B7C7C2800905EEE /* icon_check_status@3x.png in Resources */,
@@ -1080,6 +1109,7 @@
 				DE1AE56D1B8DA567008C44F8 /* RssModel.m in Sources */,
 				422D00611DC2578900964DC5 /* UIColor+Helper.m in Sources */,
 				DE22E7C5192F54180005E685 /* main.m in Sources */,
+				422E3E5C1DD43D180074B750 /* UIViewController+EmptyBackButton.m in Sources */,
 				427FB9C91DB9A770002A30E6 /* RSSDrawerController.m in Sources */,
 				DE233F6C1B70A89F00C02DD6 /* MWFeedInfo.m in Sources */,
 				DEB5F0DD1932D854008922E5 /* Categories.m in Sources */,
@@ -1264,7 +1294,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Phi Long (Q6P4VX76SF)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = Q6P4VX76SF;
+				DEVELOPMENT_TEAM = V99CJDC7PZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Libraries",
@@ -1319,8 +1349,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = app.com.rssvideochannel;
 				PRODUCT_NAME = "Rss Channel";
-				PROVISIONING_PROFILE = "a99d65da-71a9-4cca-87f8-81936ec537c5";
-				PROVISIONING_PROFILE_SPECIFIER = rss_submit_distribution_provisioning;
+				PROVISIONING_PROFILE = "044815c8-9413-430c-b4d8-1370df288911";
+				PROVISIONING_PROFILE_SPECIFIER = RssChannel_dis;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
