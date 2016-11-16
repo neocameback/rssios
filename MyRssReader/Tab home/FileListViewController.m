@@ -44,7 +44,7 @@
 {
     [SVProgressHUD showWithStatus:kStringLoading];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.webPageUrl]];
-    [request setValue:kUserAgent forHTTPHeaderField:@"User-Agent"];
+    [request setValue:[Common getDefaultUserAgent] forHTTPHeaderField:@"User-Agent"];
     [request setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];    
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {

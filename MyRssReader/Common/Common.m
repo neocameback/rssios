@@ -164,7 +164,7 @@
     }
     GCKMediaTextTrackStyle *trackStyle = [GCKMediaTextTrackStyle createDefault];
     GCKMediaInformation *mediaInfo = nil;
-    if ([Common typeOfNode:node.nodeType] == NODE_TYPE_MP4) {
+    if ([Common typeOfNode:node.nodeType] == NODE_TYPE_MP4 || ([Common typeOfNode:node.nodeType] == NODE_TYPE_VIDEO && node.castable)) {
         mediaInfo = [[GCKMediaInformation alloc] initWithContentID:node.nodeUrl
                                                         streamType:GCKMediaStreamTypeBuffered
                                                        contentType:@"video/mp4"
