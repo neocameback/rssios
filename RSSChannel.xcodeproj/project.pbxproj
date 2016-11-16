@@ -859,7 +859,7 @@
 				ORGANIZATIONNAME = Huyns;
 				TargetAttributes = {
 					DE22E7B4192F54180005E685 = {
-						DevelopmentTeam = V99CJDC7PZ;
+						DevelopmentTeam = 67EJR5E744;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1222,7 +1222,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Q6P4VX76SF;
+				DEVELOPMENT_TEAM = 67EJR5E744;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Libraries",
@@ -1276,10 +1276,10 @@
 					Social,
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.com.rssvideochannel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rssvideochannel.app.ios;
 				PRODUCT_NAME = "Rss Channel";
-				PROVISIONING_PROFILE = "fa3fc711-6e8c-4e2f-8a47-f6bcec1e6d0f";
-				PROVISIONING_PROFILE_SPECIFIER = rss_dev_provisioning;
+				PROVISIONING_PROFILE = "5e655791-f5db-48ad-b59c-3b5376eef2b9";
+				PROVISIONING_PROFILE_SPECIFIER = rsschannel_dev;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1294,7 +1294,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Phi Long (Q6P4VX76SF)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = V99CJDC7PZ;
+				DEVELOPMENT_TEAM = 67EJR5E744;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Libraries",
@@ -1347,10 +1347,10 @@
 					Social,
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.com.rssvideochannel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rssvideochannel.app.ios;
 				PRODUCT_NAME = "Rss Channel";
-				PROVISIONING_PROFILE = "3b40d5c0-89d4-4fae-b8d2-ffd8ba8c298c";
-				PROVISIONING_PROFILE_SPECIFIER = RssChannel_dis;
+				PROVISIONING_PROFILE = "1512a179-4152-4979-a9b1-78dafaa28b8c";
+				PROVISIONING_PROFILE_SPECIFIER = rsschannel_dis;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

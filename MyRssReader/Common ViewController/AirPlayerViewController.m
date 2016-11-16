@@ -181,7 +181,7 @@
         [self showAlertEnterFileName];
     }];
     UIAlertAction *defaultNameAction = [UIAlertAction actionWithTitle:@"Use default" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [[DownloadManager shareManager] downloadNode:self.currentNode withName:nil fromView:self];
+        [[DownloadManager shareManager] downloadNode:self.currentNode withName:self.rssTitle fromView:self];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         

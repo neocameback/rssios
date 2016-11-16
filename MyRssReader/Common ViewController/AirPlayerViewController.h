@@ -20,5 +20,6 @@
  *  play video from node list
  */
 @property (nonatomic, strong) RssNodeModel *currentNode;
+@property (nonatomic, strong) NSString *rssTitle;
 
 @end

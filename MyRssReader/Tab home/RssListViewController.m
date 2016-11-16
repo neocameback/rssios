@@ -277,6 +277,7 @@
                 
                 NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
                 [viewcontroller setNodeList:nodeList];
+                
                 [viewcontroller setRssURL:currentRss.rssLink];
                 [viewcontroller setTitle:currentRss.rssTitle];
                 [wself.navigationController pushViewController:viewcontroller animated:YES];

@@ -290,6 +290,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
         case NODE_TYPE_VIDEO: {
             AirPlayerViewController *viewcontroller = [[AirPlayerViewController alloc] init];
             [viewcontroller setCurrentNode:self.currentNode];
+            [viewcontroller setRssTitle:self.title];
             [self presentViewController:viewcontroller animated:YES completion:nil];
             
         }
@@ -302,6 +303,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
             } else {
                 AirPlayerViewController *viewcontroller = [[AirPlayerViewController alloc] init];
                 [viewcontroller setCurrentNode:self.currentNode];
+                [viewcontroller setRssTitle:self.title];
                 [self presentViewController:viewcontroller animated:YES completion:nil];
             }
         }
@@ -432,7 +434,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * _Nonnull action) {
         RssNodeModel *node = self.nodeList[willDownloadAtIndex];
-        [[DownloadManager shareManager] downloadNode:node withName:nil fromView:self];
+        [[DownloadManager shareManager] downloadNode:node withName:self.title fromView:self];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
                                                            style:UIAlertActionStyleCancel
