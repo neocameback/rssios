@@ -859,7 +859,7 @@
 				ORGANIZATIONNAME = Huyns;
 				TargetAttributes = {
 					DE22E7B4192F54180005E685 = {
-						DevelopmentTeam = Q6P4VX76SF;
+						DevelopmentTeam = V99CJDC7PZ;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1349,7 +1349,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = app.com.rssvideochannel;
 				PRODUCT_NAME = "Rss Channel";
-				PROVISIONING_PROFILE = "044815c8-9413-430c-b4d8-1370df288911";
+				PROVISIONING_PROFILE = "3b40d5c0-89d4-4fae-b8d2-ffd8ba8c298c";
 				PROVISIONING_PROFILE_SPECIFIER = RssChannel_dis;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
