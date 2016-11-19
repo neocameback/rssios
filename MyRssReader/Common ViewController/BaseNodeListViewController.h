@@ -21,6 +21,7 @@ typedef void (^ ConfigureTableViewCellBlock) (id cell, id item);
     NSArray *searchResults;
 }
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *nodeList;
+@property (nonatomic, strong) NSString *rssTitle; // the rssTitle will be used to set as file name when download with default name
+@property (nonatomic, strong) NSMutableArray *nodeList; // nodeList will be used to display in tableView
 @property (nonatomic, strong) GADInterstitial *interstitial;
 @end

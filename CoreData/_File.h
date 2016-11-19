@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface _File : NSManagedObject
 + (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
++ (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) FileID *objectID;
 
 @property (nonatomic, strong, nullable) NSString* absoluteUrl;
@@ -84,50 +84,50 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface _File (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveAbsoluteUrl;
-- (void)setPrimitiveAbsoluteUrl:(NSString*)value;
+- (nullable NSString*)primitiveAbsoluteUrl;
+- (void)setPrimitiveAbsoluteUrl:(nullable NSString*)value;
 
-- (NSDate*)primitiveCreatedAt;
-- (void)setPrimitiveCreatedAt:(NSDate*)value;
+- (nullable NSDate*)primitiveCreatedAt;
+- (void)setPrimitiveCreatedAt:(nullable NSDate*)value;
 
-- (NSString*)primitiveDesc;
-- (void)setPrimitiveDesc:(NSString*)value;
+- (nullable NSString*)primitiveDesc;
+- (void)setPrimitiveDesc:(nullable NSString*)value;
 
-- (NSNumber*)primitiveDownloadedBytes;
-- (void)setPrimitiveDownloadedBytes:(NSNumber*)value;
+- (nullable NSNumber*)primitiveDownloadedBytes;
+- (void)setPrimitiveDownloadedBytes:(nullable NSNumber*)value;
 
 - (double)primitiveDownloadedBytesValue;
 - (void)setPrimitiveDownloadedBytesValue:(double)value_;
 
-- (NSNumber*)primitiveExpectedBytes;
-- (void)setPrimitiveExpectedBytes:(NSNumber*)value;
+- (nullable NSNumber*)primitiveExpectedBytes;
+- (void)setPrimitiveExpectedBytes:(nullable NSNumber*)value;
 
 - (double)primitiveExpectedBytesValue;
 - (void)setPrimitiveExpectedBytesValue:(double)value_;
 
-- (NSString*)primitiveName;
-- (void)setPrimitiveName:(NSString*)value;
+- (nullable NSString*)primitiveName;
+- (void)setPrimitiveName:(nullable NSString*)value;
 
-- (NSNumber*)primitiveProgress;
-- (void)setPrimitiveProgress:(NSNumber*)value;
+- (nullable NSNumber*)primitiveProgress;
+- (void)setPrimitiveProgress:(nullable NSNumber*)value;
 
 - (int16_t)primitiveProgressValue;
 - (void)setPrimitiveProgressValue:(int16_t)value_;
 
-- (NSNumber*)primitiveState;
-- (void)setPrimitiveState:(NSNumber*)value;
+- (nullable NSNumber*)primitiveState;
+- (void)setPrimitiveState:(nullable NSNumber*)value;
 
 - (int16_t)primitiveStateValue;
 - (void)setPrimitiveStateValue:(int16_t)value_;
 
-- (NSString*)primitiveThumbnail;
-- (void)setPrimitiveThumbnail:(NSString*)value;
+- (nullable NSString*)primitiveThumbnail;
+- (void)setPrimitiveThumbnail:(nullable NSString*)value;
 
-- (NSDate*)primitiveUpdatedAt;
-- (void)setPrimitiveUpdatedAt:(NSDate*)value;
+- (nullable NSDate*)primitiveUpdatedAt;
+- (void)setPrimitiveUpdatedAt:(nullable NSDate*)value;
 
-- (NSString*)primitiveUrl;
-- (void)setPrimitiveUrl:(NSString*)value;
+- (nullable NSString*)primitiveUrl;
+- (void)setPrimitiveUrl:(nullable NSString*)value;
 
 - (NSMutableOrderedSet<Subtitle*>*)primitiveSubtitles;
 - (void)setPrimitiveSubtitles:(NSMutableOrderedSet<Subtitle*>*)value;

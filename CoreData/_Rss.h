@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface _Rss : NSManagedObject
 + (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
++ (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) RssID *objectID;
 
 @property (nonatomic, strong, nullable) NSDate* createdAt;
@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (atomic) BOOL isBookmarkRssValue;
 - (BOOL)isBookmarkRssValue;
 - (void)setIsBookmarkRssValue:(BOOL)value_;
+
+@property (nonatomic, strong, nullable) NSString* originalTitle;
 
 @property (nonatomic, strong, nullable) NSString* rssLink;
 
@@ -64,29 +66,32 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface _Rss (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSDate*)primitiveCreatedAt;
-- (void)setPrimitiveCreatedAt:(NSDate*)value;
+- (nullable NSDate*)primitiveCreatedAt;
+- (void)setPrimitiveCreatedAt:(nullable NSDate*)value;
 
-- (NSNumber*)primitiveIsBookmarkRss;
-- (void)setPrimitiveIsBookmarkRss:(NSNumber*)value;
+- (nullable NSNumber*)primitiveIsBookmarkRss;
+- (void)setPrimitiveIsBookmarkRss:(nullable NSNumber*)value;
 
 - (BOOL)primitiveIsBookmarkRssValue;
 - (void)setPrimitiveIsBookmarkRssValue:(BOOL)value_;
 
-- (NSString*)primitiveRssLink;
-- (void)setPrimitiveRssLink:(NSString*)value;
+- (nullable NSString*)primitiveOriginalTitle;
+- (void)setPrimitiveOriginalTitle:(nullable NSString*)value;
 
-- (NSString*)primitiveRssTitle;
-- (void)setPrimitiveRssTitle:(NSString*)value;
+- (nullable NSString*)primitiveRssLink;
+- (void)setPrimitiveRssLink:(nullable NSString*)value;
 
-- (NSNumber*)primitiveShouldCache;
-- (void)setPrimitiveShouldCache:(NSNumber*)value;
+- (nullable NSString*)primitiveRssTitle;
+- (void)setPrimitiveRssTitle:(nullable NSString*)value;
+
+- (nullable NSNumber*)primitiveShouldCache;
+- (void)setPrimitiveShouldCache:(nullable NSNumber*)value;
 
 - (BOOL)primitiveShouldCacheValue;
 - (void)setPrimitiveShouldCacheValue:(BOOL)value_;
 
-- (NSDate*)primitiveUpdatedAt;
-- (void)setPrimitiveUpdatedAt:(NSDate*)value;
+- (nullable NSDate*)primitiveUpdatedAt;
+- (void)setPrimitiveUpdatedAt:(nullable NSDate*)value;
 
 - (NSMutableOrderedSet<RssNode*>*)primitiveNodeList;
 - (void)setPrimitiveNodeList:(NSMutableOrderedSet<RssNode*>*)value;
@@ -96,6 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RssAttributes: NSObject 
 + (NSString *)createdAt;
 + (NSString *)isBookmarkRss;
++ (NSString *)originalTitle;
 + (NSString *)rssLink;
 + (NSString *)rssTitle;
 + (NSString *)shouldCache;

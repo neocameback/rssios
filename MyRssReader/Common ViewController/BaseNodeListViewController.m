@@ -266,6 +266,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
                     [viewcontroller setNodeList:nodeList];
                     [viewcontroller setRssURL:wself.currentNode.nodeUrl];
                     [viewcontroller setTitle:wself.currentNode.nodeTitle];
+                    [viewcontroller setRssTitle:rssModel.rssTitle];
                     [wself.navigationController pushViewController:viewcontroller animated:YES];
                     
                 } failure:^(NSError *error) {
@@ -283,6 +284,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
                 [viewcontroller setNodeList:nodeList];
                 [viewcontroller setRssURL:self.currentNode.nodeUrl];
                 [viewcontroller setTitle:self.currentNode.nodeTitle];
+                [viewcontroller setRssTitle:cachedRss.originalTitle];
                 [self.navigationController pushViewController:viewcontroller animated:YES];
             }
         }
@@ -330,6 +332,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
             FileListViewController *viewcontroller =
             [Storyboard instantiateViewControllerWithIdentifier:@"FileListViewController"];
             [viewcontroller setTitle:self.currentNode.nodeTitle];
+            [viewcontroller setRssTitle:self.rssTitle];
             [viewcontroller setWebPageUrl:self.currentNode.nodeUrl];
             [self.navigationController pushViewController:viewcontroller animated:YES];
         }
@@ -434,7 +437,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * _Nonnull action) {
         RssNodeModel *node = self.nodeList[willDownloadAtIndex];
-        [[DownloadManager shareManager] downloadNode:node withName:self.title fromView:self];
+        [[DownloadManager shareManager] downloadNode:node withName:self.rssTitle fromView:self];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
                                                            style:UIAlertActionStyleCancel

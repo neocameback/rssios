@@ -37,6 +37,7 @@
 		422E3E681DD4CAEC0074B750 /* icon_edit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 422E3E651DD4CAEC0074B750 /* icon_edit@3x.png */; };
 		423A39371DB5160C00B646AD /* LocalPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 423A39351DB5160C00B646AD /* LocalPlayerViewController.m */; };
 		423A39381DB5160C00B646AD /* LocalPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 423A39361DB5160C00B646AD /* LocalPlayerViewController.xib */; };
+		424022D11DDFF1D6001976C7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 424022CF1DDFF1D6001976C7 /* Model.xcdatamodeld */; };
 		427FB9C91DB9A770002A30E6 /* RSSDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427FB9C81DB9A770002A30E6 /* RSSDrawerController.m */; };
 		427FB9CE1DB9A7F8002A30E6 /* RSSLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427FB9CC1DB9A7F8002A30E6 /* RSSLeftMenuViewController.m */; };
 		427FB9CF1DB9A7F8002A30E6 /* RSSLeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 427FB9CD1DB9A7F8002A30E6 /* RSSLeftMenuViewController.xib */; };
@@ -132,7 +133,6 @@
 		DE233F6F1B70A89F00C02DD6 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F661B70A89F00C02DD6 /* NSDate+InternetDateTime.m */; };
 		DE233F701B70A89F00C02DD6 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F681B70A89F00C02DD6 /* NSString+HTML.m */; };
 		DE233F711B70A89F00C02DD6 /* NSString+XMLEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F6A1B70A89F00C02DD6 /* NSString+XMLEntities.m */; };
-		DE233F791B70A9AD00C02DD6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DE233F731B70A9AD00C02DD6 /* Model.xcdatamodeld */; };
 		DE233F7A1B70A9AD00C02DD6 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F761B70A9AD00C02DD6 /* Node.m */; };
 		DE233F7B1B70A9AD00C02DD6 /* Rss.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F781B70A9AD00C02DD6 /* Rss.m */; };
 		DE233F861B70AA1B00C02DD6 /* _Node.m in Sources */ = {isa = PBXBuildFile; fileRef = DE233F831B70AA1B00C02DD6 /* _Node.m */; };
@@ -192,6 +192,7 @@
 		423A39341DB5160C00B646AD /* LocalPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalPlayerViewController.h; sourceTree = "<group>"; };
 		423A39351DB5160C00B646AD /* LocalPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalPlayerViewController.m; sourceTree = "<group>"; };
 		423A39361DB5160C00B646AD /* LocalPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalPlayerViewController.xib; sourceTree = "<group>"; };
+		424022D01DDFF1D6001976C7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		427FB9C71DB9A770002A30E6 /* RSSDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSDrawerController.h; sourceTree = "<group>"; };
 		427FB9C81DB9A770002A30E6 /* RSSDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSDrawerController.m; sourceTree = "<group>"; };
 		427FB9CB1DB9A7F8002A30E6 /* RSSLeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSLeftMenuViewController.h; sourceTree = "<group>"; };
@@ -218,7 +219,6 @@
 		B648CF051D1102C40030FE69 /* BaseNodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNodeListViewController.h; sourceTree = "<group>"; };
 		B648CF061D1102C40030FE69 /* BaseNodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNodeListViewController.m; sourceTree = "<group>"; };
 		B648CF071D1102C40030FE69 /* BaseNodeListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseNodeListViewController.xib; sourceTree = "<group>"; };
-		B648CF0A1D1136170030FE69 /* Model2.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.1.xcdatamodel; sourceTree = "<group>"; };
 		B65A72F71D19196400504151 /* _Subtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Subtitle.h; sourceTree = "<group>"; };
 		B65A72F81D19196400504151 /* _Subtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Subtitle.m; sourceTree = "<group>"; };
 		B65A72F91D19196500504151 /* Subtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subtitle.h; sourceTree = "<group>"; };
@@ -336,12 +336,10 @@
 		DE233F681B70A89F00C02DD6 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		DE233F691B70A89F00C02DD6 /* NSString+XMLEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XMLEntities.h"; sourceTree = "<group>"; };
 		DE233F6A1B70A89F00C02DD6 /* NSString+XMLEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XMLEntities.m"; sourceTree = "<group>"; };
-		DE233F741B70A9AD00C02DD6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DE233F751B70A9AD00C02DD6 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
 		DE233F761B70A9AD00C02DD6 /* Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Node.m; sourceTree = "<group>"; };
 		DE233F771B70A9AD00C02DD6 /* Rss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rss.h; sourceTree = "<group>"; };
 		DE233F781B70A9AD00C02DD6 /* Rss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rss.m; sourceTree = "<group>"; };
-		DE233F811B70A9E400C02DD6 /* Model2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.0.xcdatamodel; sourceTree = "<group>"; };
 		DE233F821B70AA1B00C02DD6 /* _Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Node.h; sourceTree = "<group>"; };
 		DE233F831B70AA1B00C02DD6 /* _Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Node.m; sourceTree = "<group>"; };
 		DE233F841B70AA1B00C02DD6 /* _Rss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Rss.h; sourceTree = "<group>"; };
@@ -697,6 +695,7 @@
 		DE233F721B70A9AD00C02DD6 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				424022CF1DDFF1D6001976C7 /* Model.xcdatamodeld */,
 				B65A72F71D19196400504151 /* _Subtitle.h */,
 				B65A72F81D19196400504151 /* _Subtitle.m */,
 				DE233F821B70AA1B00C02DD6 /* _Node.h */,
@@ -707,7 +706,6 @@
 				DE1AE56F1B8DC92F008C44F8 /* _RssNode.m */,
 				8465650F1B7BA57700C9E99E /* _File.h */,
 				846565101B7BA57700C9E99E /* _File.m */,
-				DE233F731B70A9AD00C02DD6 /* Model.xcdatamodeld */,
 				DE1AE5701B8DC92F008C44F8 /* RssNode.h */,
 				DE1AE5711B8DC92F008C44F8 /* RssNode.m */,
 				846565111B7BA57700C9E99E /* File.h */,
@@ -1027,7 +1025,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mogenerator -m \"CoreData/Model.xcdatamodeld/Model2.1.xcdatamodel\" -O CoreData/ --template-var arc=true\n";
+			shellScript = "mogenerator -m \"CoreData/Model.xcdatamodeld/Model.xcdatamodel\" -O CoreData/ --template-var arc=true\n";
 		};
 		F639BCA0838BB662B6EA628A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1088,9 +1086,9 @@
 				B6A1CC361D17FA2C0026430B /* NSDictionary+Helper.m in Sources */,
 				DE1AE5571B8DA40B008C44F8 /* BookmarkViewController.m in Sources */,
 				DEF49619193435FD00DD482D /* NSUserDefaults+Helper.m in Sources */,
+				424022D11DDFF1D6001976C7 /* Model.xcdatamodeld in Sources */,
 				E5B7BAB91D10700900B7CC03 /* RssManager.m in Sources */,
 				E5BCE8531D1460AC00580653 /* ASBPlayerSubtitling.m in Sources */,
-				DE233F791B70A9AD00C02DD6 /* Model.xcdatamodeld in Sources */,
 				DE1AE55B1B8DA40B008C44F8 /* NodeListViewController.m in Sources */,
 				B65A72FB1D19196500504151 /* _Subtitle.m in Sources */,
 				DE1AE5661B8DA42F008C44F8 /* Common.m in Sources */,
@@ -1403,14 +1401,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		DE233F731B70A9AD00C02DD6 /* Model.xcdatamodeld */ = {
+		424022CF1DDFF1D6001976C7 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				B648CF0A1D1136170030FE69 /* Model2.1.xcdatamodel */,
-				DE233F811B70A9E400C02DD6 /* Model2.0.xcdatamodel */,
-				DE233F741B70A9AD00C02DD6 /* Model.xcdatamodel */,
+				424022D01DDFF1D6001976C7 /* Model.xcdatamodel */,
 			);
-			currentVersion = B648CF0A1D1136170030FE69 /* Model2.1.xcdatamodel */;
+			currentVersion = 424022D01DDFF1D6001976C7 /* Model.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -92,6 +92,7 @@
     self.rssList = [[NSMutableArray alloc] init];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isBookmarkRss == 1"];
     self.rssList = [[NSMutableArray alloc] initWithArray:[Rss MR_findAllSortedBy:@"rssTitle" ascending:YES withPredicate:predicate]];
+    [_tableView setEditing:NO];
     [_tableView reloadData];
 }
 
@@ -280,6 +281,7 @@
                 
                 [viewcontroller setRssURL:currentRss.rssLink];
                 [viewcontroller setTitle:currentRss.rssTitle];
+                [viewcontroller setRssTitle:currentRss.originalTitle];
                 [wself.navigationController pushViewController:viewcontroller animated:YES];
                 
             } failure:^(NSError *error) {
@@ -297,6 +299,7 @@
             [viewcontroller setNodeList:nodeList];
             [viewcontroller setRssURL:currentRss.rssLink];
             [viewcontroller setTitle:currentRss.rssTitle];
+            [viewcontroller setRssTitle:currentRss.originalTitle];
             [self.navigationController pushViewController:viewcontroller animated:YES];
         }
 
@@ -387,6 +390,7 @@
                 }else{
                     aNewRss.rssTitle = rssModel.rssTitle;
                 }
+                aNewRss.originalTitle = rssModel.rssTitle;
                 
                 aNewRss.rssLink = rssModel.rssLink;
                 

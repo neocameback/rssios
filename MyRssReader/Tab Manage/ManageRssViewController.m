@@ -241,6 +241,7 @@
                 }else{
                     wself.aNewRss.rssTitle = rssModel.rssTitle;
                 }
+                wself.aNewRss.originalTitle = rssModel.rssTitle;
 
                 wself.aNewRss.rssLink = rssModel.rssLink;
                 

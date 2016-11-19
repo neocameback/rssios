@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface _Subtitle : NSManagedObject
 + (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
++ (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) SubtitleID *objectID;
 
 @property (nonatomic, strong, nullable) NSString* absoluteUrl;
@@ -50,26 +50,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface _Subtitle (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveAbsoluteUrl;
-- (void)setPrimitiveAbsoluteUrl:(NSString*)value;
+- (nullable NSString*)primitiveAbsoluteUrl;
+- (void)setPrimitiveAbsoluteUrl:(nullable NSString*)value;
 
-- (NSDate*)primitiveCreatedAt;
-- (void)setPrimitiveCreatedAt:(NSDate*)value;
+- (nullable NSDate*)primitiveCreatedAt;
+- (void)setPrimitiveCreatedAt:(nullable NSDate*)value;
 
-- (NSString*)primitiveExtension;
-- (void)setPrimitiveExtension:(NSString*)value;
+- (nullable NSString*)primitiveExtension;
+- (void)setPrimitiveExtension:(nullable NSString*)value;
 
-- (NSString*)primitiveLanguageCode;
-- (void)setPrimitiveLanguageCode:(NSString*)value;
+- (nullable NSString*)primitiveLanguageCode;
+- (void)setPrimitiveLanguageCode:(nullable NSString*)value;
 
-- (NSString*)primitiveLink;
-- (void)setPrimitiveLink:(NSString*)value;
+- (nullable NSString*)primitiveLink;
+- (void)setPrimitiveLink:(nullable NSString*)value;
 
-- (NSString*)primitiveName;
-- (void)setPrimitiveName:(NSString*)value;
+- (nullable NSString*)primitiveName;
+- (void)setPrimitiveName:(nullable NSString*)value;
 
-- (NSDate*)primitiveUpdatedAt;
-- (void)setPrimitiveUpdatedAt:(NSDate*)value;
+- (nullable NSDate*)primitiveUpdatedAt;
+- (void)setPrimitiveUpdatedAt:(nullable NSDate*)value;
 
 - (Node*)primitiveBookmarkedNode;
 - (void)setPrimitiveBookmarkedNode:(Node*)value;

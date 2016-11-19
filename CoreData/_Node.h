@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface _Node : NSManagedObject
 + (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
++ (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) NodeID *objectID;
 
 @property (nonatomic, strong, nullable) NSString* bookmarkStatus;
@@ -76,47 +76,47 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface _Node (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveBookmarkStatus;
-- (void)setPrimitiveBookmarkStatus:(NSString*)value;
+- (nullable NSString*)primitiveBookmarkStatus;
+- (void)setPrimitiveBookmarkStatus:(nullable NSString*)value;
 
-- (NSDate*)primitiveCreatedAt;
-- (void)setPrimitiveCreatedAt:(NSDate*)value;
+- (nullable NSDate*)primitiveCreatedAt;
+- (void)setPrimitiveCreatedAt:(nullable NSDate*)value;
 
-- (NSNumber*)primitiveIsAddedToBoomark;
-- (void)setPrimitiveIsAddedToBoomark:(NSNumber*)value;
+- (nullable NSNumber*)primitiveIsAddedToBoomark;
+- (void)setPrimitiveIsAddedToBoomark:(nullable NSNumber*)value;
 
 - (BOOL)primitiveIsAddedToBoomarkValue;
 - (void)setPrimitiveIsAddedToBoomarkValue:(BOOL)value_;
 
-- (NSNumber*)primitiveIsDeletedFlag;
-- (void)setPrimitiveIsDeletedFlag:(NSNumber*)value;
+- (nullable NSNumber*)primitiveIsDeletedFlag;
+- (void)setPrimitiveIsDeletedFlag:(nullable NSNumber*)value;
 
 - (BOOL)primitiveIsDeletedFlagValue;
 - (void)setPrimitiveIsDeletedFlagValue:(BOOL)value_;
 
-- (NSString*)primitiveNodeDesc;
-- (void)setPrimitiveNodeDesc:(NSString*)value;
+- (nullable NSString*)primitiveNodeDesc;
+- (void)setPrimitiveNodeDesc:(nullable NSString*)value;
 
-- (NSString*)primitiveNodeImage;
-- (void)setPrimitiveNodeImage:(NSString*)value;
+- (nullable NSString*)primitiveNodeImage;
+- (void)setPrimitiveNodeImage:(nullable NSString*)value;
 
-- (NSString*)primitiveNodeLink;
-- (void)setPrimitiveNodeLink:(NSString*)value;
+- (nullable NSString*)primitiveNodeLink;
+- (void)setPrimitiveNodeLink:(nullable NSString*)value;
 
-- (NSString*)primitiveNodeSource;
-- (void)setPrimitiveNodeSource:(NSString*)value;
+- (nullable NSString*)primitiveNodeSource;
+- (void)setPrimitiveNodeSource:(nullable NSString*)value;
 
-- (NSString*)primitiveNodeTitle;
-- (void)setPrimitiveNodeTitle:(NSString*)value;
+- (nullable NSString*)primitiveNodeTitle;
+- (void)setPrimitiveNodeTitle:(nullable NSString*)value;
 
-- (NSString*)primitiveNodeType;
-- (void)setPrimitiveNodeType:(NSString*)value;
+- (nullable NSString*)primitiveNodeType;
+- (void)setPrimitiveNodeType:(nullable NSString*)value;
 
-- (NSString*)primitiveNodeUrl;
-- (void)setPrimitiveNodeUrl:(NSString*)value;
+- (nullable NSString*)primitiveNodeUrl;
+- (void)setPrimitiveNodeUrl:(nullable NSString*)value;
 
-- (NSDate*)primitiveUpdatedAt;
-- (void)setPrimitiveUpdatedAt:(NSDate*)value;
+- (nullable NSDate*)primitiveUpdatedAt;
+- (void)setPrimitiveUpdatedAt:(nullable NSDate*)value;
 
 - (NSMutableOrderedSet<Subtitle*>*)primitiveSubtitles;
 - (void)setPrimitiveSubtitles:(NSMutableOrderedSet<Subtitle*>*)value;

@@ -65,6 +65,8 @@
 	[self setPrimitiveIsBookmarkRss:@(value_)];
 }
 
+@dynamic originalTitle;
+
 @dynamic rssLink;
 
 @dynamic rssTitle;
@@ -120,7 +122,7 @@
 - (void)insertObject:(RssNode*)value inNodeListAtIndex:(NSUInteger)idx {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"nodeList"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self nodeList]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self nodeList] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet insertObject:value atIndex:idx];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"nodeList"];
     [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"nodeList"];
@@ -128,21 +130,21 @@
 - (void)removeObjectFromNodeListAtIndex:(NSUInteger)idx {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"nodeList"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self nodeList]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self nodeList] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet removeObjectAtIndex:idx];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"nodeList"];
     [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"nodeList"];
 }
 - (void)insertNodeList:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
     [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"nodeList"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self nodeList]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self nodeList] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet insertObjects:value atIndexes:indexes];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"nodeList"];
     [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"nodeList"];
 }
 - (void)removeNodeListAtIndexes:(NSIndexSet *)indexes {
     [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"nodeList"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self nodeList]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self nodeList] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet removeObjectsAtIndexes:indexes];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"nodeList"];
     [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"nodeList"];
@@ -150,14 +152,14 @@
 - (void)replaceObjectInNodeListAtIndex:(NSUInteger)idx withObject:(RssNode*)value {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"nodeList"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self nodeList]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self nodeList] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"nodeList"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"nodeList"];
 }
 - (void)replaceNodeListAtIndexes:(NSIndexSet *)indexes withNodeList:(NSArray *)value {
     [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"nodeList"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self nodeList]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self nodeList] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"nodeList"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"nodeList"];
@@ -170,6 +172,9 @@
 }
 + (NSString *)isBookmarkRss {
 	return @"isBookmarkRss";
+}
++ (NSString *)originalTitle {
+	return @"originalTitle";
 }
 + (NSString *)rssLink {
 	return @"rssLink";
