@@ -21,7 +21,6 @@
 #import "DownloadManager.h"
 #import "NSString+HTML.h"
 #import "RPNodeDescriptionViewController.h"
-#import "FileListViewController.h"
 
 @interface NodeListViewController () <UIAlertViewDelegate> {
     

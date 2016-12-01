@@ -238,6 +238,7 @@
 		427FB9D31DB9B1F4002A30E6 /* ic_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_menu.png; sourceTree = "<group>"; };
 		427FB9D41DB9B1F4002A30E6 /* ic_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_menu@2x.png"; sourceTree = "<group>"; };
 		427FB9D51DB9B1F4002A30E6 /* ic_menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_menu@3x.png"; sourceTree = "<group>"; };
+		4281E5DD1DF0062E000B1387 /* Model2.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.4.xcdatamodel; sourceTree = "<group>"; };
 		42A9A0961DC1A0A700DAA241 /* blow-breeze-ep18.vtt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "blow-breeze-ep18.vtt"; sourceTree = "<group>"; };
 		42A9A09A1DC1C5AE00DAA241 /* NSDate+helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+helper.h"; sourceTree = "<group>"; };
 		42A9A09B1DC1C5AE00DAA241 /* NSDate+helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+helper.m"; sourceTree = "<group>"; };
@@ -1557,12 +1558,13 @@
 		DE233F731B70A9AD00C02DD6 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				4281E5DD1DF0062E000B1387 /* Model2.4.xcdatamodel */,
 				420162891DC47E780021F951 /* Model2.3.xcdatamodel */,
 				B648CF0A1D1136170030FE69 /* Model2.1.xcdatamodel */,
 				DE233F811B70A9E400C02DD6 /* Model2.0.xcdatamodel */,
 				DE233F741B70A9AD00C02DD6 /* Model.xcdatamodel */,
 			);
-			currentVersion = 420162891DC47E780021F951 /* Model2.3.xcdatamodel */;
+			currentVersion = 4281E5DD1DF0062E000B1387 /* Model2.4.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

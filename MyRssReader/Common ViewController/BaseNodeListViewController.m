@@ -115,6 +115,7 @@ estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
 heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewAutomaticDimension;
 }
+
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return [searchResults count];
@@ -348,13 +349,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     }
 }
 
-
 #pragma mark search bar implement
 -(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
     NSPredicate *resultPredicate = [NSPredicate
                                     predicateWithFormat:@"nodeTitle contains[c] %@", searchText];
     searchResults = [_nodeList filteredArrayUsingPredicate:resultPredicate];
 }
+
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller
 shouldReloadTableForSearchString:(NSString *)searchString {
     [self filterContentForSearchText:searchString
@@ -402,6 +403,7 @@ shouldReloadTableForSearchString:(NSString *)searchString {
 #pragma mark GADInterstitialDelegate
 - (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial {
 }
+
 - (void)interstitial:(GADInterstitial *)interstitial
 didFailToReceiveAdWithError:(GADRequestError *)error {
     //If an error occurs and the interstitial is not received
@@ -450,6 +452,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
     [alertController addAction:cancelAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
 - (void)showAlertEnterFileName {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download video"
                                                     message:@""
