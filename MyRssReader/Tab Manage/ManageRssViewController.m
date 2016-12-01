@@ -227,12 +227,7 @@
                 if (!wself.aNewRss) {
                     wself.aNewRss = [Rss MR_createEntity];
                 }
-                [[wself.aNewRss nodeListSet] removeAllObjects];
-                if (rssModel.shouldCache) {
-                    wself.aNewRss.shouldCacheValue = YES;
-                }else{
-                    wself.aNewRss.shouldCacheValue = NO;
-                }
+                wself.aNewRss.shouldCacheValue = rssModel.shouldCache;
                 [wself.aNewRss setIsBookmarkRssValue:YES];
                 [wself.aNewRss setCreatedAt:[NSDate date]];
                 [wself.aNewRss setUpdatedAt:[NSDate date]];
@@ -241,12 +236,11 @@
                 }else{
                     wself.aNewRss.rssTitle = rssModel.rssTitle;
                 }
-
                 wself.aNewRss.rssLink = rssModel.rssLink;
-                
                 /**
                  *  if this rss should be cache so create new RssNode entity
                  */
+                [[wself.aNewRss nodeListSet] removeAllObjects];
                 if (wself.aNewRss && wself.aNewRss.shouldCacheValue) {
                     for (RssNodeModel *nodeModel in nodeList) {
                         RssNode *node = [RssNode MR_createEntity];

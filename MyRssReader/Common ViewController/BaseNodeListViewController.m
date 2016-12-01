@@ -239,19 +239,10 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
                             cachedRss = [Rss MR_createEntity];
                             [cachedRss setCreatedAt:[NSDate date]];
                         }
-                        
-                        [[cachedRss nodeListSet] removeAllObjects];
-                        
-                        if (!cachedRss.isBookmarkRssValue) {
-                            [cachedRss setIsBookmarkRssValue:NO];
-                        }
+                        /// update rss infor from rssModel
                         [cachedRss initFromTempRss:rssModel];
-                    }
-                    
-                    /**
-                     *  if this rss should be cache so create new RssNode entity
-                     */
-                    if (cachedRss && cachedRss.shouldCacheValue) {
+                        /// remove all rss' nodes and add new RssNode
+                        [[cachedRss nodeListSet] removeAllObjects];
                         for (RssNodeModel *nodeModel in nodeList) {
                             RssNode *node = [RssNode MR_createEntity];
                             [node initFromTempNode:nodeModel];
@@ -259,6 +250,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
                             [node setRss:cachedRss];
                         }
                     }
+                    
                     NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
                     [context MR_saveToPersistentStoreWithCompletion:nil];
                     
