@@ -126,6 +126,7 @@
             subUrl = [NSURL fileURLWithPath:subModel.filePath];
         }
         if (subUrl) {
+            self.subtitling.player = self.myPlayer.player;
             [self.subtitling loadSubtitlesType:subModel.type atURL:subUrl error:&error];
             if (error) {
                 ALERT_WITH_TITLE(@"Error", error.localizedDescription);

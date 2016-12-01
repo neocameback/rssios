@@ -176,7 +176,7 @@
         cell.rightSwipeSettings.transition = MGSwipeTransitionStatic;
     }else{
         cell.delegate = nil;
-        cell.rightButtons = nil;
+        cell.rightButtons = @[];
     }
     
     return cell;

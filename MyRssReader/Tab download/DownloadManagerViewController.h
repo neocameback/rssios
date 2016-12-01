@@ -21,6 +21,4 @@
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) GADInterstitial *interstitial;
 
-- (void)configureCell:(DownloadManageTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-
 @end
