@@ -148,6 +148,13 @@
 
 -(void) dealloc
 {
+    @try {
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+    } @catch (NSException *exception) {
+        
+    } @finally {
+        
+    }
 }
 
 @end
