@@ -29,8 +29,7 @@
 //#define kSecondAdsPosition  8
 //#define kThirdAdsPosition   15
 
-@interface BaseNodeListViewController ()<UIAlertViewDelegate, UITableViewDataSource,
-                                                UITableViewDelegate, NodeListCustomCellDelegate> {
+@interface BaseNodeListViewController ()<UIAlertViewDelegate, NodeListCustomCellDelegate> {
     NSInteger willDownloadAtIndex;
     RssManager *manager;
 }
@@ -207,6 +206,14 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
      */
     switch ([Common typeOfNode:self.currentNode.nodeType]) {
         case NODE_TYPE_RSS: {
+            
+            NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
+//            [viewcontroller setNodeList:nodeList];
+            [viewcontroller setRssURL:self.currentNode.nodeUrl];
+            [viewcontroller setTitle:self.currentNode.nodeTitle];
+            [self.navigationController pushViewController:viewcontroller animated:YES];
+            return;
+            
             /**
              *  retrieve the cached RSS
              */

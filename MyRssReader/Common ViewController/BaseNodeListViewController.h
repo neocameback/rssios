@@ -17,7 +17,8 @@
 
 typedef void (^ ConfigureTableViewCellBlock) (id cell, id item);
 
-@interface BaseNodeListViewController : BaseViewController <GADInterstitialDelegate> {
+@interface BaseNodeListViewController : BaseViewController <GADInterstitialDelegate,
+                                                    UITableViewDataSource, UITableViewDelegate> {
     NSArray *searchResults;
 }
 @property (nonatomic, weak) IBOutlet UITableView *tableView;

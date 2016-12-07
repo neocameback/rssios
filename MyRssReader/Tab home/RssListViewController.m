@@ -139,11 +139,14 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    /**
-     *  retrieve the cached RSS
-     */
     Rss *currentRss = self.rssList[indexPath.row];
+    NodeListViewController *viewcontroller = [NodeListViewController initWithNibName];
+//    [viewcontroller setNodeList:nodeList];
+    [viewcontroller setRssURL:currentRss.rssLink];
+    [viewcontroller setTitle:currentRss.rssTitle];
+    [self.navigationController pushViewController:viewcontroller animated:YES];
+    return;
+    
     /*
      *  check auto refresh time to fetch new data
      */

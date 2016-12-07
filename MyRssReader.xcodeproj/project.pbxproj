@@ -29,6 +29,8 @@
 		423A393C1DB5257C00B646AD /* icon_dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 423A39391DB5257C00B646AD /* icon_dot@2x.png */; };
 		423A393D1DB5257C00B646AD /* icon_dot@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 423A393A1DB5257C00B646AD /* icon_dot@3x.png */; };
 		423A393E1DB5257C00B646AD /* icon_dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 423A393B1DB5257C00B646AD /* icon_dot.png */; };
+		426923B61DF85D450037B07B /* EmptyNodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426923B41DF85D450037B07B /* EmptyNodeTableViewCell.m */; };
+		426923B71DF85D450037B07B /* EmptyNodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 426923B51DF85D450037B07B /* EmptyNodeTableViewCell.xib */; };
 		427AA0D51DCA2B76007010FC /* SubtitleSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427AA0D31DCA2B76007010FC /* SubtitleSettingsViewController.m */; };
 		427AA0D61DCA2B76007010FC /* SubtitleSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 427AA0D41DCA2B76007010FC /* SubtitleSettingsViewController.xib */; };
 		427AA0D81DCA2BDD007010FC /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 427AA0D71DCA2BDD007010FC /* background.png */; };
@@ -220,6 +222,9 @@
 		423A39391DB5257C00B646AD /* icon_dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_dot@2x.png"; sourceTree = "<group>"; };
 		423A393A1DB5257C00B646AD /* icon_dot@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_dot@3x.png"; sourceTree = "<group>"; };
 		423A393B1DB5257C00B646AD /* icon_dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_dot.png; sourceTree = "<group>"; };
+		426923B31DF85D450037B07B /* EmptyNodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyNodeTableViewCell.h; sourceTree = "<group>"; };
+		426923B41DF85D450037B07B /* EmptyNodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyNodeTableViewCell.m; sourceTree = "<group>"; };
+		426923B51DF85D450037B07B /* EmptyNodeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyNodeTableViewCell.xib; sourceTree = "<group>"; };
 		427AA0D21DCA2B76007010FC /* SubtitleSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubtitleSettingsViewController.h; sourceTree = "<group>"; };
 		427AA0D31DCA2B76007010FC /* SubtitleSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubtitleSettingsViewController.m; sourceTree = "<group>"; };
 		427AA0D41DCA2B76007010FC /* SubtitleSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubtitleSettingsViewController.xib; sourceTree = "<group>"; };
@@ -649,6 +654,9 @@
 				DE1AE5361B8DA40B008C44F8 /* NodeListCustomCell.h */,
 				DE1AE5371B8DA40B008C44F8 /* NodeListCustomCell.m */,
 				DE1AE5381B8DA40B008C44F8 /* NodeListCustomCell.xib */,
+				426923B31DF85D450037B07B /* EmptyNodeTableViewCell.h */,
+				426923B41DF85D450037B07B /* EmptyNodeTableViewCell.m */,
+				426923B51DF85D450037B07B /* EmptyNodeTableViewCell.xib */,
 				E5E822CC1D5A264B00FB048D /* NodeListAdsTableViewCell.h */,
 				E5E822CD1D5A264B00FB048D /* NodeListAdsTableViewCell.m */,
 				E5E822CE1D5A264B00FB048D /* NodeListAdsTableViewCell.xib */,
@@ -1089,6 +1097,7 @@
 				E5D3B9941D11ABA100F3E400 /* download-arrow@3x.png in Resources */,
 				8465650E1B7B9A9000C9E99E /* icon_download.png in Resources */,
 				DE1AE54B1B8DA40B008C44F8 /* BaseViewController.xib in Resources */,
+				426923B71DF85D450037B07B /* EmptyNodeTableViewCell.xib in Resources */,
 				42C70C16193CBE3500736BCF /* icon-80.png in Resources */,
 				DE1F7E001B73064900C53E95 /* Launch Screen.xib in Resources */,
 				DE17B2C31B7C7C2800905EEE /* icon_check_status@2x.png in Resources */,
@@ -1211,6 +1220,7 @@
 				DE233F6F1B70A89F00C02DD6 /* NSDate+InternetDateTime.m in Sources */,
 				DE1AE5591B8DA40B008C44F8 /* NodeListCustomCell.m in Sources */,
 				DE233F701B70A89F00C02DD6 /* NSString+HTML.m in Sources */,
+				426923B61DF85D450037B07B /* EmptyNodeTableViewCell.m in Sources */,
 				DE233F6E1B70A89F00C02DD6 /* MWFeedParser.m in Sources */,
 				427AA0DE1DCA4280007010FC /* UIPaddingTextField.m in Sources */,
 				DE233F6B1B70A89F00C02DD6 /* GTMNSString+HTML.m in Sources */,

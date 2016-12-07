@@ -10,6 +10,7 @@
 #import "Node.h"
 #import "UIImageView+AFNetworking.h"
 #import "NodeListCustomCell.h"
+#import "EmptyNodeTableViewCell.h"
 #import "WebViewViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "XCDYouTubeVideoPlayerViewController.h"
@@ -26,6 +27,7 @@
     
 }
 @property (nonatomic, strong) RssManager *manager;
+@property (nonatomic) BOOL isDataLoaded;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 @implementation NodeListViewController
@@ -52,6 +54,38 @@
     
     [self.tableView addSubview:self.refreshControl];
     
+    /**
+     *  retrieve the cached RSS
+     */
+    Rss *cachedRss = [Rss MR_findFirstByAttribute:@"rssLink"
+                                                withValue:self.rssURL];
+    /*
+     *  check auto refresh time to fetch new data
+     */
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSInteger autoRefreshTime = [userDefault integerForKey:kAutoRefreshNewsTime];
+    BOOL needRefresh = NO;
+    if (cachedRss) {
+        NSDate *lastUpdated = [cachedRss updatedAt];
+        NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:lastUpdated];
+        if (interval >= autoRefreshTime) {
+            needRefresh = YES;
+        }else{
+            needRefresh = NO;
+        }
+    }
+    if (!cachedRss || cachedRss.shouldCacheValue == NO || cachedRss.nodeList.count <= 0 || needRefresh) {
+        [self reloadDataSource];
+    } else {
+        self.isDataLoaded = YES;
+        NSMutableArray *nodeList = [NSMutableArray array];
+        for (RssNode *node in cachedRss.nodeList) {
+            RssNodeModel *aNode = [[RssNodeModel alloc] initWithRssNode:node];
+            [nodeList addObject:aNode];
+        }
+        self.nodeList = nodeList;
+        [self.tableView reloadData];
+    }
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -75,6 +109,7 @@
     }
     __weak typeof(self) wself = self;
     [_manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
+        wself.isDataLoaded = YES;
         /**
          *  the saved RSS can have an other name that's enter on manage RSS view
          */
@@ -137,6 +172,37 @@
         [cell configWithNode:nodeModel];
     };
     return configureCellBlock;
+}
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (self.isDataLoaded) {
+        return [super tableView:tableView numberOfRowsInSection:section];
+    } else {
+        return 5;
+    }
+}
+
+- (UITableViewCell*) tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.isDataLoaded) {
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    } else {
+        EmptyNodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EmptyNodeTableViewCell"];
+        if (!cell) {
+            cell = [[NSBundle mainBundle] loadNibNamed:@"EmptyNodeTableViewCell" owner:self options:nil].firstObject;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        return cell;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.isDataLoaded) {
+        [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    } else {
+        /// don't do anything
+        /// just holder cells
+    }
 }
 
 -(void) dealloc {
