@@ -97,7 +97,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/UIView+AnimationExtensions/UIView_AnimationExtensions.framework"
   install_framework "$BUILT_PRODUCTS_DIR/XCDYouTubeKit/XCDYouTubeKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/dailymotion-player-objc/dailymotion_player_objc.framework"
-  install_framework "${PODS_ROOT}/google-cast-sdk/GoogleCastSDK-Public-3.2.0-Release/GoogleCast.framework"
+  install_framework "${PODS_ROOT}/google-cast-sdk/GoogleCastSDK-Public-3.3.0-Release/GoogleCast.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/AFDownloadRequestOperation/AFDownloadRequestOperation.framework"
@@ -113,5 +113,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/UIView+AnimationExtensions/UIView_AnimationExtensions.framework"
   install_framework "$BUILT_PRODUCTS_DIR/XCDYouTubeKit/XCDYouTubeKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/dailymotion-player-objc/dailymotion_player_objc.framework"
-  install_framework "${PODS_ROOT}/google-cast-sdk/GoogleCastSDK-Public-3.2.0-Release/GoogleCast.framework"
+  install_framework "${PODS_ROOT}/google-cast-sdk/GoogleCastSDK-Public-3.3.0-Release/GoogleCast.framework"
 fi

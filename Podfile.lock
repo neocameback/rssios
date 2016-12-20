@@ -26,12 +26,12 @@ PODS:
     - Fabric (~> 1.6.3)
   - dailymotion-player-objc (2.9.4)
   - Fabric (1.6.11)
-  - google-cast-sdk (3.2.0):
-    - google-cast-sdk/Core (= 3.2.0)
-  - google-cast-sdk/Core (3.2.0)
-  - Google-Mobile-Ads-SDK (7.14.0)
+  - google-cast-sdk (3.3.0):
+    - google-cast-sdk/Core (= 3.3.0)
+  - google-cast-sdk/Core (3.3.0)
+  - Google-Mobile-Ads-SDK (7.16.0)
   - GoogleAnalytics (3.17.0)
-  - JDStatusBarNotification (1.5.4)
+  - JDStatusBarNotification (1.5.5)
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
@@ -51,7 +51,7 @@ PODS:
     - MMDrawerController/Core
   - PureLayout (2.0.6)
   - SCSkypeActivityIndicatorView (1.0.0)
-  - SVProgressHUD (2.0.3)
+  - SVProgressHUD (2.1.2)
   - UIView+AnimationExtensions (1.0.0)
   - XCDYouTubeKit (2.5.3)
 
@@ -81,17 +81,17 @@ SPEC CHECKSUMS:
   Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
   dailymotion-player-objc: 3b394a0ebfad4b15edf3c136265d7e434a901472
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  google-cast-sdk: f4c2a14214ad486cc26a8f8837e8481c906a0ea8
-  Google-Mobile-Ads-SDK: dbb0211c52ca02f72331b831ce4ccd218cf08748
+  google-cast-sdk: da1989cbc1b9ff7b50ddb9dae5b1969d95a65a0f
+  Google-Mobile-Ads-SDK: 92dff0e9ce1cfdfe640d9d80ab86d5e4371e478f
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
-  JDStatusBarNotification: d47dded0594a50a39c84a2cc5aa356fcf6750d0e
+  JDStatusBarNotification: 2b4f29bd68a60d7aa2f190b5265f1ce59c18aaf8
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
   MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   SCSkypeActivityIndicatorView: 4e98ca2ba8f092786c3b1e79168df228b4ce27ba
-  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   UIView+AnimationExtensions: f9ae95fa3064be09cf2fcaac1fb1948ee22397ec
   XCDYouTubeKit: 90690f9e3523735dc93b8024269d991b0cfffe78
 
