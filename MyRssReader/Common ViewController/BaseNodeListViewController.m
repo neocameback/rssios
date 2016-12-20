@@ -238,26 +238,22 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
                             cachedRss = [Rss MR_createEntity];
                             [cachedRss setCreatedAt:[NSDate date]];
                         }
-                        
-                        [[cachedRss nodeListSet] removeAllObjects];
-                        
-                        if (!cachedRss.isBookmarkRssValue) {
-                            [cachedRss setIsBookmarkRssValue:NO];
-                        }
                         [cachedRss initFromTempRss:rssModel];
+                        [[cachedRss nodeListSet] removeAllObjects];
+                        /**
+                         *  if this rss should be cache so create new RssNode entity
+                         */
+                        if (cachedRss && cachedRss.shouldCacheValue) {
+                            for (RssNodeModel *nodeModel in nodeList) {
+                                RssNode *node = [RssNode MR_createEntity];
+                                [node initFromTempNode:nodeModel];
+                                [node setCreatedAt:[NSDate date]];
+                                [node setRss:cachedRss];
+                                [cachedRss.nodeListSet addObject:node];
+                            }
+                        }
                     }
                     
-                    /**
-                     *  if this rss should be cache so create new RssNode entity
-                     */
-                    if (cachedRss && cachedRss.shouldCacheValue) {
-                        for (RssNodeModel *nodeModel in nodeList) {
-                            RssNode *node = [RssNode MR_createEntity];
-                            [node initFromTempNode:nodeModel];
-                            [node setCreatedAt:[NSDate date]];
-                            [node setRss:cachedRss];
-                        }
-                    }
                     NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
                     [context MR_saveToPersistentStoreWithCompletion:nil];
                     

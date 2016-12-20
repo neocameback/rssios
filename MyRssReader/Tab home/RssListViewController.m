@@ -272,6 +272,7 @@
                         [node initFromTempNode:nodeModel];
                         [node setCreatedAt:[NSDate date]];
                         [node setRss:currentRss];
+                        [currentRss.nodeListSet addObject:node];
                     }
                 }
                 [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];

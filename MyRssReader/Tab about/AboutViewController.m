@@ -9,6 +9,7 @@
 #import "AboutViewController.h"
 #import "WebViewViewController.h"
 #import "Rss.h"
+#import "RssNode.h"
 
 #define minuteToSecond 60
 
@@ -227,6 +228,14 @@
                 NSArray *cachedRss = [Rss MR_findAllSortedBy:@"rssTitle" ascending:YES withPredicate:predicate inContext:[NSManagedObjectContext MR_defaultContext]];
                 for (Rss *rss in cachedRss) {
                     [rss MR_deleteEntity];
+                }
+                
+                /// delete all nodes that is not belong to any RSS
+                NSArray *nodes = [RssNode MR_findAll];
+                for (RssNode *node in nodes) {
+                    if (node.rss == nil) {
+                        [node MR_deleteEntity];
+                    }
                 }
                 [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
             }

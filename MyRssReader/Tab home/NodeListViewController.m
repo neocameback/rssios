@@ -96,6 +96,13 @@
             }else {
                 [[cachedRss nodeListSet] removeAllObjects];
             }
+            for (RssNodeModel *nodeModel in nodeList) {
+                RssNode *node = [RssNode MR_createEntity];
+                [node initFromTempNode:nodeModel];
+                [node setCreatedAt:[NSDate date]];
+                [node setRss:cachedRss];
+                [cachedRss.nodeListSet addObject:node];
+            }
             if (!cachedRss.isBookmarkRssValue) {
                 [cachedRss setIsBookmarkRssValue:NO];
             }
@@ -103,17 +110,6 @@
         }
         
         wself.nodeList = nodeList;
-        /**
-         *  if this rss should be cache so create new RssNode entity
-         */
-        if (cachedRss.shouldCacheValue) {
-            for (RssNodeModel *nodeModel in nodeList) {
-                RssNode *node = [RssNode MR_createEntity];
-                [node initFromTempNode:nodeModel];
-                [node setCreatedAt:[NSDate date]];
-                [node setRss:cachedRss];
-            }
-        }
         
         [wself.refreshControl endRefreshing];
         [context MR_saveToPersistentStoreWithCompletion:nil];

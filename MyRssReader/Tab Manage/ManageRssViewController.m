@@ -254,6 +254,7 @@
                         [node initFromTempNode:nodeModel];
                         [node setCreatedAt:[NSDate date]];
                         [node setRss:wself.aNewRss];
+                        [wself.aNewRss.nodeListSet addObject:node];
                     }
                 }
                 
