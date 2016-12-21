@@ -20,6 +20,7 @@
 
 @property (nonatomic) NSInteger selectedCellIndex;
 @property (nonatomic, strong) NSMutableArray *data;
+@property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic, strong) UINavigationController *homeNav;
 @property (nonatomic, strong) UINavigationController *favoriteNav;
 @property (nonatomic, strong) UINavigationController *downloadNav;
@@ -32,6 +33,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.images = [NSMutableArray arrayWithArray:@[@"video-camera", @"star", @"download", @"settings"]];
     self.data = [NSMutableArray arrayWithArray:@[@"Channel", @"Favorite", @"Download", @"Setting"]];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
@@ -93,13 +95,17 @@
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
 // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"sideMenuCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    
+    cell.imageView.image = [UIImage imageNamed:self.images[indexPath.row]];
     cell.textLabel.text = self.data[indexPath.row];
     return cell;
 }

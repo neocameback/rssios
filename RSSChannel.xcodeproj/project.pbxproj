@@ -45,6 +45,18 @@
 		427FB9D61DB9B1F4002A30E6 /* ic_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 427FB9D31DB9B1F4002A30E6 /* ic_menu.png */; };
 		427FB9D71DB9B1F4002A30E6 /* ic_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 427FB9D41DB9B1F4002A30E6 /* ic_menu@2x.png */; };
 		427FB9D81DB9B1F4002A30E6 /* ic_menu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 427FB9D51DB9B1F4002A30E6 /* ic_menu@3x.png */; };
+		428602351E0A9E9500C8490A /* download@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 428602291E0A9E9500C8490A /* download@2x.png */; };
+		428602361E0A9E9500C8490A /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4286022A1E0A9E9500C8490A /* settings@2x.png */; };
+		428602371E0A9E9500C8490A /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4286022B1E0A9E9500C8490A /* star@2x.png */; };
+		428602381E0A9E9500C8490A /* video-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4286022C1E0A9E9500C8490A /* video-camera@2x.png */; };
+		428602391E0A9E9500C8490A /* download@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4286022D1E0A9E9500C8490A /* download@3x.png */; };
+		4286023A1E0A9E9500C8490A /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4286022E1E0A9E9500C8490A /* settings@3x.png */; };
+		4286023B1E0A9E9500C8490A /* star@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4286022F1E0A9E9500C8490A /* star@3x.png */; };
+		4286023C1E0A9E9500C8490A /* video-camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 428602301E0A9E9500C8490A /* video-camera@3x.png */; };
+		4286023D1E0A9E9500C8490A /* video-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 428602311E0A9E9500C8490A /* video-camera.png */; };
+		4286023E1E0A9E9500C8490A /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 428602321E0A9E9500C8490A /* settings.png */; };
+		4286023F1E0A9E9500C8490A /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 428602331E0A9E9500C8490A /* download.png */; };
+		428602401E0A9E9500C8490A /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 428602341E0A9E9500C8490A /* star.png */; };
 		42A8E5871DC45881002CF85C /* iTunesArtwork@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42A8E5841DC45881002CF85C /* iTunesArtwork@1x.png */; };
 		42A8E5881DC45881002CF85C /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42A8E5851DC45881002CF85C /* iTunesArtwork@2x.png */; };
 		42A8E5891DC45881002CF85C /* iTunesArtwork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42A8E5861DC45881002CF85C /* iTunesArtwork@3x.png */; };
@@ -203,6 +215,18 @@
 		427FB9D31DB9B1F4002A30E6 /* ic_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_menu.png; sourceTree = "<group>"; };
 		427FB9D41DB9B1F4002A30E6 /* ic_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_menu@2x.png"; sourceTree = "<group>"; };
 		427FB9D51DB9B1F4002A30E6 /* ic_menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_menu@3x.png"; sourceTree = "<group>"; };
+		428602291E0A9E9500C8490A /* download@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download@2x.png"; sourceTree = "<group>"; };
+		4286022A1E0A9E9500C8490A /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
+		4286022B1E0A9E9500C8490A /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star@2x.png"; sourceTree = "<group>"; };
+		4286022C1E0A9E9500C8490A /* video-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-camera@2x.png"; sourceTree = "<group>"; };
+		4286022D1E0A9E9500C8490A /* download@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download@3x.png"; sourceTree = "<group>"; };
+		4286022E1E0A9E9500C8490A /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
+		4286022F1E0A9E9500C8490A /* star@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star@3x.png"; sourceTree = "<group>"; };
+		428602301E0A9E9500C8490A /* video-camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-camera@3x.png"; sourceTree = "<group>"; };
+		428602311E0A9E9500C8490A /* video-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-camera.png"; sourceTree = "<group>"; };
+		428602321E0A9E9500C8490A /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		428602331E0A9E9500C8490A /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
+		428602341E0A9E9500C8490A /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		42A8E5841DC45881002CF85C /* iTunesArtwork@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@1x.png"; sourceTree = "<group>"; };
 		42A8E5851DC45881002CF85C /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		42A8E5861DC45881002CF85C /* iTunesArtwork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@3x.png"; sourceTree = "<group>"; };
@@ -723,6 +747,18 @@
 		DEB54D731933344800EC589E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				428602291E0A9E9500C8490A /* download@2x.png */,
+				4286022A1E0A9E9500C8490A /* settings@2x.png */,
+				4286022B1E0A9E9500C8490A /* star@2x.png */,
+				4286022C1E0A9E9500C8490A /* video-camera@2x.png */,
+				4286022D1E0A9E9500C8490A /* download@3x.png */,
+				4286022E1E0A9E9500C8490A /* settings@3x.png */,
+				4286022F1E0A9E9500C8490A /* star@3x.png */,
+				428602301E0A9E9500C8490A /* video-camera@3x.png */,
+				428602311E0A9E9500C8490A /* video-camera.png */,
+				428602321E0A9E9500C8490A /* settings.png */,
+				428602331E0A9E9500C8490A /* download.png */,
+				428602341E0A9E9500C8490A /* star.png */,
 				422E3E541DD43B2A0074B750 /* icon_back.png */,
 				422E3E631DD4CAEC0074B750 /* icon_edit.png */,
 				422E3E641DD4CAEC0074B750 /* icon_edit@2x.png */,
@@ -893,8 +929,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4286023B1E0A9E9500C8490A /* star@3x.png in Resources */,
 				B6B4A3931D140C800000DD02 /* ic_player_play@3x.png in Resources */,
+				428602381E0A9E9500C8490A /* video-camera@2x.png in Resources */,
 				B6B4A38B1D140C670000DD02 /* ic_close.png in Resources */,
+				4286023D1E0A9E9500C8490A /* video-camera.png in Resources */,
 				DE1AE5521B8DA40B008C44F8 /* DownloadManagerViewController.xib in Resources */,
 				B6B4A3991D140CCF0000DD02 /* ic_player_pause@3x.png in Resources */,
 				427FB9CF1DB9A7F8002A30E6 /* RSSLeftMenuViewController.xib in Resources */,
@@ -916,6 +955,7 @@
 				B6B4A3811D140B4B0000DD02 /* AirPlayerViewController.xib in Resources */,
 				B6B4A3741D13E20D0000DD02 /* icon_tick@3x.png in Resources */,
 				DE1AE5631B8DA40B008C44F8 /* ManageRssViewController.xib in Resources */,
+				428602361E0A9E9500C8490A /* settings@2x.png in Resources */,
 				DEB54D7D193336BE00EC589E /* rate_star_0@2x.png in Resources */,
 				B6B4A3981D140CCF0000DD02 /* ic_player_pause@2x.png in Resources */,
 				B65A73011D19542900504151 /* closed-caption@2x.png in Resources */,
@@ -926,6 +966,7 @@
 				B6B4A3731D13E20D0000DD02 /* icon_tick@2x.png in Resources */,
 				427FB9D71DB9B1F4002A30E6 /* ic_menu@2x.png in Resources */,
 				427FB9D61DB9B1F4002A30E6 /* ic_menu.png in Resources */,
+				428602351E0A9E9500C8490A /* download@2x.png in Resources */,
 				DE1AE55F1B8DA40B008C44F8 /* RssListViewController.xib in Resources */,
 				DE9D4555193C57000006047E /* Default@2x.png in Resources */,
 				422E3E671DD4CAEC0074B750 /* icon_edit@2x.png in Resources */,
@@ -941,6 +982,7 @@
 				DE1AE54B1B8DA40B008C44F8 /* BaseViewController.xib in Resources */,
 				422E3E581DD43B2A0074B750 /* icon_back@2x.png in Resources */,
 				422E3E591DD43B2A0074B750 /* icon_back@3x.png in Resources */,
+				428602401E0A9E9500C8490A /* star.png in Resources */,
 				DE1F7E001B73064900C53E95 /* Launch Screen.xib in Resources */,
 				DE17B2C31B7C7C2800905EEE /* icon_check_status@2x.png in Resources */,
 				E5AA3F951D1FDE91000B7B37 /* SubtitleSelectionViewController.xib in Resources */,
@@ -951,19 +993,25 @@
 				DE17B2C21B7C7C2800905EEE /* icon_check_status.png in Resources */,
 				42A8E5871DC45881002CF85C /* iTunesArtwork@1x.png in Resources */,
 				B65A73001D19542900504151 /* closed-caption.png in Resources */,
+				4286023F1E0A9E9500C8490A /* download.png in Resources */,
 				DE22E7CB192F54180005E685 /* Images.xcassets in Resources */,
 				422D00651DC25CF600964DC5 /* plus@3x.png in Resources */,
 				DEB54D7C193336BE00EC589E /* rate_star_0.png in Resources */,
 				B65A73021D19542900504151 /* closed-caption@3x.png in Resources */,
 				DEB54D7E193336BE00EC589E /* rate_star_1.png in Resources */,
 				422D00661DC25CF600964DC5 /* plus.png in Resources */,
+				428602371E0A9E9500C8490A /* star@2x.png in Resources */,
 				422E3E571DD43B2A0074B750 /* icon_back.png in Resources */,
 				B6B4A3911D140C800000DD02 /* ic_player_play.png in Resources */,
 				B6B4A3721D13E20D0000DD02 /* icon_tick.png in Resources */,
 				DE17B2C41B7C7C2800905EEE /* icon_check_status@3x.png in Resources */,
 				423A39381DB5160C00B646AD /* LocalPlayerViewController.xib in Resources */,
+				428602391E0A9E9500C8490A /* download@3x.png in Resources */,
 				E5E822D01D5A264B00FB048D /* NodeListAdsTableViewCell.xib in Resources */,
 				422E3E661DD4CAEC0074B750 /* icon_edit.png in Resources */,
+				4286023E1E0A9E9500C8490A /* settings.png in Resources */,
+				4286023A1E0A9E9500C8490A /* settings@3x.png in Resources */,
+				4286023C1E0A9E9500C8490A /* video-camera@3x.png in Resources */,
 				B6B4A38D1D140C670000DD02 /* ic_close@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
