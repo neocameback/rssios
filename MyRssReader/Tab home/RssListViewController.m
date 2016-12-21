@@ -62,8 +62,9 @@
     } else {// first time lauche application, we'll save a sample RSS url
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-
-        manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:kDefaultRssUrl]];
+        if (!manager) {
+            manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:kDefaultRssUrl]];
+        }
         __weak typeof(self) wself = self;
         [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
             Rss *defaultRss = [Rss MR_createEntity];
@@ -259,8 +260,9 @@
             }
         }
         if (!currentRss || currentRss.shouldCacheValue == NO || currentRss.nodeList.count <= 0 || needRefresh) {
-            
-            manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:currentRss.rssLink]];
+            if (!manager) {
+                manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:currentRss.rssLink]];
+            }
             __weak typeof(self) wself = self;
             [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
                 
@@ -366,8 +368,9 @@
             if (!result) {
                 urlString = [NSString stringWithFormat:@"http://%@", urlString];
             }
-            
-            manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:urlString]];
+            if (!manager) {
+                manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:urlString]];
+            }
             __weak typeof(self) wself = self;
             [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
                 /**

@@ -229,7 +229,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
             if (!cachedRss || cachedRss.shouldCacheValue == NO ||
                 cachedRss.nodeList.count <= 0 || needRefresh) {
                 NSURL *url = [NSURL URLWithString:self.currentNode.nodeUrl];
-                manager = [[RssManager alloc] initWithRssUrl:url];
+                if (!manager) {
+                    manager = [[RssManager alloc] initWithRssUrl:url];
+                }
                 __weak typeof(self) wself = self;
                 [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
                     

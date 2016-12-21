@@ -217,7 +217,9 @@
                 urlString = [NSString stringWithFormat:@"http://%@", urlString];
             }
             
-            manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:urlString]];
+            if (!manager) {
+                manager = [[RssManager alloc] initWithRssUrl:[NSURL URLWithString:urlString]];
+            }
             __weak typeof(self) wself = self;
             [manager startParseCompletion:^(RssModel *rssModel, NSMutableArray *nodeList) {
                 /**

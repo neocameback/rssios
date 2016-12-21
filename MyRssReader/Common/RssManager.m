@@ -43,13 +43,14 @@
         if (!request) {
             return;
         }
-        _feedParser = [[MWFeedParser alloc] initWithFeedRequest:request];
-        
-        _feedParser.delegate = self;
-        // Parse the feeds info (title, link) and all feed items
-        _feedParser.feedParseType = ParseTypeFull;
-        // Connection type
-        _feedParser.connectionType = ConnectionTypeAsynchronously;
+        if (!_feedParser) {
+            _feedParser = [[MWFeedParser alloc] initWithFeedRequest:request];
+            _feedParser.delegate = self;
+            // Parse the feeds info (title, link) and all feed items
+            _feedParser.feedParseType = ParseTypeFull;
+            // Connection type
+            _feedParser.connectionType = ConnectionTypeAsynchronously;
+        }
         // Begin parsing
         if ([self isInternetConnected]) {
             [_feedParser parse];
@@ -74,13 +75,14 @@
                 if (!request) {
                     return;
                 }
-                _feedParser = [[MWFeedParser alloc] initWithFeedRequest:request];
-                
-                _feedParser.delegate = self;
-                // Parse the feeds info (title, link) and all feed items
-                _feedParser.feedParseType = ParseTypeFull;
-                // Connection type
-                _feedParser.connectionType = ConnectionTypeAsynchronously;
+                if (!_feedParser) {
+                    _feedParser = [[MWFeedParser alloc] initWithFeedRequest:request];
+                    _feedParser.delegate = self;
+                    // Parse the feeds info (title, link) and all feed items
+                    _feedParser.feedParseType = ParseTypeFull;
+                    // Connection type
+                    _feedParser.connectionType = ConnectionTypeAsynchronously;
+                }
                 // Begin parsing
                 if ([self isInternetConnected]) {
                     [_feedParser parse];
@@ -148,6 +150,7 @@
 
 -(void) dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
