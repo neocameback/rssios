@@ -68,9 +68,8 @@
                 _completionBlock = completionBlock;
                 _failureBlock = failedBlock;
                 
-                NSString *ipAddress = update[@"query"];
+                NSString *ipAddress = update[@"ip"];
                 [[Singleton shareInstance] setCurrentIpAddress:ipAddress];
-                DLog(@"%@",ipAddress);
                 NSMutableURLRequest *request = [Common requestWithMethod:@"GET" ipAddress:ipAddress Url:_rssUrl];
                 if (!request) {
                     return;
@@ -93,9 +92,28 @@
                 }
             }
         } failureBlock:^(NSError * error) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-            [SVProgressHUD popActivity];
+            NSString *ipAddress = kDefaultIpAddress;
+            [[Singleton shareInstance] setCurrentIpAddress:ipAddress];
+            NSMutableURLRequest *request = [Common requestWithMethod:@"GET" ipAddress:ipAddress Url:_rssUrl];
+            if (!request) {
+                return;
+            }
+            if (!_feedParser) {
+                _feedParser = [[MWFeedParser alloc] initWithFeedRequest:request];
+                _feedParser.delegate = self;
+                // Parse the feeds info (title, link) and all feed items
+                _feedParser.feedParseType = ParseTypeFull;
+                // Connection type
+                _feedParser.connectionType = ConnectionTypeAsynchronously;
+            }
+            // Begin parsing
+            if ([self isInternetConnected]) {
+                [_feedParser parse];
+            }else{
+                [SVProgressHUD popActivity];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:kMessageInternetConnectionLost delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }
         }];
     }
 }

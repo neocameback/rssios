@@ -17,7 +17,9 @@
 #define kAutoRefreshNewsTime                 @"auto_refresh_news_time"
 #define kLastOpenFullScreen @"last_open_full_screen"
 
-#define GET_IP_ADDRESS      @"http://ip-api.com/json"
+#define GET_IP_ADDRESS      @"http://api.rssvideochannel.com/ip/"
+#define kDefaultIpAddress   @"127.0.0.1"
+
 #define kDefaultRssUrl      @"http://rssvideochannel.com/sample.xml"
 #define kDefaultMd5Prefix   @"RssVideoChannel-Hanoi102016-"
 
